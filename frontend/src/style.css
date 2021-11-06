@@ -1,0 +1,17 @@
+:root {
+  --linkColor: #00a790;
+  --allegroColor: #ff5a00;
+  --borderColor: #d9dfe4;
+  --textColor: rgb(78, 75, 75);
+}
+
+.active {
+  border-bottom: 3px solid var(--allegroColor);
+}
+
+.slider {
+ width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
