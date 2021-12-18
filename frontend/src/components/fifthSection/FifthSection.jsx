@@ -1,86 +1,54 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
-import ProductContainer from "../ProductContainer";
-import { oponyArray, okazjeArray, ratyArray, charityArray } from "../../productCategories";
+import Left from "./Left";
+import Right from "./Right";
+
+import PsiSmak from "../../assets/pictures/PsiSmak.png";
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 200%;
-  justify-content: space-between;
-  margin-top: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 16px;
+	position: relative;
+	height: 650px;
+	background-color: white;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
 `;
 
-const Bar = styled.div`
-  width: 100vw;
-  height: 50px;
-  background: rgb(227, 230, 227);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const BackgroundImage = styled.img`
+	width: 100%;
+	object-fit: contain;
+
+	position: absolute;
+	top: -130px;
+	left: 0;
+	right: 0;
 `;
 
-const BarTitle = styled.div`
-  text-transform: uppercase;
-  margin: 0px 10px;
-  cursor: pointer;
-  transition: 0.15s;
-  padding: 13px 2px;
-  border-bottom: ${(props) => (props.active ? " 3px solid #ff5a00" : " 3px solid transparent")};
-  color: ${(props) => (props.active ? "#ff5a00" : "grey")};
-
-  &:hover {
-    color: ${(props) => (props.active ? "#ff5a00" : "var(--linkColor)")};
-  }
-`;
-
-const ProductContainer1 = styled.div`
-  display: flex;
-  justify-content: flex-start;
+const RowContainer = styled.div`
+	position: absolute;
+	top: 250px;
+	left: 0px;
+	width: 100%;
+	height: 380px;
+	display: flex;
+	justify-content: space-between;
 `;
 
 const FifthSection = () => {
-  const [active, setActive] = useState(true);
-  const [okazje, setOkazje] = useState(true);
-  const [opony, setOpony] = useState(true);
-  const [bilety, setBilety] = useState(true);
-  const [charity, setCharity] = useState(true);
-
-  const [categoryArray, setCategoryArray] = useState(okazjeArray);
-  const [category, setCategory] = useState(okazje);
-
-  const handleClick = (category, array) => {
-    setCategory(category);
-    setCategoryArray(array);
-  };
-
-  return (
-    <Container>
-      <Bar>
-        <BarTitle active onClick={() => handleClick(okazje, okazjeArray)}>
-          Strefa okazji
-        </BarTitle>
-        <BarTitle active onClick={() => handleClick(opony, oponyArray)}>
-          Opony zimowe Continental
-        </BarTitle>
-        <BarTitle active onClick={() => handleClick(bilety, ratyArray)}>
-          Strefa Biletów
-        </BarTitle>
-        <BarTitle active onClick={() => handleClick(charity, charityArray)}>
-          Strefa Rat Zero
-        </BarTitle>
-      </Bar>
-
-      {category && (
-        <ProductContainer1>
-          {categoryArray.map((okazja) => (
-            <ProductContainer img={okazja.img} price={okazja.price} />
-          ))}
-        </ProductContainer1>
-      )}
-    </Container>
-  );
+	return (
+		<Container>
+			<BackgroundImage src={PsiSmak} />
+			<RowContainer>
+				<Left />
+				<Right />
+			</RowContainer>
+		</Container>
+	);
 };
 
 export default FifthSection;

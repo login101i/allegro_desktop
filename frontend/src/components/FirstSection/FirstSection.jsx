@@ -8,45 +8,48 @@ import Center from "../FirstSection/Center";
 import SidebarRight from "../FirstSection/SideBarRight";
 
 const MainContainer = styled.div`
-  max-width: 1600px;
-  display: grid;
-  grid-template-columns: 292px 16px minmax(0, 985px) 16px 292px;
-  height: 610px;
-  margin-top: 16px;
+	width: 1650px;
+	display: grid;
+	grid-template-columns: 292px 16px minmax(0, 985px) 16px 292px;
+	height: 610px;
+	margin-top: 16px;
+	display: flex;
 `;
 
-const Space = styled.div``;
+const Space = styled.div`
+	width: 20px;
+`;
 
 const FirstSection = () => {
-  const isMobile = useMediaQuery({ maxWidth: screens.md });
-  const isMedium = useMediaQuery({ maxWidth: screens.lg });
-  const isLarge = useMediaQuery({ minWidth: screens.lg });
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
+	const isMedium = useMediaQuery({ maxWidth: screens.lg });
+	const isLarge = useMediaQuery({ minWidth: screens.lg });
 
-  if (isLarge) {
-    return (
-      <MainContainer>
-        <SidebarLeft />
-        <Space />
+	if (isLarge) {
+		return (
+			<MainContainer>
+				<SidebarLeft />
+				<Space />
 
-        <Center />
+				<Center />
 
-        <Space />
-        <SidebarRight />
-      </MainContainer>
-    );
-  } else if (isMedium) {
-    return (
-      <>
-        <MainContainer>
-          <SidebarLeft />
-          <Center />
-        </MainContainer>
-        <SidebarLeft />
-      </>
-    );
-  }
+				<Space />
+				<SidebarRight />
+			</MainContainer>
+		);
+	} else if (isMedium) {
+		return (
+			<>
+				<MainContainer>
+					<SidebarLeft />
+					<Center />
+				</MainContainer>
+				<SidebarLeft />
+			</>
+		);
+	}
 
-  return <MainContainer>Hello from mobile resolution</MainContainer>;
+	return <MainContainer>Hello from mobile resolution</MainContainer>;
 };
 
 export default FirstSection;

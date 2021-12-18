@@ -1,31 +1,26 @@
-import HomePage from "./pages/HomePage";
 import styled, { ThemeProvider } from "styled-components";
 
 import "./style.css";
+import HomePage from "./pages/HomePage";
+import { theme } from "./infrastructure/theme";
 
 const Container = styled.div`
-  background-color: white;
-  margin: 0 auto;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  margin-top:16px;
+	background-color: grey;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: ${(props) => props.theme.colors.allegroBackground};
 `;
 
-const theme = {
-  color: "green",
-  bgColor: "orange",
-  payPalColor: "#0E5CAA",
-};
-
 const App = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <Container>
-        <HomePage />
-      </Container>
-    </ThemeProvider>
-  );
+	return (
+		<ThemeProvider theme={theme}>
+			<Container>
+				<HomePage />
+			</Container>
+		</ThemeProvider>
+	);
 };
 
 export default App;

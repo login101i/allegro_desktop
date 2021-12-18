@@ -1,23 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
-import ContainerInfo from "./ContainerInfo";
+import ContainerInfo1 from "./ContainerInfo1";
+import ContainerInfo2 from "./ContainerInfo2";
 
 const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-width: 244px;
-  height:100%;
+	display: flex;
+	flex-direction: column;
+	min-width: 344px;
+	height: 100%;
 `;
 
-
 const SidebarRight = () => {
-  return (
-    <MainContainer>
-      <ContainerInfo style={{ margin: "8px" }} />
-      <ContainerInfo style={{ margin: "8px" }} />
-    </MainContainer>
-  );
+	return (
+		<MainContainer>
+			<ContainerInfo1 />
+			<ContainerInfo2 />
+		</MainContainer>
+	);
 };
 
 export default SidebarRight;
