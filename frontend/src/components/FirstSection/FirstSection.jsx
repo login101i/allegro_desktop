@@ -8,12 +8,13 @@ import Center from "../FirstSection/Center";
 import SidebarRight from "../FirstSection/SideBarRight";
 
 const MainContainer = styled.div`
-	width: 1650px;
+	width: 1660px;
 	display: grid;
 	grid-template-columns: 292px 16px minmax(0, 985px) 16px 292px;
 	height: 610px;
 	margin-top: 16px;
 	display: flex;
+	margin-top:16px;
 `;
 
 const Space = styled.div`

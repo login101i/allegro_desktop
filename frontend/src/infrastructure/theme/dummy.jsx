@@ -256,6 +256,68 @@ const chartOptions = [
 	}
 ];
 
+export const productsLocaly = {
+	success: true,
+	productsCount: 3,
+	filteredProductsCount: 2,
+	message: "This is all products from DB",
+	products: [
+		{
+			_id: "61c10a6b74d8b1a84d61a97d",
+			title: "Grill elektryczny Tefal Inicio GC241D38 2000 W",
+			price: 209,
+			oldPrice: 0,
+			discount: 0,
+			description:
+				"Pyszne jedzenie jak z restauracji! Dzięki temu, wielofunkcyjnemu grillowi Inicio od Tefal możesz cieszyć się doskonałym grillowym jedzeniem oraz pysznym panini jak z restauracji.  Nieprzywierająca powłoka na płytach uławia czyszczenie, a moc 2000 W przyspiesza grillowanie. Pionowa konstrukcja ułatwia przechowywanie i z łatwością dopasuje się do każdej kuchni.",
+			ratings: 4.5,
+			img: [
+				{
+					url: "https://a.allegroimg.com/s720/112f5c/303735994203ba80b04af8491d3a/Grill-elektryczny-Tefal-Inicio-GC241D38-2000-W",
+					_id: "61c10a6b74d8b1a84d61a97e"
+				},
+				{
+					url: "https://www.cashless.pl/system/uploads/ckeditor/pictures/2130/content_allegro_stara_ikona.jpg",
+					_id: "61cdf3abb36a3fa27041d670"
+				}
+			],
+			category: "AGD",
+			seller: "MarkoAGD",
+			stock: 15,
+			numOfReviews: 0,
+			reviews: [],
+			createdAt: "2021-12-20T22:57:47.379Z",
+			updatedAt: "2021-12-20T22:57:47.379Z",
+			__v: 0
+		},
+		{
+			_id: "61c10b44649cdf618b815c43",
+			title: "Purina GOURMET GOLD wołowina i kurczak 85g",
+			price: 2.19,
+			oldPrice: 0,
+			discount: 0,
+			description:
+				"Purina GOURMET GOLD Casserole wołowina i kurczak jest pełnowartościowym daniem, które możesz z powodzeniem podawać swojemu kotu jako uzupełnienie karmy suchej.Dzięki połączeniu mięs pokarm stanowi źródło białka, dzięki któremu Twój pupil zdobędzie siły, by zmierzyć się z wyzwaniami dnia codziennego. Zaskocz swojego mruczka extra-mięsnym smakiem z dodatkiem sosu pomidorowego! Bo każdy kot chce mieć wiele smakowitych możliwości. Dawkowanie: Dorosłemu kotu ważącemu ok 3,5 kg zaleca się podawać do 3 puszek dziennie w postaci co najmniej 2 posiłkówodawać w temperaturze pokojowej.",
+			ratings: 4,
+			img: [
+				{
+					url: "https://a.allegroimg.com/s720/032329/b0125bc34b7b926154f6ce86ccdf/Purina-GOURMET-GOLD-wolowina-i-kurczak-85g",
+					_id: "61c10b44649cdf618b815c44"
+				}
+			],
+			category: "Pupil",
+			seller: "Gourmet",
+			stock: 188,
+			numOfReviews: 0,
+			reviews: [],
+			createdAt: "2021-12-20T23:01:24.791Z",
+			updatedAt: "2021-12-20T23:01:24.791Z",
+			__v: 0
+		}
+	],
+	resPerPage: 2
+};
+
 const dummyData = {
 	portfolio,
 	categoriesData,

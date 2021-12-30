@@ -3,12 +3,7 @@ import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 
 import { screens } from "../responsive";
-import WeekOcasion1 from "../../assets/pictures/WeekOcasion1.png";
-import WeekOcasion2 from "../../assets/pictures/WeekOcasion2.png";
-import Image31 from "../../assets/pictures/Image31.png";
-import Image32 from "../../assets/pictures/Image32.png";
-import Image33 from "../../assets/pictures/Image33.png";
-import Image34 from "../../assets/pictures/Image34.png";
+
 import BorderAndTitle from "../BorderAndTitle";
 
 import ProductContainer from "../../components/ProductContainer";
@@ -62,13 +57,14 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	position: relative;
+	height:100%;
 `;
 
 const FlexRow = styled.div`
 	display: flex;
 `;
 
-const Left = () => {
+const Left = ({products}) => {
 	const [hours, setHours] = useState("-");
 	const [minutes, setMinutes] = useState("-");
 	const [seconds, setSeconds] = useState("-");
@@ -99,6 +95,9 @@ const Left = () => {
 	useEffect(() => {
 		counDownFunction();
 	}, [minutes, hours]);
+
+		const dogProducts = products.filter((p) => p.category === "Pupil");
+
 
 	return (
 		<Container>
@@ -133,77 +132,17 @@ const Left = () => {
 				</TimeContainer>
 
 				<DirectionArrows>
-					<ProductContainer
-						img={WeekOcasion1}
-						discount={232}
-						oldPrice={389.0}
-						price={(299, 89)}
-						description={"Elektryczny grill opiekacz FIT beztłuszczowy FIRST"}
-					/>
-					<ProductContainer
-						img={WeekOcasion2}
-						discount={28}
-						oldPrice={189.0}
-						price={(99, 89)}
-						description={"Elektryczny grill opiekacz FIT beztłuszczowy FIRST"}
-					/>
-					<ProductContainer
-						img={Image31}
-						discount={232}
-						oldPrice={389.0}
-						price={(299, 89)}
-						description={"Elektryczny grill opiekacz FIT beztłuszczowy FIRST"}
-					/>
-					<ProductContainer
-						img={Image33}
-						discount={28}
-						oldPrice={189.0}
-						price={(99, 89)}
-						description={"Elektryczny grill opiekacz FIT beztłuszczowy FIRST"}
-					/>
-					<ProductContainer
-						img={Image33}
-						discount={232}
-						oldPrice={389.0}
-						price={(299, 89)}
-						description={"Elektryczny grill opiekacz FIT beztłuszczowy FIRST"}
-					/>
-					<ProductContainer
-						img={Image34}
-						discount={28}
-						oldPrice={189.0}
-						price={(99, 89)}
-						description={"Elektryczny grill opiekacz FIT beztłuszczowy FIRST"}
-					/>
-
-					<ProductContainer
-						img={WeekOcasion1}
-						discount={232}
-						oldPrice={389.0}
-						price={(299, 89)}
-						description={"Elektryczny grill opiekacz FIT beztłuszczowy FIRST"}
-					/>
-					<ProductContainer
-						img={WeekOcasion2}
-						discount={28}
-						oldPrice={189.0}
-						price={(99, 89)}
-						description={"Elektryczny grill opiekacz FIT beztłuszczowy FIRST"}
-					/>
-					<ProductContainer
-						img={Image31}
-						discount={232}
-						oldPrice={389.0}
-						price={(299, 89)}
-						description={"Elektryczny grill opiekacz FIT beztłuszczowy FIRST"}
-					/>
-					<ProductContainer
-						img={Image33}
-						discount={28}
-						oldPrice={189.0}
-						price={(99, 89)}
-						description={"Elektryczny grill opiekacz FIT beztłuszczowy FIRST"}
-					/>
+					{products.map((dogProduct) => (
+						<ProductContainer
+							key={dogProduct._id}
+							img={dogProduct.img[0].url}
+							discount={dogProduct.discount}
+							oldPrice={dogProduct.oldPrice}
+							price={dogProduct.price}
+							product={dogProduct}
+							extended={true}
+						/>
+					))}
 				</DirectionArrows>
 			</Wrapper>
 

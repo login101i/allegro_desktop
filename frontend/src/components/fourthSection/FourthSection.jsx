@@ -9,7 +9,6 @@ import {
 	charityArray
 } from "../../productCategories";
 
-import DirectionArrows from "../DirectionArrows";
 
 const Container = styled.div`
 	display: flex;
@@ -50,7 +49,6 @@ const ProductContainer1 = styled.div`
 `;
 
 const FourthSection = () => {
-	const [active, setActive] = useState(true);
 	const [okazje, setOkazje] = useState(true);
 	const [opony, setOpony] = useState(true);
 	const [bilety, setBilety] = useState(true);

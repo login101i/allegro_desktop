@@ -11,6 +11,7 @@ import FifthSection from "../components/fifthSection/FifthSection";
 import PayPalButton from "../components/PayPalButton";
 import { ThemeProvider } from "styled-components";
 import SmartBannerImg from "../../src/assets/pictures/smartBanner.png";
+import MetaData from "../components/MetaData";
 
 const MainContainer = styled.div`
 	display: flex;
@@ -18,9 +19,10 @@ const MainContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	position: relative;
-	max-width: 1650px;
-	width: 1650px;
+	max-width: 1660px;
+	width: 1660px;
 	overflow: hidden;
+	background: ${(props) => props.theme.colors.allegroBackground};
 `;
 
 const SmartBanner = styled.img`
@@ -34,12 +36,10 @@ const HomePage = () => {
 		<>
 			{/* <NavbarAd /> */}
 			<MainContainer>
-				<Navbar />
+				<MetaData title="Allegro" />
+
 				<FirstSection />
-				<SecondSection
-					title={"Wszystko na Święta"}
-					style={{ marginTop: "20px" }}
-				/>
+				<SecondSection title={"Wszystko na Święta"} />
 				<ThirdSection />
 				<FourthSection />
 				<FifthSection />

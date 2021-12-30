@@ -11,6 +11,7 @@ import Image3 from "../../assets/pictures/goodToSee3.png";
 import Image4 from "../../assets/pictures/goodToSee4.png";
 
 import Recomended from "./Recomended";
+import { OptionComponent } from "../../components";
 
 const MainContainer = styled.div`
 	display: flex;
@@ -54,7 +55,7 @@ const Center = () => {
 			} else {
 				setSlideIndex(0);
 			}
-		}, 4000);
+		}, 7000);
 	};
 
 	useEffect(() => {
@@ -68,28 +69,8 @@ const Center = () => {
 		width: 100%;
 		height: 15%;
 		flex: 1;
+
 		padding-bottom: 10px;
-	`;
-
-	const Option = styled.div`
-		text-align: center;
-		margin: 0px 10px;
-		cursor: pointer;
-		padding: 10px;
-		color: var(--textColor);
-	`;
-
-	const OptionContainer = styled.div`
-		transition: 0.2s;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		height: 100%;
-		border-top: 3px solid lightGrey;
-
-		&:hover {
-			border-top: 3px solid var(--allegroColor);
-		}
 	`;
 
 	const Carousel = styled.div`
@@ -146,26 +127,30 @@ const Center = () => {
 					))}
 				</Carousel>
 				<WrapperOption>
-					<OptionContainer onClick={() => handleIndex(0)}>
-						{" "}
-						<Option>Kupuj teraz, płać później</Option>
-					</OptionContainer>
-					<OptionContainer onClick={() => handleIndex(1)}>
-						{" "}
-						<Option>Karmy Dog Chow</Option>
-					</OptionContainer>
-					<OptionContainer onClick={() => handleIndex(2)}>
-						{" "}
-						<Option>Z kuponami taniej</Option>
-					</OptionContainer>
-					<OptionContainer onClick={() => handleIndex(3)}>
-						{" "}
-						<Option>Strefa projektanta</Option>
-					</OptionContainer>
-					<OptionContainer onClick={() => handleIndex(4)}>
-						{" "}
-						<Option>Witaminy na jesień</Option>
-					</OptionContainer>
+					<OptionComponent
+						onClick={() => handleIndex(0)}
+						option="Kupuj teraz, płać później"
+					/>
+					<OptionComponent
+						onClick={() => handleIndex(0)}
+						option="Karmy Dog Chow"
+					/>
+					<OptionComponent
+						onClick={() => handleIndex(0)}
+						option="Z kuponami taniej"
+					/>
+					<OptionComponent
+						onClick={() => handleIndex(0)}
+						option="Strefa projektanta"
+					/>
+					<OptionComponent
+						onClick={() => handleIndex(0)}
+						option="Kupuj teraz, płać później"
+					/>
+					<OptionComponent
+						onClick={() => handleIndex(0)}
+						option="Wtaminy na jesień"
+					/>
 				</WrapperOption>
 			</Container>
 

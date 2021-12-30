@@ -1,28 +1,40 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 import { Badge } from "@material-ui/core";
+import { Link, Route, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { makeStyles } from "@mui/styles";
 
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+
 import Logo from "../assets/pictures/logo.svg";
 
-import Badged from "../components/Badged";
+import { Text, Button, MenuContentBox } from "../components";
 
 import { mediumSize } from "../responsive";
 import { screens } from "./responsive";
+
+import { logoutUser } from "../redux/actions/userActions";
+import LoginImage from "../assets/pictures/LoginImage.png";
+import { OptionComponent } from "../components";
 
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	background-color: white;
-	padding: 15px 20px;
+	padding: 16px 16px;
 	justify-content: center;
 	align-items: center;
-	width: 10000px;
+	width: 100%;
+	position: sticky;
+	top: 0;
+	z-index: 99;
+	border-bottom: 1px solid lightGrey;
 `;
 
 const Wrapper = styled.div`
@@ -30,7 +42,7 @@ const Wrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 	height: 100%;
-	width: 1560px;
+	width: 1600px;
 `;
 
 const Left = styled.div`
@@ -42,7 +54,12 @@ const Left = styled.div`
 `;
 
 const Image = styled.div`
-	transform: scale(1.12);
+	transform: scale(1.15);
+`;
+
+const LogInImage = styled.img`
+	width: 100%;
+	object-fit: contain;
 `;
 
 const Center = styled.div`
@@ -53,7 +70,7 @@ const Center = styled.div`
 	width: 100%;
 	margin: 0px 20px;
 `;
-const CenterContainer = styled.div`
+const CenterContainer = styled.form`
 	display: flex;
 	flex-grow: 1;
 `;
@@ -90,19 +107,11 @@ const SelectContainer = styled.select`
 	border: 0.5px solid #d2d2d2;
 `;
 
-const Button = styled.div`
-	height: 42px;
-	background: var(--allegroColor);
-	color: white;
-	cursor: pointer;
-	border: none;
-	outline: none;
-	text-align: center;
-	font-weight: 500;
-	letter-spacing: 2px;
-	text-transform: uppercase;
-	line-height: 44px;
-	padding: 0 13px;
+const FlexRow = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 `;
 
 const Right = styled.div`
@@ -121,32 +130,146 @@ const Icon = styled.div`
 	margin: 6px 10px;
 	display: flex;
 	align-items: center;
+	justify-content: center;
+	text-align: center;
+	position: relative;
 `;
 
-const Navbar = () => {
+const IconUp = styled(Icon)`
+	transform: translateX(10px);
+`;
+const IconDown = styled(Icon)`
+	transform: translateX(10px);
+	font-size: 30px;
+	// border: 2px solid black;
+`;
+
+const MenuLogin = styled.div`
+	border: 1px solid lightGrey;
+	display: ${(props) => (props.openMenu ? "block" : "none")};
+	position: absolute;
+	top: 45px;
+
+	right: 0;
+	width: 285px;
+	height: auto;
+	min-height: 200px;
+	padding: 16px;
+	background-color: white;
+	border: 1px solid lightGrey;
+	zindex: 112;
+`;
+const MenuLogged = styled(MenuLogin)`
+	padding: 0px;
+	background-color: ${(props) => props.theme.colors.allegroBackground};
+`;
+const MenuLoginContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
+	background-color: white;
+`;
+
+const AccountNavbar = styled.div`
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: center;
+	background-color: white;
+`;
+
+const AccountMainCont = styled.div`
+	width: 100%;
+`;
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+	"& .MuiBadge-badge": {
+		backgroundColor: theme.colors.allegroColor,
+		border: `2px solid ${(props) => props.theme.colors.allegroColor}`,
+		padding: "0 4px",
+		right: -2,
+		top: 30,
+		color: "white"
+	}
+}));
+
+const Navbar = ({ history }) => {
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
 	const isMedium = useMediaQuery({ maxWidth: screens.lg });
 	const isLarge = useMediaQuery({ minWidth: screens.lg });
-	console.log(isMobile);
-	console.log(isLarge);
+
+	const [openMenu, setOpenMenu] = useState(false);
+	console.log(openMenu);
+
+	const handleClick = (event) => {
+		console.log("clikam");
+		setOpenMenu(!openMenu);
+		console.log("Open Menu: ", openMenu);
+	};
+
+	const { loading, isAuthenticated, error, user } = useSelector(
+		(state) => state.auth
+	);
+	// console.log(isAuthenticated);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const handleLogout = () => {
+		console.log("logout user");
+		dispatch(logoutUser());
+		navigate("/");
+	};
+
+	const catMenu = useRef(null);
+	const closeOpenMenus = (e) => {
+		if (catMenu.current && openMenu && !catMenu.current.contains(e.target)) {
+			setOpenMenu(false);
+		}
+	};
+
+	document.addEventListener("mousedown", closeOpenMenus);
+
+	const [keyword, setKeyword] = useState("");
+	console.log(keyword);
+	const searchHandler = (e) => {
+		e.preventDefault();
+
+		if (keyword.trim()) {
+			navigate(`/listing/${keyword}`);
+			console.log("Szukam");
+		} else {
+			navigate("/");
+		}
+	};
 
 	return (
 		<Container>
 			<Wrapper>
 				<Left>
-					<Image>
-						<img src={Logo} alt="Allegro" />
-					</Image>
+					<Link to="/">
+						<Image>
+							<img src={Logo} alt="Allegro" />
+						</Image>
+					</Link>
 				</Left>
 
 				<Center>
-					<CenterContainer>
+					<CenterContainer onSubmit={searchHandler}>
 						<SearchContainer>
-							<Input placeholder="Czego szukasz?" />
+							<Input
+								placeholder="Czego szukasz?"
+								type="text"
+								onChange={(e) => setKeyword(e.target.value)}
+							/>
 							<SearchMore>szukaj wielu</SearchMore>
 						</SearchContainer>
 						<SelectContainer></SelectContainer>
-						<Button>Szukaj</Button>
+
+						<Button type="submit" width="auto" onClick={searchHandler}>
+							Szukaj
+						</Button>
 					</CenterContainer>
 				</Center>
 
@@ -156,23 +279,129 @@ const Navbar = () => {
 					</Icon>
 
 					<Icon>
-						<Badged badgeContent={5}>
+						<StyledBadge badgeContent={5}>
 							<ForumOutlinedIcon style={{ fontSize: "30px" }} />
-						</Badged>
+						</StyledBadge>
 					</Icon>
 					<Icon>
-						<Badged badgeContent={5}>
+						<StyledBadge badgeContent={1}>
 							<NotificationsNoneOutlinedIcon style={{ fontSize: "30px" }} />
-						</Badged>
+						</StyledBadge>
 					</Icon>
 					<Icon>
 						<ShoppingCartOutlinedIcon style={{ fontSize: "30px" }} />
 					</Icon>
-					<Icon>
-						<Badged badgeContent={5}>
-							<PersonOutlineOutlinedIcon style={{ fontSize: "30px" }} />
-						</Badged>
-					</Icon>
+					{isAuthenticated ? (
+						<>
+							<StyledBadge badgeContent={2}>
+								<Text>{user.name}</Text>
+							</StyledBadge>
+
+							<IconDown ref={catMenu}>
+								<ArrowBackIosIcon
+									onClick={handleClick}
+									style={{ fontSize: "15px", position: "relative" }}
+								/>
+
+								<MenuLogged openMenu={openMenu} ref={catMenu}>
+									<AccountNavbar>
+										<OptionComponent
+											size="17px"
+											option="zakupy"
+											borderBottom={true}
+											upperCase
+										/>
+										<OptionComponent
+											size="17px"
+											option="sprzedaż"
+											borderBottom={true}
+											upperCase
+										/>
+										<OptionComponent
+											size="17px"
+											option="konto"
+											borderBottom={true}
+											upperCase
+										/>
+									</AccountNavbar>
+
+									<AccountMainCont>
+										<Link className="link" to="/">
+											<MenuContentBox
+												subTitles={["Wyloguj się"]}
+												style={{ marginBottom: "0px" }}
+												onClick={handleLogout}
+											/>
+										</Link>
+
+										<MenuContentBox
+											title="Zakupy na allegro"
+											subTitles={[
+												"Moje zakupy",
+												"Licytuję",
+												"Obserwowane",
+												"oceń produkty",
+												"oceń sprzedawcę"
+											]}
+										/>
+
+										<MenuContentBox
+											title="Zakupy na allegro lokakbue"
+											subTitles={[
+												"Moje zakupy",
+												"Licytuję",
+												"Zarezewowane dla mnie"
+											]}
+										/>
+										<MenuContentBox
+											title="Programy zniżkowe"
+											subTitles={[
+												"Allegro Smart!",
+												"Centrum kuponów",
+												"Twoje monety i kupony"
+											]}
+										/>
+										<MenuContentBox
+											title="Allegro finanse"
+											subTitles={["Allegro Pay"]}
+										/>
+									</AccountMainCont>
+								</MenuLogged>
+							</IconDown>
+						</>
+					) : (
+						<>
+							<Text> Moje allegro</Text>
+							<IconDown onClick={handleClick}>
+								<ArrowBackIosIcon
+									onClick={handleClick}
+									style={{ fontSize: "30px", position: "relative" }}
+								/>
+
+								<MenuLogin openMenu={openMenu} ref={catMenu}>
+									<MenuLoginContainer>
+										<LogInImage src={LoginImage} />
+
+										<Text bold size={25}>
+											Witaj w allegro
+										</Text>
+										<Text
+											subTitle="Zaloguj się i zobacz swoje zakupy, obserwowane oferty i
+											powiadomienia. W Allegro jesteś u siebie!"
+										></Text>
+										<Link to="/login">
+											<Button>Zaloguj się</Button>
+										</Link>
+
+										<FlexRow>
+											<Text> Nie masz konta? </Text>
+											<Text color="green"> Zarejestruj się</Text>
+										</FlexRow>
+									</MenuLoginContainer>
+								</MenuLogin>
+							</IconDown>
+						</>
+					)}
 				</Right>
 			</Wrapper>
 		</Container>

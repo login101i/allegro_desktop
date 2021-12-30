@@ -9,6 +9,8 @@ import { useMediaQuery } from "react-responsive";
 import { screens } from "../responsive";
 import { Text } from "../Text";
 
+import { useDispatch, useSelector } from "react-redux";
+
 const MainContainer = styled.div`
 	display: flex;
 	flex-direction: row;
@@ -16,7 +18,7 @@ const MainContainer = styled.div`
 	justify-content: space-between;
 	margin-top: 16px;
 	height: 500px;
-	z-index: 2222;
+
 `;
 
 const FlexCol = styled.div`
@@ -49,19 +51,25 @@ const SecondSection = ({ title }) => {
 	const isMedium = useMediaQuery({ maxWidth: screens.lg });
 	const isLarge = useMediaQuery({ minWidth: screens.lg });
 
+	const dispatch = useDispatch();
+	
+	const { loading, products, productsCount } = useSelector(
+		(state) => state.products
+	);
+
 	if (isLarge) {
 		return (
 			<>
-				<Text title={title} size={36} marginTop={33} />
+				<Text title={title} size={30} marginTop={33} />
 				<MainContainer>
 					<Even>
-						<Left />
+						<Left products={products} />
 					</Even>
 
 					<Space />
 
 					<Even>
-						<Center />
+						<Center products={products}  />
 					</Even>
 
 					<Space />

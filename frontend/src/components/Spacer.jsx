@@ -1,7 +1,6 @@
 import React from "react";
 import styled, { useTheme } from "styled-components";
 
-import { View, Text } from "react-native";
 
 const TopLarge = styled.div`
 	margin-top: ${(props) => props.theme.space[3]};

@@ -17,8 +17,8 @@ const Container = styled.div`
 `;
 
 const XX = styled.div`
-	height: 90%;
-	width: 85%;
+	height: 80%;
+	width: 90%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -35,8 +35,9 @@ const ContainerInfo2 = () => {
 					img={WeekOcasion1}
 					discount={232}
 					oldPrice={389.0}
-					price={(299, 89)}
+					price={299.89}
 					description={"Elektryczny grill opiekacz FIT beztłuszczowy FIRST"}
+					extended={false}
 				/>
 			</XX>
 		</Container>

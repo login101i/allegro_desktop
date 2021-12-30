@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Text } from "../../components/Text";
 import PayPalLogo from "../../assets/pictures/PayPalLogo.png";
@@ -34,10 +35,18 @@ const Wrapper = styled.div`
 `;
 
 const ContainerInfo1 = () => {
+	const { loading, isAuthenticated, error, user } = useSelector(
+		(state) => state.auth
+	);
+
 	return (
 		<Container>
 			<XX>
-				<Text title={"Cześć Maciej!"} size={20} bold />
+				{isAuthenticated ? (
+					<Text title={"Cześć " + user.name + "!"} size={20} bold />
+				) : (
+					<Text title={"Witaj na allegro!"} size={20} bold />
+				)}
 				<Wrapper>
 					<Icon src={PayPalLogo} />
 					<Text title={"Twoje środki Allegro Pay: 4 000 zł."} />

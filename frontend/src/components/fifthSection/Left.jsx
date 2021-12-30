@@ -1,18 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import ProductContainer from "../ProductContainer";
 import BorderAndTitle from "../BorderAndTitle";
-
-import Pies1 from "../../assets/pictures/Pies1.png";
-import Pies2 from "../../assets/pictures/Pies2.png";
 
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	width: 300px;
 	background: white;
 	flex: 1;
 	margin: 0px 10px 0px 20px;
@@ -20,6 +17,7 @@ const Container = styled.div`
 	-webkit-box-shadow: 0px 19px 32px -22px rgba(107, 108, 123, 1);
 	-moz-box-shadow: 0px 19px 32px -22px rgba(107, 108, 123, 1);
 	box-shadow: 0px 19px 32px -22px rgba(107, 108, 123, 1);
+
 `;
 
 const FlexRow = styled.div`
@@ -35,26 +33,28 @@ const Title = styled.div`
 	color: rgb(76, 79, 70);
 `;
 
-const Left = () => {
+const Left = ({ products, loading }) => {
+	const dogProducts = products.filter((p) => p.category === "Pupil");
 	return (
-		<Container>
-			<Title>Polecane dla psa</Title>
-			<FlexRow>
-				<ProductContainer
-					img={Pies1}
-					discount={32}
-					oldPrice={"122,99"}
-					price={"89.99"}
-				/>
-				<ProductContainer
-					img={Pies2}
-					discount={19}
-					oldPrice={"122,99"}
-					price={"89.99"}
-				/>
-			</FlexRow>
-			<BorderAndTitle />
-		</Container>
+		<>
+			<Container>
+				<Title>Polecane dla psa</Title>
+				<FlexRow>
+					{dogProducts.map((dogProduct) => (
+						<ProductContainer
+							key={dogProduct._id}
+							img={dogProduct.img[0].url}
+							discount={dogProduct.discount}
+							oldPrice={dogProduct.oldPrice}
+							price={dogProduct.price}
+							product={dogProduct}
+							extended={true}
+						/>
+					))}
+				</FlexRow>
+				<BorderAndTitle />
+			</Container>
+		</>
 	);
 };
 

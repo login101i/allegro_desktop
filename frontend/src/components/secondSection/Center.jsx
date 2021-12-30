@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-import WeekOcasion1 from "../../assets/pictures/WeekOcasion1.png";
-import WeekOcasion2 from "../../assets/pictures/WeekOcasion2.png";
 import BorderAndTitle from "../BorderAndTitle";
+import ProductContainer from "../../components/ProductContainer";
+import PriceDiscount from "../../components/PriceDiscount";
 
 const Container = styled.div`
 	display: flex;
@@ -25,9 +25,17 @@ const Title = styled.div`
 const SectionContainer = styled.div`
 	width: 100%;
 	display: flex;
-	justify-content: space-between;
+`;
+const ImageContainer = styled.div`
+	min-width: 40%;
+	max-height: 120px;
+	margin: 1px;
+`;
+const Image = styled.img`
+	max-height: 125px;
+	width: 100%;
+	object-fit: contain;
 	cursor: pointer;
-	margin: 6px 5px;
 `;
 
 const SectionInfo = styled.div`
@@ -49,58 +57,38 @@ const Smart = styled.div`
 	font-size: 18px;
 `;
 
-const ImageContainer = styled.div`
-	height: 70%;
-`;
-const Image = styled.img`
-	height: 90px;
-
-	width: auto;
-	object-fit: cover;
-	padding: 5px;
-`;
-
 const Description = styled.div`
 	text-decoration: uppercase;
 	font-size: 14px;
 	color: grey;
+	flex-wrap: wrap;
 `;
-const Center = () => {
+const Center = ({ products }) => {
 	return (
 		<Container>
 			<Title>Z super ceną zaoszczędzisz</Title>
-			<SectionContainer>
-				<Image src={WeekOcasion1} />
-				<SectionInfo>
-					<Price>608,89zł</Price>
-					<Smart>Smart z kurierem</Smart>
-					<Description>
-						Monitor Acer NITRO RG420 IPS 1 ms FreeSync cienki
-					</Description>
-				</SectionInfo>
-			</SectionContainer>
 
-			<SectionContainer>
-				<Image src={WeekOcasion2} />
-				<SectionInfo>
-					<Price>608,89zł</Price>
-					<Smart>Smart z kurierem</Smart>
-					<Description>
-						Monitor Acer NITRO RG420 IPS 1 ms FreeSync cienki
-					</Description>
-				</SectionInfo>
-			</SectionContainer>
-
-			<SectionContainer>
-				<Image src={WeekOcasion1} />
-				<SectionInfo>
-					<Price>608,89zł</Price>
-					<Smart>Smart z kurierem</Smart>
-					<Description>
-						Monitor Acer NITRO RG420 IPS 1 ms FreeSync cienki
-					</Description>
-				</SectionInfo>
-			</SectionContainer>
+			{products.map((product) => (
+				<SectionContainer>
+					<ImageContainer>
+						<Image src={product.img[0].url} />
+					</ImageContainer>
+					<SectionInfo>
+						<PriceDiscount
+							discount={product.discount}
+							oldPrice={product.oldPrice}
+							price={product.price}
+							description={product.description}
+						/>
+						<Description>
+							{product.description.toString().split(".")[0].length > 80
+								? product.description.slice(0, 75) + "..."
+								: product.description.toString().split(".")[0]}
+							.
+						</Description>
+					</SectionInfo>
+				</SectionContainer>
+			))}
 
 			<BorderAndTitle title="Zobacz więcej" />
 		</Container>

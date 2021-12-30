@@ -20,6 +20,7 @@ const Button = styled.button`
 	cursor: pointer;
 	color: white;
 	font-size: 14px;
+	z-index:10000;
 
 	&:hover {
 		right: 0px;
