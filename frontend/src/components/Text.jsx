@@ -15,13 +15,14 @@ const TextContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
-	padding:10px;
+	padding:2px;
 
 	border-bottom: ${(props) => props.borderBottom && "1px solid lightGrey"};
 	padding: ${(props) => props.borderBottom && "8px"};
 	border-width:100%;
+	
 
-	white-space: nowrap;
+	white-space: ${(props) => (props.wrap ? "wrap" : "nowrap")};
 	width: 100%;
 	    text-transform: capitalize;
 
@@ -54,7 +55,8 @@ export const Text = ({
 	color,
 	borderBottom,
 	hovered,
-	onClick
+	onClick,
+	wrap
 }) => {
 	return (
 		<TextContainer
@@ -65,6 +67,7 @@ export const Text = ({
 			borderBottom={borderBottom}
 			hovered={hovered}
 			onClick={onClick}
+			wrap={wrap}
 		>
 			{title} {children}
 			{subTitle && <SubTitle>{subTitle}</SubTitle>}

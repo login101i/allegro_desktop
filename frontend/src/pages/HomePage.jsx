@@ -36,7 +36,7 @@ const HomePage = () => {
 		<>
 			{/* <NavbarAd /> */}
 			<MainContainer>
-				<MetaData title="Allegro" />
+				<MetaData title="Allegro - atrakcyjne ceny" />
 
 				<FirstSection />
 				<SecondSection title={"Wszystko na Święta"} />

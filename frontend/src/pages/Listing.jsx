@@ -4,15 +4,21 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { Input } from "@mui/material";
 import Pagination from "react-js-pagination";
 
+import Checkbox from "@mui/material/Checkbox";
+import Stack from "@mui/material/Stack";
+
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-
+import { Select } from "@mui/material";
+import Rating from "@mui/material/Rating";
+import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 import {
 	Text,
@@ -51,7 +57,7 @@ const FlexRow = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	width: 150px;
+	width: 300px;
 `;
 
 const FilterContainer = styled.div`
@@ -61,6 +67,7 @@ const FilterContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	flex-grow: grow;
+	padding: 12px;
 `;
 
 const ResultsContainer = styled.div`
@@ -77,7 +84,7 @@ const CustomInput = styled(Input)`
 	border: 1px solid lightGrey;
 	padding: 5px;
 	margin: 5px 0px;
-	width: 80px;
+	width: 90px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -109,7 +116,17 @@ const Listing = ({ match }) => {
 	const [minPrice, setMinPrice] = React.useState(1);
 	const [maxPrice, setMaxPrice] = React.useState(1000);
 
-	const [category, setCategory] = React.useState("");
+	const [category, setCategory] = React.useState();
+	const [rating, setRating] = React.useState();
+
+	const [value, setValue] = React.useState("");
+	console.log("To jest value");
+	console.log(value);
+
+	const handleValue = (val) => {
+		setValue(val);
+		setRating(val);
+	};
 
 	const categories = [
 		"Laptopy",
@@ -145,19 +162,43 @@ const Listing = ({ match }) => {
 	};
 
 	useEffect(() => {
-		dispatch(getProducts(currentPage, keyword, filteredPrice, category));
+		dispatch(
+			getProducts(currentPage, keyword, filteredPrice, category, rating)
+		);
 		console.log("Pobieram produkty.");
-	}, [dispatch, currentPage, keyword, category]);
+	}, [dispatch, currentPage, keyword, category, rating]);
 
 	const { loading, products, error, productsCount, resPerPage } = useSelector(
 		(state) => state.products
 	);
+
+	console.log(products);
 
 	function setCurrentPageNo(pageNumber) {
 		setCurrentPage(pageNumber);
 	}
 
 	let count = productsCount;
+
+	const [openRatings, setOpenRatings] = React.useState(true);
+	const handleClick = () => {
+		setOpenRatings(!openRatings);
+	};
+
+	const [range, setRange] = React.useState("");
+	const [priceMin, setPriceMin] = React.useState("");
+	const [priceMax, setPriceMax] = React.useState("");
+
+	const handleRange = (val) => {
+		setRange(val);
+
+		var regex = /\d+/g;
+		var range = val.match(regex);
+		console.log(range);
+
+		setPriceMin(range[0]);
+		setPriceMax(range[1] ? range[1] : "");
+	};
 
 	return (
 		<>
@@ -183,23 +224,68 @@ const Listing = ({ match }) => {
 					<Text bold size={24}>
 						Podkategorie
 					</Text>
-
-					<CustomInput
-						value={minPrice}
-						onChange={(e) => setMinPrice(e.target.value)}
-					/>
-					<CustomInput
-						value={maxPrice}
-						onChange={(e) => setMaxPrice(e.target.value)}
-					/>
-					<Text>dfdf</Text>
-
+					<Text bold>Cena (zł)</Text>
+					{[
+						"poniżej 10zł",
+						"10 zł do 50zł",
+						"50zł do 100zł",
+						"powyżej 100zł"
+					].map((rang) => (
+						<FlexRow>
+							<Checkbox
+								value={rang}
+								checked={rang === range}
+								onClick={() => handleRange(rang)}
+							/>
+							<Text>{rang}</Text>
+						</FlexRow>
+					))}
+					<FlexRow style={{ width: "90%" }}>
+						<CustomInput
+							onChange={(e) => setMinPrice(e.target.value)}
+							placeholder="od"
+							value={priceMin}
+						/>
+						-
+						<CustomInput
+							onChange={(e) => setMaxPrice(e.target.value)}
+							placeholder="do"
+							value={priceMax}
+						/>
+					</FlexRow>
+					<Text bold>Kategorie</Text>
 					{categories.map((c) => (
 						<Text hovered key={c} onClick={() => setCategory(c)}>
 							{c}
 						</Text>
 					))}
-					<Button title="Filtruj" onClick={filtruj} />
+					<FlexRow style={{ width: "90%" }}>
+						<Text bold>Ocena Produktu</Text>
+						<ArrowBackIosIcon
+							onClick={handleClick}
+							style={{ fontSize: "16px" }}
+						/>
+					</FlexRow>
+					<Text
+						wrap
+						subTitle="Średnia ocena produktu na podstawie opinii klientów. Oferty tego samego produktu mają tę samą ocenę."
+					></Text>
+					{openRatings &&
+						[5.0, 4.0, 3.5].map((r) => (
+							<FlexRow style={{ width: "90%" }}>
+								<Checkbox
+									checked={r === value}
+									value={r}
+									onClick={() => handleValue(r)}
+								/>
+
+								<Text>od {r.toString()}</Text>
+								<Stack spacing={1}>
+									<Rating defaultValue={r} precision={0.5} readOnly />
+								</Stack>
+							</FlexRow>
+						))}
+					<Button title="Filtruj" onClick={filtruj} width />
 				</FilterContainer>
 				<Space />
 				{!keyword ? (

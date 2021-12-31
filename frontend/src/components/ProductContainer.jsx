@@ -77,9 +77,21 @@ const ProductContainer = ({
 						</FlexCol>
 					</SectionListingContainer>
 				) : (
-					<SectionContainer row={row} onClick={() => console.log(price)}>
-						<ImageContainer>{img && <Image src={img} />}</ImageContainer>
-					</SectionContainer>
+					<>
+						<SectionContainer row={row} onClick={() => console.log(price)}>
+							<ImageContainer>{img && <Image src={img} />}</ImageContainer>
+							<FlexCol>
+								<Text>{product.title}</Text>
+								<Text> od {product.seller}</Text>
+								<PriceDiscount
+									discount={discount}
+									oldPrice={oldPrice}
+									price={price}
+									description={description}
+								/>
+							</FlexCol>
+						</SectionContainer>
+					</>
 				)}
 			</Link>
 		</>

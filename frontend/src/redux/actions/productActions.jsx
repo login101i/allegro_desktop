@@ -13,7 +13,7 @@ import {
 import { productsLocaly } from "../../infrastructure/theme/dummy";
 
 export const getProducts =
-	(currentPage = 1, keyword = "", price, category = "", rating = 0) =>
+	(currentPage = 1, keyword = "", price=[1,10000], category = "", rating = 0) =>
 	async (dispatch) => {
 		try {
 			dispatch({ type: ALL_PRODUCTS_REQUEST });
@@ -24,8 +24,8 @@ export const getProducts =
 			}
 
 			if (category) {
-				link = `/api/v1/products?page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&category=${category}`;
-				// &ratings[gte]=${rating}
+				link = `/api/v1/products?page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&category=${category};
+				&ratings[gte]=${rating}`;
 			}
 
 			const { data } = await axios.get(link);

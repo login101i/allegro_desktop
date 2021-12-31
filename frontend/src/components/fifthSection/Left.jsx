@@ -40,7 +40,7 @@ const Left = ({ products, loading }) => {
 			<Container>
 				<Title>Polecane dla psa</Title>
 				<FlexRow>
-					{dogProducts.map((dogProduct) => (
+					{dogProducts.slice(2).map((dogProduct) => (
 						<ProductContainer
 							key={dogProduct._id}
 							img={dogProduct.img[0].url}
