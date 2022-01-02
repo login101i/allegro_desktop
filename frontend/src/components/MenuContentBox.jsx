@@ -9,12 +9,30 @@ const Container = styled.div`
 	background-color: white;
 `;
 
-const MenuContentBox = ({ title, subTitles, style, onClick }) => {
+const MenuContentBox = ({
+	title,
+	subTitles,
+	style,
+	onClick,
+	color,
+	hovered = false,
+	borderBottom = false,
+
+	text,
+	bold = false
+}) => {
 	return (
 		<Container style={style} onClick={onClick}>
-			<Text bold>{title}</Text>
-			{subTitles.map((subTitle) => (
-				<Text borderBottom hovered>
+			<Text bold={bold} title={title}>
+				{text}
+			</Text>
+			{subTitles.map((subTitle, i) => (
+				<Text
+					key={i}
+					borderBottom={borderBottom}
+					hovered={hovered}
+					color={color}
+				>
 					{subTitle}
 				</Text>
 			))}

@@ -20,11 +20,16 @@ const TextContainer = styled.div`
 	border-bottom: ${(props) => props.borderBottom && "1px solid lightGrey"};
 	padding: ${(props) => props.borderBottom && "8px"};
 	border-width:100%;
-	
+
 
 	white-space: ${(props) => (props.wrap ? "wrap" : "nowrap")};
-	width: 100%;
-	    text-transform: capitalize;
+	text-transform: :first-letter{
+  text-transform: capitalize;
+  white-space: pre-wrap; 
+   word-wrap: break-word;
+   width:100%;
+}
+		// margin-right:10px;
 
 		
 	&:hover {
@@ -60,7 +65,7 @@ export const Text = ({
 }) => {
 	return (
 		<TextContainer
-			size={size}
+			size={title ? 22 : size}
 			marginTop={marginTop}
 			bold={bold}
 			color={color}

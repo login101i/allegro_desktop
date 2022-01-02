@@ -43,20 +43,6 @@ const SectionInfo = styled.div`
 	flex-direction: column;
 `;
 
-const FlexRow = styled.div`
-	display: flex;
-	justify-content: center;
-	width: 100%;
-`;
-const Price = styled.div`
-	font-size: 33px;
-	font-weight: 600;
-`;
-const Smart = styled.div`
-	color: purple;
-	font-size: 18px;
-`;
-
 const Description = styled.div`
 	text-decoration: uppercase;
 	font-size: 14px;
@@ -68,8 +54,8 @@ const Center = ({ products }) => {
 		<Container>
 			<Title>Z super ceną zaoszczędzisz</Title>
 
-			{products.map((product) => (
-				<SectionContainer>
+			{products.map((product, i) => (
+				<SectionContainer key={Math.random()}>
 					<ImageContainer>
 						<Image src={product.img[0].url} />
 					</ImageContainer>

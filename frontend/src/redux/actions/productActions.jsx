@@ -29,7 +29,7 @@ export const getProducts =
 			}
 
 			const { data } = await axios.get(link);
-			console.log(data);
+			// console.log(data);
 
 			// console.log(productsLocaly);
 

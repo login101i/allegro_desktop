@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-import { Text } from "../../components/Text";
+import { Text, Flex } from "../../components";
 import PayPalLogo from "../../assets/pictures/PayPalLogo.png";
 import Logo2 from "../../assets/pictures/goodToSee3.png";
 import Logo3 from "../../assets/pictures/goodToSee2.png";
@@ -15,56 +15,39 @@ const Container = styled.div`
 	justify-content: center;
 	align-items: center;
 	background-color: white;
+	inline-size: 100%;
+	overflow-wrap: break-word;
 `;
-const XX = styled.div`
-	height: 90%;
-	width: 85%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-`;
-
 const Icon = styled.img`
 	height: 55px;
 	margin-right: 10px;
 `;
 
-const Wrapper = styled.div`
-	display: flex;
-	flex-direction: row;
-`;
-
 const ContainerInfo1 = () => {
-	const { loading, isAuthenticated, error, user } = useSelector(
-		(state) => state.auth
-	);
+	const { isAuthenticated, user } = useSelector((state) => state.auth);
 
 	return (
 		<Container>
-			<XX>
+			<Flex column space style={{ width: "85%", height: "90%" }}>
 				{isAuthenticated ? (
-					<Text title={"Cześć " + user.name + "!"} size={20} bold />
+					<Text title={"Cześć " + user.name + "!"} bold />
 				) : (
-					<Text title={"Witaj na allegro!"} size={20} bold />
+					<Text title={"Witaj na allegro!"} bold />
 				)}
-				<Wrapper>
+				<Flex>
 					<Icon src={PayPalLogo} />
-					<Text title={"Twoje środki Allegro Pay: 4 000 zł."} />
-				</Wrapper>
-				<Wrapper>
+					<Text>Twoje środki Allegro Pay: 4 000 zł.</Text>
+				</Flex>
+				<Flex>
 					<Icon src={Logo2} />
-					<Text
-						title={"W Allegro Family darmowe dostawy dla 10 członków rodziny!"}
-					/>
-				</Wrapper>
-				<Wrapper>
+					<Text>W Allegro Family darmowe dostawy dla 10 członków rodziny!</Text>
+				</Flex>
+				<Flex>
 					<Icon src={Logo3} />
-					<Text
-						title={"W Allegro Family darmowe dostawy dla 10 członków rodziny"}
-					/>
-				</Wrapper>
+					<Text>W Allegro Family darmowe dostawy dla 10 członków rodziny</Text>
+				</Flex>
 				<Button title={"Poznaj swoje korzyści"} />
-			</XX>
+			</Flex>
 		</Container>
 	);
 };

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./style.css";
@@ -11,19 +11,21 @@ import "./style.css";
 
 import Navbar from "./components/Navbar";
 import ProductDetails from "./pages/ProductDetalis/ProductDetails";
-import { Login, Register } from "./pages/Authentication";
+import { Login, Register, MyAccount } from "./pages/Authentication";
 
 import { loadUser } from "./redux/actions/userActions";
 import store from "./store";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
+import { AllegroFooter } from "./components";
 
 const GreyBackground = styled.div`
 	min-width: 1360px;
 	background-color: ${(props) => props.theme.colors.allegroBackground};
 	display: flex;
 	flex-direction: column;
-	align-items: center;App
+	align-items: center;
 	justify-content: center;
+	position: relative;
 `;
 
 const Container = styled.div`
@@ -31,7 +33,6 @@ const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	min-height: 100vh;
 	width: 1660px;
 	overflow: hidden;
 `;
@@ -39,17 +40,16 @@ const Container = styled.div`
 const App = () => {
 	const dispatch = useDispatch();
 
-	const { isAuthenticated, error, loading, user } = useSelector(
+	const { isAuthenticated, user } = useSelector(
 		(state) => state.auth
 	);
 
 	useEffect(() => {
-		// console.log("load user request");
-		// store.dispatch(loadUser());
+		console.log("load user request");
+		store.dispatch(loadUser());
 	}, []);
 
 	console.log(isAuthenticated, user);
-	console.log("laduje od nowa");
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -63,8 +63,18 @@ const App = () => {
 							<Route path="/listing/:keyword" element={<Listing />} />
 							<Route path="/login" exact element={<Login />} />
 							<Route path="/register" element={<Register />} exact />
+							<Route
+								path="/moje-allegro/moje-konto"
+								element={
+									<ProtectedRoute>
+										<MyAccount />
+									</ProtectedRoute>
+								}
+								exact
+							/>
 						</Routes>
 					</Container>
+					<AllegroFooter />
 				</BrowserRouter>
 			</GreyBackground>
 		</ThemeProvider>

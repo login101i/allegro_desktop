@@ -58,7 +58,12 @@ const ProductContainer = ({
 		<>
 			<Link
 				to={`/product/${product._id}`}
-				style={{ textDecoration: "none", width: "100%" }}
+				style={{
+					textDecoration: "none",
+					width: "100%",
+					background: "transparent",
+					cursor: "default"
+				}}
 			>
 				{listings ? (
 					<SectionListingContainer row={row} onClick={() => console.log(price)}>

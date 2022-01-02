@@ -7,9 +7,9 @@ import Right from "./Right";
 
 import { useMediaQuery } from "react-responsive";
 import { screens } from "../responsive";
-import { Text } from "../Text";
+import { Text } from "../../components";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const MainContainer = styled.div`
 	display: flex;
@@ -18,13 +18,6 @@ const MainContainer = styled.div`
 	justify-content: space-between;
 	margin-top: 16px;
 	height: 500px;
-
-`;
-
-const FlexCol = styled.div`
-	display: flex;
-	flex-direcion: column;
-	width: 100%;
 `;
 
 const FlexRow = styled.div`
@@ -46,21 +39,20 @@ const Space = styled.div`
 	background-color: transparent;
 `;
 
-const SecondSection = ({ title }) => {
-	const isMobile = useMediaQuery({ maxWidth: screens.md });
+const SecondSection = () => {
+	// const isMobile = useMediaQuery({ maxWidth: screens.md });
 	const isMedium = useMediaQuery({ maxWidth: screens.lg });
 	const isLarge = useMediaQuery({ minWidth: screens.lg });
 
-	const dispatch = useDispatch();
-	
-	const { loading, products, productsCount } = useSelector(
-		(state) => state.products
-	);
+	const { products } = useSelector((state) => state.products);
 
 	if (isLarge) {
 		return (
 			<>
-				<Text title={title} size={30} marginTop={33} />
+				
+					<Text title={"Wszystko na Święta"} size={30} marginTop={33} />
+			
+
 				<MainContainer>
 					<Even>
 						<Left products={products} />
@@ -69,7 +61,7 @@ const SecondSection = ({ title }) => {
 					<Space />
 
 					<Even>
-						<Center products={products}  />
+						<Center products={products} />
 					</Even>
 
 					<Space />

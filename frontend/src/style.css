@@ -3,6 +3,7 @@
 	--allegroColor: #ff5a00;
 	--borderColor: #d9dfe4;
 	--textColor: rgb(78, 75, 75);
+	--allegroBackground:'lightGrey'
 }
 
 .active {

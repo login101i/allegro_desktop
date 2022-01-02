@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import StarBorderIcon from "@mui/icons-material/StarBorder";
@@ -54,19 +54,7 @@ const FromSeller = styled.div`
 	margin-bottom: 20px;
 `;
 
-const PriceContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: left;
-	border: 2px solid black;
-	margin: 10px 0px;
-`;
 
-const Price = styled.div`
-	font-size: 34px;
-	font-weight: 600;
-	color: ${(props) => props.theme.colors.textColor};
-`;
 const Raty = styled.div`
 	font-size: 14px;
 	font-weight: 600;
@@ -78,16 +66,6 @@ const FlexRow = styled.div`
 	flex-direction: row;
 `;
 
-const Discount = styled.div`
-	background-color: green;
-	padding: 2px;
-	align-items: center;
-`;
-const OldPrice = styled.div`
-	font-size: 10px;
-	text-transform: line-through;
-	color: lightGrey;
-`;
 
 const ProductDetailInfo = ({ product }) => {
 	const [mainImage, setMainImage] = useState(product.img[0].url);

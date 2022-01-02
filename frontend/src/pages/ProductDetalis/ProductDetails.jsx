@@ -36,9 +36,7 @@ const ProductDetails = () => {
 	console.log(error);
 
 	let id = useParams().id;
-	console.log(id);
-	// console.log("poniżej match id");
-	// console.log("id", match.params.id);
+
 
 	useEffect(() => {
 		dispatch(getProductDetails(id));

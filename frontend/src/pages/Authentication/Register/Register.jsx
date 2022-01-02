@@ -2,18 +2,14 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 
-import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { Input, Button as MuButton } from "@mui/material";
+import { Input} from "@mui/material";
+import { useNavigate, Link } from "react-router-dom";
 
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GoogleIcon from "@mui/icons-material/Google";
-import LogoWhite from "../../../assets/pictures/logoWhite.svg";
-import InputAdornment from "@mui/material/InputAdornment";
-import OutlinedInput from "@mui/material/OutlinedInput";
 
-import { Text, Button, BorderAndTitle } from "../../../components";
+
+import { Text, Button, BorderAndTitle, PageWidth } from "../../../components";
 
 import { registerUser } from "../../../redux/actions/userActions";
 
@@ -23,9 +19,8 @@ const Container = styled.div`
 	grid-template-rows: repeat(1, 1fr);
 	grid-column-gap: 16px;
 	grid-row-gap: 16px;
-	width: 80%;
 	height: auto;
-	margin-top: 16px;
+
 `;
 
 const Left1 = styled.div`
@@ -79,26 +74,7 @@ const Break = styled.div`
 	width: 100%;
 `;
 
-const InnerContainer = styled.div`
-	padding: 20px;
-	width: 100%;
-`;
 
-const EndLabel = styled.div`
-	margin-top: 30px;
-	background-color: rgb(60, 80, 82);
-	width: 80%;
-`;
-
-const Wrapper = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 20px;
-`;
-const Logo = styled.img`
-	height: 43px;
-`;
 
 const Register = ({ history }) => {
 	const [name, setName] = useState("");
@@ -108,22 +84,21 @@ const Register = ({ history }) => {
 	console.log(email);
 	console.log(password);
 
+	const navigate = useNavigate();
+
 	const dispatch = useDispatch();
-	const { isAuthenticated, error, loading } = useSelector(
+	const { isAuthenticated } = useSelector(
 		(state) => state.auth
 	);
 
 	useEffect(() => {
 		if (isAuthenticated) {
-			history.push("/");
+			navigate("/");
 		}
 	}, [isAuthenticated]);
 
 	const handleRegister = () => {
-		// 	const formData = new FormData();
-		// 	formData.set("name", name);
-		// 	formData.set("email", email);
-		// 	formData.set("password", password);
+	
 
 		const body = {
 			name,
@@ -138,7 +113,7 @@ const Register = ({ history }) => {
 	};
 
 	return (
-		<>
+		<PageWidth>
 			<Container>
 				<Left1>
 					<Text size={30}> Zarejestruj się </Text>
@@ -198,8 +173,10 @@ const Register = ({ history }) => {
 
 				<Left2>
 					<FlexRow>
-						<Text bold>Nie masz konta?</Text>
-						<BorderAndTitle title="Zarejestruj się" />
+						<Text bold>Masz już konto?</Text>
+						<Link to="/login">
+							<BorderAndTitle title="Zaloguj się" />
+						</Link>
 					</FlexRow>
 				</Left2>
 
@@ -211,15 +188,7 @@ const Register = ({ history }) => {
 
 				<Right1></Right1>
 			</Container>
-			<EndLabel>
-				<Wrapper>
-					<Text color="white">
-						Korzystanie z serwisu oznacza akceptację regulaminu
-					</Text>
-					<Logo src={LogoWhite} alt="Allegro" />
-				</Wrapper>
-			</EndLabel>
-		</>
+		</PageWidth>
 	);
 };
 

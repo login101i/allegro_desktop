@@ -60,16 +60,13 @@ const Wrapper = styled.div`
 	height:100%;
 `;
 
-const FlexRow = styled.div`
-	display: flex;
-`;
 
 const Left = ({products}) => {
 	const [hours, setHours] = useState("-");
 	const [minutes, setMinutes] = useState("-");
 	const [seconds, setSeconds] = useState("-");
 
-	const isMedium = useMediaQuery({ maxWidth: screens.lg });
+	// const isMedium = useMediaQuery({ maxWidth: screens.lg });
 
 	const zero = "0";
 
@@ -96,7 +93,7 @@ const Left = ({products}) => {
 		counDownFunction();
 	}, [minutes, hours]);
 
-		const dogProducts = products.filter((p) => p.category === "Pupil");
+		// const dogProducts = products.filter((p) => p.category === "Pupil");
 
 
 	return (

@@ -2,9 +2,8 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 import { Badge } from "@material-ui/core";
-import { Link, Route, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { makeStyles } from "@mui/styles";
 
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
@@ -14,9 +13,8 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 import Logo from "../assets/pictures/logo.svg";
 
-import { Text, Button, MenuContentBox } from "../components";
+import { Text, Button, MenuContentBox, CustomIcon } from "../components";
 
-import { mediumSize } from "../responsive";
 import { screens } from "./responsive";
 
 import { logoutUser } from "../redux/actions/userActions";
@@ -135,9 +133,6 @@ const Icon = styled.div`
 	position: relative;
 `;
 
-const IconUp = styled(Icon)`
-	transform: translateX(10px);
-`;
 const IconDown = styled(Icon)`
 	transform: translateX(10px);
 	font-size: 30px;
@@ -197,9 +192,9 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const Navbar = ({ history }) => {
-	const isMobile = useMediaQuery({ maxWidth: screens.md });
-	const isMedium = useMediaQuery({ maxWidth: screens.lg });
-	const isLarge = useMediaQuery({ minWidth: screens.lg });
+	// const isMobile = useMediaQuery({ maxWidth: screens.md });
+	// const isMedium = useMediaQuery({ maxWidth: screens.lg });
+	// const isLarge = useMediaQuery({ minWidth: screens.lg });
 
 	const [openMenu, setOpenMenu] = useState(false);
 	console.log(openMenu);
@@ -210,10 +205,9 @@ const Navbar = ({ history }) => {
 		console.log("Open Menu: ", openMenu);
 	};
 
-	const { loading, isAuthenticated, error, user } = useSelector(
+	const { isAuthenticated, user } = useSelector(
 		(state) => state.auth
 	);
-	// console.log(isAuthenticated);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const handleLogout = () => {
@@ -265,7 +259,7 @@ const Navbar = ({ history }) => {
 							/>
 							<SearchMore>szukaj wielu</SearchMore>
 						</SearchContainer>
-						<SelectContainer></SelectContainer>
+						<SelectContainer placeholder="Wszystkie kategorie"></SelectContainer>
 
 						<Button type="submit" width="auto" onClick={searchHandler}>
 							Szukaj
@@ -274,23 +268,10 @@ const Navbar = ({ history }) => {
 				</Center>
 
 				<Right>
-					<Icon>
-						<StarBorderIcon style={{ fontSize: "30px" }} />
-					</Icon>
-
-					<Icon>
-						<StyledBadge badgeContent={5}>
-							<ForumOutlinedIcon style={{ fontSize: "30px" }} />
-						</StyledBadge>
-					</Icon>
-					<Icon>
-						<StyledBadge badgeContent={1}>
-							<NotificationsNoneOutlinedIcon style={{ fontSize: "30px" }} />
-						</StyledBadge>
-					</Icon>
-					<Icon>
-						<ShoppingCartOutlinedIcon style={{ fontSize: "30px" }} />
-					</Icon>
+					<CustomIcon icon={StarBorderIcon} />
+					<CustomIcon icon={ForumOutlinedIcon} badgeContent={3} />
+					<CustomIcon icon={NotificationsNoneOutlinedIcon} badgeContent={1} />
+					<CustomIcon icon={ShoppingCartOutlinedIcon} />
 					{isAuthenticated ? (
 						<>
 							<StyledBadge badgeContent={2}>
@@ -322,6 +303,7 @@ const Navbar = ({ history }) => {
 											option="konto"
 											borderBottom={true}
 											upperCase
+											onClick={() => navigate("/moje-allegro/moje-konto")}
 										/>
 									</AccountNavbar>
 
@@ -395,7 +377,9 @@ const Navbar = ({ history }) => {
 
 										<FlexRow>
 											<Text> Nie masz konta? </Text>
-											<Text color="green"> Zarejestruj się</Text>
+											<Link to="/register">
+												<Text color="green"> Zarejestruj się</Text>
+											</Link>
 										</FlexRow>
 									</MenuLoginContainer>
 								</MenuLogin>
@@ -406,51 +390,6 @@ const Navbar = ({ history }) => {
 			</Wrapper>
 		</Container>
 	);
-	// return (
-	// 	<Container>
-	// 		<Wrapper>
-	// 			<Left>
-	// 				<Image>
-	// 					<img src={Logo} alt="To jest Logo" />
-	// 				</Image>
-	// 			</Left>
-	// 			<Right>
-	// 				<Icon>
-	// 					<StarBorderIcon style={{ fontSize: "30px" }} />
-	// 				</Icon>
-
-	// 				<Icon>
-	// 					<Badged badgeContent={5}>
-	// 						<ForumOutlinedIcon style={{ fontSize: "30px" }} />
-	// 					</Badged>
-	// 				</Icon>
-	// 				<Icon>
-	// 					<Badged badgeContent={5}>
-	// 						<NotificationsNoneOutlinedIcon style={{ fontSize: "30px" }} />
-	// 					</Badged>
-	// 				</Icon>
-	// 				<Icon>
-	// 					<ShoppingCartOutlinedIcon style={{ fontSize: "30px" }} />
-	// 				</Icon>
-	// 				<Icon>
-	// 					<Badged badgeContent={5}>
-	// 						<PersonOutlineOutlinedIcon style={{ fontSize: "30px" }} />
-	// 					</Badged>
-	// 				</Icon>
-	// 			</Right>
-	// 		</Wrapper>
-	// 		<Center>
-	// 			<CenterContainer>
-	// 				<SearchContainer>
-	// 					<Input placeholder="Czego szukasz?" />
-	// 					<SearchMore>szukaj wielu</SearchMore>
-	// 				</SearchContainer>
-	// 				<SelectContainer></SelectContainer>
-	// 				<Button>Szukaj</Button>
-	// 			</CenterContainer>
-	// 		</Center>
-	// 	</Container>
-	// );
 };
 
 export default Navbar;

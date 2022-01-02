@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { sliderItems } from "../data";
 import "./../../../src/style.css";
 
-import Slide1 from "../../assets/pictures/Slide1.png";
-import Slide2 from "../../assets/pictures/Slide2.png";
 import Image1 from "../../assets/pictures/goodToSee1.png";
 import Image2 from "../../assets/pictures/goodToSee2.png";
 import Image3 from "../../assets/pictures/goodToSee3.png";
@@ -41,7 +39,6 @@ const images = [
 ];
 
 const Center = () => {
-	const [current, setCurrent] = useState(0);
 	const [distance, setDistance] = useState();
 	const [slideIndex, setSlideIndex] = useState(0);
 
