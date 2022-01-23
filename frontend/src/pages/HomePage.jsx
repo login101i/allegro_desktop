@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 
-import NavbarAd from "../components/NavbarAd";
 import FirstSection from "../components/FirstSection/FirstSection";
 import SecondSection from "../components/secondSection/SecondSection";
 import ThirdSection from "../components/thirdSection/ThirdSection";
@@ -10,6 +10,8 @@ import FifthSection from "../components/fifthSection/FifthSection";
 import PayPalButton from "../components/PayPalButton";
 import SmartBannerImg from "../../src/assets/pictures/smartBanner.png";
 import MetaData from "../components/MetaData";
+
+import { getProducts } from "../redux/actions/productActions";
 
 const MainContainer = styled.div`
 	display: flex;
@@ -30,21 +32,27 @@ const SmartBanner = styled.img`
 `;
 
 const HomePage = () => {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(getProducts());
+		console.log("Pobieram produkty.");
+	}, []);
+
 	return (
 		<>
-			<NavbarAd />
 			<MainContainer>
 				<MetaData title="Allegro - atrakcyjne ceny" />
 
 				<FirstSection />
 				<SecondSection />
-				<ThirdSection />
+				{/* <ThirdSection />
 				<FourthSection />
 				<FifthSection />
 
 				<SmartBanner src={SmartBannerImg} />
 
-				<PayPalButton />
+				<PayPalButton /> */}
 			</MainContainer>
 		</>
 	);

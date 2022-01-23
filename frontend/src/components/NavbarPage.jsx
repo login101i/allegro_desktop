@@ -20,13 +20,16 @@ const FlexRow = styled.div`
 `;
 
 const NavbarPage = ({ leftPart, rightPart, path }) => {
-
-	
-
 	const href = window.location.href;
+	console.log(href);
 	const removeLocalhost = href.split("localhost:3000/").pop();
+	console.log(removeLocalhost);
 	let replaceChar = removeLocalhost.replace(/-/g, " ");
+	console.log(replaceChar);
+
 	const pahtItems = replaceChar.split("/");
+		console.log(pahtItems);
+
 
 	return (
 		<NavContainer>

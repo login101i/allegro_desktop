@@ -10,6 +10,7 @@ const Container = styled.div`
 	align-items: ${(props) => (props.align ? "center" : "left")};
 	margin: 4px 0px;
 	width: ${(props) => (props.fullWidth ? "100%" : "auto")};
+
 `;
 
 const FlexRow = ({ space, style, align, column, fullWidth, children }) => {

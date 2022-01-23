@@ -7,13 +7,22 @@ import {
 	PRODUCT_DETAILS_REQUEST,
 	PRODUCT_DETAILS_SUCCESS,
 	PRODUCT_DETAILS_FAIL,
+	NEW_PRODUCT_REQUEST,
+	NEW_PRODUCT_SUCCESS,
+	NEW_PRODUCT_FAIL,
 	CLEAR_ERRORS
 } from "../constants/productConstants";
 
 import { productsLocaly } from "../../infrastructure/theme/dummy";
 
 export const getProducts =
-	(currentPage = 1, keyword = "", price=[1,10000], category = "", rating = 0) =>
+	(
+		currentPage = 1,
+		keyword = "",
+		price = [1, 10000],
+		category = "",
+		rating = 0
+	) =>
 	async (dispatch) => {
 		try {
 			dispatch({ type: ALL_PRODUCTS_REQUEST });
@@ -48,10 +57,10 @@ export const getProducts =
 export const getProductDetails = (id) => async (dispatch) => {
 	try {
 		dispatch({ type: PRODUCT_DETAILS_REQUEST });
-		console.log(id);
+		// console.log(id);
 
 		const { data } = await axios.get(`/api/v1/product/${id}`);
-		console.log(data);
+		// console.log(data);
 
 		dispatch({
 			type: PRODUCT_DETAILS_SUCCESS,
@@ -61,6 +70,33 @@ export const getProductDetails = (id) => async (dispatch) => {
 		dispatch({
 			type: PRODUCT_DETAILS_FAIL,
 			payload: "Error hehe"
+		});
+	}
+};
+
+export const newProduct = (productData) => async (dispatch) => {
+	try {
+		dispatch({ type: NEW_PRODUCT_REQUEST });
+
+		const config = {
+			headers: {
+				"Content-Type": "application/json"
+			}
+		};
+
+		const { data } = await axios.post(
+			"/api/v1/product/new",
+			productData,
+			config
+		);
+
+		dispatch({ type: NEW_PRODUCT_SUCCESS, payload: data });
+	} catch (error) {
+		console.log("to jest erroror");
+		console.log(error);
+		dispatch({
+			type: NEW_PRODUCT_FAIL,
+			payload: error
 		});
 	}
 };

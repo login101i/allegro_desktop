@@ -5,15 +5,15 @@ import { Badge } from "@material-ui/core";
 
 const Icon = styled.div`
 	color: grey;
-	padding: 4px;
 	font-size: 30px;
 	cursor: pointer;
 	margin-right: 16px;
 	display: flex;
-	align-items: left;
+	align-items: center;
 	justify-content: center;
 	text-align: center;
 	position: relative;
+
 `;
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -27,9 +27,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 	}
 }));
 
-const CustomIcon = ({ badgeContent, size = 30, icon }) => {
+const CustomIcon = ({ badgeContent, size = 30, icon, color }) => {
 	const IconName = icon;
-
 
 	return (
 		<Icon>
@@ -38,12 +37,16 @@ const CustomIcon = ({ badgeContent, size = 30, icon }) => {
 					<IconName style={{ fontSize: `${size}px` }} />
 				</StyledBadge>
 			) : (
-				<IconName style={{ fontSize: `${size}px` }} />
+				<IconName
+					style={{
+						fontSize: `${size}px`,
+						color: `${color}`,
+						textAlign: "center"
+					}}
+				/>
 			)}
 		</Icon>
 	);
 };
-
-
 
 export default CustomIcon;

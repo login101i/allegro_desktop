@@ -3,15 +3,17 @@
 	--allegroColor: #ff5a00;
 	--borderColor: #d9dfe4;
 	--textColor: rgb(78, 75, 75);
-	--allegroBackground:'lightGrey'
+	--allegroBackground: "lightGrey";
+	--allegroLocalnieColor: "#F4F8FC";
+	--greenLocalnie:#2bb9a3
 }
 
 .active {
 	border-bottom: 3px solid var(--allegroColor);
 }
 
-.link{
-	text-decoration:none;
+.link {
+	text-decoration: none;
 }
 
 .slider {
@@ -49,5 +51,3 @@
 		transform: rotate(360deg);
 	}
 }
-
-

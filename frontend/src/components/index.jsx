@@ -16,10 +16,12 @@ import AllegroFooter from "./AllegroFooter";
 import Navbar from "./Navbar";
 import Flex from './Flex';
 import PathComponent from "./PathComponent";
+import ImageComponent from "./ImageComponent";
 
 
 
 export {
+	Flex,
 	Shipping,
 	Button,
 	CartPlusMinus,
@@ -35,6 +37,6 @@ export {
 	PageWidth,
 	CustomIcon,
 	AllegroFooter,
-	Flex,
-	PathComponent
+	PathComponent,
+	ImageComponent
 };

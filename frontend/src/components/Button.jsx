@@ -3,7 +3,6 @@ import React from "react";
 import styled from "styled-components";
 
 const ButtonContainer = styled.button`
-	height: 42px;
 	background-color: ${(props) =>
 		props.background ? props.background : "var(--allegroColor)"};
 	color: ${(props) => (props.color ? props.color : "white")}};
@@ -16,28 +15,36 @@ const ButtonContainer = styled.button`
 	border: ${(props) => (props.outlined ? "1px solid lightGrey" : " none")};
 	outline: none;
 
+	
+
+	font-family: Open Sans, sans-serif;
+	font-size: 14px;
+	height: 40px;
+	line-height: 40px;
+	margin: 0;
+	overflow: hidden;
+	padding: 0px 24px;
+	// position: relative;
+	
+
+	width:${(props) => (props.width ? props.width : "auto")};
+	border-radius:${(props) => (props.borderRadius ? "20px" : "")};
+	font-weight:${(props) => (props.bold ? "900" : "500")};
 	display: flex;
 	align-items:center;
 	justify-content:center;
 
-	font-family: Open Sans, sans-serif;
-	font-size: 14px;
-	height: 40 px;
-	line-height: 21px;
-	line-height: 40px;
-	margin: 0;
-	overflow: hidden;
-	padding: 0px 13px;
-	position: relative;
-	text-decoration: none;
-	text-size-adjust: 100%;
-	vertical-align: middle;
-	white-space: nowrap;
+	&:hover {
+		color: ${(props) => props.hovered && "var(--linkColor)"};
+		background-color:${(props) => (props.background ? "green" : "blue")}
+		transition:0.3s; 
+		
 
-	width:${(props) => (props.width ? props.width : "auto")};
-	border-radius:2px;
+	}
 `;
-const Icon = styled.div``;
+const Icon = styled.div`
+	width: 100%;
+`;
 
 const Button = ({
 	title,
@@ -48,6 +55,10 @@ const Button = ({
 	color = "white",
 	onClick,
 	width = "250px",
+	borderRadius,
+	style,
+	bold,
+	hovered,
 	...rest
 }) => {
 	return (
@@ -57,8 +68,12 @@ const Button = ({
 			color={color}
 			onClick={onClick}
 			width={width}
+			borderRadius={borderRadius}
+			style={style}
+			bold={bold}
+			hovered={hovered}
+			height
 			{...rest}
-		
 		>
 			<Icon />
 			{title}

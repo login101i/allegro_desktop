@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const OptionContainer = styled.div`
+const OptionContainer = styled.button`
 	transition: 0.2s;
 	display: flex;
 	align-items: center;
@@ -9,6 +9,8 @@ const OptionContainer = styled.div`
 	height: 100%;
 	flex: 1;
 	text-transform: capitalize;
+	border: none;
+	outline: none;
 
 	border-top: ${(props) =>
 		props.borderTop && !props.borderBottom ? "3px solid lightGrey" : "none"};

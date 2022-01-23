@@ -11,12 +11,13 @@ import DirectionArrows from "../DirectionArrows";
 
 const Container = styled.div`
 	display: flex;
-	flex: 1;
+	// flex: 1;
 	flex-direction: column;
 	justify-content: space-between;
 	background-color: white;
 	overflow: hidden;
 	padding: 20px 10px;
+	width: 100vw;
 `;
 
 const Title = styled.div`
@@ -57,11 +58,10 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	height:100%;
+	height: 100%;
 `;
 
-
-const Left = ({products}) => {
+const Left = ({ products }) => {
 	const [hours, setHours] = useState("-");
 	const [minutes, setMinutes] = useState("-");
 	const [seconds, setSeconds] = useState("-");
@@ -70,7 +70,7 @@ const Left = ({products}) => {
 
 	const zero = "0";
 
-	var countDownDate = new Date("December 29, 2021 8:00:00").getTime();
+	var countDownDate = new Date("January 29, 2022 8:00:00").getTime();
 
 	const counDownFunction = () => {
 		setInterval(() => {
@@ -90,15 +90,14 @@ const Left = ({products}) => {
 	};
 
 	useEffect(() => {
-		counDownFunction();
+		// counDownFunction();
 	}, [minutes, hours]);
 
-		// const dogProducts = products.filter((p) => p.category === "Pupil");
-
+	// const dogProducts = products.filter((p) => p.category === "Pupil");
 
 	return (
 		<Container>
-			<Title>Okazje dnia kończą się za </Title>
+			<Title>Weekendowe okazje dnia kończą się za: </Title>
 
 			<Wrapper>
 				<TimeContainer>

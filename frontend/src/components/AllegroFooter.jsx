@@ -26,6 +26,9 @@ const Logo = styled.img`
 `;
 
 const AllegroFooter = ({ width }) => {
+
+
+	
 	return (
 		<Container>
 			<Wrapper width={width}>

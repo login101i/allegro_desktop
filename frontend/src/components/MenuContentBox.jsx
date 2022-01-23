@@ -2,11 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 import { Text } from "./Text";
+import { Link, useNavigate } from "react-router-dom";
 
 const Container = styled.div`
 	width: 100%;
 	margin-bottom: 8px;
 	background-color: white;
+	height: auto;
 `;
 
 const MenuContentBox = ({
@@ -21,19 +23,20 @@ const MenuContentBox = ({
 	text,
 	bold = false
 }) => {
+	const navigate = useNavigate();
 	return (
-		<Container style={style} onClick={onClick}>
-			<Text bold={bold} title={title}>
+		<Container style={style}>
+			<Text bold={bold} title={title} marginTop="4px">
 				{text}
 			</Text>
 			{subTitles.map((subTitle, i) => (
 				<Text
+					onClick={() => navigate(subTitle.link)}
 					key={i}
 					borderBottom={borderBottom}
-					hovered={hovered}
-					color={color}
+					hovered
 				>
-					{subTitle}
+					{subTitle.subTitle ? subTitle.subTitle : subTitle}
 				</Text>
 			))}
 		</Container>

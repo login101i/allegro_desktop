@@ -2,23 +2,18 @@ import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { sliderItems } from "../data";
 import "./../../../src/style.css";
+import { screens } from "../responsive";
 
 import Image1 from "../../assets/pictures/goodToSee1.png";
 import Image2 from "../../assets/pictures/goodToSee2.png";
 import Image3 from "../../assets/pictures/goodToSee3.png";
 import Image4 from "../../assets/pictures/goodToSee4.png";
 
+import { useMediaQuery } from "react-responsive";
+
 import Recomended from "./Recomended";
 import { OptionComponent } from "../../components";
-
-const MainContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;
-	height: 100%;
-	flex-grow: grow;
-	width: 100%;
-`;
+import { Flex } from "../../components";
 
 const images = [
 	{ image: Image1, title: "Limitowana okazja!" },
@@ -43,22 +38,39 @@ const Center = () => {
 	const [slideIndex, setSlideIndex] = useState(0);
 
 	const sliderRef = useRef();
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
+	const isMedium = useMediaQuery({ maxWidth: screens.lg });
+	const isLarge = useMediaQuery({ minWidth: screens.lg });
 
-	const changeSlide = () => {
-		setTimeout(() => {
-			if (slideIndex < 5) {
-				setSlideIndex(slideIndex + 1);
-				console.log(slideIndex);
-			} else {
-				setSlideIndex(0);
-			}
-		}, 7000);
-	};
+	// const changeSlide = () => {
+	// 	setInterval(() => {
+	// 		if (slideIndex < 5) {
+	// 			setSlideIndex(slideIndex + 1);
+	// 			console.log(slideIndex);
+	// 		} else {
+	// 			setSlideIndex(0);
+	// 		}
+	// 	}, 7000);
+	// };
+
+	// function myStopFunction() {
+	// 	clearTimeout(changeSlide);
+	// }
 
 	useEffect(() => {
-		changeSlide();
-	}, [slideIndex]);
+		// changeSlide();
+	}, []);
 
+	const MainContainer = styled.div`
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+
+		flex-grow: grow;
+		width: ${(props) => (props.isMobile ? "100vw" : "100%")};
+		overflow-y: ${(props) => (props.isMobile ? "hidden" : "none")};
+		overflow-x: hidden !important;
+	`;
 	const WrapperOption = styled.div`
 		display: flex;
 		justify-content: space-between;
@@ -79,7 +91,7 @@ const Center = () => {
 	`;
 
 	const Slide = styled.div`
-		width: 100%;
+		// width: 100%;
 		height: 100%;
 		display: flex;
 		align-items: center;
@@ -87,22 +99,38 @@ const Center = () => {
 	`;
 
 	const ImgContainer = styled.div`
-		height: 100%;
-		flex: 1;
+		// height: 100%;
+		// flex: 1;
+		// width: 100vw;
 	`;
 
 	const Image = styled.img`
+		// width: 100vw;
 		height: 100%;
+		background-image: ${(props) => props.src};
+		background-position: center;
+		transform: translateX(-18%);
+		object-fit: cover;
 	`;
 
 	const Container = styled.div`
-		width: 100%;
+		width: 100vw;
 		display: flex;
 		overflow: hidden;
 		flex-direction: column;
-		min-height: 60%;
+		max-height: ${(props) => (props.isMobile ? "500px" : "60%")};
 		justify-content: space-between;
-		margin-bottom: 16px;
+		margin-bottom: ${!isMobile && "16px"};
+		max-width: 100% !important;
+		overflow-x: hidden !important;
+	`;
+
+	const Dot = styled.div`
+		width: 14px;
+		height: 14px;
+		border-radius: 7px;
+		background-color: ${(props) => (props.i === slideIndex ? "black" : "grey")};
+		margin: 10px 6px;
 	`;
 
 	const handleIndex = (index) => {
@@ -111,49 +139,73 @@ const Center = () => {
 		setDistance(distance);
 	};
 
-	return (
-		<MainContainer>
-			<Container>
-				<Carousel slideIndex={slideIndex} distance={distance}>
-					{sliderItems.map((item) => (
-						<Slide key={item.id} ref={sliderRef}>
-							<ImgContainer>
-								<Image src={item.img} />
-							</ImgContainer>
-						</Slide>
-					))}
-				</Carousel>
-				<WrapperOption>
-					<OptionComponent
-						onClick={() => handleIndex(0)}
-						option="Kupuj teraz, płać później"
-					/>
-					<OptionComponent
-						onClick={() => handleIndex(0)}
-						option="Karmy Dog Chow"
-					/>
-					<OptionComponent
-						onClick={() => handleIndex(0)}
-						option="Z kuponami taniej"
-					/>
-					<OptionComponent
-						onClick={() => handleIndex(0)}
-						option="Strefa projektanta"
-					/>
-					<OptionComponent
-						onClick={() => handleIndex(0)}
-						option="Kupuj teraz, płać później"
-					/>
-					<OptionComponent
-						onClick={() => handleIndex(0)}
-						option="Wtaminy na jesień"
-					/>
-				</WrapperOption>
-			</Container>
+	if (isLarge) {
+		return (
+			<MainContainer>
+				<Container>
+					<Carousel slideIndex={slideIndex} distance={distance}>
+						{sliderItems.map((item) => (
+							<Slide key={item.id} ref={sliderRef}>
+								<ImgContainer>
+									<Image src={item.img} />
+								</ImgContainer>
+							</Slide>
+						))}
+					</Carousel>
+					<WrapperOption>
+						<OptionComponent
+							onClick={() => handleIndex(0)}
+							option="Kupuj teraz, płać później"
+						/>
+						<OptionComponent
+							onClick={() => handleIndex(0)}
+							option="Karmy Dog Chow"
+						/>
+						<OptionComponent
+							onClick={() => handleIndex(0)}
+							option="Z kuponami taniej"
+						/>
+						<OptionComponent
+							onClick={() => handleIndex(0)}
+							option="Strefa projektanta"
+						/>
+						<OptionComponent
+							onClick={() => handleIndex(0)}
+							option="Kupuj teraz, płać później"
+						/>
+						<OptionComponent
+							onClick={() => handleIndex(0)}
+							option="Wtaminy na jesień"
+						/>
+					</WrapperOption>
+				</Container>
 
-			<Recomended images={images} />
-		</MainContainer>
-	);
+				<Recomended images={images} />
+			</MainContainer>
+		);
+	} else if (isMobile) {
+		return (
+			<MainContainer isMobile>
+				<Container isMobile>
+					<Carousel slideIndex={slideIndex} distance={distance}>
+						{sliderItems.map((item) => (
+							<Slide key={item.id} ref={sliderRef}>
+								<ImgContainer>
+									<Image src={item.img} />
+								</ImgContainer>
+							</Slide>
+						))}
+					</Carousel>
+					<Flex align style={{ margin: "0 auto" }}>
+						{sliderItems.map((item, i) => (
+							<Dot onClick={() => handleIndex(i)} i={i} />
+						))}
+					</Flex>
+				</Container>
+				<Recomended images={images} />
+			</MainContainer>
+		);
+	}
 };
 
 export default Center;

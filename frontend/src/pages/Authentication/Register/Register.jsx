@@ -4,10 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { Input} from "@mui/material";
+import { Input } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
-
-
 
 import { Text, Button, BorderAndTitle, PageWidth } from "../../../components";
 
@@ -20,7 +18,6 @@ const Container = styled.div`
 	grid-column-gap: 16px;
 	grid-row-gap: 16px;
 	height: auto;
-
 `;
 
 const Left1 = styled.div`
@@ -74,8 +71,6 @@ const Break = styled.div`
 	width: 100%;
 `;
 
-
-
 const Register = ({ history }) => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
@@ -87,9 +82,7 @@ const Register = ({ history }) => {
 	const navigate = useNavigate();
 
 	const dispatch = useDispatch();
-	const { isAuthenticated } = useSelector(
-		(state) => state.auth
-	);
+	const { isAuthenticated } = useSelector((state) => state.auth);
 
 	useEffect(() => {
 		if (isAuthenticated) {
@@ -98,8 +91,6 @@ const Register = ({ history }) => {
 	}, [isAuthenticated]);
 
 	const handleRegister = () => {
-	
-
 		const body = {
 			name,
 			email,
@@ -109,7 +100,7 @@ const Register = ({ history }) => {
 
 		dispatch(registerUser(body));
 		console.log("rejestruję użytkownika");
-		history.push("/");
+		navigate("/");
 	};
 
 	return (
