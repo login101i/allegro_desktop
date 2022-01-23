@@ -4,7 +4,7 @@ import styled from "styled-components";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
-import { Text, Button } from "../components";
+import { Text, Button, Flex } from "../components";
 
 const Container = styled.div`
 	display: flex;
@@ -12,6 +12,7 @@ const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 `;
 
 const MinuPlusContainer = styled.div`
@@ -43,11 +44,6 @@ const Input = styled.input`
 	font-size: 16px;
 `;
 
-const FlexRow = styled.div`
-	display: flex;
-	justify-content: center;
-`;
-
 const CartPlusMinus = () => {
 	const [number, setNumber] = useState(1);
 
@@ -70,7 +66,7 @@ const CartPlusMinus = () => {
 	return (
 		<Container>
 			<Text size={16}>Ilośc sztuk</Text>
-			<FlexRow>
+			<Flex>
 				<MinuPlusContainer>
 					<Square onClick={() => minus()}>
 						<RemoveIcon style={{ fontSize: "30px", margin: "10px" }} />
@@ -80,10 +76,10 @@ const CartPlusMinus = () => {
 						<AddIcon style={{ fontSize: "30px", margin: "10px" }} />
 					</Square>
 				</MinuPlusContainer>
-				<Text>z 9910 sztuk</Text>
-			</FlexRow>
+				<Flex align>z 9910 sztuk</Flex>
+			</Flex>
 
-			<Button title={"dodaj do koszyka"} />
+			<Button>Dodaj do koszyka</Button>
 		</Container>
 	);
 };

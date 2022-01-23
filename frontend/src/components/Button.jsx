@@ -23,7 +23,7 @@ const ButtonContainer = styled.button`
 	line-height: 40px;
 	margin: 0;
 	overflow: hidden;
-	padding: 0px 24px;
+	// padding: 0px 24px;
 	// position: relative;
 	
 
@@ -43,7 +43,7 @@ const ButtonContainer = styled.button`
 	}
 `;
 const Icon = styled.div`
-	width: 100%;
+	width: auto;
 `;
 
 const Button = ({
@@ -59,6 +59,7 @@ const Button = ({
 	style,
 	bold,
 	hovered,
+	height,
 	...rest
 }) => {
 	return (
@@ -72,7 +73,7 @@ const Button = ({
 			style={style}
 			bold={bold}
 			hovered={hovered}
-			height
+			height={height}
 			{...rest}
 		>
 			<Icon />

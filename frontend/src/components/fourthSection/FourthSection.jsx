@@ -9,14 +9,15 @@ import {
 	charityArray
 } from "../../productCategories";
 
-
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
-	width: 100%;
+	width: 100vw;
 	justify-content: space-between;
 	margin-top: 16px;
 	background-color: white;
+	overflow-x: scroll;
+	white-space: nowrap;
 `;
 
 const Bar = styled.div`
@@ -49,52 +50,62 @@ const ProductContainer1 = styled.div`
 `;
 
 const FourthSection = () => {
-	const [okazje, setOkazje] = useState(true);
-	const [opony, setOpony] = useState(true);
-	const [bilety, setBilety] = useState(true);
-	const [charity, setCharity] = useState(true);
+	// const [okazje, setOkazje] = useState(true);
+	// const [opony, setOpony] = useState(true);
+	// const [bilety, setBilety] = useState(true);
+	// const [charity, setCharity] = useState(true);
 
 	const [categoryArray, setCategoryArray] = useState(okazjeArray);
-	const [category, setCategory] = useState(okazje);
 
-	const handleClick = (category, array) => {
-		setCategory(category);
+	const handleClick = (array) => {
+		// setCategory(category);
 		setCategoryArray(array);
 	};
-
+	const data = [
+		{ id: 1, title: "Strefa okazji", array: okazjeArray },
+		{
+			id: 2,
+			title: "Opony zimowe Continental",
+			array: oponyArray
+		},
+		{ id: 3, title: "Strefa Biletów", array: ratyArray },
+		{
+			id: 4,
+			title: "Strefa Rat Zero  ",
+			array: charityArray
+		},
+		{ id: 5, title: "Strefa ogłoszeń  ", array: okazjeArray },
+		{
+			id: 6,
+			title: "Strefa charytatywna  ",
+			array: charityArray
+		},
+		{
+			id: 7,
+			title: "Strefa charytatywna  ",
+			array: charityArray
+		},
+		{ id: 8, title: "Strefa rat zero", array: charityArray }
+	];
 	return (
 		<Container>
 			<Bar>
-				<BarTitle active onClick={() => handleClick(okazje, okazjeArray)}>
-					Strefa okazji
-				</BarTitle>
-				<BarTitle onClick={() => handleClick(opony, oponyArray)}>
-					Opony zimowe Continental
-				</BarTitle>
-				<BarTitle onClick={() => handleClick(bilety, ratyArray)}>
-					Strefa Biletów
-				</BarTitle>
-				<BarTitle onClick={() => handleClick(charity, charityArray)}>
-					Strefa Rat Zero
-				</BarTitle>
-				<BarTitle onClick={() => handleClick(charity, charityArray)}>
-					Strefa ogłoszeń
-				</BarTitle>
-				<BarTitle onClick={() => handleClick(charity, charityArray)}>
-					Strefa charytatywna
-				</BarTitle>
-				<BarTitle onClick={() => handleClick(charity, charityArray)}>
-					Strefa rat zero
-				</BarTitle>
+				{data.map(({ id, array, title }) => (
+					<BarTitle key={id} onClick={() => handleClick(array)}>
+						{title}
+					</BarTitle>
+				))}
 			</Bar>
 
-			{category && (
-				<ProductContainer1>
-					{categoryArray.map((okazja) => (
-						<ProductContainer img={okazja.img} price={okazja.price} />
-					))}
-				</ProductContainer1>
-			)}
+			<ProductContainer1>
+				{categoryArray.map((okazja) => (
+					<ProductContainer
+						key={okazja.id}
+						img={okazja.img}
+						price={okazja.price}
+					/>
+				))}
+			</ProductContainer1>
 		</Container>
 	);
 };

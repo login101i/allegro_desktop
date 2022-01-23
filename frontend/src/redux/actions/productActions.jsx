@@ -13,7 +13,6 @@ import {
 	CLEAR_ERRORS
 } from "../constants/productConstants";
 
-import { productsLocaly } from "../../infrastructure/theme/dummy";
 
 export const getProducts =
 	(

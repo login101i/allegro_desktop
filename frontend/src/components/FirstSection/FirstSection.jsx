@@ -7,25 +7,20 @@ import SidebarLeft from "../FirstSection/SidebarLeft";
 import Center from "../FirstSection/Center";
 import SidebarRight from "../FirstSection/SideBarRight";
 
-
-
+const MainContainer = styled.div`
+	width: 1660px;
+	display: grid;
+	grid-template-columns: 292px 16px minmax(0, 985px) 16px 292px;
+	height: auto;
+	margin-top: ${(props) => props.isMobile ? "0px" : "16px"};
+	display: flex;
+`;
+const Space = styled.div`
+	width: 20px;
+`;
 const FirstSection = () => {
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
-	const isMedium = useMediaQuery({ maxWidth: screens.lg });
 	const isLarge = useMediaQuery({ minWidth: screens.lg });
-
-	const MainContainer = styled.div`
-		width: 1660px;
-		display: grid;
-		grid-template-columns: 292px 16px minmax(0, 985px) 16px 292px;
-		height: auto;
-		margin-top: ${!isMobile && "16px"};
-		display: flex;
-	`;
-
-	const Space = styled.div`
-		width: 20px;
-	`;
 
 	if (isLarge) {
 		return (
@@ -42,14 +37,12 @@ const FirstSection = () => {
 	} else if (isMobile) {
 		return (
 			<>
-				<MainContainer>
+				<MainContainer isMobile={isMobile}>
 					<Center />
 				</MainContainer>
 			</>
 		);
 	}
-
-	return <MainContainer>Hello from mobile resolution</MainContainer>;
 };
 
 export default FirstSection;

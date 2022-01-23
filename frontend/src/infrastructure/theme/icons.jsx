@@ -9,11 +9,11 @@ const settings = require("../../assets/icons/settings.png");
 const star = require("../../assets/icons/star.png");
 const transaction = require("../../assets/icons/transaction.png");
 
-export default {
+const icons = {
 	back_arrow,
 	home,
-	line_graph,
 	notification_color,
+	line_graph,
 	notification_white,
 	pie_chart,
 	right_arrow,
@@ -21,3 +21,5 @@ export default {
 	star,
 	transaction
 };
+
+export default icons;

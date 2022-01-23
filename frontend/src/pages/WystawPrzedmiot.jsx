@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 
 import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
 import PushPinIcon from "@mui/icons-material/PushPin";
@@ -12,12 +11,8 @@ import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import SpeedIcon from "@mui/icons-material/Speed";
 import AutoGraphIcon from "@mui/icons-material/AutoGraph";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 import Checkbox from "@mui/material/Checkbox";
 import { InputAdornment } from "@mui/material";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -229,8 +224,6 @@ const WystawPrzedmiot = () => {
 	const [nowy, setNowy] = useState(false);
 	const [dostawa, setDostawa] = useState(false);
 
-	const navigate = useNavigate();
-
 	const stateProductHandler = (value) => {
 		if (value === "uzywany") {
 			setUzywany(true);
@@ -328,10 +321,9 @@ const WystawPrzedmiot = () => {
 		});
 	};
 
-	const { isAuthenticated, user } = useSelector((state) => state.auth);
+	const { user } = useSelector((state) => state.auth);
 	const { loading, error, success } = useSelector((state) => state.newProduct);
 
-	console.log(loading, error);
 
 	useEffect(() => {
 		if (error) {
@@ -482,8 +474,8 @@ const WystawPrzedmiot = () => {
 								marginTop: "16px"
 							}}
 							onClick={() => {
-								console.log("Czyszczę title");
 								setTitle("");
+								submitHandler();
 							}}
 						>
 							{rightPartContent[infoPosition].buttonText}
@@ -580,7 +572,6 @@ const WystawPrzedmiot = () => {
 								borderRadius={10}
 								onChange={(e) => setTitle(e.target.value)}
 								multiline
-								required
 								rows="2"
 							/>
 							<Text textAlign="right" size={16}>

@@ -1,5 +1,6 @@
 export const okazjeArray = [
 	{
+		id: 1,
 		img: "https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d",
 		discount: "12",
 		oldPrice: "198",
@@ -8,6 +9,7 @@ export const okazjeArray = [
 			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
 	},
 	{
+		id: 2,
 		img: "https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d",
 		discount: "52",
 		oldPrice: "498",
@@ -16,6 +18,7 @@ export const okazjeArray = [
 			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
 	},
 	{
+		id: 3,
 		img: "https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d",
 		discount: "52",
 		oldPrice: "498",
@@ -24,6 +27,7 @@ export const okazjeArray = [
 			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
 	},
 	{
+		id: 4,
 		img: "https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d",
 		discount: "12",
 		oldPrice: "198",
@@ -32,6 +36,26 @@ export const okazjeArray = [
 			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
 	},
 	{
+		id: 5,
+		img: "https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d",
+		discount: "12",
+		oldPrice: "198",
+		price: "129,78",
+		SmartImage:
+			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
+	},
+
+	{
+		id: 6,
+		img: "https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d",
+		discount: "52",
+		oldPrice: "498",
+		price: "129,78",
+		SmartImage:
+			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
+	},
+	{
+		id: 7,
 		img: "https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d",
 		discount: "12",
 		oldPrice: "198",
@@ -40,6 +64,25 @@ export const okazjeArray = [
 			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
 	},
 	{
+		id: 8,
+		img: "https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d",
+		discount: "12",
+		oldPrice: "198",
+		price: "129,78",
+		SmartImage:
+			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
+	},
+	{
+		id: 9,
+		img: "https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d",
+		discount: "12",
+		oldPrice: "198",
+		price: "129,78",
+		SmartImage:
+			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
+	},
+	{
+		id: 10,
 		img: "https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d",
 		discount: "52",
 		oldPrice: "498",
@@ -48,6 +91,8 @@ export const okazjeArray = [
 			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
 	},
 	{
+		id: 11,
+
 		img: "https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d",
 		discount: "52",
 		oldPrice: "498",
@@ -56,6 +101,7 @@ export const okazjeArray = [
 			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
 	},
 	{
+		id: 12,
 		img: "https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d",
 		discount: "12",
 		oldPrice: "198",
@@ -64,42 +110,11 @@ export const okazjeArray = [
 			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
 	},
 	{
-		img: "https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d",
-		discount: "12",
-		oldPrice: "198",
-		price: "129,78",
-		SmartImage:
-			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
-	},
-	{
-		img: "https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d",
-		discount: "12",
-		oldPrice: "198",
-		price: "129,78",
-		SmartImage:
-			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
-	},
-	{
+		id: 13,
 		img: "https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d",
 		discount: "52",
 		oldPrice: "498",
 		price: "229,78",
-		SmartImage:
-			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
-	},
-	{
-		img: "https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d",
-		discount: "52",
-		oldPrice: "498",
-		price: "129,78",
-		SmartImage:
-			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
-	},
-	{
-		img: "https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d",
-		discount: "12",
-		oldPrice: "198",
-		price: "129,78",
 		SmartImage:
 			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
 	}

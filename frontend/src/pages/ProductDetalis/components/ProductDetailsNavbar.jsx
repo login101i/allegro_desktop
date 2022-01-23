@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
+import { useMediaQuery } from "react-responsive";
 
 import StarBorderIcon from "@mui/icons-material/StarBorder";
+import { screens } from "../../../../src/components/responsive";
+import { Flex } from "../../../components";
 
 const Container = styled.div`
 	display: flex;
 	justify-content: space-between;
 	padding: 20px;
 	width: 94%;
+	flex-direction: ${(props) => (props.isMobile ? "column" : "row")};
 	border-bottom: 1px solid lightGrey;
 `;
 
@@ -37,13 +41,14 @@ const RightBottom = styled.div`
 	margin-top: 10px;
 `;
 
-
 const ProductDetailsNavbar = ({ product }) => {
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
+	const isLarge = useMediaQuery({ minWidth: screens.lg });
 	console.log(product);
 	return (
 		<>
 			{product && (
-				<Container>
+				<Container isMobile={isMobile}>
 					<Left>
 						<TitleL>{product.title}</TitleL>
 						<Ratings>
@@ -55,7 +60,7 @@ const ProductDetailsNavbar = ({ product }) => {
 						<TitleR>Inne oferty tego produktu.</TitleR>
 
 						<RightBottom>
-							Najtańsze od {(product.price.toFixed(2)-10)} zł,  najszyciej od{" "}
+							Najtańsze od {product.price.toFixed(2) - 10} zł, najszyciej od{" "}
 							{product.price + 4} zł. Wszystkie ({product.stock})
 						</RightBottom>
 					</Right>

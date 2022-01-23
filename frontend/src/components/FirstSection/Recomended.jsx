@@ -4,8 +4,7 @@ import styled from "styled-components";
 import DirectionArrows from "../DirectionArrows";
 
 import Item from "./Item";
-import { screens } from "../responsive";
-import { useMediaQuery } from "react-responsive";
+
 
 const ItemsContainer = styled.div`
 	display: flex;
@@ -24,10 +23,9 @@ const ItemsContainer = styled.div`
 const Recomended = (props) => {
 	const { images } = props;
 
-	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
 	return (
-		<DirectionArrows style={{ position: "relative" }} title="Zobacz również">
+		<DirectionArrows style={{ position: "relative" }} title="Warto zobaczyć">
 			<ItemsContainer isMobile>
 				{images.map((image, i) => (
 					<Item key={i} image={image.image} title={image.title} />

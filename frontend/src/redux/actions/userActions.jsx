@@ -20,12 +20,6 @@ export const registerUser = (body) => async (dispatch) => {
 		dispatch({ type: REGISTER_USER_REQUEST });
 		console.log("To jest formData");
 
-		const config = {
-			headers: {
-				"Content-Type": "multipart/form-data"
-			}
-		};
-
 		const { data } = await axios.post("/api/v1/register", body);
 		console.log(data);
 
@@ -45,12 +39,6 @@ export const loginUser = (body) => async (dispatch) => {
 	try {
 		dispatch({ type: LOGIN_REQUEST });
 		console.log("To jest formData");
-
-		const config = {
-			headers: {
-				"Content-Type": "multipart/form-data"
-			}
-		};
 
 		const { data } = await axios.post("/api/v1/login", body);
 		console.log(data);
@@ -95,7 +83,12 @@ export const loadUser = () => async (dispatch) => {
 			type: LOAD_USER_SUCCESS,
 			payload: data.user
 		});
-	} catch (error) {}
+	} catch (error) {
+		dispatch({
+			type: LOAD_USER_FAIL,
+			payload: "Nie udało załadować uzytkownika"
+		});
+	}
 };
 
 export const clearErrors = () => async (dispatch) => {

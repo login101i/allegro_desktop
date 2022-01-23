@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useMediaQuery } from "react-responsive";
-
-import { screens } from "../responsive";
 
 import BorderAndTitle from "../BorderAndTitle";
 
@@ -66,8 +63,6 @@ const Left = ({ products }) => {
 	const [minutes, setMinutes] = useState("-");
 	const [seconds, setSeconds] = useState("-");
 
-	// const isMedium = useMediaQuery({ maxWidth: screens.lg });
-
 	const zero = "0";
 
 	var countDownDate = new Date("January 29, 2022 8:00:00").getTime();
@@ -90,7 +85,7 @@ const Left = ({ products }) => {
 	};
 
 	useEffect(() => {
-		// counDownFunction();
+		counDownFunction();
 	}, [minutes, hours]);
 
 	// const dogProducts = products.filter((p) => p.category === "Pupil");

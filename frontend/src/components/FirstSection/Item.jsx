@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {Text} from '../../components'
 
 const Container = styled.div`
   display: flex;
@@ -12,16 +13,13 @@ const Container = styled.div`
   `;
 
 const Image = styled.img`
-  max-width: 120px;
-  width: 100px;
-  max-height: 120px;
-  heigth: 100px;
+  max-width: 132px;
+  width: 132px;
+  max-height: 132px;
+  heigth: 132px;
   margin-bottom: 15px;
 `;
-const Title = styled.div`
-  font-weith: 22px;
-  text-align: center;
-`;
+
 
 const Item = (props) => {
   const { image, title } = props;
@@ -29,7 +27,7 @@ const Item = (props) => {
   return (
     <Container>
       <Image src={image} />
-      <Title>{title}</Title>
+      <Text>{title}</Text>
     </Container>
   );
 };

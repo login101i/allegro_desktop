@@ -14,11 +14,9 @@ import PageWidth from "./PageWidth";
 import CustomIcon from "./CustomIcon";
 import AllegroFooter from "./AllegroFooter";
 import Navbar from "./Navbar";
-import Flex from './Flex';
+import Flex from "./Flex";
 import PathComponent from "./PathComponent";
 import ImageComponent from "./ImageComponent";
-
-
 
 export {
 	Flex,
@@ -38,5 +36,6 @@ export {
 	CustomIcon,
 	AllegroFooter,
 	PathComponent,
-	ImageComponent
+	ImageComponent,
+	Navbar
 };

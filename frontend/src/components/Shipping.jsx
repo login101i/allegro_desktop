@@ -3,12 +3,9 @@ import styled from "styled-components";
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 
-import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-
 import BorderAndTitle from "./BorderAndTitle";
 
-import { Text } from "./Text";
+import { Text, Flex } from "../components";
 
 const Container = styled.div`
 	display: flex;
@@ -18,14 +15,6 @@ const Container = styled.div`
 	border-bottom: 1px solid lightGrey;
 	margin: 10px 0px;
 	padding: 5px 0px;
-`;
-const FlexRow = styled.div`
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-	width: 100%;
-	padding: 3px 0px;
 `;
 
 const TextInfo = styled.div`
@@ -60,7 +49,7 @@ const Shipping = () => {
 		<>
 			<Container>
 				{dataArray.map((data) => (
-					<FlexRow>
+					<Flex space style={{ flexWrap: "wrap" }}>
 						<TextInfo>
 							<data.icon
 								style={{
@@ -69,12 +58,12 @@ const Shipping = () => {
 									marginRight: "10px"
 								}}
 							/>
-							<Text subTitle={data.subTitle} size={16}>
+							<Text subTitle={data.subTitle} size={16} wrap="true">
 								{data.text}
 							</Text>
 						</TextInfo>
 						<BorderAndTitle title={data.title} />
-					</FlexRow>
+					</Flex>
 				))}
 			</Container>
 		</>

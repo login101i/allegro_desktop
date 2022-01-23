@@ -3,54 +3,51 @@ import styled from "styled-components";
 
 import ProductContainer from "../ProductContainer";
 import BorderAndTitle from "../BorderAndTitle";
+import { Text } from "../../components";
 
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	align-items: center;
 	background: white;
 	flex: 1;
-	margin: 0px 10px 0px 20px;
+	margin: ${(props) => (props.isMobile ? "5px" : "0px 10px 0px 20px")};
+	align-items: left;
 
 	-webkit-box-shadow: 0px 19px 32px -22px rgba(107, 108, 123, 1);
 	-moz-box-shadow: 0px 19px 32px -22px rgba(107, 108, 123, 1);
 	box-shadow: 0px 19px 32px -22px rgba(107, 108, 123, 1);
 
+	overflow-x: scroll;
+	width: 100vw;
 `;
-
-const FlexRow = styled.div`
+const ScrollContainer = styled.div`
+	width: 100vw;
+	overflow-x: scroll;
 	display: flex;
-	justify-content: center;
-	width: 100%;
 `;
 
-const Title = styled.div`
-	font-weight: 600;
-	font-size: 21px;
-	margin: 16px;
-	color: rgb(76, 79, 70);
-`;
-
-const Left = ({ products, loading }) => {
+const Left = ({ products, isMobile }) => {
 	const dogProducts = products.filter((p) => p.category === "Pupil");
+
 	return (
 		<>
-			<Container>
-				<Title>Polecane dla psa</Title>
-				<FlexRow>
-					{dogProducts.slice(2).map((dogProduct) => (
+			<Container isMobile={isMobile}>
+				<Text textAlign="center" title="Polecane dla psa" bold></Text>
+				<ScrollContainer>
+					{dogProducts.slice(0,3).map((product) => (
 						<ProductContainer
-							key={dogProduct._id}
-							img={dogProduct.img[0].url}
-							discount={dogProduct.discount}
-							oldPrice={dogProduct.oldPrice}
-							price={dogProduct.price}
-							product={dogProduct}
+							key={product._id}
+							img={product.img[0].url}
+							discount={product.discount}
+							oldPrice={product.oldPrice}
+							price={product.price}
+							product={product}
 							extended={true}
 						/>
 					))}
-				</FlexRow>
+				</ScrollContainer>
+
 				<BorderAndTitle />
 			</Container>
 		</>

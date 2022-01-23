@@ -16,7 +16,7 @@ const ProtectedRoute = ({ children, isAdmin }) => {
 		if (!user) {
 			dispatch(loadUser());
 		}
-	}, [isAuthenticated, loading]);
+	}, [isAuthenticated, loading, dispatch, user]);
 
 	if (loading) return <h1>loading...</h1>;
 

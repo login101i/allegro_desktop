@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 
 import "./style.css";
 import HomePage from "./pages/HomePage";
@@ -45,20 +44,11 @@ const Container = styled.div`
 `;
 
 const App = () => {
-	const dispatch = useDispatch();
-
-	const { isAuthenticated, user } = useSelector((state) => state.auth);
-
 	useEffect(() => {
-		console.log("load user request");
 		store.dispatch(loadUser());
-	}, [store]);
-
-	console.log(isAuthenticated, user);
+	}, []);
 
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
-	const isMedium = useMediaQuery({ maxWidth: screens.lg });
-	const isLarge = useMediaQuery({ minWidth: screens.lg });
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -68,8 +58,12 @@ const App = () => {
 					{!isMobile && <NavbarAd />}
 					<Container>
 						<Routes>
-							<Route path="/" element={<HomePage />} exact />
-							{/* <Route path="/product/:id" element={<ProductDetails />} />
+							<Route
+								path="/"
+								element={<HomePage isMobile={isMobile} />}
+								exact
+							/>
+							<Route path="/product/:id" element={<ProductDetails />} />
 							<Route path="/listing/:keyword" element={<Listing />} />
 							<Route path="/login" exact element={<Login />} />
 							<Route path="/register" element={<Register />} exact />
@@ -86,10 +80,10 @@ const App = () => {
 								path="/oferty/wystaw/kup-teraz"
 								element={<WystawPrzedmiot />}
 								exact
-							/> */}
+							/>
 						</Routes>
 					</Container>
-					<AllegroFooter />
+					<AllegroFooter isMobile={isMobile} />
 				</BrowserRouter>
 			</GreyBackground>
 		</ThemeProvider>

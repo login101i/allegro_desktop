@@ -20,7 +20,7 @@ const Button = styled.button`
 	cursor: pointer;
 	color: white;
 	font-size: 14px;
-	z-index:10000;
+	z-index: 10000;
 
 	&:hover {
 		right: 0px;
@@ -32,13 +32,22 @@ const Logo = styled.img`
 	width: 45px;
 	margin-right: 12px;
 `;
+const Container = styled.div`
+	top: 33vh;
+	right: ${(props) => (props.showPayPal ? "-110px" : "-10px")};
+	// visibility: ${(props) => (props.showPayPal ? "visible" : "hidden")};
+	transition: 0.6s ease-in-out;
+`;
 
-const PayPalButton = () => {
+const PayPalButton = ({ showPayPal }) => {
+	console.log(showPayPal);
 	return (
-		<Button>
-			<Logo src={PayPalLogo} />
-			Zapłać za 30 dni
-		</Button>
+		<Container showPayPal={showPayPal}>
+			<Button>
+				<Logo src={PayPalLogo} />
+				Zapłać za 30 dni
+			</Button>
+		</Container>
 	);
 };
 

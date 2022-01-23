@@ -9,13 +9,34 @@ import Image35 from "../../assets/pictures/Image35.png";
 import Image36 from "../../assets/pictures/Image36.png";
 import Image37 from "../../assets/pictures/Image37.png";
 
+import { Text } from "../../components";
+
+const data = [
+	{ id: 1, img: Image31, title: "Jesienna Pielęgnacja" },
+	{ id: 2, img: Image32, title: "Jesienna Pielęgnacja" },
+	{ id: 3, img: Image33, title: "Strefa Rehabilitacji" },
+	{ id: 4, img: Image34, title: "Telemedycyna [Vouchery] " },
+	{ id: 5, img: Image35, title: "Elektronika - top 100 " },
+	{ id: 6, img: Image36, title: "Okacje na smartfony " },
+	{ id: 7, img: Image37, title: "Telewizory i akcesoria " },
+	{ id: 8, img: Image31, title: "Bramy i ogrodzenia" },
+	{ id: 9, img: Image32, title: "Jesienna Pielęgnacja" },
+	{ id: 10, img: Image33, title: "Strefa Rehabilitacji" },
+	{ id: 11, img: Image34, title: "Telemedycyna [Vouchery] " },
+	{ id: 12, img: Image35, title: "Elektronika - top 100 " },
+	{ id: 13, img: Image36, title: "Okacje na smartfony " },
+	{ id: 14, img: Image37, title: "Telewizory i akcesoria " }
+];
+
 const Container = styled.div`
 	display: flex;
-	width: 100%;
-	justify-content: space-between;
+	width: 100vw;
+	// justify-content: space-between;
 	align-items: center;
 	margin-top: 16px;
 	background-color: white;
+	overflow-x: scroll;
+	scrollbar-color: rebeccapurple green;
 `;
 
 const ItemContainer = styled.div`
@@ -27,6 +48,7 @@ const ItemContainer = styled.div`
 	margin: 2px 10px;
 	max-width: 130px;
 	height: 160px;
+	scrollbar-color: rebeccapurple green;
 `;
 
 const Image = styled.img`
@@ -35,67 +57,15 @@ const Image = styled.img`
 	border-radius: 50%;
 `;
 
-const Title = styled.span`
-	color: grey;
-	font-size: 14px;
-	text-align: center;
-	margin-top: 8px;
-`;
-
 const ThirdSection = () => {
 	return (
 		<Container>
-			<ItemContainer>
-				<Image src={Image31} />
-				<Title>Jesienna Pielęgnacja</Title>
-			</ItemContainer>
-
-			<ItemContainer>
-				<Image src={Image32} />
-				<Title>Strefa Rehabilitacji</Title>
-			</ItemContainer>
-
-			<ItemContainer>
-				<Image src={Image33} />
-				<Title>Telemedycyna [Vouchery]</Title>
-			</ItemContainer>
-
-			<ItemContainer>
-				<Image src={Image34} />
-				<Title>Elektronika - top 100</Title>
-			</ItemContainer>
-			<ItemContainer>
-				<Image src={Image35} />
-				<Title>Okacje na smartfony</Title>
-			</ItemContainer>
-
-			<ItemContainer>
-				<Image src={Image36} />
-				<Title>Telewizory i akcesoria</Title>
-			</ItemContainer>
-			<ItemContainer>
-				<Image src={Image37} />
-				<Title>Bramy i ogrodzenia</Title>
-			</ItemContainer>
-
-			<ItemContainer>
-				<Image src={Image31} />
-				<Title>Jesienna Pielęgnacja</Title>
-			</ItemContainer>
-
-			<ItemContainer>
-				<Image src={Image32} />
-				<Title>Strefa Rehabilitacji</Title>
-			</ItemContainer>
-
-			<ItemContainer>
-				<Image src={Image33} />
-				<Title>Telemedycyna [Vouchery]</Title>
-			</ItemContainer>
-			<ItemContainer>
-				<Image src={Image31} />
-				<Title>Jesienna Pielęgnacja</Title>
-			</ItemContainer>
+			{data.map((item) => (
+				<ItemContainer key={item.id}>
+					<Image src={item.img} />
+					<Text>{item.title}</Text>
+				</ItemContainer>
+			))}
 		</Container>
 	);
 };

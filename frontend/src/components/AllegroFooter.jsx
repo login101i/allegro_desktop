@@ -6,7 +6,7 @@ import { Text } from "./Text";
 
 const Container = styled.div`
 	background-color: rgb(60, 80, 82);
-	width: 100%;
+	width: 100vw;
 	position: absolute;
 	bottom: 0px;
 	left: 0;
@@ -16,23 +16,21 @@ const Wrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 20px;
-	position: relative;
-	width: ${(props) => (props.width ? props.width : "70%")};
-	left: ${(props) => (props.width  ? "20%" : "15%")};
+	padding: ${(props) => (props.isMobile ? "2px" : "20px")};
+
+	left: ${(props) => (props.isMobile ? "3%" : "20%")};
+	width: 100vw;
 `;
 const Logo = styled.img`
 	height: 43px;
+	margin: 5px 20px;
 `;
 
-const AllegroFooter = ({ width }) => {
-
-
-	
+const AllegroFooter = ({ width, isMobile }) => {
 	return (
 		<Container>
-			<Wrapper width={width}>
-				<Text color="white">
+			<Wrapper width={width} isMobile={isMobile}>
+				<Text color="white" textAlign="center" wrap="true">
 					Korzystanie z serwisu oznacza akceptację regulaminu
 				</Text>
 				<Logo src={LogoWhite} alt="Allegro" />

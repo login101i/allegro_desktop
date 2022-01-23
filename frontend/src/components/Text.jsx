@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 const TextContainer = styled.div`
-	font-size: 14px;
+	font-size: 16px;
 	font-size: ${(props) => props.size}px;
 	font-family: Roboto, sans-serif;
-	font-family: "Open Sans", sans-serif;
+	// font-family: "Open Sans", sans-serif;
 	color: ${(props) =>
 		props.color ? props.color : props.theme.colors.textColor};
 	font-weight: ${(props) => (props.bold ? "900" : "600")};
@@ -44,7 +44,7 @@ export const Text = ({
 	title,
 	size,
 	marginTop,
-	bold = false,
+	bold,
 	children,
 	subTitle = "",
 	color,
@@ -54,9 +54,7 @@ export const Text = ({
 	wrap,
 	textAlign,
 	style,
-	background,
-
-	linkColor = "var(--linkColor)"
+	background
 }) => {
 	return (
 		<TextContainer

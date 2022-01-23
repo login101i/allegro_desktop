@@ -75,9 +75,7 @@ const Register = ({ history }) => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	console.log(name);
-	console.log(email);
-	console.log(password);
+
 
 	const navigate = useNavigate();
 
@@ -88,7 +86,7 @@ const Register = ({ history }) => {
 		if (isAuthenticated) {
 			navigate("/");
 		}
-	}, [isAuthenticated]);
+	}, [isAuthenticated, navigate]);
 
 	const handleRegister = () => {
 		const body = {
@@ -99,7 +97,6 @@ const Register = ({ history }) => {
 		console.log(body);
 
 		dispatch(registerUser(body));
-		console.log("rejestruję użytkownika");
 		navigate("/");
 	};
 

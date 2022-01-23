@@ -1,12 +1,45 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
 
 import PriceDiscount from "./PriceDiscount";
 
-import { Text } from "../components";
-import { screens } from "./responsive";
+import { Text, Flex } from "../components";
+
+const SectionContainer = styled.div`
+	display: flex;
+	flex-direction: ${(props) => (props.row ? "row" : "column")};
+	height: 100%;
+	justify-content: flex-start;
+	min-width: 220px;
+	max-width: ${(props) => props.isMobile && "200px"};
+
+	align-items: center;
+	width: 100%;
+`;
+const SectionListingContainer = styled(SectionContainer)`
+	border-bottom: 1px solid lightGrey;
+`;
+const ImageContainer = styled.div`
+	height: 80%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 85%;
+	padding-bottom: 10px;
+	max-height: 230px;
+`;
+
+const ImageListingsContainer = styled(ImageContainer)`
+	width: 25%;
+`;
+const Image = styled.img`
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	cursor: pointer;
+	max-height: 250px;
+`;
 
 const ProductContainer = ({
 	img,
@@ -18,50 +51,6 @@ const ProductContainer = ({
 	product = { id: "61c10bc4649cdf618b815c4a" },
 	listings
 }) => {
-	const isMobile = useMediaQuery({ maxWidth: screens.md });
-	const isMedium = useMediaQuery({ maxWidth: screens.lg });
-	const isLarge = useMediaQuery({ minWidth: screens.lg });
-
-	const SectionContainer = styled.div`
-		display: flex;
-		flex-direction: ${(props) => (props.row ? "row" : "column")};
-		height: 100%;
-		justify-content: flex-start;
-		min-width: 220px;
-		max-width: ${isMobile && "200px"};
-
-		align-items: center;
-		width: 100%;
-	`;
-	const SectionListingContainer = styled(SectionContainer)`
-		border-bottom: 1px solid lightGrey;
-	`;
-	const ImageContainer = styled.div`
-		height: 80%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		max-width: 85%;
-		padding-bottom: 10px;
-		max-height: 230px;
-	`;
-
-	const ImageListingsContainer = styled(ImageContainer)`
-		width: 25%;
-	`;
-	const Image = styled.img`
-		width: 100%;
-		height: 100%;
-		object-fit: contain;
-		cursor: pointer;
-		max-height: 250px;
-	`;
-
-	const FlexCol = styled.div`
-		display: flex;
-		flex-direction: column;
-	`;
-
 	return (
 		<>
 			<Link
@@ -78,23 +67,27 @@ const ProductContainer = ({
 						<ImageListingsContainer>
 							{img && <Image src={img} />}
 						</ImageListingsContainer>
-						<FlexCol>
-							<Text wrap>{product.title}</Text>
-							<Text > od {product.seller}</Text>
+						<Flex column>
+							<Text wrap="true">{product.title}</Text>
+							<Text> od {product.seller}</Text>
 							<PriceDiscount
 								discount={discount}
 								oldPrice={oldPrice}
 								price={price}
 								description={description}
 							/>
-						</FlexCol>
+						</Flex>
 					</SectionListingContainer>
 				) : (
 					<>
-						<SectionContainer row={row} onClick={() => console.log(price)}>
+						<SectionContainer
+							row={row}
+							onClick={() => console.log(price)}
+							isMobile
+						>
 							<ImageContainer>{img && <Image src={img} />}</ImageContainer>
-							<FlexCol>
-								<Text wrap>{product.title}</Text>
+							<Flex column>
+								<Text wrap="true">{product.title}</Text>
 								<Text> od {product.seller}</Text>
 								<PriceDiscount
 									discount={discount}
@@ -102,7 +95,7 @@ const ProductContainer = ({
 									price={price}
 									description={description}
 								/>
-							</FlexCol>
+							</Flex>
 						</SectionContainer>
 					</>
 				)}

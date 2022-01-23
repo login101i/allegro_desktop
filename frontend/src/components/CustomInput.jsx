@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Input } from "@mui/material";
 import TextField from "@mui/material/TextField";
 
 const Container = styled(TextField)`
@@ -16,14 +15,8 @@ const Container = styled(TextField)`
 	border-height: 1px;
 	border-radius: ${(props) =>
 		props.borderRadius ? props.borderRadius + "px" : "none"};
-
 	height: auto;
 	max-width: ${(props) => (props.width ? props.width : "100%")};
-
-	&:hover {
-		// border: ${(props) => props.hovered && "1px solid lightGrey"};
-		// cursor: pointer;
-	}
 `;
 
 const CustomInput = ({
@@ -48,7 +41,6 @@ const CustomInput = ({
 		<>
 			<Container
 				{...props}
-				fullWidth
 				placeholder={placeholder}
 				disableUnderline={true}
 				onChange={onChange}
@@ -60,7 +52,6 @@ const CustomInput = ({
 				width={width}
 				hovered
 				type={type}
-				variant="standard"
 				InputProps={{ disableUnderline: true }}
 				variant="outlined"
 				fullWidth

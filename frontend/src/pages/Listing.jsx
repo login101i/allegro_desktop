@@ -317,7 +317,6 @@ const Listing = ( ) => {
 									product={product}
 									extended={true}
 									row={true}
-									product={product}
 									listings
 								/>
 							))

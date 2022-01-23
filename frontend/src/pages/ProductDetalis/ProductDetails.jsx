@@ -19,6 +19,7 @@ const Container = styled.div`
 	width: 80%;
 	background-color: white;
 	padding: 0px 20px;
+	margin-bottom: 60px;
 `;
 
 const Space = styled.div`
@@ -31,17 +32,14 @@ const ProductDetails = () => {
 	const { loading, error, product } = useSelector(
 		(state) => state.productDetails
 	);
-	console.log(loading);
-	console.log(product);
-	console.log(error);
+
 
 	let id = useParams().id;
 
 
 	useEffect(() => {
 		dispatch(getProductDetails(id));
-		console.log("wykonuję product details");
-	}, [dispatch]);
+	}, [dispatch, id]);
 
 	const title = "product Details";
 	return (

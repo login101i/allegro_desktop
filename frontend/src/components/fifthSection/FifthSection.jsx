@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import styled from "styled-components";
 
 import Left from "./Left";
 import Right from "./Right";
 import PsiSmak from "../../assets/pictures/PsiSmak.png";
-import Loader from "../../components/Loader";
+import { Loader, Flex } from "../../components";
 
 import {
 	getProducts,
 	getProductDetails
 } from "../../redux/actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
+import { screens } from "../responsive";
 
 const Container = styled.div`
 	display: flex;
@@ -19,7 +21,7 @@ const Container = styled.div`
 	align-items: center;
 	margin-top: 16px;
 	position: relative;
-	height: 700px;
+	// height: 700px;
 	background-color: white;
 	width: 100%;
 	position: relative;
@@ -34,23 +36,15 @@ const BackgroundImage = styled.img`
 	right: 0;
 	height: 600px;
 `;
-const RowContainer = styled.div`
-	position: absolute;
-	top: 250px;
-	left: 0px;
-	width: 100%;
-	height: 440px;
-	display: flex;
-	justify-content: space-between;
+const Image = styled.img`
+	width: 100vw;
 `;
 
 const FifthSection = () => {
 	const dispatch = useDispatch();
-	const { loading, products, productsCount } = useSelector(
-		(state) => state.products
-	);
+	const { loading, products } = useSelector((state) => state.products);
 
-	console.log(products);
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
 	useEffect(() => {
 		dispatch(getProducts());
@@ -60,11 +54,24 @@ const FifthSection = () => {
 
 	return (
 		<Container>
-			<BackgroundImage src={PsiSmak} />
-			<RowContainer>
-				{loading ? <Loader /> : <Left products={products} />}
-				{loading ? <Loader /> : <Right />}
-			</RowContainer>
+			{isMobile ? (
+				<>
+					<Flex column>
+						<Image src={PsiSmak} />
+
+						{loading ? <Loader /> : <Left isMobile products={products} />}
+						{loading ? <Loader /> : <Right isMobile products={products} />}
+					</Flex>
+				</>
+			) : (
+				<>
+					<BackgroundImage src={PsiSmak} />
+					<Flex space>
+						{loading ? <Loader /> : <Left products={products} />}
+						{loading ? <Loader /> : <Right />}
+					</Flex>
+				</>
+			)}
 		</Container>
 	);
 };
