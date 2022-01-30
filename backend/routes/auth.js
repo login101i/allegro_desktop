@@ -18,6 +18,24 @@ const {
 
 const { isAuthenticatedUser, authorizeRoles } = require("../middlewares/auth");
 
+/**
+ * @swagger
+ * /api/v1/admin/user/:id:
+ * 	get:
+ *    summary: This api siused
+ *     description: description of the
+ * 		responses:
+ *          200:
+ * 		          description: to tesst get methon
+ */
+
+router.get(
+	"/admin/user/:id",
+	isAuthenticatedUser,
+	authorizeRoles(),
+	getUserDetails
+);
+
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.post("/logout", logout);

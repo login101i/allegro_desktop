@@ -3,6 +3,7 @@ const Product = require("../models/Product");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 const APIFeatures = require("../utils/apiFeatures");
+const cloudinary = require("cloudinary");
 
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 	const productsCount = await Product.countDocuments();
@@ -27,7 +28,35 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 });
 
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
-	console.log(req.body);
+	// console.log(req.body);
+
+	let images = [];
+
+	if (typeof req.body.img === "string") {
+		images.push(req.body.img);
+	} else {
+		images = req.body.img;
+	}
+	console.log(typeof images[0].url);
+
+	// console.log(req.body.img[0].url.slice(0,10));
+	// images = req.body.img[0].url;
+
+	let imagesLinks = [];
+
+	for (let i = 0; i < images.length; i++) {
+		const result = await cloudinary.v2.uploader.upload(images[i].url, {
+			folder: "allegroWebProducts"
+		});
+
+		imagesLinks.push({
+			public_id: result.public_id,
+			url: result.secure_url
+		});
+	}
+
+	req.body.img = imagesLinks;
+	// req.body.user = req.user.id;
 
 	const newProduct = await Product.create(req.body);
 
@@ -41,7 +70,7 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 // Get single movie details   =>   /api/v1/movies/:id
 exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
 	const product = await Product.findById(req.params.id);
-	console.log(product);
+	// console.log(product);
 	// if (!product) {
 	// 	res.status(500).json({
 	// 		message: "Brak produktu o takim id."

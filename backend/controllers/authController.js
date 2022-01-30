@@ -45,6 +45,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 // api/v1/login
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 	const { email, password } = req.body;
+	console.log("Rejestruję użytkownika")
 
 	// Checks if email and password is entered by user
 	if (!email || !password) {
@@ -55,15 +56,15 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 	const user = await User.findOne({ email }).select("+password");
 
 	if (!user) {
-		return next(new ErrorHandler("Invalid Email or Password", 401));
+		return next(new ErrorHandler("Invalid Email", 401));
 	}
 
 	// Checks if password is correct or not
 	const validPassword = await bcrypt.compare(password, user.password);
 	console.log(validPassword);
 
-	if (!validPassword) {
-		return next(new ErrorHandler("Invalid Email or Password", 401));
+	if (!password) {
+		return next(new ErrorHandler("Invalid Password", 401));
 	}
 
 	//   const accessToken = jwt.sign(
@@ -85,7 +86,6 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 
 // Logout user   =>   /api/v1/logout
 exports.logout = catchAsyncErrors(async (req, res, next) => {
-
 	const options = {
 		expires: new Date(Date.now()),
 		httpOnly: true
