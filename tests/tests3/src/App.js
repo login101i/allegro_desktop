@@ -1,12 +1,9 @@
-import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
 	return (
-		<div className="App">
-		
-					Learn React!
-			
+		<div className="App" data-test="component-app">
+			<h1>App</h1>
 		</div>
 	);
 }
