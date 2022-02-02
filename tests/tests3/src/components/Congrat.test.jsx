@@ -1,10 +1,8 @@
-import Enzyme, { shallow } from "enzyme";
-import EnzymeAdapter from "@wojtekmaj/enzyme-adapter-react-17";
+import  { shallow } from "enzyme";
 
 import Congrats from "./Congrats";
 import { searchByTestAtrr, checkProps } from "../tests/testUtils";
 
-Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 const defaultProps = { success: true };
 
@@ -33,7 +31,7 @@ test("renders no empty congrats when 'success' prop is true", () => {
 	expect(appComponent.text().length).not.toBe(0);
 });
 
-test("does not trow warning with expected props", () => {
+test("does not throw warning with expected props", () => {
 	const expectedProps = { success: false };
 	checkProps(Congrats, expectedProps);
 });
