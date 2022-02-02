@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Congrats = ({ success }) => {
-	if (success===true) {
+	if (success === true) {
 		return (
-			<div data-test="component-congrats">
-				<span data-test="congrats-message">
+			<div data-test="component-congrats" className="alert alert-success">
+				<h2 data-test="congrats-message">
 					Congratulation! You guessed the word!
-				</span>
+				</h2>
 			</div>
 		);
 	} else {
