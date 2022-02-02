@@ -75,7 +75,6 @@ const ProductDetailInfo = ({ product }) => {
 	const { img, title, discount, price, description, oldPrice, seller } =
 		product;
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
-	const isLarge = useMediaQuery({ minWidth: screens.lg });
 
 	const leftPart = ({ isMobile }) => {
 		return (

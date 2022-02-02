@@ -4,7 +4,7 @@ import { useMediaQuery } from "react-responsive";
 
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { screens } from "../../../../src/components/responsive";
-import { Flex } from "../../../components";
+import {  } from "../../../components";
 
 const Container = styled.div`
 	display: flex;
@@ -43,7 +43,6 @@ const RightBottom = styled.div`
 
 const ProductDetailsNavbar = ({ product }) => {
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
-	const isLarge = useMediaQuery({ minWidth: screens.lg });
 	console.log(product);
 	return (
 		<>

@@ -13,7 +13,7 @@ import { Text, Flex } from "../../components";
 const MainContainer = styled.div`
 	display: flex;
 	flex-direction: row;
-	width: 100vw;
+	width: 100%;
 	justify-content: space-between;
 	margin-top: 16px;
 	height: ${(props) => (props.isMobile ? "auto" : "600px")};
@@ -43,7 +43,7 @@ const SecondSection = () => {
 			<>
 				<Text title={"Wszystko na Święta"} size={30} marginTop={33} />
 
-				<MainContainer >
+				<MainContainer  >
 					<Even>
 						<Left products={products} />
 					</Even>

@@ -29,7 +29,7 @@ const Space = styled.div`
 const ProductDetails = () => {
 	const dispatch = useDispatch();
 
-	const { loading, error, product } = useSelector(
+	const { loading, product } = useSelector(
 		(state) => state.productDetails
 	);
 

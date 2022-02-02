@@ -68,7 +68,7 @@ const FifthSection = () => {
 					<BackgroundImage src={PsiSmak} />
 					<Flex space>
 						{loading ? <Loader /> : <Left products={products} />}
-						{loading ? <Loader /> : <Right />}
+						{loading ? <Loader /> : <Right products={products} />}
 					</Flex>
 				</>
 			)}

@@ -21,9 +21,10 @@ const TextContainer = styled.div`
 
 	border-bottom: ${(props) => props.borderBottom && "1px solid lightGrey"};
 	padding: ${(props) => props.borderBottom && "8px"};
-	text-align: ${(props) => (props.textAlign ? props.textAlign : "left")};
+	text-align: ${(props) => (props.textAlign ? "center" : "left")};
 	background: ${(props) => (props.background ? props.background : "")};
 	border-radius: ${(props) => (props.background ? "4px" : "")};
+	width: 100%;
 
 	&:hover {
 		color: ${(props) => props.hovered && "var(--linkColor)"};
@@ -38,6 +39,7 @@ const SubTitle = styled.div`
 	flex-wrap: wrap;
 	white-space: wrap;
 	color: ${(props) => (props.color ? props.color : "darkGrey")};
+	justify-content: ${props => props.textAlign ? props.textAlign : "left"};
 `;
 
 export const Text = ({
@@ -71,7 +73,11 @@ export const Text = ({
 			background={background}
 		>
 			{title} {children}
-			{subTitle && <SubTitle color={color}>{subTitle}</SubTitle>}
+			{subTitle && (
+				<SubTitle color={color} textAlign={textAlign}>
+					{subTitle}
+				</SubTitle>
+			)}
 		</TextContainer>
 	);
 };

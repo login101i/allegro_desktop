@@ -8,6 +8,8 @@ import {
 	newProductReducer
 } from "./redux/reducers/productReducers";
 
+import { versionReducers } from "./redux/reducers/versionReducers";
+
 import { authReducer } from "./redux/reducers/userReducers";
 
 const reducer = combineReducers({
@@ -15,7 +17,8 @@ const reducer = combineReducers({
 
 	products: productsReducer,
 	newProduct: newProductReducer,
-	auth: authReducer
+	auth: authReducer,
+	version: versionReducers
 });
 
 let initialState = {};

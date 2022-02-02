@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import styled from "styled-components";
 
 import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
@@ -20,6 +20,13 @@ import Select from "@mui/material/Select";
 import { newProduct, clearErrors } from "../redux/actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
 import { NEW_PRODUCT_RESET } from "../../src/redux/constants/productConstants";
+import { useMediaQuery } from "react-responsive";
+import { screens } from "../components/responsive";
+
+
+import { localnieVersion } from "../../src/redux/actions/versionAction";
+
+
 
 import {
 	Flex,
@@ -32,33 +39,36 @@ import {
 } from "../components";
 
 const MainContainer = styled.div`
-	width: 80%;
+	width: ${(props) => (props.isMobile ? "100%" : "80%")};
 	margin: 0 auto;
+	margin-left: ${(props) => (props.isMobile ? "0px" : "250px")};
 `;
 const Container = styled.div`
 	min-height: 100vh;
 	background-color: var(--allegroLocalnieColor);
 	display: flex;
+	flex-direction: ${(props) => (props.isMobile ? "column" : "row")};
+
 	margin-top: 30px;
 	width: 100%;
 `;
 
 const LeftPart = styled.div`
-	margin-right: 30px;
+	margin-right: ${(props) => (props.isMobile ? "0px" : "30px")};
 	flex-direction: column;
-	width: 40%;
+	width: ${(props) => (props.isMobile ? "100%" : "40%")};
 	position: relative;
 `;
 
 const TopLeftCont = styled.div`
-	height: 100px;
+	min-height: 100px;
 	border: 1px solid #7770bd;
 	border-radius: 12px;
 	padding: 12px 32px;
 	display: flex;
 	background-color: #edecf7;
 	cursor: pointer;
-	width: 700px;
+	width: ${(props) => (props.isMobile ? "100%" : "700px")};
 
 	-webkit-box-shadow: 6px 3px 54px -39px rgba(66, 68, 90, 1);
 	-moz-box-shadow: 6px 3px 54px -39px rgba(66, 68, 90, 1);
@@ -73,8 +83,8 @@ const BottomLeftCont = styled.div`
 	margin: 20px 0px;
 	padding: 16px 32px;
 	overflow: hidden;
-	padding-right: 20%;
-	width: 700px;
+
+	width: ${(props) => (props.isMobile ? "100%" : "700px")};
 
 	background-color: white;
 	position: relative;
@@ -83,7 +93,7 @@ const BottomLeftCont = styled.div`
 	-moz-box-shadow: 6px 3px 54px -39px rgba(66, 68, 90, 1);
 	box-shadow: 6px 3px 54px -39px rgba(66, 68, 90, 1);
 
-	margin-bottom: 200px;
+	margin-bottom: ${(props) => (props.isMobile ? "70px" : "200px")};
 `;
 
 const BorderContainer = styled.div`
@@ -118,7 +128,7 @@ const RightPart = styled.div`
 
 const RightCont = styled.div`
 position:fixed;
-width:456px;
+width:450px;
 	height: auto;
 		border-radius: 12px;
 	padding:10px 20px
@@ -219,54 +229,92 @@ const LoadImages = styled.input`
 `;
 
 const WystawPrzedmiot = () => {
-	const [uzywany, setUzywany] = useState(false);
-	const [bdb, setBdb] = useState(false);
-	const [nowy, setNowy] = useState(false);
-	const [dostawa, setDostawa] = useState(false);
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
+	console.log(
+		"🚀 ~ file: WystawPrzedmiot.jsx ~ line 228 ~ WystawPrzedmiot ~ isMobile",
+		isMobile
+	);
 
-	const stateProductHandler = (value) => {
-		if (value === "uzywany") {
-			setUzywany(true);
-			setBdb(false);
-			setNowy(false);
-		} else if (value === "bdb") {
-			setUzywany(false);
-			setBdb(true);
-			setNowy(false);
-		} else {
-			setUzywany(false);
-			setBdb(false);
-			setNowy(true);
+		const dispatch = useDispatch();
+				dispatch(localnieVersion());
+
+
+	const conditionReducer = (state, action) => {
+		switch (action.type) {
+			case "uzywany":
+				return {
+					uzywany: true,
+					bdb: false,
+					nowy: false
+				};
+			case "bdb":
+				return {
+					uzywany: false,
+					bdb: true,
+					nowy: false
+				};
+			case "nowy":
+				return {
+					uzywany: false,
+					bdb: false,
+					nowy: true
+				};
+
+			default:
+				return state;
 		}
 	};
 
-	const [kupTeraz, setKupTeraz] = useState(false);
-	const [licytacja, setLicytacja] = useState(false);
-	const [darmowe, setDarmowe] = useState(false);
-	const [infoPosition, setInfoPosition] = useState(0);
+	const [stateCondition, dispatchConditionReducer] = useReducer(
+		conditionReducer,
+		{
+			uzywany: true,
+			bdb: false,
+			nowy: false,
+			dostawa: false
+		}
+	);
 
-	console.log(infoPosition);
-
-	const sellingTypeHandler = (value) => {
-		if (value === "kup teraz") {
-			setKupTeraz(true);
-			setLicytacja(false);
-			setDarmowe(false);
-			setInfoPosition(0);
-		} else if (value === "licytacja") {
-			setKupTeraz(false);
-			setLicytacja(true);
-			setDarmowe(false);
-			setInfoPosition(1);
-		} else {
-			setUzywany(false);
-			setLicytacja(false);
-			setDarmowe(true);
-			setInfoPosition(2);
+	const typeOfSelligReducer = (state, action) => {
+		switch (action.type) {
+			case "kup teraz":
+				return {
+					kupTeraz: true,
+					licytacja: false,
+					darmowe: false,
+					infoPosition: 0
+				};
+			case "licytacja":
+				return {
+					kupTeraz: false,
+					licytacja: true,
+					darmowe: false,
+					infoPosition: 1
+				};
+			case "darmowe":
+				return {
+					kupTeraz: false,
+					licytacja: false,
+					darmowe: true,
+					infoPosition: 2
+				};
+			default:
+				return state;
 		}
 	};
+
+	const [stateSellingType, dispatchSellingTypeReducer] = useReducer(
+		typeOfSelligReducer,
+		{
+			kupTeraz: true,
+			licytacja: false,
+			darmowe: false,
+			infoPosition: 1
+		}
+	);
 
 	const [range, setRange] = React.useState("false");
+	const [dostawa, setDostawa] = useState(false);
 
 	const handleRange = (val) => {
 		setRange(val);
@@ -275,25 +323,36 @@ const WystawPrzedmiot = () => {
 		setDostawa(val);
 	};
 
-	const [wyroznij30, setWyroznij30] = useState(false);
-	const [wyroznij14, setWyroznij14] = useState(false);
-	const [wyroznij3, setWyroznij3] = useState(false);
-
-	const wyroznijHandler = (value) => {
-		if (value === "30") {
-			setWyroznij3(true);
-			setWyroznij14(false);
-			setWyroznij30(true);
-		} else if (value === "14") {
-			setWyroznij3(false);
-			setWyroznij14(true);
-			setWyroznij30(false);
-		} else {
-			setWyroznij3(true);
-			setWyroznij14(false);
-			setWyroznij30(false);
+	const wyroznijReducer = (state, action) => {
+		switch (action.type) {
+			case "30":
+				return {
+					wyroznij30: true,
+					wyroznij14: false,
+					wyroznij3: false
+				};
+			case "14":
+				return {
+					wyroznij30: false,
+					wyroznij14: true,
+					wyroznij3: false
+				};
+			case "3":
+				return {
+					wyroznij30: false,
+					wyroznij14: false,
+					wyroznij3: true
+				};
+			default:
+				return state;
 		}
 	};
+
+	const [wyroznijState, dispatchWyroznijReducer] = useReducer(wyroznijReducer, {
+		wyroznij30: true,
+		wyroznij14: false,
+		wyroznij3: false
+	});
 
 	const [title, setTitle] = useState("");
 	const [price, setPrice] = useState(0);
@@ -303,7 +362,6 @@ const WystawPrzedmiot = () => {
 	const [images, setImages] = useState([]);
 	console.log(images);
 
-	const dispatch = useDispatch();
 
 	const onChange = (e) => {
 		const files = Array.from(e.target.files);
@@ -324,7 +382,6 @@ const WystawPrzedmiot = () => {
 	const { user } = useSelector((state) => state.auth);
 	const { loading, error, success } = useSelector((state) => state.newProduct);
 
-
 	useEffect(() => {
 		if (error) {
 			console.log("Wystąpił błąd  !!! and clear errors za 3s");
@@ -341,13 +398,9 @@ const WystawPrzedmiot = () => {
 			setCategory("");
 			setStock("");
 			setImages([]);
-			setKupTeraz(false);
-			setLicytacja(false);
-			setDarmowe(false);
-			setInfoPosition(1);
-			setWyroznij3(false);
-			setWyroznij14(false);
-			setWyroznij30(false);
+
+			dispatchWyroznijReducer();
+			dispatchSellingTypeReducer();
 		}
 	}, [dispatch, error, success]);
 
@@ -427,7 +480,7 @@ const WystawPrzedmiot = () => {
 				],
 				addFoto: "Dodaj zdjęcie",
 				hint: "Dodaj wyróżnienie aby zwiększyć szansę sprzedaży",
-				buttonText: "Wystaw jako Darmowe ogłoszenie",
+				buttonText: "Wystaw jako Darmowe",
 				color: "#f7ae10"
 			}
 		];
@@ -435,24 +488,30 @@ const WystawPrzedmiot = () => {
 			<RightPart>
 				<RightCont>
 					<Flex space fullWidth align>
-						<Text color={rightPartContent[infoPosition].color} size={30} bold>
-							{rightPartContent[infoPosition].title}
+						<Text
+							color={rightPartContent[stateSellingType.infoPosition].color}
+							size={33}
+							bold
+						>
+							{rightPartContent[stateSellingType.infoPosition].title}
 						</Text>
 						<CustomIcon
-							icon={rightPartContent[infoPosition].icon}
+							icon={rightPartContent[stateSellingType.infoPosition].icon}
 							size={60}
-							color={rightPartContent[infoPosition].color}
+							color={rightPartContent[stateSellingType.infoPosition].color}
 						/>
 					</Flex>
 					<Flex column>
-						{rightPartContent[infoPosition].info.map((item) => (
-							<>
-								<Flex align>
-									<CustomIcon icon={CheckIcon} size={22} />
-									<Text wrap>{item.info}</Text>
-								</Flex>
-							</>
-						))}
+						{rightPartContent[stateSellingType.infoPosition].info.map(
+							(item) => (
+								<>
+									<Flex align>
+										<CustomIcon icon={CheckIcon} size={22} />
+										<Text wrap>{item.info}</Text>
+									</Flex>
+								</>
+							)
+						)}
 
 						<Flex align style={{ marginBottom: "16px" }}>
 							<CustomIcon icon={InfoOutlinedIcon} color="var(--allegroColor)" />
@@ -478,7 +537,7 @@ const WystawPrzedmiot = () => {
 								submitHandler();
 							}}
 						>
-							{rightPartContent[infoPosition].buttonText}
+							{rightPartContent[stateSellingType.infoPosition].buttonText}
 						</Button>
 					)}
 					{error && (
@@ -510,10 +569,10 @@ const WystawPrzedmiot = () => {
 	// ------------------------------------------------------------------
 
 	return (
-		<MainContainer>
-			<Container>
-				<LeftPart>
-					<TopLeftCont>
+		<MainContainer isMobile={isMobile}>
+			<Container isMobile={isMobile}>
+				<LeftPart isMobile={isMobile}>
+					<TopLeftCont isMobile={isMobile}>
 						<ImageComponent
 							size={70}
 							img="https://upload.wikimedia.org/wikipedia/commons/d/dd/Aparat_Icon.png"
@@ -521,13 +580,13 @@ const WystawPrzedmiot = () => {
 						/>
 						<Flex column>
 							<Text bold title="Zamień nietrafione prezenty!" size={28} />
-							<Flex>
+							<Flex column={isMobile}>
 								<Text>Zganirj kasę i nawet 20 Monet.</Text>
 								<Text color="var(--linkColor)">Sprawdź szczegóły</Text>
 							</Flex>
 						</Flex>
 					</TopLeftCont>
-					<BottomLeftCont>
+					<BottomLeftCont isMobile={isMobile}>
 						<Flex>
 							<ImageComponent
 								size={60}
@@ -542,12 +601,13 @@ const WystawPrzedmiot = () => {
 							</Flex>
 						</Flex>
 						<BorderContainer></BorderContainer>
-						<Flex column align space style={{ height: "150px" }}>
+						<Flex column align space style={{ height: "190px" }}>
 							<Text
+								textAlign
 								color="#7770bd"
 								title="	Przeciągnij i upuść zdjęcia tutaj"
 							></Text>
-							<Text>lub</Text>
+							<Text textAlign>lub</Text>
 
 							<LoadImages type="file" onChange={onChange} multiple />
 							<Button
@@ -619,14 +679,14 @@ const WystawPrzedmiot = () => {
 								Stan przedmiotu *
 							</Text>
 							<ProductState
-								onClick={() => stateProductHandler("uzywany")}
+								onClick={() => dispatchConditionReducer({ type: "uzywany" })}
 								style={{
-									border: uzywany ? "1px solid #f7ae10" : ""
+									border: stateCondition.uzywany ? "1px solid #f7ae10" : ""
 								}}
 							>
 								<Flex space>
 									<Text bold>Używany</Text>
-									{uzywany && (
+									{stateCondition.uzywany && (
 										<CustomIcon
 											icon={ForumOutlinedIcon}
 											size={20}
@@ -640,14 +700,14 @@ const WystawPrzedmiot = () => {
 								</Text>
 							</ProductState>
 							<ProductState
-								onClick={() => stateProductHandler("bdb")}
+								onClick={() => dispatchConditionReducer({ type: "bdb" })}
 								style={{
-									border: bdb ? "1px solid #f7ae10" : ""
+									border: stateCondition.bdb ? "1px solid #f7ae10" : ""
 								}}
 							>
 								<Flex space>
 									<Text bold>Bardzo dobry</Text>
-									{bdb && (
+									{stateCondition.bdb && (
 										<CustomIcon
 											icon={ForumOutlinedIcon}
 											size={20}
@@ -661,14 +721,14 @@ const WystawPrzedmiot = () => {
 								</Text>
 							</ProductState>
 							<ProductState
-								onClick={() => stateProductHandler("nowy")}
+								onClick={() => dispatchConditionReducer({ type: "nowy" })}
 								style={{
-									border: nowy ? "1px solid #f7ae10" : ""
+									border: stateCondition.nowy ? "1px solid #f7ae10" : ""
 								}}
 							>
 								<Flex space>
 									<Text bold>Nowy</Text>
-									{nowy && (
+									{stateCondition.nowy && (
 										<CustomIcon
 											icon={ForumOutlinedIcon}
 											size={20}
@@ -706,7 +766,7 @@ const WystawPrzedmiot = () => {
 								kupujący będą mogli w prosty sposób składać swoje oferty cenowe.
 							</Text>
 						</BorderWithArrow>
-						<Flex align>
+						<Flex align column={isMobile}>
 							<Text>Chcesz sprzedać więcej niż jeden taki przedmiot?</Text>
 							<Button background="#edecf7" borderRadius color="blue">
 								dodaj przedmioty
@@ -742,7 +802,7 @@ const WystawPrzedmiot = () => {
 							number
 						/>
 						<Text
-							textAlign="right"
+							textAlign={isMobile ? "center" : '"right"'}
 							color="var(--greenLocalnie)"
 							title="użyj mojej bieżącej lokalizacji"
 						/>
@@ -828,16 +888,18 @@ const WystawPrzedmiot = () => {
 
 						<Flex column>
 							<ProductState
-								onClick={() => sellingTypeHandler("kup teraz")}
+								onClick={() =>
+									dispatchSellingTypeReducer({ type: "kup teraz" })
+								}
 								style={{
-									border: kupTeraz ? "1px solid #ff5a00" : ""
+									border: stateSellingType.kupTeraz ? "1px solid #ff5a00" : ""
 								}}
 							>
 								<Flex space>
 									<Text size={20} color="#ff5a00">
 										Kup Teraz
 									</Text>
-									{kupTeraz && (
+									{stateSellingType.kupTeraz && (
 										<CustomIcon
 											icon={ForumOutlinedIcon}
 											size={20}
@@ -851,16 +913,18 @@ const WystawPrzedmiot = () => {
 								</Text>
 							</ProductState>
 							<ProductState
-								onClick={() => sellingTypeHandler("licytacja")}
+								onClick={() =>
+									dispatchSellingTypeReducer({ type: "licytacja" })
+								}
 								style={{
-									border: licytacja ? "1px solid #7770bd" : ""
+									border: stateSellingType.licytacja ? "1px solid #7770bd" : ""
 								}}
 							>
 								<Flex space>
 									<Text color="#7770bd" size={20}>
 										Licytacja
 									</Text>
-									{licytacja && (
+									{stateSellingType.licytacja && (
 										<CustomIcon
 											icon={ForumOutlinedIcon}
 											size={20}
@@ -875,16 +939,16 @@ const WystawPrzedmiot = () => {
 							</ProductState>
 
 							<ProductState
-								onClick={() => sellingTypeHandler("darmowe ogłoszenie")}
+								onClick={() => dispatchSellingTypeReducer({ type: "darmowe" })}
 								style={{
-									border: darmowe ? "1px solid #f7ae10" : ""
+									border: stateSellingType.darmowe ? "1px solid #f7ae10" : ""
 								}}
 							>
 								<Flex space>
 									<Text size={20} color="#f7ae10">
 										Darmowe Ogłoszenie
 									</Text>
-									{darmowe && (
+									{stateSellingType.darmowe && (
 										<CustomIcon
 											icon={ForumOutlinedIcon}
 											size={20}
@@ -913,6 +977,7 @@ const WystawPrzedmiot = () => {
 								color="white"
 								style={{ marginLeft: "20px" }}
 								subTitle="	Nowość!"
+								textAlign="center"
 							></Text>
 						</Flex>
 						<Flex align>
@@ -927,16 +992,22 @@ const WystawPrzedmiot = () => {
 						</Flex>
 						<Flex column>
 							<ProductState
-								onClick={() => wyroznijHandler("30")}
+								onClick={() => dispatchWyroznijReducer({ type: "30" })}
 								style={{
-									border: wyroznij30 ? "1px solid #f7ae10" : ""
+									border: wyroznijState.wyroznij30 ? "1px solid #f7ae10" : ""
 								}}
 							>
-								<Flex align>
-									<CustomIcon icon={AutoGraphIcon} size={40} color="#f7ae10" />
-									<Flex column>
-										<Text>Wyróżnij na Allegro Lokalnie i Allegro</Text>
-										<Text size={16}>przez 30 dni</Text>
+								<Flex align column={isMobile}>
+									<Flex>
+										<CustomIcon
+											icon={AutoGraphIcon}
+											size={40}
+											color="#f7ae10"
+										/>
+										<Flex column>
+											<Text>Wyróżnij na Allegro Lokalnie i Allegro</Text>
+											<Text size={16}>przez 30 dni</Text>
+										</Flex>
 									</Flex>
 
 									<Flex>
@@ -945,12 +1016,14 @@ const WystawPrzedmiot = () => {
 										</Text>
 										<Text bold>1.00 zł</Text>
 
-										{wyroznij30 && (
+										{wyroznijState.wyroznij30 && (
 											<CustomIcon icon={CheckIcon} size={20} color="#f7ae10" />
 										)}
 									</Flex>
 								</Flex>
 								<Text
+									textAlign={isMobile && "center"}
+									wrap
 									color="grey"
 									subTitle="Nawet do 10x więcej wyświetleń i do 5x większa szansa na
 									sprzedaż!"
@@ -958,16 +1031,18 @@ const WystawPrzedmiot = () => {
 							</ProductState>
 
 							<ProductState
-								onClick={() => wyroznijHandler("14")}
+								onClick={() => dispatchWyroznijReducer({ type: "14" })}
 								style={{
-									border: wyroznij14 ? "1px solid #f7ae10" : ""
+									border: wyroznijState.wyroznij14 ? "1px solid #f7ae10" : ""
 								}}
 							>
-								<Flex align>
-									<CustomIcon icon={SpeedIcon} size={40} color="#f7ae10" />
-									<Flex column>
-										<Text>Wyróżnij na Allegro Lokalnie i Allegro</Text>
-										<Text size={16}>przez 10 dni</Text>
+								<Flex align column={isMobile}>
+									<Flex>
+										<CustomIcon icon={SpeedIcon} size={40} color="#f7ae10" />
+										<Flex column>
+											<Text>Wyróżnij na Allegro Lokalnie i Allegro</Text>
+											<Text size={16}>przez 10 dni</Text>
+										</Flex>
 									</Flex>
 
 									<Flex>
@@ -976,46 +1051,51 @@ const WystawPrzedmiot = () => {
 										</Text>
 										<Text bold>1.00 zł</Text>
 
-										{wyroznij14 && (
+										{wyroznijState.wyroznij14 && (
 											<CustomIcon icon={CheckIcon} size={20} color="#f7ae10" />
 										)}
 									</Flex>
 								</Flex>
 								<Text
+									textAlign={isMobile && "center"}
+									wrap
 									subTitle="Nawet do 7x więcej wyświetleń i do 3x większa szansa na
 									sprzedaż!"
 								></Text>
 							</ProductState>
 
 							<ProductState
-								onClick={() => stateProductHandler("uzywany")}
+								onClick={() => dispatchWyroznijReducer({ type: "3" })}
 								style={{
-									border: wyroznij3 ? "1px solid #f7ae10" : ""
+									border: wyroznijState.wyroznij3 ? "1px solid #f7ae10" : ""
 								}}
 							>
-								<Flex align>
-									<CustomIcon
-										icon={LocalFireDepartmentIcon}
-										size={40}
-										color="#f7ae10"
-									/>
-									<Flex column>
-										<Text>Wyróżnij na Allegro Lokalnie i Allegro</Text>
-										<Text size={16}>przez 10 dni</Text>
+								<Flex align column={isMobile}>
+									<Flex>
+										<CustomIcon
+											icon={LocalFireDepartmentIcon}
+											size={40}
+											color="#f7ae10"
+										/>
+										<Flex column>
+											<Text wrap>Wyróżnij na Allegro Lokalnie i Allegro</Text>
+											<Text size={16}>przez 3 dni</Text>
+										</Flex>
 									</Flex>
-
 									<Flex>
 										<Text style={{ textDecoration: "line-through" }}>
 											4,90 zł
 										</Text>
 										<Text bold>1.00 zł</Text>
 
-										{wyroznij3 && (
+										{wyroznijState.wyroznij3 && (
 											<CustomIcon icon={CheckIcon} size={20} color="#f7ae10" />
 										)}
 									</Flex>
 								</Flex>
 								<Text
+									textAlign={isMobile && "center"}
+									wrap
 									color="grey"
 									subTitle="Nawet do 3x więcej wyświetleń!"
 								></Text>
@@ -1025,7 +1105,7 @@ const WystawPrzedmiot = () => {
 						<WymaganePola>* Oznacza wymagane pola</WymaganePola>
 					</BottomLeftCont>
 
-					{rightPart(infoPosition)}
+					{rightPart(stateSellingType.infoPosition)}
 				</LeftPart>
 
 				{/* --------------------------------------------------------- */}

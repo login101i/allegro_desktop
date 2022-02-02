@@ -25,13 +25,14 @@ const Container = styled.div`
 	flex-direction: column;
 	background-color: white;
 	padding: ${(props) => (props.isMobile ? "2px" : "16px 16px")};
-	justify-content: center;
-	align-items: center;
+	// justify-content: center;
+	// align-items: center;
 	width: 100%;
 	position: sticky;
 	top: 0;
 	z-index: 99;
 	width: 100%;
+	height: 120px;
 `;
 
 const Wrapper = styled.div`
@@ -191,6 +192,8 @@ const Navbar = () => {
 	};
 
 	const { isAuthenticated, user } = useSelector((state) => state.auth);
+	const { version } = useSelector((state) => state.version);
+	console.log("🚀 ~ file: Navbar.jsx ~ line 195 ~ Navbar ~ version", version);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const handleLogout = () => {
@@ -470,6 +473,8 @@ const Navbar = () => {
 			</Right>
 		);
 	};
+	if (version === "allegro localnie")
+		return <Container>{leftPart()}</Container>;
 	return isMobile ? (
 		<Container isMobile>
 			<Wrapper>
