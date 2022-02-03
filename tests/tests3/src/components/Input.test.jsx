@@ -3,10 +3,14 @@ import { searchByTestAtrr, checkProps } from "../tests/testUtils";
 
 import Input from "./Input";
 
-const setup = (props = {}) => {
-	return shallow(<Input />);
+const defaultProps = {
+	secretWord: "polka"
 };
-const defaultProps = {};
+
+const setup = (props = {}) => {
+	const setupProps = { ...defaultProps, ...props };
+	return shallow(<Input {...setupProps} />);
+};
 
 test("renders component without error", () => {
 	const wrapper = setup();
