@@ -85,8 +85,7 @@ const ResultsNavbar = styled.div`
 
 const StyledFormControll = styled(FormControl)(({ theme }) => ({
 	backgroundColor: theme.colors.allegroColor,
-	border: `2px solid ${(props) => props.theme.colors.allegroColor}`,
-
+	border:`2px solid ${(props) => props.theme.colors.allegroColor}`,
 	color: "green",
 	maxHeight: 42,
 	width: 300

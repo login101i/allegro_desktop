@@ -11,10 +11,15 @@ import PayPalButton from "../components/PayPalButton";
 import SmartBannerImg from "../../src/assets/pictures/smartBanner.png";
 import SmartBannerImg2 from "../../src/assets/pictures/smartBanner2.png";
 
+// dmantaj alfabetycznie
+
 import MetaData from "../components/MetaData";
 import { Button } from "../components";
 
 import { getProducts } from "../redux/actions/productActions";
+//dmantaj metoda scouta
+// dantaj konwencje sortowania
+// StyledComponents
 
 const MainContainer = styled.div`
 	display: flex;
@@ -38,20 +43,22 @@ const SmartBanner = styled.img`
 `;
 
 const HomePage = ({ isMobile }) => {
-	const [showPayPal, setShowPayPal] = useState(false);
+	const [isPaypalShow, setIsPaypalShow] = useState(false);
 
 	const dispatch = useDispatch();
 
 	const listenToScroll = () => {
+		// dmantaj jeśli nie zmieniasz watości to const
 		let heightToHideFrom = 400;
 		const winScroll =
 			document.body.scrollTop || document.documentElement.scrollTop;
 		console.log(winScroll);
 		if (winScroll > heightToHideFrom) {
-			setShowPayPal(true);
+			setIsPaypalShow(true);
 		}
 	};
 
+	// event reactowy dotyczący ekranu
 	useEffect(() => {
 		dispatch(getProducts());
 		console.log("Pobieram produkty.");
@@ -59,42 +66,40 @@ const HomePage = ({ isMobile }) => {
 		return () => window.removeEventListener("scroll", listenToScroll);
 	}, [dispatch]);
 
+	// react file react file and directory structure
+	// https://zniszcz.github.io/solid-js/
+
 	return (
-		<>
-			<MainContainer>
-				<MetaData title="Allegro - atrakcyjne ceny" />
+		<MainContainer>
+			<MetaData title="Allegro - atrakcyjne ceny" />
+			<FirstSection />
+			<SecondSection />
+			<ThirdSection />
+			<FourthSection />
+			<FifthSection />
+			{isMobile ? (
+				<BannerContainer>
+					<SmartBanner src={SmartBannerImg2} />
+					<Button
+						style={{
+							position: "absolute",
+							top: "50%",
+							right: "30px",
+							transform: "translate(0%,-50%)",
+							width: "auto",
+							padding: "4px 18px",
+							borderRadius: "3px"
+						}}
+					>
+						Więcej
+					</Button>
+				</BannerContainer>
+			) : (
+				<SmartBanner src={SmartBannerImg} />
+			)}
 
-				<FirstSection />
-				<SecondSection />
-				<ThirdSection />
-				<FourthSection />
-				<FifthSection />
-				{isMobile ? (
-					<>
-						<BannerContainer>
-							<SmartBanner src={SmartBannerImg2} />
-							<Button
-								style={{
-									position: "absolute",
-									top: "50%",
-									right: "30px",
-									transform: "translate(0%,-50%)",
-									width: "auto",
-									padding: "4px 18px",
-									borderRadius: "3px"
-								}}
-							>
-								Więcej
-							</Button>
-						</BannerContainer>
-					</>
-				) : (
-					<SmartBanner src={SmartBannerImg} />
-				)}
-
-				<PayPalButton showPayPal={showPayPal} />
-			</MainContainer>
-		</>
+			<PayPalButton showPayPal={isPaypalShow} />
+		</MainContainer>
 	);
 };
 
