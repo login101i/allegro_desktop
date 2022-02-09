@@ -4,7 +4,7 @@ import { useMediaQuery } from "react-responsive";
 
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import PriceDiscount from "../../../components/PriceDiscount";
-import { Text } from "../../../components/Text";
+import { Text } from "../../../components";
 import { Shipping, CartPlusMinus } from "../../../components";
 import { screens } from "../../../../src/components/responsive";
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { Badge } from "@material-ui/core";
 
+
 const Badged = (props, children) => {
   const { badgeContent} = props;
   return (

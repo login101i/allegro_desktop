@@ -1,33 +1,17 @@
-import React from "react";
-import styled from "styled-components";
+
 import { useSelector } from "react-redux";
 
-import { Text, Flex } from "../../components";
-import PayPalLogo from "../../assets/pictures/PayPalLogo.png";
-import Logo2 from "../../assets/pictures/goodToSee3.png";
-import Logo3 from "../../assets/pictures/goodToSee2.png";
-
-import Button from "../../components/Button";
-
-const Container = styled.div`
-	min-height: 60%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: white;
-	inline-size: 100%;
-	overflow-wrap: break-word;
-`;
-const Icon = styled.img`
-	height: 55px;
-	margin-right: 10px;
-`;
+import PayPalLogo from "../../../../assets/pictures/PayPalLogo.png";
+import Logo2 from "../../../../assets/pictures/goodToSee3.png";
+import Logo3 from "../../../../assets/pictures/goodToSee2.png";
+import { Button, Text, Flex } from "../../../../components";
+import { Container1, Icon } from "../sidebarRight/SideBarRight.styles";
 
 const ContainerInfo1 = () => {
 	const { isAuthenticated, user } = useSelector((state) => state.auth);
 
 	return (
-		<Container>
+		<Container1>
 			<Flex column space style={{ width: "85%", height: "90%" }}>
 				{isAuthenticated ? (
 					<Text title={"Cześć " + user.name + "!"} bold />
@@ -48,7 +32,7 @@ const ContainerInfo1 = () => {
 				</Flex>
 				<Button title={"Poznaj swoje korzyści"} />
 			</Flex>
-		</Container>
+		</Container1>
 	);
 };
 

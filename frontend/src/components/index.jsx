@@ -1,41 +1,45 @@
-import Shipping from "./Shipping";
+import AllegroFooter from "./AllegroFooter";
+import BorderAndTitle from "./BorderAndTitle";
 import Button from "./Button";
 import CartPlusMinus from "./CartPlusMinus";
-import { Text } from "./Text";
-import BorderAndTitle from "./BorderAndTitle";
-import OptionComponent from "./Option";
-import MenuContentBox from "./MenuContentBox";
-import ProductContainer from "./ProductContainer";
-import MetaData from "./MetaData";
-import Loader from "./Loader";
-import NavbarPage from "./NavbarPage";
-import CustomInput from "./CustomInput";
-import PageWidth from "./PageWidth";
 import CustomIcon from "./CustomIcon";
-import AllegroFooter from "./AllegroFooter";
-import Navbar from "./Navbar";
+import CustomInput from "./CustomInput";
+import DirectionArrows from "./DirectionArrows";
 import Flex from "./Flex";
-import PathComponent from "./PathComponent";
 import ImageComponent from "./ImageComponent";
+import Loader from "./Loader";
+import MenuContentBox from "./MenuContentBox";
+import MetaData from "./MetaData";
+import Navbar from "./navbar/Navbar";
+import NavbarPage from "./NavbarPage";
+import OptionComponent from "./Option";
+import PageWidth from "./PageWidth";
+import PathComponent from "./PathComponent";
+import ProductContainer from "./ProductContainer";
+import Shipping from "./Shipping";
+import Text from "./Text";
+import PriceDiscount from "./PriceDiscount";
 
 export {
-	Flex,
-	Shipping,
+	AllegroFooter,
+	BorderAndTitle,
 	Button,
 	CartPlusMinus,
-	Text,
-	BorderAndTitle,
-	OptionComponent,
-	MenuContentBox,
-	ProductContainer,
-	MetaData,
-	Loader,
-	NavbarPage,
-	CustomInput,
-	PageWidth,
 	CustomIcon,
-	AllegroFooter,
-	PathComponent,
+	CustomInput,
+	Flex,
 	ImageComponent,
-	Navbar
+	Loader,
+	MenuContentBox,
+	MetaData,
+	Navbar,
+	NavbarPage,
+	OptionComponent,
+	PageWidth,
+	PathComponent,
+	ProductContainer,
+	Shipping,
+	Text,
+	DirectionArrows,
+	PriceDiscount
 };

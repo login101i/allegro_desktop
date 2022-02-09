@@ -39,10 +39,10 @@ const SubTitle = styled.div`
 	flex-wrap: wrap;
 	white-space: wrap;
 	color: ${(props) => (props.color ? props.color : "darkGrey")};
-	justify-content: ${props => props.textAlign ? props.textAlign : "left"};
+	justify-content: ${(props) => (props.textAlign ? props.textAlign : "left")};
 `;
 
-export const Text = ({
+const Text = ({
 	title,
 	size,
 	marginTop,
@@ -81,3 +81,5 @@ export const Text = ({
 		</TextContainer>
 	);
 };
+
+export default Text;

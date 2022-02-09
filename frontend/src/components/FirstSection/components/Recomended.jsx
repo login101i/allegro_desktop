@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-import DirectionArrows from "../DirectionArrows";
+import DirectionArrows from "../../DirectionArrows";
 
-import Item from "./Item";
-
+import { Item } from "./Item";
 
 const ItemsContainer = styled.div`
 	display: flex;
@@ -20,10 +19,7 @@ const ItemsContainer = styled.div`
 	scrollbar-color: white;
 `;
 
-const Recomended = (props) => {
-	const { images } = props;
-
-
+const Recomended = ({ images }) => {
 	return (
 		<DirectionArrows style={{ position: "relative" }} title="Warto zobaczyć">
 			<ItemsContainer isMobile>

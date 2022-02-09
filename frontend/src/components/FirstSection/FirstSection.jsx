@@ -1,48 +1,33 @@
-import React from "react";
-import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 import { screens } from "../responsive";
 
-import SidebarLeft from "../FirstSection/SidebarLeft";
-import Center from "../FirstSection/Center";
-import SidebarRight from "../FirstSection/SideBarRight";
+import SidebarLeft from "./components/sideBarLeft/SideBarLeft";
+import Center from "./components/center/Center";
+import SidebarRight from "./components/sidebarRight/SideBarRight";
 
-const MainContainer = styled.div`
-	width: 1660px;
-	display: grid;
-	grid-template-columns: 292px 16px minmax(0, 985px) 16px 292px;
-	height: auto;
-	margin-top: ${(props) => props.isMobile ? "0px" : "16px"};
-	display: flex;
-`;
-const Space = styled.div`
-	width: 20px;
-`;
+import { MainContainer, Space } from "./FirstSection.styles";
+
 const FirstSection = () => {
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
-	const isLarge = useMediaQuery({ minWidth: screens.lg });
 
-	if (isLarge) {
+	if (isMobile) {
 		return (
-			<MainContainer>
-				<SidebarLeft />
-				<Space />
-
+			<MainContainer isMobile={isMobile}>
 				<Center />
-
-				<Space />
-				<SidebarRight />
 			</MainContainer>
 		);
-	} else if (isMobile) {
+	} else
 		return (
 			<>
-				<MainContainer isMobile={isMobile}>
+				<MainContainer>
+					<SidebarLeft />
+					<Space />
 					<Center />
+					<Space />
+					<SidebarRight />
 				</MainContainer>
 			</>
 		);
-	}
 };
 
 export default FirstSection;

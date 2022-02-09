@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import LogoWhite from "../../src/assets/pictures/logoWhite.svg";
-import { Text } from "./Text";
+import { Text } from "../components";
 
 const Container = styled.div`
 	background-color: rgb(60, 80, 82);

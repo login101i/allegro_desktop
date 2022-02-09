@@ -1,71 +1,28 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import { useEffect, useState } from "react";
 
-import BorderAndTitle from "../BorderAndTitle";
+import {
+	Text,
+	BorderAndTitle,
+	ProductContainer,
+	DirectionArrows
+} from "../../../../components";
 
-import ProductContainer from "../../components/ProductContainer";
-import DirectionArrows from "../DirectionArrows";
+import {
+	Container,
+	TimeContainer,
+	TimeItem,
+	Colon,
+	Wrapper
+} from "./Left.styles";
 
-const Container = styled.div`
-	display: flex;
-	// flex: 1;
-	flex-direction: column;
-	justify-content: space-between;
-	background-color: white;
-	overflow: hidden;
-	padding: 20px 10px;
-	width: 100vw;
-`;
-
-const Title = styled.div`
-	font-weight: 600;
-	text-align: center;
-	font-size: 20px;
-	margin-bottom: 30px;
-`;
-
-const TimeContainer = styled.div`
-	display: absolute;
-	align-items: center;
-	justify-content: center;
-	top: 0px;
-	left: 0;
-	right: 0;
-	width: 100%;
-	display: flex;
-`;
-const TimeItem = styled.div`
-	height: 36px;
-	width: 24px;
-	background-color: #ff5a00;
-	color: white;
-	margin-right: 1.3px;
-	font-size: 26px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-`;
-const Colon = styled.span`
-	color: #ff5a00;
-	font-size: 25px;
-	margin: 0px 5px;
-`;
-
-const Wrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	position: relative;
-	height: 100%;
-`;
-
-const Left = ({ products }) => {
+export const Left = ({ products }) => {
 	const [hours, setHours] = useState("-");
 	const [minutes, setMinutes] = useState("-");
 	const [seconds, setSeconds] = useState("-");
 
 	const zero = "0";
 
-	var countDownDate = new Date("January 29, 2022 8:00:00").getTime();
+	var countDownDate = new Date("February 19, 2022 8:00:00").getTime();
 
 	const counDownFunction = () => {
 		setInterval(() => {
@@ -75,6 +32,7 @@ const Left = ({ products }) => {
 			const hours = Math.floor(
 				(timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
 			);
+
 			const minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
 			const seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
 
@@ -92,8 +50,7 @@ const Left = ({ products }) => {
 
 	return (
 		<Container>
-			<Title>Weekendowe okazje dnia kończą się za: </Title>
-
+			<Text title="Weekendowe okazje dnia kończą się za:" />
 			<Wrapper>
 				<TimeContainer>
 					<TimeItem>{hours < 10 ? zero : hours.toString().charAt(0)}</TimeItem>
@@ -141,5 +98,3 @@ const Left = ({ products }) => {
 		</Container>
 	);
 };
-
-export default Left;

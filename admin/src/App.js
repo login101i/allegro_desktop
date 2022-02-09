@@ -25,9 +25,7 @@ import {
 import axios from "axios";
 
 export default function App() {
-	// const { user } = useContext(AuthContext);
 
-	// const user=true
 	const [user, setUser] = useState(false);
 
 	const userCrendentail = {

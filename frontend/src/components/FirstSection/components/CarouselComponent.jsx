@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 
-import Carousel, { Dots, slidesToShowPlugin } from "@brainhubeu/react-carousel";
+import Carousel, { slidesToShowPlugin } from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 
-const slide1 = {
-  image: Slide1,
-};
+// const slide1 = {
+//   image: Slide1,
+// };
 
-const slide2 = {
-  image: Slide2,
-};
+// const slide2 = {
+//   image: Slide2,
+// };
 
-const Container = styled.div``;
-
-const slides = [<Slide {...slide1} />, <Slide {...slide1} />];
-
-
+// const Container = styled.div``;
+// const slides = [<Slide {...slide1} />, <Slide {...slide1} />];
 
 const CarouselComponent = ({ slides }) => {
   const [current, setCurrent] = useState(0);

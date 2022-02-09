@@ -1,7 +1,5 @@
-import React, { useState, useRef } from "react";
-import styled from "styled-components";
+import React, { useState, useRef, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
-import { Badge } from "@material-ui/core";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,177 +9,41 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
-import Logo from "../assets/pictures/logo.svg";
-import { Text, Button, MenuContentBox, CustomIcon } from "../components";
-import { screens } from "./responsive";
-import { logoutUser } from "../redux/actions/userActions";
-import LoginImage from "../assets/pictures/LoginImage.png";
-import { OptionComponent } from "../components";
+import Logo from "../../assets/pictures/logo.svg";
+import { screens } from "../responsive";
+import { logoutUser } from "../../redux/actions/userActions";
+import LoginImage from "../../assets/pictures/LoginImage.png";
 
-import { Flex } from "../components";
+import {
+	Flex,
+	Text,
+	Button,
+	MenuContentBox,
+	CustomIcon,
+	OptionComponent
+} from "../../components";
 
-const Container = styled.div`
-	display: flex;
-	flex-direction: column;
-	background-color: white;
-	padding: ${(props) => (props.isMobile ? "2px" : "16px 16px")};
-	// justify-content: center;
-	// align-items: center;
-	width: 100%;
-	position: sticky;
-	top: 0;
-	z-index: 99;
-	width: 100%;
-	height: 120px;
-`;
+import {
+	Center,
+	CenterContainer,
+	Left,
+	Image,
+	SearchContainer,
+	SelectContainer,
+	Input,
+	StyledBadge,
+	IconDown,
+	MenuLogged,
+	AccountNavbar,
+	AccountMainCont,
+	MenuLogin,
+	MenuLoginContainer,
+	LogInImage,
+	Container,
+	Wrapper,
+	Right
+} from "./Navbar.styles";
 
-const Wrapper = styled.div`
-	display: flex;
-	// align-items: center;
-	// justify-content: center;
-	height: 100%;
-	// width: 1600px;
-	width: 100%;
-`;
-
-const Left = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: left;
-	background-color: white;
-`;
-
-const Image = styled.div`
-	transform: ${(props) => (props.isMobile ? "scale(0.7)" : "scale(1.15)")};
-`;
-
-const LogInImage = styled.img`
-	width: 100%;
-	object-fit: contain;
-`;
-
-const Center = styled.div`
-	flex-grow: grow;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	margin: ${(props) => (props.isMobile ? "4px" : "0px 20px")};
-`;
-const CenterContainer = styled.form`
-	display: flex;
-	flex-grow: 1;
-`;
-
-const SearchContainer = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex: 1;
-	border: 0.5px solid #d2d2d2;
-`;
-const Input = styled.input`
-	border: none;
-	height: 38px;
-	line-height: 38px;
-
-	outline: none;
-	font-size: 15px;
-	margin-left: 10px;
-	paddgin-right: 8px;
-`;
-
-const SelectContainer = styled.select`
-	flex: 2;
-	outline: none;
-	border: 0.5px solid #d2d2d2;
-`;
-
-const FlexRow = styled.div`
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-`;
-
-const Right = styled.div`
-	flex: 2;
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-`;
-
-const Icon = styled.div`
-	color: grey;
-	padding: 4px;
-	font-size: 30px;
-	margin: 0px 10px;
-	cursor: pointer;
-	margin: 6px 10px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	position: relative;
-`;
-
-const IconDown = styled(Icon)`
-	transform: translateX(10px);
-	font-size: 30px;
-	// border: 2px solid black;
-`;
-
-const MenuLogin = styled.div`
-	border: 1px solid lightGrey;
-	display: ${(props) => (props.openMenu ? "block" : "none")};
-	position: absolute;
-	top: 45px;
-
-	right: 0;
-	width: 285px;
-	height: auto;
-	min-height: 200px;
-	padding: 16px;
-	background-color: white;
-	border: 1px solid lightGrey;
-	zindex: 112;
-`;
-const MenuLogged = styled(MenuLogin)`
-	padding: 0px;
-	background-color: ${(props) => props.theme.colors.allegroBackground};
-`;
-const MenuLoginContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-between;
-	width: 100%;
-	height: 100%;
-	background-color: white;
-`;
-
-const AccountNavbar = styled.div`
-	display: flex;
-	flex-direction: row;
-	width: 100%;
-	justify-content: center;
-	background-color: white;
-`;
-
-const AccountMainCont = styled.div`
-	width: 100%;
-`;
-
-const StyledBadge = styled(Badge)(({ theme }) => ({
-	"& .MuiBadge-badge": {
-		backgroundColor: theme.colors.allegroColor,
-		border: `2px solid ${(props) => props.theme.colors.allegroColor}`,
-		padding: "0 4px",
-		right: -2,
-		top: 30,
-		color: "white"
-	}
-}));
 const Navbar = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 
@@ -193,7 +55,8 @@ const Navbar = () => {
 
 	const { isAuthenticated, user } = useSelector((state) => state.auth);
 	const { version } = useSelector((state) => state.version);
-	console.log("🚀 ~ file: Navbar.jsx ~ line 195 ~ Navbar ~ version", version);
+
+	useEffect(() => {}, [version]);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const handleLogout = () => {
@@ -459,12 +322,12 @@ const Navbar = () => {
 										<Button>Zaloguj się</Button>
 									</Link>
 
-									<FlexRow>
+									<Flex>
 										<Text> Nie masz konta? </Text>
 										<Link to="/register">
 											<Text color="green"> Zarejestruj się</Text>
 										</Link>
-									</FlexRow>
+									</Flex>
 								</MenuLoginContainer>
 							</MenuLogin>
 						</IconDown>
@@ -473,8 +336,7 @@ const Navbar = () => {
 			</Right>
 		);
 	};
-	if (version === "allegro localnie")
-		return <Container>{leftPart()}</Container>;
+	if (version === "allegro local") return <Container>{leftPart()}</Container>;
 	return isMobile ? (
 		<Container isMobile>
 			<Wrapper>

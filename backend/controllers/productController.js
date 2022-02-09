@@ -28,7 +28,6 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 });
 
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
-	// console.log(req.body);
 
 	let images = [];
 
@@ -38,9 +37,6 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 		images = req.body.img;
 	}
 	console.log(typeof images[0].url);
-
-	// console.log(req.body.img[0].url.slice(0,10));
-	// images = req.body.img[0].url;
 
 	let imagesLinks = [];
 

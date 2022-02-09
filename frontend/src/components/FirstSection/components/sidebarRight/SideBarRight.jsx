@@ -1,15 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 
 import ContainerInfo1 from "./ContainerInfo1";
 import ContainerInfo2 from "./ContainerInfo2";
 
-const MainContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	min-width: 344px;
-	height: 100%;
-`;
+import { MainContainer } from "./SideBarRight.styles";
 
 const SidebarRight = () => {
 	return (

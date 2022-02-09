@@ -66,7 +66,7 @@ const ProductSchema = new mongoose.Schema(
 		},
 		stock: {
 			type: Number,
-			required: [true, "Proszę wprowadź ilość magazynową produkut"],
+			required: [false, "Proszę wprowadź ilość magazynową produkut"],
 			maxlength: [4, "Proszę wprowadź max 4 cyfr"],
 			default: 0
 		},

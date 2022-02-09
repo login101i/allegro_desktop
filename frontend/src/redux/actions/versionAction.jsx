@@ -1,6 +1,6 @@
-export const localnieVersion = () => async (dispatch) => {
+export const localVersion = () => async (dispatch) => {
 	dispatch({
-		type: "allegro localnie"
+		type: "allegro local"
 	});
 };
 

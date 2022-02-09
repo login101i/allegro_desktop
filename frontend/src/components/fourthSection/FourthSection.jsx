@@ -7,7 +7,7 @@ import {
 	okazjeArray,
 	ratyArray,
 	charityArray
-} from "../../productCategories";
+} from "../../utils/productCategories";
 
 const Container = styled.div`
 	display: flex;
