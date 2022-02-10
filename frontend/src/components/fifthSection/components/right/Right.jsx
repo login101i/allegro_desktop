@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-import ProductContainer from "../ProductContainer";
-import BorderAndTitle from "../BorderAndTitle";
-import { Flex, Text } from "../../components";
+
+import {
+	Flex,
+	Text,
+	ProductContainer,
+	BorderAndTitle
+} from "../../../../components";
 
 const Container = styled.div`
 	display: flex;

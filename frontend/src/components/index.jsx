@@ -20,6 +20,7 @@ import Shipping from "./Shipping";
 import Text from "./Text";
 import PriceDiscount from "./PriceDiscount";
 
+
 export {
 	AllegroFooter,
 	BorderAndTitle,

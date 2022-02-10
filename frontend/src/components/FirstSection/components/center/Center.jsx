@@ -94,8 +94,8 @@ const Center = () => {
 						))}
 					</Carousel>
 					<WrapperOption>
-						{firstSectionOptions.map((option) => (
-							<OptionComponent onClick={() => handleIndex(0)} option={option} />
+						{firstSectionOptions.map((option, index) => (
+							<OptionComponent key={option[index]} onClick={() => handleIndex(0)} option={option} />
 						))}
 					</WrapperOption>
 				</Container>
