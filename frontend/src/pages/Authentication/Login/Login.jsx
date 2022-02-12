@@ -1,76 +1,23 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-
+import { useNavigate, Link } from "react-router-dom";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { useNavigate, Link } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
-
+import { screens } from "../../../components/responsive";
+import { loginUser } from "../../../redux/actions/userActions";
 
 import {
 	Text,
 	Button,
 	BorderAndTitle,
 	CustomInput,
-	
+	Flex,
 	PageWidth
 } from "../../../components";
 
-import { loginUser } from "../../../redux/actions/userActions";
-
-const Container = styled.div`
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(1, 1fr);
-	grid-column-gap: 16px;
-	grid-row-gap: 16px;
-	height: auto;
-`;
-
-const Left1 = styled.div`
-	grid-area: 1 / 1 / 2 / 2;
-	background-color: white;
-	flex-grow: 1;
-	padding: 20px;
-`;
-
-const Left2 = styled.div`
-	background-color: white;
-	padding: 0px 20px;
-`;
-
-const Right1 = styled.div`
-	grid-area: 1 / 2 / 3 / 3;
-	background-color: white;
-	flex-grow: 1;
-	padding: 20px;
-`;
-
-const FlexRow = styled.div`
-	display: flex;
-	width: 100%;
-	flex-direction: row;
-	align-items: center;
-	margin: 14px 0px;
-`;
-const FlexRowBetween = styled(FlexRow)`
-	display: flex;
-	width: 100%;
-	flex-direction: row;
-	justify-content: space-between;
-`;
-const FlexCol = styled(FlexRow)`
-	flex-direction: column;
-`;
-
-const Break = styled.div`
-	height: 1px;
-	background-color: lightGrey;
-	margin: 20px 0px;
-	width: 100%;
-`
-
+import { Container, LeftContainer, RightContainer } from "./Login.styles";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
@@ -78,26 +25,23 @@ const Login = () => {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
 	const handleLogin = () => {
-	
-
 		const body = {
 			email,
 			password
 		};
-		console.log(body);
-
 		dispatch(loginUser(body));
-		console.log("loguję użytkownika");
 		navigate("/");
 	};
+
 	return (
-		<PageWidth>
-			<Container>
-				<Left1>
+		<PageWidth width={isMobile && "100%"}>
+			<Container isMobile={isMobile}>
+				<LeftContainer>
 					<Text size={30}> Zaloguj się </Text>
-					<FlexRow>
+					<Flex>
 						<FormControlLabel
 							control={<Checkbox defaultChecked />}
 							label="Login lub email"
@@ -108,8 +52,8 @@ const Login = () => {
 							control={<Checkbox />}
 							label="Numer telefonu"
 						/>
-					</FlexRow>
-					<FlexCol>
+					</Flex>
+					<Flex column>
 						<CustomInput
 							fullWidth
 							placeholder="Login lub e-mail"
@@ -121,41 +65,38 @@ const Login = () => {
 							rightPart={<BorderAndTitle title={"pokaż"} />}
 							onChange={(e) => setPassword(e.target.value)}
 						></CustomInput>
-					</FlexCol>
-					<FlexRowBetween>
+					</Flex>
+					<Flex space>
 						<Text color="#00a790">Nie pamiętam hasła</Text>
 						<Button onClick={handleLogin}>Zaloguj się</Button>
-					</FlexRowBetween>
-					<FlexRow>
-						<Break />
-						<Text> lub </Text>
-						<Break />
-					</FlexRow>
-					<FlexRowBetween>
+					</Flex>
+					<Flex center>
+						<Text>lub</Text>
+					</Flex>
+					<Flex space>
 						<Button background="lightBlue">Faebook</Button>
 						<Button outlined background="white" color="darkGrey">
 							Google
 						</Button>
-					</FlexRowBetween>
-				</Left1>
-
-				<Left2>
-					<FlexRow>
+					</Flex>
+					<Flex borderTop />
+					<Flex space>
 						<Text bold>Nie masz konta?</Text>
 						<Link to="/register">
 							<BorderAndTitle title="Zarejestruj się" />
 						</Link>
-					</FlexRow>
-				</Left2>
+					</Flex>
 
-				<Text style={{ margin: "10px" }}>
-					Logując się do Allegro akceptujesz Regulamin w aktualnym brzmieniu
-					obowiązującym od dnia 9.12.2021. Informacje o planowanych oraz
-					archiwalnych zmianach Regulaminu są dostępne na stronie.
-				</Text>
+					<Flex>
+						<Text wrap>
+							Logując się do Allegro akceptujesz Regulamin w aktualnym brzmieniu
+							obowiązującym od dnia 9.12.2021. Informacje o planowanych oraz
+							archiwalnych zmianach Regulaminu są dostępne na stronie.
+						</Text>
+					</Flex>
+				</LeftContainer>
 
-				<Right1></Right1>
-
+				{!isMobile && <RightContainer />}
 			</Container>
 		</PageWidth>
 	);

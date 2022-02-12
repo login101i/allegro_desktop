@@ -8,14 +8,13 @@ export const MainContainer = styled.div`
 	position: relative;
 	max-width: 1660px;
 	width: 1660px;
-	// overflow: hidden;
 	background: ${(props) => props.theme.colors.allegroBackground};
 	margin-bottom: 100px;
 `;
 export const BannerContainer = styled.div`
 	position: relative;
 	width: 100vw;
-	margin-top: 16px;
+	margin-top: 36px;
 `;
 
 export const SmartBanner = styled.img`
@@ -23,11 +22,11 @@ export const SmartBanner = styled.img`
 `;
 
 export const BannerButton = styled(Button)`
-    	position: "absolute",
-		top: "50%",
-		right: "30px",
-		transform: "translate(0%,-50%)",
-		width: "auto",
-		padding: "4px 18px",
-		borderRadius: "3px"
+	position: absolute;
+	top: 50%;
+	right: 30px;
+	transform: translate(0%, -50%);
+	width: auto;
+	padding: 4px 18px;
+	border-radius: 3px;
 `;

@@ -3,6 +3,7 @@ import { useMediaQuery } from "react-responsive";
 import { screens } from "../../components/responsive";
 import { useDispatch, useSelector } from "react-redux";
 
+import { CartTitle } from "../../components";
 import { clearErrors } from "../../redux/actions/productActions";
 import { localVersion } from "../../redux/actions/versionAction";
 import { NEW_PRODUCT_RESET } from "../../redux/constants/productConstants";
@@ -30,7 +31,7 @@ import {
 	HighlightItemAs
 } from "./AllegroLocal.components";
 
-const AllegroLocal = () => {
+export const AllegroLocal = () => {
 	const [range, setRange] = useState("false");
 	const [shipping, setShipping] = useState(false);
 	const [title, setTitle] = useState("");
@@ -63,7 +64,7 @@ const AllegroLocal = () => {
 	}, [dispatch, error, success]);
 
 	dispatch(localVersion());
-	console.log('wysylam local')
+	console.log("wysylam local");
 
 	const [stateSellingType, dispatchSellingTypeReducer] = useReducer(
 		typeOfSelligReducer,
@@ -77,6 +78,7 @@ const AllegroLocal = () => {
 
 	return (
 		<MainContainer isMobile={isMobile}>
+			<CartTitle title="Allegro lokalnie" />
 			<Container isMobile={isMobile}>
 				<LeftPart isMobile={isMobile}>
 					<Banner isMobile={isMobile} />
@@ -121,5 +123,3 @@ const AllegroLocal = () => {
 		</MainContainer>
 	);
 };
-
-export default AllegroLocal;

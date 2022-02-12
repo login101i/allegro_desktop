@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import FifthSection from "../../components/fifthSection/FifthSection";
 import FirstSection from "../../components/firstSection/FirstSection";
 import FourthSection from "../../components/fourthSection/FourthSection";
-import MetaData from "../../components/MetaData";
+import CartTitle from "../../components/CartTitle";
 import PayPalButton from "../../components/PayPalButton";
 import SecondSection from "../../components/secondSection/SecondSection";
 import SmartBannerImg from "../../../src/assets/pictures/smartBanner.png";
@@ -19,7 +19,7 @@ import {
 	BannerButton
 } from "./HomePage.styles";
 
-const HomePage = ({ isMobile }) => {
+export const HomePage = ({ isMobile }) => {
 	const [isPaypalShow, setIsPaypalShow] = useState(false);
 	const dispatch = useDispatch();
 
@@ -42,7 +42,7 @@ const HomePage = ({ isMobile }) => {
 
 	return (
 		<MainContainer>
-			<MetaData title="Allegro - atrakcyjne ceny" />
+			<CartTitle title="Allegro - atrakcyjne ceny" />
 			<FirstSection />
 			<SecondSection />
 			<ThirdSection />
@@ -61,4 +61,3 @@ const HomePage = ({ isMobile }) => {
 	);
 };
 
-export default HomePage;

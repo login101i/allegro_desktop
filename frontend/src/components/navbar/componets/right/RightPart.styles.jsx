@@ -1,82 +1,18 @@
 import styled from "styled-components";
 import { Badge } from "@material-ui/core";
 
-export const Container = styled.div`
-	display: flex;
-	flex-direction: column;
-	background-color: white;
-	padding: ${(props) => (props.isMobile ? "2px" : "16px 16px")};
-	width: 100%;
-	position: sticky;
-	top: 0;
-	z-index: 99;
-	width: 100%;
-	height: 120px;
-`;
-
-export const Wrapper = styled.div`
-	display: flex;
-	// align-items: center;
-	// justify-content: center;
-	height: 100%;
-	// width: 1600px;
-	width: 100%;
-`;
-
-export const Left = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: left;
-	background-color: white;
-`;
-
-export const Image = styled.div`
-	transform: ${(props) => (props.isMobile ? "scale(0.7)" : "scale(1.15)")};
-`;
-
-export const LogInImage = styled.img`
-	width: 100%;
-	object-fit: contain;
-`;
-
-export const Center = styled.div`
-	flex-grow: grow;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	margin: ${(props) => (props.isMobile ? "4px" : "0px 20px")};
-`;
-export const CenterContainer = styled.form`
-	display: flex;
-	flex-grow: 1;
-`;
-
-export const SearchContainer = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex: 1;
-	border: 0.5px solid #d2d2d2;
-`;
-export const Input = styled.input`
-	border: none;
-	height: 38px;
-	line-height: 38px;
-
-	outline: none;
-	font-size: 15px;
-	margin-left: 10px;
-	paddgin-right: 8px;
-`;
-
 export const SelectContainer = styled.select`
 	flex: 2;
 	outline: none;
 	border: 0.5px solid #d2d2d2;
 `;
 
-
+export const FlexRow = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+`;
 
 export const Right = styled.div`
 	flex: 2;
@@ -98,6 +34,12 @@ export const Icon = styled.div`
 	text-align: center;
 	position: relative;
 `;
+
+export const LogInImage = styled.img`
+	width: 100%;
+	object-fit: contain;
+`;
+
 
 export const IconDown = styled(Icon)`
 	transform: translateX(10px);

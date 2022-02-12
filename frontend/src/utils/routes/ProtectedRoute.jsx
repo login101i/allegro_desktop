@@ -3,12 +3,12 @@ import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser } from "../../redux/actions/userActions";
 
-const ProtectedRoute = ({ children, isAdmin }) => {
+export const ProtectedRoute = ({ children, isAdmin }) => {
 	const {
 		isAuthenticated = false,
 		loading = true,
 		user
-	} = useSelector((state) => state.auth);
+	} = useSelector((state) => state.auth)
 
 	const dispatch = useDispatch();
 
@@ -28,6 +28,6 @@ const ProtectedRoute = ({ children, isAdmin }) => {
 	} else {
 		return <Navigate to={"/login"} />;
 	}
-};
+}
 
-export default ProtectedRoute;
+

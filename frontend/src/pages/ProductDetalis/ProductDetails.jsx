@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
-import MetaData from "../../components/MetaData";
+import CartTitle from "../../components/CartTitle";
 import ProductDetailsNavbar from "./components/ProductDetailsNavbar";
 import ProductDetailsInfo from "./components/ProductDetailInfo";
 import Loader from "../../components/Loader";
@@ -26,26 +26,22 @@ const Space = styled.div`
 	height: 20px;
 	background-color: ${(props) => props.theme.colors.allegroBackground};
 `;
-const ProductDetails = () => {
+export const ProductDetails = () => {
 	const dispatch = useDispatch();
-
 	const { loading, product } = useSelector(
 		(state) => state.productDetails
 	);
-
-
 	let id = useParams().id;
-
 
 	useEffect(() => {
 		dispatch(getProductDetails(id));
 	}, [dispatch, id]);
 
-	const title = "product Details";
+	const title = "Product Details";
 	return (
 		<>
 			<Container>
-				<MetaData title={title} />
+				<CartTitle title={title} />
 				{loading ? <Loader /> : <ProductDetailsNavbar product={product} />}
 				{loading ? <Loader /> : <ProductDetailsInfo product={product} />}
 			</Container>
@@ -54,4 +50,3 @@ const ProductDetails = () => {
 	);
 };
 
-export default ProductDetails;

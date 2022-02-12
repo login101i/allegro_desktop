@@ -14,19 +14,13 @@ const ButtonContainer = styled.button`
 	text-transform: uppercase;
 	border: ${(props) => (props.outlined ? "1px solid lightGrey" : " none")};
 	outline: none;
-
-	
-
 	font-family: Open Sans, sans-serif;
 	font-size: 14px;
 	height: 40px;
 	line-height: 40px;
 	margin: 0;
 	overflow: hidden;
-	// padding: 0px 24px;
-	// position: relative;
 	
-
 	width:${(props) => (props.width ? props.width : "auto")};
 	border-radius:${(props) => (props.borderRadius ? "20px" : "")};
 	font-weight:${(props) => (props.bold ? "900" : "500")};

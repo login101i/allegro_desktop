@@ -9,7 +9,7 @@ import Flex from "./Flex";
 import ImageComponent from "./ImageComponent";
 import Loader from "./Loader";
 import MenuContentBox from "./MenuContentBox";
-import MetaData from "./MetaData";
+import CartTitle from "./CartTitle";
 import Navbar from "./navbar/Navbar";
 import NavbarPage from "./NavbarPage";
 import OptionComponent from "./Option";
@@ -19,7 +19,6 @@ import ProductContainer from "./ProductContainer";
 import Shipping from "./Shipping";
 import Text from "./Text";
 import PriceDiscount from "./PriceDiscount";
-
 
 export {
 	AllegroFooter,
@@ -32,7 +31,7 @@ export {
 	ImageComponent,
 	Loader,
 	MenuContentBox,
-	MetaData,
+	CartTitle,
 	Navbar,
 	NavbarPage,
 	OptionComponent,

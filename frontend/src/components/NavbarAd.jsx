@@ -12,7 +12,7 @@ const Image = styled.img`
   height: auto;
 `;
 
-const NavbarAd = () => {
+export const NavbarAd = () => {
   return (
     <Container>
       <Image src={BikeMain} alt="Navbar Picture Lenor" />
@@ -20,4 +20,3 @@ const NavbarAd = () => {
   );
 };
 
-export default NavbarAd;

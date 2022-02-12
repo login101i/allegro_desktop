@@ -17,6 +17,8 @@ export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	// align-items: center;
+	align-items: ${(props) => (props.isMobile ? "auto" : "center")};
+
 	width: ${(props) => (props.isMobile ? "auto" : "1660px")};
 	overflow: hidden;
 `;

@@ -4,25 +4,25 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 
-import Navbar from "./components/navbar/Navbar";
-import HomePage from "./pages/HomePage/HomePage";
-import Listing from "./pages/Listing";
-import ProductDetails from "./pages/ProductDetalis/ProductDetails";
-import AllegroLocal from "./pages/AllegroLocal/AllegroLocal";
+import { Navbar } from "./components";
+import { HomePage } from "./pages/HomePage/HomePage";
+import { Listing } from "./pages/Listing";
+import { ProductDetails } from "./pages/ProductDetalis/ProductDetails";
+import { AllegroLocal } from "./pages/AllegroLocal/AllegroLocal";
 import { Login, Register, MyAccount } from "./pages/Authentication";
+import { AllegroFooter } from "./components";
 
 import { theme } from "./infrastructure/theme";
 import "./style.css";
 
-import ProtectedRoute from "./components/routes/ProtectedRoute";
-import { AllegroFooter } from "./components";
+import { ProtectedRoute } from "./utils/routes/ProtectedRoute";
 import { screens } from "./components/responsive";
-import NavbarAd from "./components/NavbarAd";
+import { NavbarAd } from "./components/NavbarAd";
 
 import { loadUser } from "./redux/actions/userActions";
 import { allegroVersion } from "./redux/actions/versionAction";
 
-import store from "./store";
+import { store } from "./store";
 import { GreyBackground, Container } from "./App.styles";
 
 const App = () => {
@@ -68,7 +68,7 @@ const App = () => {
 							/>
 						</Routes>
 					</Container>
-					{/* <AllegroFooter isMobile={isMobile} /> */}
+					<AllegroFooter isMobile={isMobile} />
 				</BrowserRouter>
 			</GreyBackground>
 		</ThemeProvider>

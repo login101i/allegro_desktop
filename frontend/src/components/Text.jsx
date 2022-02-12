@@ -5,30 +5,28 @@ const TextContainer = styled.div`
 	font-size: 16px;
 	font-size: ${(props) => props.size}px;
 	font-family: Roboto, sans-serif;
-	// font-family: "Open Sans", sans-serif;
 	color: ${(props) =>
 		props.color ? props.color : props.theme.colors.textColor};
 	font-weight: ${(props) => (props.bold ? "900" : "600")};
 	padding: 2px;
-
 	white-space: pre-wrap;
 	border-width: 100%;
 	font-weight: ${(props) => (props.bold ? "800" : "500")};
-
 	white-space: ${(props) => (props.wrap ? "wrap" : "nowrap")};
-	text-transform: capitalize;
 	margin-top: ${(props) => props.marginTop};
-
 	border-bottom: ${(props) => props.borderBottom && "1px solid lightGrey"};
 	padding: ${(props) => props.borderBottom && "8px"};
 	text-align: ${(props) => (props.textAlign ? "center" : "left")};
 	background: ${(props) => (props.background ? props.background : "")};
 	border-radius: ${(props) => (props.background ? "4px" : "")};
-	width: 100%;
+	width: ${(props) => (props.fullWidth ? "100%" : "auto")};
 
 	&:hover {
 		color: ${(props) => props.hovered && "var(--linkColor)"};
 		cursor: ${(props) => props.hovered && "pointer"};
+	}
+	:first-letter {
+		text-transform: capitalize;
 	}
 `;
 
@@ -56,7 +54,8 @@ const Text = ({
 	wrap,
 	textAlign,
 	style,
-	background
+	background,
+	fullWidth
 }) => {
 	return (
 		<TextContainer
@@ -72,7 +71,8 @@ const Text = ({
 			style={style}
 			background={background}
 		>
-			{title} {children}
+			{title}
+			{children}
 			{subTitle && (
 				<SubTitle color={color} textAlign={textAlign}>
 					{subTitle}

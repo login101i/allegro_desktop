@@ -3,7 +3,6 @@ import styled from "styled-components";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { Input } from "@mui/material";
 import Pagination from "react-js-pagination";
-
 import Checkbox from "@mui/material/Checkbox";
 import Stack from "@mui/material/Stack";
 
@@ -22,7 +21,7 @@ import {
 	Text,
 	Button,
 	ProductContainer,
-	MetaData,
+	CartTitle,
 	Loader,
 	NavbarPage,
 	PageWidth,
@@ -37,9 +36,7 @@ const Container = styled.div`
 	grid-template-columns: 300px 1fr;
 	grid-template-rows: auto;
 	gap: 16px 16px;
-
 	grid-template-areas: "filterContainer ResultsContainer";
-
 	margin-top: 16px;
 `;
 
@@ -85,25 +82,20 @@ const ResultsNavbar = styled.div`
 
 const StyledFormControll = styled(FormControl)(({ theme }) => ({
 	backgroundColor: theme.colors.allegroColor,
-	border:`2px solid ${(props) => props.theme.colors.allegroColor}`,
+	border: `2px solid ${(props) => props.theme.colors.allegroColor}`,
 	color: "green",
 	maxHeight: 42,
 	width: 300
 }));
 
-const Listing = ( ) => {
+export const Listing = () => {
 	const [sorting, setSorting] = React.useState("");
 	const [currentPage, setCurrentPage] = React.useState(1);
-
 	const [minPrice, setMinPrice] = React.useState(1);
 	const [maxPrice, setMaxPrice] = React.useState(1000);
-
 	const [category, setCategory] = React.useState();
 	const [rating, setRating] = React.useState();
-
 	const [value, setValue] = React.useState("");
-	console.log("To jest value");
-	console.log(value);
 
 	const handleValue = (val) => {
 		setValue(val);
@@ -120,17 +112,11 @@ const Listing = ( ) => {
 	];
 
 	const filteredPrice = [parseInt(minPrice), parseInt(maxPrice)];
-
-
-
 	const handleChange = (event) => {
 		setSorting(event.target.value);
 	};
-
 	const dispatch = useDispatch();
-
 	let { keyword } = useParams();
-
 	const filtruj = () => {
 		dispatch(getProducts(currentPage, keyword, filteredPrice));
 	};
@@ -142,7 +128,7 @@ const Listing = ( ) => {
 		console.log("Pobieram produkty.");
 	}, [dispatch, currentPage, keyword, category, rating]);
 
-	const { products,  productsCount, resPerPage } = useSelector(
+	const { products, productsCount, resPerPage } = useSelector(
 		(state) => state.products
 	);
 
@@ -176,7 +162,7 @@ const Listing = ( ) => {
 
 	return (
 		<PageWidth>
-			<MetaData title={"Listing"} />
+			<CartTitle title={"Listing"} />
 
 			<NavbarPage
 				leftPart={
@@ -343,5 +329,3 @@ const Listing = ( ) => {
 		</PageWidth>
 	);
 };
-
-export default Listing;

@@ -1,7 +1,6 @@
-import React from "react";
 import { Helmet } from "react-helmet";
 
-const MetaData = ({ title, description, keywords }) => {
+const CartTitle = ({ title, description, keywords }) => {
 	return (
 		<Helmet>
 			<title>{title}</title>
@@ -11,10 +10,10 @@ const MetaData = ({ title, description, keywords }) => {
 	);
 };
 
-MetaData.defaultProps = {
+CartTitle.defaultProps = {
 	title: "Allegro",
 	description: "Kupuj online.",
 	keywords: "elektornika, laptopy, telefony"
 };
 
-export default MetaData;
+export default CartTitle;
