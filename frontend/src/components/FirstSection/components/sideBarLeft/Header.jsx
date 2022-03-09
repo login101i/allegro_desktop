@@ -22,7 +22,7 @@ export const HeaderComponent = () => {
 
 	return (
 		<Header>
-			<HeaderLeft head={head}>
+		<HeaderLeft head={head}>
 				<SpanText onClick={togglehead} head={head}>
 					Działy
 				</SpanText>

@@ -6,7 +6,7 @@ import { useMediaQuery } from "react-responsive";
 
 import { Navbar } from "./components";
 import { HomePage } from "./pages/HomePage/HomePage";
-import { Listing } from "./pages/Listing";
+import { Listing } from "./pages/Listing/Listing";
 import { ProductDetails } from "./pages/ProductDetalis/ProductDetails";
 import { AllegroLocal } from "./pages/AllegroLocal/AllegroLocal";
 import { Login, Register, MyAccount } from "./pages/Authentication";

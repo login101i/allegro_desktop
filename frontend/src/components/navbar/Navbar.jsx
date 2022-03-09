@@ -7,9 +7,7 @@ import { screens } from "../responsive";
 import { LeftPart } from "./componets/left/LeftPart";
 import { CenterPart } from "./componets/center/CenterPart";
 import { RightPart } from "./componets/right/RightPart";
-
 import { Flex } from "../../components";
-
 import { Container, Wrapper } from "./Navbar.styles";
 
 const Navbar = () => {

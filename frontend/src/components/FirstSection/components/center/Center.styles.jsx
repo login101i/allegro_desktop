@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const MainContainer = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -39,16 +38,16 @@ export const Slide = styled.div`
 `;
 
 export const ImgContainer = styled.div`
-	// height: 100%;
-	// flex: 1;
-	// width: 100vw;
+	height: 100%;
+	flex: 1;
+	width: 100%;
+	object-fit: cover;
 `;
 
 export const Image = styled.img`
-	// width: 100vw;
-	height: 100%;
 	background-image: ${(props) => props.src};
 	background-position: center;
+	background-size: cover;
 	transform: translateX(-18%);
 	object-fit: cover;
 `;

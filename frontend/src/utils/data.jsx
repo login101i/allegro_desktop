@@ -39,10 +39,6 @@ export const thirdSectionImages = [
 	{ id: 14, img: Image37, title: "Telewizory i akcesoria " }
 ];
 
-
-
-
-
 export const occasions = [
 	{
 		id: 1,
@@ -234,7 +230,7 @@ export const installments = [
 			"https://a.allegroimg.com/s80/12c474/6a60a34a494ca30a2c4a7859030d"
 	}
 ];
-export const charity= [
+export const charity = [
 	{
 		img: "https://a.allegroimg.com/s512/1100af/c0cb8a26441ca6ea90c691c2c963/Plaszcz-kurtka-zimowa-Czaple-dziendobry-r-M",
 		discount: "12",
@@ -269,35 +265,32 @@ export const charity= [
 	}
 ];
 
-	export const fourthSectionData = [
-		{ id: 1, title: "Strefa okazji", array: occasions },
-		{
-			id: 2,
-			title: "Opony zimowe Continental",
-			array: tires
-		},
-		{ id: 3, title: "Strefa Biletów", array: installments },
-		{
-			id: 4,
-			title: "Strefa Rat Zero  ",
-			array: charity
-		},
-		{ id: 5, title: "Strefa ogłoszeń  ", array: occasions },
-		{
-			id: 6,
-			title: "Strefa charytatywna  ",
-			array: charity
-		},
-		{
-			id: 7,
-			title: "Strefa charytatywna  ",
-			array: charity
-		},
-		{ id: 8, title: "Strefa rat zero", array: charity }
-	];
-
-
-
+export const fourthSectionData = [
+	{ id: 1, title: "Strefa okazji", array: occasions },
+	{
+		id: 2,
+		title: "Opony zimowe Continental",
+		array: tires
+	},
+	{ id: 3, title: "Strefa Biletów", array: installments },
+	{
+		id: 4,
+		title: "Strefa Rat Zero  ",
+		array: charity
+	},
+	{ id: 5, title: "Strefa ogłoszeń  ", array: occasions },
+	{
+		id: 6,
+		title: "Strefa charytatywna  ",
+		array: charity
+	},
+	{
+		id: 7,
+		title: "Strefa charytatywna  ",
+		array: charity
+	},
+	{ id: 8, title: "Strefa rat zero", array: charity }
+];
 
 export const firstSectionOptions = [
 	"Kupuj teraz, płać później",
@@ -306,4 +299,13 @@ export const firstSectionOptions = [
 	"Strefa projektanta",
 	"Kupuj teraz, płać później",
 	"Witaminy na jesień"
+];
+
+export const productCategories = [
+	"Laptopy",
+	"Telefony",
+	"Perfumy",
+	"Supermarket",
+	"AGD",
+	"Pupil"
 ];
