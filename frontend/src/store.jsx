@@ -14,7 +14,6 @@ import { authReducer } from "./redux/reducers/userReducers";
 
 const reducer = combineReducers({
 	productDetails: productDetailsReducer,
-
 	products: productsReducer,
 	newProduct: newProductReducer,
 	auth: authReducer,

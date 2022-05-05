@@ -45,7 +45,7 @@ test("should render a button ", () => {
 
 	fireEvent.click(colorButton);
 	expect(colorButton).toHaveStyle({ backgroundColor: "blue" });
-	expect(colorButotn.textContent).toBe("change to red");
+	expect(colorButton.textContent).toBe("change to red");
 });
 
 
@@ -168,7 +168,7 @@ it("should render multiple items", () => {
 		"Go Grocery Shopping"
 	]);
 	const divElements = screen.queryAllByText(/Go Grocery Shopping/i);
-	const divElements = screen.getAllByText(/Go Grocery Shopping/i);
+	// const divElements = screen.getAllByText(/Go Grocery Shopping/i);
 
 	expect(divElements.length).toBe(3);
 });

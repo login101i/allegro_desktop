@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+
 import { useMediaQuery } from "react-responsive";
 
 import StarBorderIcon from "@mui/icons-material/StarBorder";
@@ -10,64 +10,20 @@ import { screens } from "../../../../src/components/responsive";
 
 import { Flex } from "../../../components";
 
-const Container = styled.div`
-	display: flex;
-	justify-content: space-between;
-	padding: 0px;
-	width: 94%;
-	flex-direction: ${(props) => (props.isMobile ? "column" : "row")};
-`;
+import {
+	Container,
+	Left,
+	MainImage,
+	ImagesThumbnails,
+	ImageThumb,
+	Right,
+	IconContainer,
+	Title,
+	FromSeller,
+	Raty
+} from "./ProductDetailInfo.styles";
 
-const Left = styled.div`
-	flex: 4;
-	width: 100%;
-	margin: ${(props) => (props.isMobile ? "30px" : "0px")};
-`;
-
-const MainImage = styled.img`
-	width: ${(props) => (props.isMobile ? "50vw" : "100%")};
-	max-height: 200px;
-	object-fit: contain;
-`;
-const ImagesThumbnails = styled.div`
-	width: 100%;
-	margin-top: 30px;
-`;
-
-const ImageThumb = styled.img`
-	height: 80px;
-	object-fit: contain;
-`;
-
-const Right = styled.div`
-	flex: 3;
-`;
-const IconContainer = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	color: ${(props) => props.theme.colors.linkColor};
-	text-transform: uppercase;
-	font-size: 20px;
-`;
-
-const Title = styled.div`
-	fontsize: 30px;
-	font-weight: 600;
-	font-size: 26px;
-`;
-const FromSeller = styled.div`
-	margin-bottom: 20px;
-`;
-
-const Raty = styled.div`
-	font-size: 14px;
-	font-weight: 600;
-	display: flex;
-	flex-direction: row;
-`;
-
-const ProductDetailInfo = ({ product }) => {
+export const ProductDetailsInfo = ({ product }) => {
 	const [mainImage, setMainImage] = useState(product.img[0].url);
 	const handleChangeImage = (url) => {
 		setMainImage(url);
@@ -137,11 +93,9 @@ const ProductDetailInfo = ({ product }) => {
 		return (
 			<>
 				<Container>
-					{leftPart()}
-					{rightPart()}
+					{leftPart(isMobile)}
+					{rightPart(isMobile)}
 				</Container>
 			</>
 		);
 };
-
-export default ProductDetailInfo;
