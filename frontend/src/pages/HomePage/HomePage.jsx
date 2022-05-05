@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import FifthSection from "../../components/fifthSection/FifthSection";
-import FirstSection from "../../components/firstSection/FirstSection";
+import FirstSection from "../../components/FirstSection/FirstSection";
 import FourthSection from "../../components/fourthSection/FourthSection";
 import CartTitle from "../../components/CartTitle";
 import PayPalButton from "../../components/PayPalButton";
