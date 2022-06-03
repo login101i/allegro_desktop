@@ -28,20 +28,20 @@ const Center = () => {
 	const sliderRef = useRef();
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
-	// const changeSlide = () => {
-	// 	setInterval(() => {
-	// 		if (slideIndex < 5) {
-	// 			setSlideIndex(slideIndex + 1);
-	// 			console.log(slideIndex);
-	// 		} else {
-	// 			setSlideIndex(0);
-	// 		}
-	// 	}, 7000);
-	// };
+	const changeSlide = () => {
+		setInterval(() => {
+			if (slideIndex < 5) {
+				setSlideIndex(slideIndex + 1);
+				console.log(slideIndex);
+			} else {
+				setSlideIndex(0);
+			}
+		}, 7000);
+	};
 
-	// function myStopFunction() {
-	// 	clearTimeout(changeSlide);
-	// }
+	function myStopFunction() {
+		clearTimeout(changeSlide);
+	}
 
 	useEffect(() => {
 		// changeSlide();

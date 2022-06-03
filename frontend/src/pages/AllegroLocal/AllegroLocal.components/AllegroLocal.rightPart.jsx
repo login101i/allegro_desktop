@@ -51,7 +51,7 @@ const RightPartComponent = ({
 			<RightCont>
 				<Flex space fullWidth align>
 					<Text
-						color={rightPartContent[stateSellingType.infoPosition].color}
+						color={[stateSellingType.infoPosition].color}
 						size={33}
 						bold
 					>

@@ -21,9 +21,7 @@ const FirstSection = () => {
 			<>
 				<MainContainer>
 					<SidebarLeft />
-					<Space />
 					<Center />
-					<Space />
 					<SidebarRight />
 				</MainContainer>
 			</>

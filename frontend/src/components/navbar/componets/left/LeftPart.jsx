@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
-
 import Logo from "../../../../assets/pictures/logo.svg";
 import { screens } from "../../../responsive";
 

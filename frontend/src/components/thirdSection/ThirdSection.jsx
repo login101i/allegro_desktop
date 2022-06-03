@@ -1,20 +1,21 @@
-
-import {Container, ItemContainer, Image} from "./ThirdSection.styles"
+import { Container, ItemContainer, Image } from "./ThirdSection.styles";
 import { Text } from "../../components";
-import {thirdSectionImages} from "../../utils/data"
-
+import { thirdSectionImages } from "../../utils/data";
+import DirectionArrows from "../DirectionArrows";
 
 const ThirdSection = () => {
-	return (
-		<Container>
-			{thirdSectionImages.map((item) => (
-				<ItemContainer key={item.id}>
-					<Image src={item.img} />
-					<Text>{item.title}</Text>
-				</ItemContainer>
-			))}
-		</Container>
-	);
+  return (
+    <DirectionArrows>
+      <Container>
+        {thirdSectionImages.map((item) => (
+          <ItemContainer key={item.id}>
+            <Image src={item.img} />
+            <Text>{item.title}</Text>
+          </ItemContainer>
+        ))}
+      </Container>
+    </DirectionArrows>
+  );
 };
 
 export default ThirdSection;

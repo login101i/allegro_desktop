@@ -1,63 +1,73 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
+import SearchIcon from "@mui/icons-material/Search";
 
-import { Text, Button, CustomIcon } from "../../../../components";
+import { Text, Button, CustomIcon, Flex } from "../../../../components";
 
 import {
-	Center,
-	CenterContainer,
-	SearchContainer,
-	SelectContainer,
-	Input
+  Center,
+  CenterContainer,
+  SearchContainer,
+  SelectContainer,
+  Input,
+  Option
 } from "./CenterPart.styles";
 
 export const CenterPart = ({ isMobile }) => {
-	const [keyword, setKeyword] = useState("");
+  console.log(
+    "🚀 ~ file: CenterPart.jsx ~ line 17 ~ CenterPart ~ isMobile",
+    isMobile
+  );
+  const [keyword, setKeyword] = useState("");
 
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-	const searchHandler = (e) => {
-		e.preventDefault();
+  const searchHandler = (e) => {
+    e.preventDefault();
 
-		if (keyword.trim()) {
-			navigate(`/listing/${keyword}`);
-		} else {
-			navigate("/");
-		}
-	};
-	return (
-		<Center>
-			<CenterContainer onSubmit={searchHandler}>
-				<SearchContainer>
-					<Input
-						placeholder="Czego szukasz?"
-						type="text"
-						onChange={(e) => setKeyword(e.target.value)}
-					/>
-					<Text color="var(--linkColor)">szukaj wielu</Text>
-				</SearchContainer>
-				{isMobile ? (
-					<SelectContainer placeholder="Wszystkie kategorie"></SelectContainer>
-				) : null}
-				{isMobile ? (
-					<Button type="submit" width="auto" onClick={searchHandler}>
-						Szukaj
-					</Button>
-				) : (
-					<Button
-						type="submit"
-						onClick={searchHandler}
-						width="38px"
-						style={{
-							padding: "0px",
-							marginRight: "0px"
-						}}
-					>
-						<CustomIcon icon={StarBorderIcon} color="#fffafa" />
-					</Button>
-				)}
-			</CenterContainer>
-		</Center>
-	);
+    if (keyword.trim()) {
+      navigate(`/listing/${keyword}`);
+    } else {
+      navigate("/");
+    }
+  };
+  return (
+    <Center>
+      <CenterContainer onSubmit={searchHandler} isMobile={isMobile}>
+        <SearchContainer>
+          <Input
+            placeholder="Czego szukasz?"
+            type="text"
+            onChange={(e) => setKeyword(e.target.value)}
+          />
+          <Text color="var(--linkColor)">szukaj wielu</Text>
+        </SearchContainer>
+        {isMobile ? (
+          <Flex>
+            <SelectContainer>
+              <Option value="">Wszystkie kategorie</Option>
+              <Option value="">Zegarki</Option>
+            </SelectContainer>
+            <Button type="submit" onClick={searchHandler} width="150px">
+              Szukaj
+            </Button>
+          </Flex>
+        ) : null}
+        {isMobile ? null : (
+          <Button
+            type="submit"
+            onClick={searchHandler}
+            width="140px"
+            style={{
+              padding: "0px",
+              marginRight: "0px"
+            }}
+          >
+            Szukaj
+            <CustomIcon icon={SearchIcon} color="#fffafa"  />
+          </Button>
+        )}
+      </CenterContainer>
+    </Center>
+  );
 };

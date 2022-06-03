@@ -11,4 +11,5 @@ export const Left = styled.div`
 	align-items: center;
 	justify-content: left;
 	background-color: white;
+
 `;

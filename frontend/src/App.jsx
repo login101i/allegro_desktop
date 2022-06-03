@@ -35,13 +35,6 @@ const App = () => {
 
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
-	console.time("loop");
-
-	for (let i = 0; i < 10000; i++) {
-		// Do stuff here
-	}
-	console.timeEnd("loop");
-
 	return (
 		<ThemeProvider theme={theme}>
 			<GreyBackground isMobile={isMobile}>
