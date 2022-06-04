@@ -23,6 +23,7 @@ const ItemsContainer = styled.div`
 const Recomended = ({ images }) => {
   return (
     <DirectionArrows
+    
       style={{
         position: "relative"
       }}

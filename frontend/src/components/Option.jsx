@@ -1,30 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
-const OptionContainer = styled.button`
-  transition: 0.2s;
+const OptionContainer = styled.div`
+  transition: 0.1s;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 60px;
   flex: 1;
   text-transform: capitalize;
-  border: none;
-  outline: none;
   background-color: white;
+  outline: none;
+  border: none;
 
-  border-top: ${(props) =>
-    props.borderTop && !props.borderBottom ? "3px solid lightGrey" : "none"};
-  border-bottom: ${(props) =>
-    props.borderBottom ? "3px solid lightGrey" : "none"};
-  &:hover {
-    border-top: ${(props) =>
-      props.borderTop && !props.borderBottom
-        ? "3px solid var(--allegroColor)"
-        : "none"};
-    border-bottom: ${(props) =>
-      props.borderBottom ? "3px solid var(--allegroColor)" : "none"};
-  }
+ 
 `;
 
 const Option = styled.div`

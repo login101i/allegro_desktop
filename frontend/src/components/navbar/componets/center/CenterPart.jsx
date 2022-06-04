@@ -14,10 +14,7 @@ import {
 } from "./CenterPart.styles";
 
 export const CenterPart = ({ isMobile }) => {
-  console.log(
-    "🚀 ~ file: CenterPart.jsx ~ line 17 ~ CenterPart ~ isMobile",
-    isMobile
-  );
+
   const [keyword, setKeyword] = useState("");
 
   const navigate = useNavigate();
@@ -32,7 +29,7 @@ export const CenterPart = ({ isMobile }) => {
     }
   };
   return (
-    <Center>
+    <Center isMobile={isMobile}>
       <CenterContainer onSubmit={searchHandler} isMobile={isMobile}>
         <SearchContainer>
           <Input

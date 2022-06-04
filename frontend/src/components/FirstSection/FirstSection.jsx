@@ -5,7 +5,7 @@ import SidebarLeft from "./components/sideBarLeft/SideBarLeft";
 import Center from "./components/center/Center";
 import SidebarRight from "./components/sidebarRight/SideBarRight";
 
-import { MainContainer, Space } from "./FirstSection.styles";
+import { MainContainer } from "./FirstSection.styles";
 
 const FirstSection = () => {
 	const isMobile = useMediaQuery({ maxWidth: screens.md });

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const MainContainer = styled.div`
   display: flex;
@@ -6,7 +6,7 @@ export const MainContainer = styled.div`
   overflow: hidden;
   overflow-y: ${(props) => (props.isMobile ? "hidden" : "none")};
   overflow-x: hidden !important;
-  max-width: 1100px;
+  max-width: 925px;
   width: ${(props) => (props.isMobile ? "100vw" : "")};
 `;
 
@@ -19,12 +19,7 @@ export const Container = styled.div`
   justify-content: space-between;
   margin-bottom: ${(props) => (props.isMobile ? "0px" : "12px")};
   overflow-x: hidden !important;
-`;
-
-export const WrapperOption = styled.div`
-  display: flex;
-  justify-content: space-between;
-  background: white;
+  height: ${(props) => (props.isMobile ? "43%" : "100%")};
 `;
 
 export const Carousel = styled.div`
@@ -33,13 +28,22 @@ export const Carousel = styled.div`
   height: 100%;
   width: 100%;
   transition: all 1.5s ease-in-out;
+  height: ${(props) => (props.isMobile ? "60%" : "100%")};
+`;
+
+export const WrapperOption = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  flex-direction: column;
+  width: 100%;
 `;
 
 export const Slide = styled.div`
   height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
-  transition: all 1.5s ease-in-out;
 `;
 
 export const ImgContainer = styled.div`
@@ -50,9 +54,31 @@ export const ImgContainer = styled.div`
 export const Image = styled.img`
   background-image: ${(props) => props.src};
   background-position: center;
-  transform: translateX(-18%);
-  height: 100%;
-  object-fit: cover;
+  // transform: translateX(-18%);
+  width: ${(props) => (props.isMobile ? "100vw" : "100%")};
+  height: ${(props) => (props.isMobile ? "220px" : "100%")};
+  object-fit: ${(props) => (props.isMobile ? "cover" : "cover")};
+
+  animation-name: example;
+  animation-duration: ${(props) => (props.slideIndex ? "10s" : "")};
+  animation-iteration-count: infinite;
+
+  @keyframes example {
+    0% {
+      opacity: 0.2;
+    }
+    10% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 1;
+    }
+
+    ,
+    100% {
+      opacity: 0;
+    }
+  }
 `;
 
 export const Dot = styled.div`
@@ -62,4 +88,11 @@ export const Dot = styled.div`
   background-color: ${(props) =>
     props.i === props.slideIndex ? "black" : "grey"};
   margin: 10px 6px;
+`;
+
+export const BorderLine = styled.div`
+  background-color: var(--allegroColor);
+  height: 3px;
+  width: 16.67%;
+  transform: translateX(${(props) => props.slideIndex * 100}%);
 `;

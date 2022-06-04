@@ -11,7 +11,7 @@ export const Container = styled.div`
   top: 0;
   z-index: 99;
   width: 100%;
-  height: ${(props) => (props.isMobile ? "170px" : "120px")};
+  height: ${(props) => (props.isMobile ? "170px" : "80px")};
 `;
 
 export const Wrapper = styled.div`

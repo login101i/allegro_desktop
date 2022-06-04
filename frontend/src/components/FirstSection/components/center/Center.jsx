@@ -1,108 +1,118 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import { useMediaQuery } from "react-responsive";
 
-import { sliderItems } from "../../../data";
+import { sliderItems } from "../../../../utils/data";
 import { screens } from "../../../responsive";
 import Recomended from "../Recomended";
 import { OptionComponent, Flex } from "../../..";
 import {
-	firstSectionImages,
-	firstSectionOptions
+  firstSectionImages,
+  firstSectionOptions
 } from "../../../../utils/data";
 
 import {
-	MainContainer,
-	WrapperOption,
-	Carousel,
-	Slide,
-	ImgContainer,
-	Image,
-	Container,
-	Dot
+  MainContainer,
+  WrapperOption,
+  Carousel,
+  Slide,
+  ImgContainer,
+  Image,
+  Container,
+  Dot,
+  BorderLine
 } from "./Center.styles";
 
+let myCounter = 0;
+let timeout = null;
+
 const Center = () => {
-	const [distance, setDistance] = useState();
-	const [slideIndex, setSlideIndex] = useState(0);
+  const [distance, setDistance] = useState();
+  const [slideIndex, setSlideIndex] = useState(0);
 
-	const sliderRef = useRef();
-	const isMobile = useMediaQuery({ maxWidth: screens.md });
+  const sliderRef = useRef();
+  const isMobile = useMediaQuery({ maxWidth: screens.md });
 
-	const changeSlide = () => {
-		setInterval(() => {
-			if (slideIndex < 5) {
-				setSlideIndex(slideIndex + 1);
-				console.log(slideIndex);
-			} else {
-				setSlideIndex(0);
-			}
-		}, 7000);
-	};
+  useEffect(() => {
+    startInterval();
+    return () => clearInterval(timeout);
+  }, []);
 
-	function myStopFunction() {
-		clearTimeout(changeSlide);
-	}
+  myCounter = slideIndex;
+  const startInterval = () => {
+    timeout = setInterval(() => {
+      setSlideIndex((slideIndex) => slideIndex + 1);
+      if (myCounter >= 6) {
+        setSlideIndex(0);
+      }
+    }, 10000);
+  };
 
-	useEffect(() => {
-		// changeSlide();
-	}, []);
+  const handleIndex = (index) => {
+    setSlideIndex(index);
+    if (isMobile) {
+      const distance = sliderRef.current.getBoundingClientRect().width;
+      setDistance(distance);
+    }
+  };
 
-	const handleIndex = (index) => {
-		setSlideIndex(index);
-		const distance = sliderRef.current.getBoundingClientRect().width;
-		setDistance(distance);
-	};
+  if (isMobile) {
+    return (
+      <MainContainer isMobile={isMobile}>
+        <Container isMobile={isMobile}>
+          <Carousel
+            slideIndex={slideIndex}
+            distance={distance}
+            isMobile={isMobile}
+          >
+            {sliderItems.map((item) => (
+              <Slide key={item.id} >
+                <ImgContainer ref={sliderRef}>
+                  <Image src={item.img} isMobile={isMobile} />
+                </ImgContainer>
+              </Slide>
+            ))}
+          </Carousel>
+          <Flex align style={{ margin: "0 auto" }}>
+            {sliderItems.slice(0,5).map((item, i) => (
+              <Dot
+                key={i}
+                onClick={() => handleIndex(i)}
+                i={i}
+                slideIndex={slideIndex}
+              />
+            ))}
+          </Flex>
+        </Container>
+        <Recomended images={firstSectionImages}  />
+      </MainContainer>
+    );
+  } else {
+    return (
+      <MainContainer>
+        <Container>
+          <Slide>
+            <ImgContainer>
+              <Image src={sliderItems[slideIndex].img} slideIndex />
+            </ImgContainer>
+          </Slide>
 
-	if (isMobile) {
-		return (
-			<MainContainer isMobile>
-				<Container isMobile>
-					<Carousel slideIndex={slideIndex} distance={distance}>
-						{sliderItems.map((item) => (
-							<Slide key={item.id} ref={sliderRef}>
-								<ImgContainer>
-									<Image src={item.img} />
-								</ImgContainer>
-							</Slide>
-						))}
-					</Carousel>
-					<Flex align style={{ margin: "0 auto" }}>
-						{sliderItems.map((item, i) => (
-							<Dot
-								key={i}
-								onClick={() => handleIndex(i)}
-								i={i}
-								slideIndex={slideIndex}
-							/>
-						))}
-					</Flex>
-				</Container>
-				<Recomended images={firstSectionImages} />
-			</MainContainer>
-		);
-	} else {
-		return (
-			<MainContainer>
-				<Container>
-					<Carousel slideIndex={slideIndex} distance={distance}>
-						{sliderItems.map((item) => (
-							<Slide key={item.id} ref={sliderRef}>
-								<ImgContainer>
-									<Image src={item.img} />
-								</ImgContainer>
-							</Slide>
-						))}
-					</Carousel>
-					<WrapperOption>
-						{firstSectionOptions.map((option, index) => (
-							<OptionComponent key={option[index]} onClick={() => handleIndex(0)} option={option} />
-						))}
-					</WrapperOption>
-				</Container>
-				<Recomended images={firstSectionImages} />
-			</MainContainer>
-		);
-	}
+          <WrapperOption>
+            <BorderLine slideIndex={slideIndex} />
+            <Flex>
+              {firstSectionOptions.map((option, index) => (
+                <OptionComponent
+                  key={option[index]}
+                  onClick={() => handleIndex(index)}
+                  option={option}
+                />
+              ))}
+            </Flex>
+          </WrapperOption>
+        </Container>
+        <Recomended images={firstSectionImages} />
+      </MainContainer>
+    );
+  }
 };
 
 export default Center;

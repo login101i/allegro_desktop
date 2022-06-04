@@ -27,11 +27,11 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   }
 }));
 
-const CustomIcon = ({ badgeContent, size = 30, icon, color }) => {
+const CustomIcon = ({ badgeContent, size = 30, icon, color, style }) => {
   const IconName = icon;
 
   return (
-    <Icon>
+    <Icon style={style}>
       {badgeContent ? (
         <StyledBadge badgeContent={badgeContent}>
           <IconName style={{ fontSize: `${size}px` }} />

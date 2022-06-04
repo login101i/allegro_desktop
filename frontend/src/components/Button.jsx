@@ -3,8 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 const ButtonContainer = styled.button`
-	background-color: ${(props) =>
-		props.background ? props.background : "var(--allegroColor)"};
+	background-color: ${(props) => (props.background ? props.background : "var(--allegroColor)")};
 	color: ${(props) => (props.color ? props.color : "white")}};
 	cursor: pointer;
 	outline: none;
@@ -37,44 +36,44 @@ const ButtonContainer = styled.button`
 	}
 `;
 const Icon = styled.div`
-	width: auto;
+  width: auto;
 `;
 
 const Button = ({
-	title,
-	background,
-	icon,
-	children,
-	outlined,
-	color = "white",
-	onClick,
-	width = "250px",
-	borderRadius,
-	style,
-	bold,
-	hovered,
-	height,
-	...rest
+  title,
+  background,
+  icon,
+  children,
+  outlined,
+  color = "white",
+  onClick,
+  width = "250px",
+  borderRadius,
+  style,
+  bold,
+  hovered,
+  height,
+  ...rest
 }) => {
-	return (
-		<ButtonContainer
-			background={background}
-			outlined={outlined}
-			color={color}
-			onClick={onClick}
-			width={width}
-			borderRadius={borderRadius}
-			style={style}
-			bold={bold}
-			hovered={hovered}
-			height={height}
-			{...rest}
-		>
-			<Icon />
-			{title}
-			{children}
-		</ButtonContainer>
-	);
+  return (
+    <ButtonContainer
+      background={background}
+      outlined={outlined}
+      color={color}
+      onClick={onClick}
+      width={width}
+      borderRadius={borderRadius}
+      style={style}
+      bold={bold}
+      hovered={hovered}
+      height={height}
+      {...rest}
+    >
+      <Icon />
+      {title}
+      {children}
+    </ButtonContainer>
+  );
 };
 
 export default Button;

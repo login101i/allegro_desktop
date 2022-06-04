@@ -7,23 +7,26 @@ import {
 	HeaderRight
 } from "./SideBarLeft.styles";
 
-export const HeaderComponent = () => {
-	const [head, setHead] = useState(true);
+export const HeaderComponent = ({showCategories}) => {
+	const [sections, setSections] = useState(true);
 	const [benefits, setbenefits] = useState(false);
 
 	const toggleBenefits = () => {
 		setbenefits(true);
-		setHead(false);
+		setSections(false);
+		showCategories('korzysci')
 	};
 	const togglehead = () => {
 		setbenefits(false);
-		setHead(true);
+		setSections(true);
+		showCategories('dzialy')
+
 	};
 
 	return (
 		<Header>
-		<HeaderLeft head={head}>
-				<SpanText onClick={togglehead} head={head}>
+		<HeaderLeft head={sections}>
+				<SpanText onClick={togglehead} head={sections}>
 					Działy
 				</SpanText>
 			</HeaderLeft>

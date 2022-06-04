@@ -6,7 +6,7 @@ export const Center = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin: ${(props) => (props.isMobile ? "4px" : "0px 50px")};
+  margin: ${(props) => (props.isMobile ? "0px 10px" : "4px 50px")};
 `;
 export const CenterContainer = styled.form`
   display: flex;
