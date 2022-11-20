@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
 
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import { Input } from "@mui/material";
-import { useNavigate, Link } from "react-router-dom";
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import { Input } from '@mui/material';
+import { useNavigate, Link } from 'react-router-dom';
+import { requiredEmail } from '../../../utils/validators';
 
-import { Text, Button, BorderAndTitle, PageWidth } from "../../../components";
-
-import { registerUser } from "../../../redux/actions/userActions";
+import { Text, Button, BorderAndTitle, PageWidth } from '../../../components';
+import { registerUser } from '../../../redux/actions/userActions';
 
 const Container = styled.div`
 	display: grid;
@@ -72,32 +72,44 @@ const Break = styled.div`
 `;
 
 const Register = ({ history }) => {
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 
 	const navigate = useNavigate();
 
+	const disabled = !name || !email || password.length < 6;
+
 	const dispatch = useDispatch();
-	const { isAuthenticated } = useSelector((state) => state.auth);
+	const { isAuthenticated } = useSelector(state => state.auth);
+	console.log(
+		'%cMyProject%cline:83%cisAuthenticated',
+		'color:#fff;background:#ee6f57;padding:3px;border-radius:2px',
+		'color:#fff;background:#1f3c88;padding:3px;border-radius:2px',
+		'color:#fff;background:rgb(3, 38, 58);padding:3px;border-radius:2px',
+		isAuthenticated,
+	);
 
 	useEffect(() => {
 		if (isAuthenticated) {
-			navigate("/");
+			navigate('/');
 		}
 	}, [isAuthenticated, navigate]);
 
-	const handleRegister = () => {
-		const body = {
-			name,
-			email,
-			password
-		};
-		console.log(body);
+	const body = {
+		name,
+		email,
+		password,
+	};
+	console.log(body);
 
-		dispatch(registerUser(body));
-		navigate("/");
+	const handleRegister = async () => {
+		try {
+			dispatch(registerUser(body));
+			navigate('/');
+		} catch (error) {
+			console.log('Error ---- ' + error);
+		}
 	};
 
 	return (
@@ -106,45 +118,40 @@ const Register = ({ history }) => {
 				<Left1>
 					<Text size={30}> Zarejestruj się </Text>
 					<FlexRow>
-						<FormControlLabel
-							control={<Checkbox defaultChecked />}
-							label="Login lub email"
-						/>
-						<FormControlLabel
-							disabled
-							control={<Checkbox />}
-							label="Numer telefonu"
-						/>
+						<FormControlLabel control={<Checkbox defaultChecked />} label='Login lub email' />
+						<FormControlLabel disabled control={<Checkbox />} label='Numer telefonu' />
 					</FlexRow>
 					<FlexCol>
 						<CustomInput
 							fullWidth
-							type="name"
-							placeholder="name"
-							disableunderline="true"
+							type='name'
+							placeholder='name'
+							disableunderline='true'
 							value={name}
-							onChange={(e) => setName(e.target.value)}
+							onChange={e => setName(e.target.value)}
 						/>
 						<CustomInput
 							fullWidth
-							type="email"
-							placeholder="email"
-							disableunderline="true"
+							type='email'
+							placeholder='email'
+							disableunderline='true'
 							value={email}
-							onChange={(e) => setEmail(e.target.value)}
+							onChange={e => setEmail(e.target.value)}
 						></CustomInput>
 						<CustomInput
 							fullWidth
-							type="password"
-							placeholder="Hasło"
+							type='password'
+							placeholder='Hasło'
 							disableUnderline={true}
 							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-							endAdornment={<BorderAndTitle title={"pokaż"} />}
+							onChange={e => setPassword(e.target.value)}
+							endAdornment={<BorderAndTitle title={'pokaż'} />}
 						></CustomInput>
 					</FlexCol>
 					<FlexRowBetween>
-						<Button onClick={handleRegister}>Zarejestruj się</Button>
+						<Button onClick={handleRegister} disabled={disabled}>
+							Zarejestruj się
+						</Button>
 					</FlexRowBetween>
 					<FlexRow>
 						<Break />
@@ -152,8 +159,8 @@ const Register = ({ history }) => {
 						<Break />
 					</FlexRow>
 					<FlexRowBetween>
-						<Button background="lightBlue">Faebook</Button>
-						<Button outlined background="white" color="darkGrey">
+						<Button background='lightBlue'>Faebook</Button>
+						<Button outlined background='white' color='darkGrey'>
 							Google
 						</Button>
 					</FlexRowBetween>
@@ -162,16 +169,15 @@ const Register = ({ history }) => {
 				<Left2>
 					<FlexRow>
 						<Text bold>Masz już konto?</Text>
-						<Link to="/login">
-							<BorderAndTitle title="Zaloguj się" />
+						<Link to='/login'>
+							<BorderAndTitle title='Zaloguj się' />
 						</Link>
 					</FlexRow>
 				</Left2>
 
-				<Text style={{ margin: "10px" }}>
-					Logując się do Allegro akceptujesz Regulamin w aktualnym brzmieniu
-					obowiązującym od dnia 9.12.2021. Informacje o planowanych oraz
-					archiwalnych zmianach Regulaminu są dostępne na stronie.
+				<Text style={{ margin: '10px' }}>
+					Logując się do Allegro akceptujesz Regulamin w aktualnym brzmieniu obowiązującym od dnia 9.12.2021. Informacje
+					o planowanych oraz archiwalnych zmianach Regulaminu są dostępne na stronie.
 				</Text>
 
 				<Right1></Right1>

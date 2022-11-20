@@ -11,7 +11,7 @@ const connectDataBase = () => {
 			// useCreateIndex: true,
 		})
 		.then(() => {
-			console.log("Mongo DB connected sucessfully".brightCyan);
+			console.log("Mongo DB connected successfully".brightCyan);
 		})
 		.catch((err) => console.log(err));
 };

@@ -1,43 +1,40 @@
-const User = require("../models/User");
+const User = require('../models/User');
 
-const ErrorHandler = require("../utils/errorHandler");
-const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
+const ErrorHandler = require('../utils/errorHandler');
+const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
-const sendToken = require("../utils/jwtToken");
-const sendEmail = require("../utils/sendEmail");
-const crypto = require("crypto");
+const sendToken = require('../utils/jwtToken');
+const sendEmail = require('../utils/sendEmail');
+const crypto = require('crypto');
 
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 	const { name, email, password } = req.body;
-	console.log(name, email, password);
-
 	const salt = await bcrypt.genSalt(10);
-	const hashedPassword = await bcrypt.hash(req.body.password, salt);
+	const hashedPassword = await bcrypt.hash(password, salt);
 
 	const user = await User.create({
 		name,
 		email,
 		password,
 		avatar:
-			"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxZtlkHFL5gQf7hDz5ZnkBlWT9H0ETbkWCGKb2ijSZHrvq5CBGoVrajFDfc3dPHv8EQfA&usqp=CAU"
+			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxZtlkHFL5gQf7hDz5ZnkBlWT9H0ETbkWCGKb2ijSZHrvq5CBGoVrajFDfc3dPHv8EQfA&usqp=CAU',
 	});
+	const accessToken = jwt.sign(
+		{
+			id: user._id,
+			isAdmin: user.isAdmin,
+		},
+		process.env.JWT_SECRET,
+		{ expiresIn: process.env.JWT_EXPIRES_TIME },
+	);
 
-	//   const accessToken = jwt.sign(
-	//     {
-	//       id: user._id,
-	//       isAdmin: user.isAdmin,
-	//     },
-	//     process.env.JWT_SECRET,
-	//     { expiresIn: process.env.JWT_EXPIRES_TIME }
-	//   );
-
-	//   res.status(201).json({
-	//     success: true,
-	//     accessToken,
-	//     user,
-	//   });
+	res.status(201).json({
+		success: true,
+		accessToken,
+		user,
+	});
 
 	sendToken(user, 201, res);
 });
@@ -45,42 +42,41 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 // api/v1/login
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 	const { email, password } = req.body;
-	console.log("Rejestruję użytkownika")
 
 	// Checks if email and password is entered by user
 	if (!email || !password) {
-		return next(new ErrorHandler("Please enter email & password", 400));
+		return next(new ErrorHandler('Please enter email & password', 400));
 	}
 
 	// Finding user in database
-	const user = await User.findOne({ email }).select("+password");
+	const user = await User.findOne({ email }).select('+password');
 
 	if (!user) {
-		return next(new ErrorHandler("Invalid Email", 401));
+		return next(new ErrorHandler('Invalid Email', 401));
 	}
 
 	// Checks if password is correct or not
-	const validPassword = await bcrypt.compare(password, user.password);
-	console.log(validPassword);
+	const validPassword = await bcrypt.compare(hashedPassword, user.password);
+	console.log(validPassword + 'validPassword');
 
 	if (!password) {
-		return next(new ErrorHandler("Invalid Password", 401));
+		return next(new ErrorHandler('Invalid Password', 401));
 	}
 
-	//   const accessToken = jwt.sign(
-	//     {
-	//       id: user._id,
-	//       isAdmin: user.isAdmin,
-	//     },
-	//     process.env.JWT_SECRET,
-	//     { expiresIn: process.env.JWT_EXPIRES_TIME }
-	//   );
+	const accessToken = jwt.sign(
+		{
+			id: user._id,
+			isAdmin: user.isAdmin,
+		},
+		process.env.JWT_SECRET,
+		{ expiresIn: process.env.JWT_EXPIRES_TIME },
+	);
 
-	//   res.status(201).json({
-	//     success: true,
-	//     accessToken,
-	//     user,
-	//   });
+	res.status(201).json({
+		success: true,
+		accessToken,
+		user,
+	});
 	sendToken(user, 200, res);
 });
 
@@ -88,13 +84,13 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 exports.logout = catchAsyncErrors(async (req, res, next) => {
 	const options = {
 		expires: new Date(Date.now()),
-		httpOnly: true
+		httpOnly: true,
 	};
 
-	res.status(200).cookie("tokenes", null, options).json({
+	res.status(200).cookie('tokenes', null, options).json({
 		success: true,
-		message: "Logged out",
-		user: null
+		message: 'Logged out',
+		user: null,
 	});
 });
 
@@ -103,7 +99,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 	const user = await User.findOne({ email: req.body.email });
 
 	if (!user) {
-		return next(new ErrorHandler("User not found with this email", 404));
+		return next(new ErrorHandler('User not found with this email', 404));
 	}
 
 	// Get reset token
@@ -112,22 +108,20 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 	await user.save({ validateBeforeSave: false });
 
 	// Create reset password url
-	const resetUrl = `${req.protocol}://${req.get(
-		"host"
-	)}/api/v1/password/reset/${resetToken}`;
+	const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/password/reset/${resetToken}`;
 
 	const message = `Your password reset token is as follow:\n\n${resetUrl}\n\nIf you have not requested this email, then ignore it.`;
 
 	try {
 		await sendEmail({
 			email: user.email,
-			subject: "ShopIT Password Recovery",
-			message
+			subject: 'ShopIT Password Recovery',
+			message,
 		});
 
 		res.status(200).json({
 			success: true,
-			message: `Email sent to: ${user.email}`
+			message: `Email sent to: ${user.email}`,
 		});
 	} catch (error) {
 		user.resetPasswordToken = undefined;
@@ -142,27 +136,19 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 // Reset Password   =>  /api/v1/password/reset/:token
 exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 	// Hash URL token
-	const resetPasswordToken = crypto
-		.createHash("sha256")
-		.update(req.params.token)
-		.digest("hex");
+	const resetPasswordToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
 
 	const user = await User.findOne({
 		resetPasswordToken,
-		resetPasswordExpire: { $gt: Date.now() }
+		resetPasswordExpire: { $gt: Date.now() },
 	});
 
 	if (!user) {
-		return next(
-			new ErrorHandler(
-				"Password reset token is invalid or has been expired",
-				400
-			)
-		);
+		return next(new ErrorHandler('Password reset token is invalid or has been expired', 400));
 	}
 
 	if (req.body.password !== req.body.confirmPassword) {
-		return next(new ErrorHandler("Password does not match", 400));
+		return next(new ErrorHandler('Password does not match', 400));
 	}
 
 	// Setup new password
@@ -178,22 +164,22 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
 // Get currently logged in user details   =>   /api/v1/me
 exports.getUserProfile = catchAsyncErrors(async (req, res, next) => {
-	const user = await User.findById(req.user.id);
+	const user = await User.findById(req.user._id);
 
 	res.status(200).json({
 		success: true,
-		user
+		user,
 	});
 });
 
 // Update / Change password   =>  /api/v1/password/update
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
-	const user = await User.findById(req.user.id).select("+password");
+	const user = await User.findById(req.user.id).select('+password');
 
 	// Check previous user password
 	const isMatched = await user.comparePassword(req.body.oldPassword);
 	if (!isMatched) {
-		return next(new ErrorHandler("Old password is incorrect", 400));
+		return next(new ErrorHandler('Old password is inc0rrect', 400));
 	}
 
 	user.password = req.body.password;
@@ -206,7 +192,7 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
 exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 	const newUserData = {
 		name: req.body.name,
-		email: req.body.email
+		email: req.body.email,
 	};
 
 	// Update avatar
@@ -215,12 +201,12 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 	const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
 		new: true,
 		runValidators: true,
-		useFindAndModify: false
+		useFindAndModify: false,
 	});
 
 	res.status(200).json({
 		success: true,
-		message: "User updated successfully"
+		message: 'User updated successfully',
 	});
 });
 
@@ -229,16 +215,14 @@ exports.allUsers = catchAsyncErrors(async (req, res, next) => {
 	// limit to 10 newest Users
 	const query = req.query.new;
 
-	const users = query
-		? await User.find().sort({ _id: -1 }).limit(3)
-		: await User.find();
+	const users = query ? await User.find().sort({ _id: -1 }).limit(3) : await User.find();
 	const numberOfUsers = users.length;
 
 	res.status(200).json({
 		success: true,
-		message: "all users below: ",
+		message: 'all users below: ',
 		numberOfUsers,
-		users
+		users,
 	});
 });
 
@@ -247,14 +231,12 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
 	const user = await User.findById(req.params.id);
 
 	if (!user) {
-		return next(
-			new ErrorHandler(`User does not found with id: ${req.params.id}`)
-		);
+		return next(new ErrorHandler(`User does not found with id: ${req.params.id}`));
 	}
 
 	res.status(200).json({
 		success: true,
-		user
+		user,
 	});
 });
 
@@ -263,17 +245,17 @@ exports.updateUser = catchAsyncErrors(async (req, res, next) => {
 	const newUserData = {
 		name: req.body.name,
 		email: req.body.email,
-		role: req.body.role
+		role: req.body.role,
 	};
 
 	const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
 		new: true,
 		runValidators: true,
-		useFindAndModify: false
+		useFindAndModify: false,
 	});
 
 	res.status(200).json({
-		success: true
+		success: true,
 	});
 });
 
@@ -282,16 +264,14 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
 	const user = await User.findById(req.params.id);
 
 	if (!user) {
-		return next(
-			new ErrorHandler(`User does not found with id: ${req.params.id}`)
-		);
+		return next(new ErrorHandler(`User does not found with id: ${req.params.id}`));
 	}
 
 	await user.remove();
 
 	res.status(200).json({
 		success: true,
-		message: "Użytkownik został usunięty."
+		message: 'Użytkownik został usunięty.',
 	});
 });
 
@@ -304,15 +284,15 @@ exports.getStats = catchAsyncErrors(async (req, res, next) => {
 		const data = await User.aggregate([
 			{
 				$project: {
-					month: { $month: "$createdAt" }
-				}
+					month: { $month: '$createdAt' },
+				},
 			},
 			{
 				$group: {
-					_id: "$month",
-					total: { $sum: 1 }
-				}
-			}
+					_id: '$month',
+					total: { $sum: 1 },
+				},
+			},
 		]);
 		res.status(200).json(data);
 	} catch (err) {

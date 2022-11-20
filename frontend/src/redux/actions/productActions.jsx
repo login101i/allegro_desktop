@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 import {
 	ALL_PRODUCTS_REQUEST,
@@ -10,19 +10,12 @@ import {
 	NEW_PRODUCT_REQUEST,
 	NEW_PRODUCT_SUCCESS,
 	NEW_PRODUCT_FAIL,
-	CLEAR_ERRORS
-} from "../constants/productConstants";
-
+	CLEAR_ERRORS,
+} from '../constants/productConstants';
 
 export const getProducts =
-	(
-		currentPage = 1,
-		keyword = "",
-		price = [1, 10000],
-		category = "",
-		rating = 0
-	) =>
-	async (dispatch) => {
+	(currentPage = 1, keyword = '', price = [1, 10000], category = '', rating = 0) =>
+	async dispatch => {
 		try {
 			dispatch({ type: ALL_PRODUCTS_REQUEST });
 
@@ -37,71 +30,60 @@ export const getProducts =
 			}
 
 			const { data } = await axios.get(link);
-			// console.log(data);
-
-			// console.log(productsLocaly);
 
 			dispatch({
 				type: ALL_PRODUCTS_SUCCESS,
-				payload: data
+				payload: data,
 			});
 		} catch (error) {
 			dispatch({
 				type: ALL_PRODUCTS_FAIL,
-				payload: error.response.data.message
+				payload: error.response.data.message,
 			});
 		}
 	};
 
-export const getProductDetails = (id) => async (dispatch) => {
+export const getProductDetails = id => async dispatch => {
 	try {
 		dispatch({ type: PRODUCT_DETAILS_REQUEST });
-		// console.log(id);
 
 		const { data } = await axios.get(`/api/v1/product/${id}`);
-		// console.log(data);
 
 		dispatch({
 			type: PRODUCT_DETAILS_SUCCESS,
-			payload: data
+			payload: data,
 		});
 	} catch (error) {
 		dispatch({
 			type: PRODUCT_DETAILS_FAIL,
-			payload: "Error hehe"
+			payload: error,
 		});
 	}
 };
 
-export const newProduct = (productData) => async (dispatch) => {
+export const newProduct = productData => async dispatch => {
 	try {
 		dispatch({ type: NEW_PRODUCT_REQUEST });
 
 		const config = {
 			headers: {
-				"Content-Type": "application/json"
-			}
+				'Content-Type': 'application/json',
+			},
 		};
 
-		const { data } = await axios.post(
-			"/api/v1/product/new",
-			productData,
-			config
-		);
+		const { data } = await axios.post('/api/v1/product/new', productData, config);
 
 		dispatch({ type: NEW_PRODUCT_SUCCESS, payload: data });
 	} catch (error) {
-		console.log("to jest erroror");
-		console.log(error);
 		dispatch({
 			type: NEW_PRODUCT_FAIL,
-			payload: error
+			payload: error,
 		});
 	}
 };
 
-export const clearErrors = () => async (dispatch) => {
+export const clearErrors = () => async dispatch => {
 	dispatch({
-		type: CLEAR_ERRORS
+		type: CLEAR_ERRORS,
 	});
 };

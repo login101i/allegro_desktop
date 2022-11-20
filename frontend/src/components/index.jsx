@@ -1,24 +1,29 @@
-import AllegroFooter from "./AllegroFooter";
-import BorderAndTitle from "./BorderAndTitle";
-import Button from "./Button";
-import CartPlusMinus from "./CartPlusMinus";
-import CustomIcon from "./CustomIcon";
-import CustomInput from "./CustomInput";
-import DirectionArrows from "./DirectionArrows";
-import Flex from "./Flex";
-import ImageComponent from "./ImageComponent";
-import Loader from "./Loader";
-import MenuContentBox from "./MenuContentBox";
-import CartTitle from "./CartTitle";
-import Navbar from "./navbar/Navbar";
-import NavbarPage from "./NavbarPage";
-import OptionComponent from "./Option";
-import PageWidth from "./PageWidth";
-import PathComponent from "./PathComponent";
-import ProductContainer from "./ProductContainer";
-import Shipping from "./Shipping";
-import Text from "./Text";
-import PriceDiscount from "./PriceDiscount";
+import AllegroFooter from './allegroFooter/AllegroFooter';
+import BorderAndTitle from './borderAndTitle/BorderAndTitle';
+import Button from './button/Button';
+import CartPlusMinus from './cartPlusMinus/CartPlusMinus';
+import CustomIcon from './customIcon/CustomIcon';
+import CustomInput from './customInput/CustomInput';
+import DirectionArrows from './directArrows/DirectionArrows';
+import Flex from './flex/Flex';
+import ImageComponent from './imageComponent/ImageComponent';
+import Loader from './loader/Loader';
+import MenuContentBox from './menuContainerBox/MenuContentBox';
+import CartTitle from './cartTitle/CartTitle';
+import Navbar from './navbar/Navbar';
+import NavbarPage from './navbarPage/NavbarPage';
+import OptionComponent from './option/Option';
+import PageWidth from './pageWidth/PageWidth';
+import PathComponent from './pathComponent/PathComponent';
+import ProductContainer from './productContainer/ProductContainer';
+import Shipping from './shipping/Shipping';
+import Text from './text/Text';
+import PriceDiscount from './priceDiscount/PriceDiscount';
+import CountDownTimer from './countDownTimer/CountDownTimer';
+import Badged from './badged/Badged';
+import PayPalButton from './payPalButton/PayPalButton';
+import Slide from './slide/Slide';
+import Spacer from './spacer/Spacer.styles';
 
 export {
 	AllegroFooter,
@@ -41,5 +46,10 @@ export {
 	Shipping,
 	Text,
 	DirectionArrows,
-	PriceDiscount
+	PriceDiscount,
+	CountDownTimer,
+	Badged,
+	PayPalButton,
+	Slide,
+	Spacer,
 };

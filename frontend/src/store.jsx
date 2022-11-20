@@ -22,10 +22,10 @@ const reducer = combineReducers({
 
 let initialState = {};
 
-const middlware = [thunk];
+const middleware = [thunk];
 
 export const store = createStore(
 	reducer,
 	initialState,
-	composeWithDevTools(applyMiddleware(...middlware))
+	composeWithDevTools(applyMiddleware(...middleware))
 );

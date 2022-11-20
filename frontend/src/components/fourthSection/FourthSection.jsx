@@ -25,12 +25,8 @@ const FourthSection = () => {
 			</Bar>
 
 			<ProductContainer1>
-				{categoryArray.map((okazja) => (
-					<ProductContainer
-						key={okazja.id}
-						img={okazja.img}
-						price={okazja.price}
-					/>
+				{categoryArray.map(okazja => (
+					<ProductContainer key={okazja.id} img={okazja.SmartImage} price={okazja.price} />
 				))}
 			</ProductContainer1>
 		</Container>

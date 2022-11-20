@@ -64,7 +64,6 @@ export const AllegroLocal = () => {
 	}, [dispatch, error, success]);
 
 	dispatch(localVersion());
-	console.log("wysylam local");
 
 	const [stateSellingType, dispatchSellingTypeReducer] = useReducer(
 		typeOfSelligReducer,
