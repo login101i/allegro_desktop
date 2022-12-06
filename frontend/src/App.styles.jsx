@@ -8,7 +8,7 @@ export const GreyBackground = styled.div`
 	align-items: ${props => (props.isMobile ? 'left' : 'center')};
 	justify-content: flex-start;
 	position: relative;
-	overflow-x: hidden !important;
+	overflow: hidden !important;
 	height: auto;
 `;
 

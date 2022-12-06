@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const SectionContainer = styled.div`
 	display: flex;
@@ -7,13 +7,14 @@ export const SectionContainer = styled.div`
 	justify-content: flex-start;
 	min-width: 220px;
 	max-width: ${props => props.isMobile && '200px'};
-
 	align-items: center;
 	width: 100%;
 `;
+
 export const SectionListingContainer = styled(SectionContainer)`
 	border-bottom: 1px solid lightGrey;
 `;
+
 export const ImageContainer = styled.div`
 	height: 80%;
 	display: flex;
@@ -26,7 +27,12 @@ export const ImageContainer = styled.div`
 
 export const ImageListingsContainer = styled(ImageContainer)`
 	width: 25%;
+	cursor:pointer,
+	&:hover {
+		filter: brightness(90%);
+	}
 `;
+
 export const Image = styled.img`
 	width: 100%;
 	height: 100%;

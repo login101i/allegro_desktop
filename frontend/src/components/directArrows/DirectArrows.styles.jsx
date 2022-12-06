@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 export const DirectionButton = styled.button`
 	height: 42px;
 	width: 42px;
@@ -12,7 +14,6 @@ export const DirectionButton = styled.button`
 	position: absolute;
 	top: 50%;
 	transform: translate(0%, -65%);
-
 	left: ${props => props.direction === 'left' && '20px'};
 	right: ${props => props.direction === 'right' && '40px'};
 	z-index: 2;
@@ -28,7 +29,6 @@ export const DirectionButton = styled.button`
 
 export const Wrapper = styled.div`
 	display: flex;
-	width: 100%;
 	transform: translateX(${props => props.slideIndex * -450}px);
 	transition: all 0.5s ease-in-out;
 	position: relative;
@@ -41,15 +41,13 @@ export const Container = styled.div`
 	background-color: white;
 	align-items: flex-start;
 	justify-content: center;
-	// padding: 10px 15px;
 	overflow: hidden;
 	position: relative;
 	flex: 1;
 	padding: 10px;
 	overflow-x: ${props => (props.isMobile ? ' scroll' : 'none')};
 	transition: 0.3s;
-	height: ${props => (props.isMobile ? '100px' : '300px')};
-
+	height: ${props => props.isMobile && '200px'};
 	&: hover ${DirectionButton} {
 		display: block;
 	}

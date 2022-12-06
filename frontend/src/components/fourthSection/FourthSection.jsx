@@ -1,35 +1,24 @@
-import { useState } from "react";
-import { ProductContainer } from "../../components";
-import { fourthSectionData, occasions } from "../../utils/data";
-import {
-	Container,
-	Bar,
-	BarTitle,
-	ProductContainer1
-} from "./FourthSection.styles";
+import { useState } from 'react';
+import { ProductContainer } from '../../components';
+import { fourthSectionData, occasions } from '../../utils/data';
+import { Container } from './FourthSection.styles';
+import { DirectionArrows } from '../../components';
 
 const FourthSection = () => {
 	const [categoryArray, setCategoryArray] = useState(occasions);
 
-	const handleArray = (array) => {
+	const handleArray = array => {
 		setCategoryArray(array);
 	};
-	return (
-		<Container>
-			<Bar>
-				{fourthSectionData.map(({ id, array, title }) => (
-					<BarTitle key={id} onClick={() => handleArray(array)}>
-						{title}
-					</BarTitle>
-				))}
-			</Bar>
 
-			<ProductContainer1>
-				{categoryArray.map(okazja => (
-					<ProductContainer key={okazja.id} img={okazja.SmartImage} price={okazja.price} />
+	return (
+		<DirectionArrows containerIndex={4}>
+			<Container>
+				{categoryArray.map((item, index) => (
+					<ProductContainer key={item.id} img={item.SmartImage} price={item.price} index={index} />
 				))}
-			</ProductContainer1>
-		</Container>
+			</Container>
+		</DirectionArrows>
 	);
 };
 

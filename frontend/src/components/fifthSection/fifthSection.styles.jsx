@@ -4,17 +4,16 @@ export const Container = styled.div`
 	justify-content: space-between;
 	flex-direction: column;
 	align-items: center;
-	margin-top: 16px;
+	margin: 16px 0px;
 	height: 100%;
 	background-color: white;
 	width: 100%;
 	overflow: hidden;
-	border: 2px solid green;
 `;
 export const BackgroundImage = styled.img`
 	width: 100%;
 	object-fit: contain;
-	height: 600px;
+	height: auto;
 `;
 export const Image = styled.img`
 	width: 100vw;

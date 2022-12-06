@@ -5,16 +5,18 @@ import DirectionArrows from '../directArrows/DirectionArrows';
 
 const ThirdSection = () => {
 	return (
-		<DirectionArrows>
-			<Container>
+		<Container>
+			<DirectionArrows containerIndex={1}>
 				{thirdSectionImages.map(item => (
 					<ItemContainer key={item.id}>
 						<Image src={item.img} />
-						<Text>{item.title}</Text>
+						<Text wrap textAlign hovered>
+							{item.title}
+						</Text>
 					</ItemContainer>
 				))}
-			</Container>
-		</DirectionArrows>
+			</DirectionArrows>
+		</Container>
 	);
 };
 

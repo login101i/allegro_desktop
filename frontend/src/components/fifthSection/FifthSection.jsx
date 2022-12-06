@@ -25,9 +25,9 @@ const FifthSection = () => {
 	return (
 		<Container>
 			{!isMobile && <BackgroundImage src={PsiSmak} />}
-			<Flex space >
+			<Flex space column={isMobile}>
 				{loading ? <Loader /> : <Left />}
-				{loading ? <Loader /> : <Right/>}
+				{loading ? <Loader /> : <Right />}
 			</Flex>
 		</Container>
 	);

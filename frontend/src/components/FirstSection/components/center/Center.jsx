@@ -7,17 +7,7 @@ import Recommended from '../Recommended/Recommended';
 import { OptionComponent, Flex } from '../../..';
 import { firstSectionImages, firstSectionOptions } from '../../../../utils/data';
 
-import {
-	MainContainer,
-	WrapperOption,
-	Carousel,
-	Slide,
-	ImgContainer,
-	Image,
-	Container,
-	Dot,
-	BorderLine,
-} from './Center.styles';
+import { MainContainer, WrapperOption, Carousel, Slide, ImgContainer, Image, Container, Dot, BorderLine } from './Center.styles';
 
 let myCounter = 0;
 let timeout = null;
@@ -83,7 +73,6 @@ const Center = () => {
 							<Image src={sliderItems[slideIndex].img} slideIndex />
 						</ImgContainer>
 					</Slide>
-
 					<WrapperOption>
 						<BorderLine slideIndex={slideIndex} />
 						<Flex>
@@ -93,7 +82,7 @@ const Center = () => {
 						</Flex>
 					</WrapperOption>
 				</Container>
-				<Recommended images={firstSectionImages} />
+				<Recommended images={firstSectionImages} containerIndex={2} />
 			</MainContainer>
 		);
 	}

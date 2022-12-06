@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Flex, Text, ProductContainer, BorderAndTitle } from '../../../../components';
-import { Container, ScrollContainer } from './Right.styles';
+import { Container, ScrollContainer } from '../Container.styles';
 
 const Right = ({ isMobile }) => {
 	const { products } = useSelector(state => state.products);

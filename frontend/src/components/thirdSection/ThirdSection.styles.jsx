@@ -1,29 +1,31 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
-  width: 100vw;
-  align-items: center;
-  background-color: white;
-  overflow-x: scroll;
-  scrollbar-color: rebeccapurple green;
-  overflow-x: hidden;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 16px;
 `;
 
 export const ItemContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  margin: 2px 10px;
-  max-width: 130px;
-  height: 160px;
-  scrollbar-color: rebeccapurple green;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	margin: 2px 10px;
+	max-width: 130px;
+	height: 130px;
+	scrollbar-color: green;
+	transition: 0.3s ease-in-out;
+	padding: 10px 5px;
+	&:hover {
+		filter: brightness(90%);
+	}
 `;
 
 export const Image = styled.img`
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
 `;

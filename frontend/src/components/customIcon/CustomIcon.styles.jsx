@@ -12,6 +12,10 @@ export const Icon = styled.div`
 	text-align: center;
 	position: relative;
 	margin-left: 10px;
+	transition: 0.2s ease-in-out;
+	&:hover {
+		filter: brightness(85%);
+	}
 `;
 
 export const StyledBadge = styled(Badge)(({ theme }) => ({

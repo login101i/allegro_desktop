@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Text, BorderAndTitle, ProductContainer } from '../../../../components';
-import { Container, ScrollContainer } from './Left.styles';
+import { Container, ScrollContainer } from '../Container.styles';
 
 const Left = ({ isMobile }) => {
 	const { products } = useSelector(state => state.products);

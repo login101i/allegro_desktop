@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import PayPalLogo from '../../assets/pictures/PayPalLogo.png';
+import { Container, Button, PayPalText, Logo } from './payPallButton.styles';
 
 const PayPalButton = ({ isPaypalShow, handlePayPalMove, payPalMove }) => {
 	return (
