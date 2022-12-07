@@ -14,7 +14,7 @@ const PriceDiscount = ({ discount, oldPrice, price, description, extended = true
 					)}
 				</FlexRow>
 				<Price>
-					{price.toString().split('.')[0]},{''}
+					{price.toString().split('.')[0]}
 					<PriceEnd>{price.toString().split('.')[1]} zł</PriceEnd>
 				</Price>
 
@@ -23,7 +23,7 @@ const PriceDiscount = ({ discount, oldPrice, price, description, extended = true
 						{' '}
 						<FlexRow>
 							<Smart src={SmartImage} />
-							<Text>z kurierem</Text>
+							<Text>z kurierem taniej</Text>
 						</FlexRow>
 					</>
 				)}

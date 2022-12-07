@@ -1,24 +1,17 @@
-import { useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
-import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
-import LoginImage from "../../../../assets/pictures/LoginImage.png";
-import { logoutUser } from "../../../../redux/actions/userActions";
+import LoginImage from '../../../../assets/pictures/LoginImage.png';
+import { logoutUser } from '../../../../redux/actions/userActions';
 
-import {
-	Flex,
-	Text,
-	Button,
-	MenuContentBox,
-	CustomIcon,
-	OptionComponent
-} from "../../../../components";
+import { Flex, Text, Button, MenuContentBox, CustomIcon, OptionComponent } from '../../../../components';
 
 import {
 	StyledBadge,
@@ -29,41 +22,40 @@ import {
 	MenuLogin,
 	MenuLoginContainer,
 	LogInImage,
-	Right
-} from "./RightPart.styles";
+	Right,
+} from './RightPart.styles';
 
 export const RightPart = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 
-
-	const handleClick = (event) => {
+	const handleClick = event => {
 		setOpenMenu(!openMenu);
 	};
 
-	const { isAuthenticated, user } = useSelector((state) => state.auth);
+	const { isAuthenticated, user } = useSelector(state => state.auth);
 
-	const closeOpenMenus = (e) => {
+	const closeOpenMenus = e => {
 		if (catMenu.current && openMenu && !catMenu.current.contains(e.target)) {
 			setOpenMenu(false);
 		}
 	};
 
-	document.addEventListener("mousedown", closeOpenMenus);
+	document.addEventListener('mousedown', closeOpenMenus);
 
-	const [optionMenu, setOptionMenu] = useState("zakupy");
+	const [optionMenu, setOptionMenu] = useState('zakupy');
 	const catMenu = useRef(null);
 
-	const handleChangeMenu = (value) => {
-		if (value === "sprzedaz") setOptionMenu("sprzedaz");
-		else if (value === "konto") setOptionMenu("konto");
-		else setOptionMenu("zakupy");
+	const handleChangeMenu = value => {
+		if (value === 'sprzedaz') setOptionMenu('sprzedaz');
+		else if (value === 'konto') setOptionMenu('konto');
+		else setOptionMenu('zakupy');
 	};
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const handleLogout = () => {
 		dispatch(logoutUser());
-		navigate("/");
+		navigate('/');
 	};
 
 	return (
@@ -75,146 +67,58 @@ export const RightPart = () => {
 			{isAuthenticated ? (
 				<>
 					<StyledBadge badgeContent={2}>
-						<Text>{user.name}</Text>
+						<Text>{user?.name}</Text>
 					</StyledBadge>
 
 					<IconDown ref={catMenu}>
-						<ArrowBackIosIcon
-							onClick={handleClick}
-							style={{ fontSize: "15px", position: "relative" }}
-						/>
+						<ArrowBackIosIcon onClick={handleClick} style={{ fontSize: '15px', position: 'relative' }} />
 
 						<MenuLogged openMenu={openMenu} ref={catMenu}>
 							<AccountNavbar>
-								<OptionComponent
-									size="17px"
-									option="zakupy"
-									borderBottom={true}
-									upperCase
-									onClick={() => handleChangeMenu("zakupy")}
-								/>
-								<OptionComponent
-									size="17px"
-									option="sprzedaż"
-									borderBottom={true}
-									upperCase
-									onClick={() => handleChangeMenu("sprzedaz")}
-								/>
-								<OptionComponent
-									size="17px"
-									option="konto"
-									borderBottom={true}
-									upperCase
-									onClick={() => handleChangeMenu("konto")}
-								/>
+								<OptionComponent size='17px' option='zakupy' borderBottom={true} upperCase onClick={() => handleChangeMenu('zakupy')} />
+								<OptionComponent size='17px' option='sprzedaż' borderBottom={true} upperCase onClick={() => handleChangeMenu('sprzedaz')} />
+								<OptionComponent size='17px' option='konto' borderBottom={true} upperCase onClick={() => handleChangeMenu('konto')} />
 							</AccountNavbar>
 
 							<AccountMainCont>
-								<MenuContentBox
-									subTitles={["Wyloguj się"]}
-									style={{ marginBottom: "0px" }}
-									onClick={handleLogout}
-								/>
+								<MenuContentBox subTitles={['Wyloguj się']} style={{ marginBottom: '0px' }} onClick={handleLogout} />
 
-								{optionMenu === "zakupy" && (
+								{optionMenu === 'zakupy' && (
 									<>
 										<MenuContentBox
-											title="Zakupy na allegro"
-											subTitles={[
-												"Moje zakupy",
-												"Licytuję",
-												"Obserwowane",
-												"oceń produkty",
-												"oceń sprzedawcę"
-											]}
+											title='Zakupy na allegro'
+											subTitles={['Moje zakupy', 'Licytuję', 'Obserwowane', 'oceń produkty', 'oceń sprzedawcę']}
 										/>
-										<MenuContentBox
-											title="Zakupy na allegro lokakbue"
-											subTitles={[
-												"Moje zakupy",
-												"Licytuję",
-												"Zarezewowane dla mnie"
-											]}
-										/>
-										<MenuContentBox
-											title="Programy zniżkowe"
-											subTitles={[
-												"Allegro Smart!",
-												"Centrum kuponów",
-												"Twoje monety i kupony"
-											]}
-										/>
-										<MenuContentBox
-											title="Allegro finanse"
-											subTitles={["Allegro Pay"]}
-										/>
+										<MenuContentBox title='Zakupy na allegro lokakbue' subTitles={['Moje zakupy', 'Licytuję', 'Zarezewowane dla mnie']} />
+										<MenuContentBox title='Programy zniżkowe' subTitles={['Allegro Smart!', 'Centrum kuponów', 'Twoje monety i kupony']} />
+										<MenuContentBox title='Allegro finanse' subTitles={['Allegro Pay']} />
 									</>
 								)}
-								{optionMenu === "sprzedaz" && (
+								{optionMenu === 'sprzedaz' && (
 									<>
 										<MenuContentBox
-											title="Sprzedaż na Allegro Lokalnie"
+											title='Sprzedaż na Allegro Lokalnie'
 											subTitles={[
 												{
-													subTitle: "Wystaw przedmiot",
-													link: "/oferty/wystaw/kup-teraz"
-												}
+													subTitle: 'Wystaw przedmiot',
+													link: '/oferty/wystaw/kup-teraz',
+												},
 											]}
 										/>
-										<MenuContentBox
-											title="Zakupy na allegro lokakbue"
-											subTitles={[
-												"Moje zakupy",
-												"Licytuję",
-												"Zarezewowane dla mnie"
-											]}
-										/>
-										<MenuContentBox
-											title="Programy zniżkowe"
-											subTitles={[
-												"Allegro Smart!",
-												"Centrum kuponów",
-												"Twoje monety i kupony"
-											]}
-										/>
-										<MenuContentBox
-											title="Allegro finanse"
-											subTitles={["Allegro Pay"]}
-										/>
+										<MenuContentBox title='Zakupy na allegro lokakbue' subTitles={['Moje zakupy', 'Licytuję', 'Zarezewowane dla mnie']} />
+										<MenuContentBox title='Programy zniżkowe' subTitles={['Allegro Smart!', 'Centrum kuponów', 'Twoje monety i kupony']} />
+										<MenuContentBox title='Allegro finanse' subTitles={['Allegro Pay']} />
 									</>
 								)}
-								{optionMenu === "konto" && (
+								{optionMenu === 'konto' && (
 									<>
 										<MenuContentBox
-											title="Twoje konto"
-											subTitles={[
-												"Moje zakupy",
-												"Licytuję",
-												"Obserwowane",
-												"oceń produkty",
-												"oceń sprzedawcę"
-											]}
+											title='Twoje konto'
+											subTitles={['Moje zakupy', 'Licytuję', 'Obserwowane', 'oceń produkty', 'oceń sprzedawcę']}
 										/>
-										<MenuContentBox
-											title="Zakupy na allegro lokakbue"
-											subTitles={[
-												"Moje zakupy",
-												"Licytuję",
-												"Zarezewowane dla mnie"
-											]}
-										/>
-										<MenuContentBox
-											title="Programy zniżkowe"
-											subTitles={[
-												"Allegro Smart!",
-												"Centrum kuponów",
-												"Twoje monety i kupony"
-											]}
-										/>
-										<MenuContentBox
-											title="Allegro finanse"
-											subTitles={["Allegro Pay"]}
-										/>
+										<MenuContentBox title='Zakupy na allegro lokakbue' subTitles={['Moje zakupy', 'Licytuję', 'Zarezewowane dla mnie']} />
+										<MenuContentBox title='Programy zniżkowe' subTitles={['Allegro Smart!', 'Centrum kuponów', 'Twoje monety i kupony']} />
+										<MenuContentBox title='Allegro finanse' subTitles={['Allegro Pay']} />
 									</>
 								)}
 							</AccountMainCont>
@@ -225,10 +129,7 @@ export const RightPart = () => {
 				<>
 					<Text> Moje allegro</Text>
 					<IconDown onClick={handleClick}>
-						<ArrowBackIosIcon
-							onClick={handleClick}
-							style={{ fontSize: "30px", position: "relative" }}
-						/>
+						<ArrowBackIosIcon onClick={handleClick} style={{ fontSize: '30px', position: 'relative' }} />
 
 						<MenuLogin openMenu={openMenu} ref={catMenu}>
 							<MenuLoginContainer>
@@ -238,17 +139,19 @@ export const RightPart = () => {
 									Witaj w allegro
 								</Text>
 								<Text
-									subTitle="Zaloguj się i zobacz swoje zakupy, obserwowane oferty i
-											powiadomienia. W Allegro jesteś u siebie!"
+									wrap = "true"
+									textAlign
+									subTitle='Zaloguj się i zobacz swoje zakupy, obserwowane oferty i
+											powiadomienia. W Allegro jesteś u siebie!'
 								></Text>
-								<Link to="/login">
+								<Link to='/login'>
 									<Button>Zaloguj się</Button>
 								</Link>
 
 								<Flex>
 									<Text> Nie masz konta? </Text>
-									<Link to="/register">
-										<Text color="green"> Zarejestruj się</Text>
+									<Link to='/register'>
+										<Text color='green'> Zarejestruj się</Text>
 									</Link>
 								</Flex>
 							</MenuLoginContainer>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { TimeContainer, TimeItem, Colon } from './CountTimerTimer.styles';
+import { TimeContainer, TimeItem, Colon } from './CountDownTimer.styles';
 
 const CountDownTimer = () => {
 	const [hours, setHours] = useState('-');
@@ -15,6 +15,10 @@ const CountDownTimer = () => {
 	const [endDate, setEndDate] = useState(dateToEnd);
 	let countDownDate = new Date(endDate).getTime();
 
+	useEffect(() => {
+		countDownFunction();
+	}, [minutes, hours]);
+
 	const countDownFunction = () => {
 		setInterval(() => {
 			var now = new Date().getTime();
@@ -28,10 +32,6 @@ const CountDownTimer = () => {
 			setSeconds(seconds);
 		}, 1000);
 	};
-
-	useEffect(() => {
-		countDownFunction();
-	}, [minutes, hours]);
 
 	return (
 		<TimeContainer>

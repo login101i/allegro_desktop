@@ -1,24 +1,24 @@
-
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.div`
 	display: flex;
 	justify-content: space-between;
 	padding: 0px;
 	width: 94%;
-	flex-direction: ${(props) => (props.isMobile ? "column" : "row")};
+	flex-direction: ${props => (props.isMobile ? 'column' : 'row')};
 `;
 
 export const Left = styled.div`
-	flex: 4;
+	flex: 3;
 	width: 100%;
-	margin: ${(props) => (props.isMobile ? "30px" : "0px")};
+	margin: ${props => (props.isMobile ? '30px' : '0px')};
 `;
 
 export const MainImage = styled.img`
-	width: ${(props) => (props.isMobile ? "50vw" : "100%")};
+	width: ${props => (props.isMobile ? '50vw' : '100%')};
 	max-height: 200px;
 	object-fit: contain;
+	margin-top: 40px;
 `;
 export const ImagesThumbnails = styled.div`
 	width: 100%;
@@ -31,13 +31,13 @@ export const ImageThumb = styled.img`
 `;
 
 export const Right = styled.div`
-	flex: 3;
+	flex: 2;
 `;
 export const IconContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	color: ${(props) => props.theme.colors.linkColor};
+	color: ${props => props.theme.colors.linkColor};
 	text-transform: uppercase;
 	font-size: 20px;
 `;

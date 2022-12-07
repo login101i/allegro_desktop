@@ -39,7 +39,6 @@ export const Listing = () => {
 		dispatch(
 			getProducts(currentPage, keyword, filteredPrice, category, rating)
 		);
-		console.log("Pobieram produkty.");
 	}, [dispatch, currentPage, keyword, category, rating]);
 
 	// function setCurrentPageNo(pageNumber) {

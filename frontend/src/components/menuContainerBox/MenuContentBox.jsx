@@ -2,21 +2,10 @@ import Text from '../text/Text';
 import { useNavigate } from 'react-router-dom';
 import { Container } from './MenuContainerBox.styles';
 
-const MenuContentBox = ({
-	title,
-	subTitles,
-	style,
-	onClick,
-	color,
-	hovered = false,
-	borderBottom = false,
-
-	text,
-	bold = false,
-}) => {
+const MenuContentBox = ({ title, subTitles, style, onClick, borderBottom = false, text, bold = false }) => {
 	const navigate = useNavigate();
 	return (
-		<Container style={style}>
+		<Container style={style} onClick={onClick}>
 			<Text bold={bold} title={title} marginTop='4px'>
 				{text}
 			</Text>

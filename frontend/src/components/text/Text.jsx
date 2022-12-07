@@ -5,7 +5,7 @@ const Text = ({
 	marginTop,
 	bold,
 	children,
-	subTitle = "",
+	subTitle = '',
 	color,
 	borderBottom,
 	hovered,
@@ -14,7 +14,8 @@ const Text = ({
 	textAlign,
 	style,
 	background,
-	fullWidth
+	fullWidth,
+	firstSmall,
 }) => {
 	return (
 		<TextContainer
@@ -29,6 +30,8 @@ const Text = ({
 			textAlign={textAlign}
 			style={style}
 			background={background}
+			fullWidth={fullWidth}
+			firstSmall={firstSmall}
 		>
 			{title}
 			{children}

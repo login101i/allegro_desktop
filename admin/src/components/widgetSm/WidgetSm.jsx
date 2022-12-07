@@ -21,7 +21,6 @@ export default function WidgetSm({ accessToken }) {
       }
     };
     getNewUsers();
-    console.log(newUsers);
   }, []);
 
   return (

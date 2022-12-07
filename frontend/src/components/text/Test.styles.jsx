@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const TextContainer = styled.div`
 	font-size: 16px;
 	font-size: ${props => props.size}px;
-	font-family: Roboto, sans-serif;pathCom
+	font-family: Roboto, sans-serif;
 	color: ${props => (props.color ? props.color : props.theme.colors.textColor)};
 	font-weight: ${props => (props.bold ? '900' : '600')};
 	padding: 2px;
@@ -24,7 +24,7 @@ export const TextContainer = styled.div`
 		cursor: ${props => props.hovered && 'pointer'};
 	}
 	:first-letter {
-		text-transform: capitalize;
+		text-transform: ${props => (props.firstSmall ? 'none' : 'capitalize')};
 	}
 `;
 

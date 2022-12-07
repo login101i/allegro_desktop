@@ -4,7 +4,7 @@ export const Container = styled.div`
 	display: flex;
 	align-items: center;
 	width: 100%;
-	margin-bottom: 16px;
+	margin-bottom: 20px;
 `;
 
 export const ItemContainer = styled.div`
@@ -13,7 +13,7 @@ export const ItemContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
-	margin: 2px 10px;
+	margin: 20px 10px;
 	max-width: 130px;
 	height: 130px;
 	scrollbar-color: green;

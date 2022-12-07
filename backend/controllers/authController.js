@@ -30,18 +30,14 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 		{ expiresIn: process.env.JWT_EXPIRES_TIME },
 	);
 
-	res.status(201).json({
-		success: true,
-		accessToken,
-		user,
-	});
-
 	sendToken(user, 201, res);
 });
 
 // api/v1/login
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 	const { email, password } = req.body;
+	const salt = await bcrypt.genSalt(10);
+	const hashedPassword = await bcrypt.hash(password, salt);
 
 	// Checks if email and password is entered by user
 	if (!email || !password) {
@@ -57,7 +53,6 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 
 	// Checks if password is correct or not
 	const validPassword = await bcrypt.compare(hashedPassword, user.password);
-	console.log(validPassword + 'validPassword');
 
 	if (!password) {
 		return next(new ErrorHandler('Invalid Password', 401));
@@ -72,11 +67,6 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 		{ expiresIn: process.env.JWT_EXPIRES_TIME },
 	);
 
-	res.status(201).json({
-		success: true,
-		accessToken,
-		user,
-	});
 	sendToken(user, 200, res);
 });
 
@@ -179,7 +169,7 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
 	// Check previous user password
 	const isMatched = await user.comparePassword(req.body.oldPassword);
 	if (!isMatched) {
-		return next(new ErrorHandler('Old password is inc0rrect', 400));
+		return next(new ErrorHandler('Old password is incorrect', 400));
 	}
 
 	user.password = req.body.password;

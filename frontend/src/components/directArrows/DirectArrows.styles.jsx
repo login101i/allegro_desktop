@@ -27,19 +27,12 @@ export const DirectionButton = styled.button`
 	}
 `;
 
-export const Wrapper = styled.div`
-	display: flex;
-	transform: translateX(${props => props.slideIndex * -450}px);
-	transition: all 0.5s ease-in-out;
-	position: relative;
-`;
-
 export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 	background-color: white;
-	align-items: flex-start;
+	align-items: ${props => (props.align ? "center" : 'flex-start')};
 	justify-content: center;
 	overflow: hidden;
 	position: relative;
@@ -51,4 +44,11 @@ export const Container = styled.div`
 	&: hover ${DirectionButton} {
 		display: block;
 	}
+`;
+
+export const Wrapper = styled.div`
+	display: flex;
+	transform: translateX(${props => props.slideIndex * -450}px);
+	transition: all 0.5s ease-in-out;
+	position: relative;
 `;

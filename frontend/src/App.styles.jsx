@@ -9,7 +9,6 @@ export const GreyBackground = styled.div`
 	justify-content: flex-start;
 	position: relative;
 	overflow: hidden !important;
-	height: auto;
 `;
 
 export const Container = styled.div`
@@ -17,6 +16,6 @@ export const Container = styled.div`
 	flex-direction: column;
 	align-items: ${props => (props.isMobile ? 'auto' : 'center')};
 	justify-content: center;
-	width: ${props => (props.isMobile ? 'auto' : '1600px')};
-	overflow: hidden;
+	max-width: ${props => (props.isMobile ? 'auto' : '1600px')};
+	// overflow: hidden;
 `;

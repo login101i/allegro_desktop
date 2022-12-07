@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const SectionContainer = styled.div`
 	display: flex;
 	flex-direction: ${props => (props.row ? 'row' : 'column')};
-	height: 100%;
+	height: 90%;
 	justify-content: flex-start;
 	min-width: 220px;
 	max-width: ${props => props.isMobile && '200px'};
@@ -22,7 +22,7 @@ export const ImageContainer = styled.div`
 	justify-content: center;
 	max-width: 85%;
 	padding-bottom: 10px;
-	max-height: 230px;
+	height: 180px;
 `;
 
 export const ImageListingsContainer = styled(ImageContainer)`
@@ -38,5 +38,5 @@ export const Image = styled.img`
 	height: 100%;
 	object-fit: contain;
 	cursor: pointer;
-	max-height: 250px;
+	max-height: 240px;
 `;

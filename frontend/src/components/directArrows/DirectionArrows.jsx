@@ -6,7 +6,7 @@ import { screens } from '../responsive';
 import { Text } from '..';
 import { DirectionButton, Wrapper, Container } from './DirectArrows.styles';
 
-const DirectionArrows = ({ title, children, style, containerIndex = 2 }) => {
+const DirectionArrows = ({ title, children, style, containerIndex = 2, align }) => {
 	const [slideIndex, setSlideIndex] = useState(0);
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
@@ -27,7 +27,7 @@ const DirectionArrows = ({ title, children, style, containerIndex = 2 }) => {
 		);
 	else
 		return (
-			<Container style={style} isMobile={isMobile}>
+			<Container style={style} isMobile={isMobile} align={align}>
 				{slideIndex > 0 && (
 					<DirectionButton direction='left' onClick={() => handleClick('left')}>
 						<ArrowBackIosNewIcon />

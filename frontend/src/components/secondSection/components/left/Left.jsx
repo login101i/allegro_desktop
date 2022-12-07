@@ -2,7 +2,6 @@ import { Text, BorderAndTitle, ProductContainer, DirectionArrows, CountDownTimer
 import { Container, Wrapper } from './Left.styles';
 
 export const Left = ({ products }) => {
-	// const dogProducts = products.filter(p => p.category === 'Pupil');
 
 	return (
 		<Container>

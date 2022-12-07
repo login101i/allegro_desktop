@@ -18,11 +18,9 @@ import './style.css';
 import { ProtectedRoute } from './utils/routes/ProtectedRoute';
 import { screens } from './components/responsive';
 import { NavbarAd } from './components/navbarAdd/NavbarAdd';
-
 import { loadUser } from './redux/actions/userActions';
 import { allegroVersion } from './redux/actions/versionAction';
 import { getProducts } from './redux/actions/productActions';
-
 import { store } from './store';
 import { GreyBackground, Container } from './App.styles';
 

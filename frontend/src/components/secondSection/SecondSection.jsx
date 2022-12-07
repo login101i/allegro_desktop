@@ -26,7 +26,9 @@ const SecondSection = () => {
 	} else
 		return (
 			<>
-				<Text title={'Wszystko na Święta'} size={30} marginTop={33} />
+				<Text size={30} marginTop='30px' fullWidth>
+					Wszystko na Święta
+				</Text>
 				<MainContainer>
 					<Even>
 						<Left products={products} />

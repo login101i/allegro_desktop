@@ -20,7 +20,7 @@ export const Container = styled.div`
 	margin-bottom: ${props => (props.isMobile ? '0px' : '12px')};
 	overflow-x: hidden !important;
 	height: ${props => (props.isMobile ? '43%' : '100%')};
-Twoje`;
+`;
 
 export const Carousel = styled.div`
 	display: flex;
@@ -56,7 +56,7 @@ export const Image = styled.img`
 	background-position: center;
 	width: ${props => (props.isMobile ? '100vw' : '100%')};
 	height: ${props => (props.isMobile ? '220px' : '100%')};
-	object-fit: ${props => props.isMobile && 'cover'};
+	object-fit: 'cover';
 
 	animation-name: example;
 	animation-duration: ${props => (props.slideIndex ? '10s' : '')};

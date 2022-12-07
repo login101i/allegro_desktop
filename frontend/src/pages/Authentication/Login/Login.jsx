@@ -40,17 +40,9 @@ const Login = () => {
 						<FormControlLabel disabled control={<Checkbox />} label='Numer telefonu' />
 					</Flex>
 					<Flex column>
-						<CustomInput
-							fullWidth
-							placeholder='Login lub e-mail'
-							disableUnderline={true}
-							onChange={e => setEmail(e.target.value)}
-						/>
+						<CustomInput fullWidth placeholder='Login lub e-mail' disableUnderline={true} onChange={e => setEmail(e.target.value)} />
 
-						<CustomInput
-							rightPart={<BorderAndTitle title={'pokaż'} />}
-							onChange={e => setPassword(e.target.value)}
-						></CustomInput>
+						<CustomInput rightPart={<BorderAndTitle title={'pokaż'} />} onChange={e => setPassword(e.target.value)}></CustomInput>
 					</Flex>
 					<Flex space>
 						<Text color='#00a790'>Nie pamiętam hasła</Text>
@@ -75,13 +67,12 @@ const Login = () => {
 
 					<Flex>
 						<Text wrap>
-							Logując się do Allegro akceptujesz Regulamin w aktualnym brzmieniu obowiązującym od dnia 9.12.2021.
-							Informacje o planowanych oraz archiwalnych zmianach Regulaminu są dostępne na stronie.
+							Logując się do Allegro akceptujesz Regulamin w aktualnym brzmieniu obowiązującym od dnia 9.12.2021. Informacje o planowanych
+							oraz archiwalnych zmianach Regulaminu są dostępne na stronie.
 						</Text>
 					</Flex>
 				</LeftContainer>
-
-				{!isMobile && <RightContainer />}
+				{isMobile && <RightContainer />}
 			</Container>
 		</PageWidth>
 	);

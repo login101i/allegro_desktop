@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import { Badge } from '@material-ui/core';
 
 export const Icon = styled.div`
-	color: grey;
-	font-size: 30px;
-	cursor: pointer;
-	margin-right: 16px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	color: ${props => (props.color ? props.color : 'grey')}
+	font-size: 30px;
+	cursor: pointer;
+	margin-right: 16px;
 	text-align: center;
 	position: relative;
 	margin-left: 10px;

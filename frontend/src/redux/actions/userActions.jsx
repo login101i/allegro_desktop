@@ -18,10 +18,7 @@ import {
 export const registerUser = body => async dispatch => {
 	try {
 		dispatch({ type: REGISTER_USER_REQUEST });
-		console.log('To jest formData');
-
 		const { data } = await axios.post('/api/v1/register', body);
-
 		dispatch({
 			type: REGISTER_USER_SUCCESS,
 			payload: data,
@@ -39,7 +36,6 @@ export const loginUser = body => async dispatch => {
 		dispatch({ type: LOGIN_REQUEST });
 
 		const { data } = await axios.post('/api/v1/login', body);
-		console.log(data);
 
 		dispatch({
 			type: LOGIN_SUCCESS,
@@ -75,7 +71,6 @@ export const loadUser = () => async dispatch => {
 		});
 
 		const { data } = await axios.post('/api/v1/me');
-		console.log(data);
 
 		dispatch({
 			type: LOAD_USER_SUCCESS,
@@ -84,7 +79,7 @@ export const loadUser = () => async dispatch => {
 	} catch (error) {
 		dispatch({
 			type: LOAD_USER_FAIL,
-			payload: 'Nie udało załadować uzytkownika',
+			payload: 'Nie udało się załadować uzytkownika',
 		});
 	}
 };

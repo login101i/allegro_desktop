@@ -6,9 +6,12 @@ export const Container = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	background-color: white;
-	overflow: hidden;
-	padding: 20px 10px;
+	overflow-y: scroll;
+	padding: 15px;
 	margin-top: ${props => props.isMobile && '16px'};
+	::-webkit-scrollbar {
+		display: none;
+	}
 `;
 
 export const Title = styled.div`
@@ -31,7 +34,6 @@ export const Image = styled.img`
 	max-height: 125px;
 	width: 100%;
 	object-fit: contain;
-	cursor: pointer;
 `;
 
 export const SectionInfo = styled.div`

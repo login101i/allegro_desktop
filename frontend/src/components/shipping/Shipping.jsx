@@ -1,7 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
+import { Container, TextInfo } from './Shipping.styles';
 
 import BorderAndTitle from '../borderAndTitle/BorderAndTitle';
 
@@ -31,8 +30,8 @@ const Shipping = () => {
 	return (
 		<>
 			<Container>
-				{dataArray.map(data => (
-					<Flex space style={{ flexWrap: 'wrap' }}>
+				{dataArray.map((data, index) => (
+					<Flex space wrap key={index + data.text}>
 						<TextInfo>
 							<data.icon
 								style={{

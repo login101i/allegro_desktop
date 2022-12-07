@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import PriceDiscount from '../priceDiscount/PriceDiscount';
-import { Text, Flex } from '..';
+import { Text, Flex, RedirectOnLick } from '..';
 import { SectionContainer, SectionListingContainer, ImageContainer, ImageListingsContainer, Image } from './productContainer.styles';
 import { Container, Bar, BarTitle } from '../fourthSection/FourthSection.styles';
 import { fourthSectionData } from '../../utils/data';
@@ -18,16 +18,9 @@ const ProductContainer = ({
 }) => {
 	return (
 		<>
-			<Link
-				to={`/product/${product._id}`}
-				style={{
-					textDecoration: 'none',
-					width: '100%',
-					background: 'transparent',
-				}}
-			>
+			<RedirectOnLick to={`/product/${product._id}`}>
 				{listings ? (
-					<SectionListingContainer row={row} onClick={() => console.log(price)}>
+					<SectionListingContainer row={row} onClick={console.log(price)}>
 						<ImageListingsContainer>{img && <Image src={img} />}</ImageListingsContainer>
 						<Flex column>
 							<Text wrap='true'>{product.title}</Text>
@@ -36,7 +29,7 @@ const ProductContainer = ({
 						</Flex>
 					</SectionListingContainer>
 				) : (
-					<SectionContainer row={row} onClick={() => console.log(price)} isMobile>
+					<SectionContainer row={row} onClick={console.log(price)} isMobile>
 						<Bar>
 							<BarTitle>{fourthSectionData[index]?.title}</BarTitle>
 						</Bar>
@@ -48,7 +41,7 @@ const ProductContainer = ({
 						</Flex>
 					</SectionContainer>
 				)}
-			</Link>
+			</RedirectOnLick>
 		</>
 	);
 };

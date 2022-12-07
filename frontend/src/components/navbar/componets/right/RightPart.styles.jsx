@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Badge } from "@material-ui/core";
+import styled from 'styled-components';
+import { Badge } from '@material-ui/core';
 
 export const SelectContainer = styled.select`
 	flex: 2;
@@ -40,16 +40,15 @@ export const LogInImage = styled.img`
 	object-fit: contain;
 `;
 
-
 export const IconDown = styled(Icon)`
 	transform: translateX(10px);
 	font-size: 30px;
-	// border: 2px solid black;
+	
 `;
 
 export const MenuLogin = styled.div`
 	border: 1px solid lightGrey;
-	display: ${(props) => (props.openMenu ? "block" : "none")};
+	display: ${props => (props.openMenu ? 'block' : 'none')};
 	position: absolute;
 	top: 45px;
 
@@ -60,11 +59,11 @@ export const MenuLogin = styled.div`
 	padding: 16px;
 	background-color: white;
 	border: 1px solid lightGrey;
-	zindex: 112;
+	z-index: 112;
 `;
 export const MenuLogged = styled(MenuLogin)`
 	padding: 0px;
-	background-color: ${(props) => props.theme.colors.allegroBackground};
+	background-color: ${props => props.theme.colors.allegroBackground};
 `;
 export const MenuLoginContainer = styled.div`
 	display: flex;
@@ -89,12 +88,12 @@ export const AccountMainCont = styled.div`
 `;
 
 export const StyledBadge = styled(Badge)(({ theme }) => ({
-	"& .MuiBadge-badge": {
+	'& .MuiBadge-badge': {
 		backgroundColor: theme.colors.allegroColor,
-		border: `2px solid ${(props) => props.theme.colors.allegroColor}`,
-		padding: "0 4px",
+		border: `2px solid ${props => props.theme.colors.allegroColor}`,
+		padding: '0 4px',
 		right: -2,
 		top: 30,
-		color: "white"
-	}
+		color: 'white',
+	},
 }));

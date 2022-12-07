@@ -9,36 +9,35 @@ import { Container, MinusPlusContainer, Square, Input } from './CartMinusPlus.st
 const CartPlusMinus = () => {
 	const [number, setNumber] = useState(1);
 
-	const onChangeText = (text, e) => {
-		if (number <= 0) return;
-		const newValue = e.target.value;
-		setNumber(newValue);
+	const onChangeText = (text, value) => {
+		if (value <= 0) return;
+		const newValue = value;
+		setNumber(value);
 	};
 
 	const plus = () => {
-		setNumber(number + 1);
-		console.log('dodaje');
+		setNumber(prev => prev + 1);
 	};
 
 	const minus = () => {
 		if (number === 0) return;
-		setNumber(number - 1);
+		setNumber(prev => prev - 1);
 	};
 
 	return (
 		<Container>
-			<Text size={16}>Ilośc sztuk</Text>
+			<Text size={16}>Ilość sztuk</Text>
 			<Flex>
 				<MinusPlusContainer>
 					<Square onClick={() => minus()}>
 						<RemoveIcon style={{ fontSize: '30px', margin: '10px' }} />
 					</Square>
-					<Input onChangeText={e => onChangeText(e)} value={number} />
+					<Input onChange={e => onChangeText(e.target.value)} value={number} type='number'  />
 					<Square onClick={() => plus()}>
 						<AddIcon style={{ fontSize: '30px', margin: '10px' }} />
 					</Square>
 				</MinusPlusContainer>
-				<Flex align>z 9910 sztuk</Flex>
+				<Flex align>z 198 sztuk</Flex>
 			</Flex>
 
 			<Button>Dodaj do koszyka</Button>

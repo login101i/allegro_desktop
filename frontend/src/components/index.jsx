@@ -24,6 +24,7 @@ import Badged from './badged/Badged';
 import PayPalButton from './payPalButton/PayPalButton';
 import Slide from './slide/Slide';
 import Spacer from './spacer/Spacer.styles';
+import RedirectOnLick from './redirect/RedirectOnClick';
 
 export {
 	AllegroFooter,
@@ -52,4 +53,5 @@ export {
 	PayPalButton,
 	Slide,
 	Spacer,
+	RedirectOnLick,
 };
