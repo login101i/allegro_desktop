@@ -20,7 +20,7 @@ const ProductContainer = ({
 		<>
 			<RedirectOnLick to={`/product/${product._id}`}>
 				{listings ? (
-					<SectionListingContainer row={row} onClick={console.log(price)}>
+					<SectionListingContainer row={row}>
 						<ImageListingsContainer>{img && <Image src={img} />}</ImageListingsContainer>
 						<Flex column>
 							<Text wrap='true'>{product.title}</Text>
