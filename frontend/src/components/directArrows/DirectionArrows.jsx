@@ -21,7 +21,6 @@ const DirectionArrows = ({ title, children, style, containerIndex = 2, align }) 
 	if (isMobile)
 		return (
 			<Container isMobile={isMobile}>
-				{title && <Text bold>{title}</Text>}
 				<Wrapper>{children}</Wrapper>
 			</Container>
 		);

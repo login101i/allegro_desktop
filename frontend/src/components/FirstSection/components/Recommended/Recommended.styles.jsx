@@ -7,7 +7,7 @@ export const ItemsContainer = styled.div`
 	transition: all 0.5s ease-in-out;
 	transform: translateX(${props => props.slideIndex * -450}px);
 	white-space: nowrap;
-	height: 200px;
+	height: ${props => (props.isMobile ? 'auto' : '200px')};
 	scrollbar-color: green;
 	overflow-x: hidden;
 `;

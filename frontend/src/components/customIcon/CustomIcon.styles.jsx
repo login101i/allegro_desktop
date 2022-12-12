@@ -8,10 +8,9 @@ export const Icon = styled.div`
 	color: ${props => (props.color ? props.color : 'grey')}
 	font-size: 30px;
 	cursor: pointer;
-	margin-right: 16px;
 	text-align: center;
 	position: relative;
-	margin-left: 10px;
+	margin: 0px 10px;
 	transition: 0.2s ease-in-out;
 	&:hover {
 		filter: brightness(85%);
@@ -26,5 +25,6 @@ export const StyledBadge = styled(Badge)(({ theme }) => ({
 		right: -2,
 		top: 30,
 		color: 'white',
+		zIndex: -11,
 	},
 }));

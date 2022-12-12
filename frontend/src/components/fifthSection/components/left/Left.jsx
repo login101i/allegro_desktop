@@ -1,15 +1,19 @@
 import { useSelector } from 'react-redux';
 import { Text, BorderAndTitle, ProductContainer } from '../../../../components';
 import { Container, ScrollContainer } from '../Container.styles';
+import { DirectionArrows } from '../../../../components';
+import { useMediaQuery } from 'react-responsive';
+import { screens } from '../../../responsive';
 
-const Left = ({ isMobile }) => {
+const Left = () => {
 	const { products } = useSelector(state => state.products);
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
 	return (
 		<>
 			<Container isMobile={isMobile}>
 				<Text textAlign='center' title='Polecane dla psa' bold></Text>
-				<ScrollContainer>
+				<ScrollContainer isMobile={isMobile}>
 					{products &&
 						products
 							.filter(p => p.category === 'Pupil')
@@ -22,10 +26,11 @@ const Left = ({ isMobile }) => {
 									price={product.price}
 									product={product}
 									extended={true}
+									height='240px'
+									imageSize='180px'
 								/>
 							))}
 				</ScrollContainer>
-
 				<BorderAndTitle />
 			</Container>
 		</>

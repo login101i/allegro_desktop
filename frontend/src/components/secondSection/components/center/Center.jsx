@@ -1,4 +1,4 @@
-import { BorderAndTitle, PriceDiscount, Text, RedirectOnLick } from '../../../../components';
+import { BorderAndTitle, PriceDiscount, Text, RedirectOnClick } from '../../../../components';
 
 import { Container, SectionContainer, ImageContainer, Image, SectionInfo, Description } from './Center.styles';
 
@@ -9,7 +9,7 @@ export const Center = ({ products = [], isMobile }) => {
 
 			{products &&
 				products.map((product, index) => (
-					<RedirectOnLick to={`/product/${product._id}`} key={index}>
+					<RedirectOnClick to={`/product/${product._id}`} key={index}>
 						<SectionContainer>
 							<ImageContainer>
 								<Image src={product.img[0].url} />
@@ -23,13 +23,13 @@ export const Center = ({ products = [], isMobile }) => {
 								/>
 								<Description>
 									{product.description.toString().split('.')[0].length > 80
-										? product.description.slice(0, 75) + '...'
+										? product.description.slice(0, 100) + '...'
 										: product.description.toString().split('.')[0]}
 									.
 								</Description>
 							</SectionInfo>
 						</SectionContainer>
-					</RedirectOnLick>
+					</RedirectOnClick>
 				))}
 			<BorderAndTitle title='Zobacz więcej' />
 		</Container>

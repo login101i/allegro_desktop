@@ -1,14 +1,14 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import { MenuContentBox } from "../../../../components";
+import { MenuContentBox } from '../../../../components';
 
 const FlexRow = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: left;
 	margin: 4px 0px;
-	justify-content: ${(props) => (props.space ? "space-between" : "")};
+	justify-content: ${props => (props.space ? 'space-between' : '')};
 `;
 
 const FlexCol = styled(FlexRow)`
@@ -24,10 +24,7 @@ const AccountBoxComponent = ({ icon, title, subTitles }) => {
 		<FlexRow>
 			<IconContainer>{icon}</IconContainer>
 			<FlexCol>
-				<MenuContentBox
-					title="Zakupy na allegro lokakbue"
-					subTitles={["Moje zakupy", "Licytuję", "Zarezewowane dla mnie"]}
-				/>
+				<MenuContentBox title='Zakupy na allegro lokalnie' subTitles={['Moje zakupy', 'Licytuję', 'Zarezewowane dla mnie']} />
 			</FlexCol>
 		</FlexRow>
 	);

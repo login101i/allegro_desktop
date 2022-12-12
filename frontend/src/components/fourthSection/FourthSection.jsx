@@ -15,7 +15,7 @@ const FourthSection = () => {
 		<DirectionArrows containerIndex={4}>
 			<Container>
 				{categoryArray.map((item, index) => (
-					<ProductContainer key={item.id} img={item.SmartImage} price={item.price} index={index} />
+					<ProductContainer key={item.id} img={item.SmartImage} price={item.price} index={index} imageSize='110px' />
 				))}
 			</Container>
 		</DirectionArrows>

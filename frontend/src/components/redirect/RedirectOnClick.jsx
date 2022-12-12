@@ -1,5 +1,5 @@
 import { Container } from './RedirectOnClick.styles';
-const RedirectOnLick = ({ children, to }) => {
+const RedirectOnClick = ({ children, to }) => {
 	return (
 		<Container
 			to={`${to}`}
@@ -14,4 +14,4 @@ const RedirectOnLick = ({ children, to }) => {
 	);
 };
 
-export default RedirectOnLick;
+export default RedirectOnClick;

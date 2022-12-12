@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import PriceDiscount from '../priceDiscount/PriceDiscount';
-import { Text, Flex, RedirectOnLick } from '..';
+import { Text, Flex, RedirectOnClick } from '..';
 import { SectionContainer, SectionListingContainer, ImageContainer, ImageListingsContainer, Image } from './productContainer.styles';
-import { Container, Bar, BarTitle } from '../fourthSection/FourthSection.styles';
+import { Bar, BarTitle } from '../fourthSection/FourthSection.styles';
 import { fourthSectionData } from '../../utils/data';
+import { useMediaQuery } from 'react-responsive';
+import { screens } from '../responsive';
 
 const ProductContainer = ({
 	img,
@@ -15,33 +17,38 @@ const ProductContainer = ({
 	product = { id: '61c10bc4649cdf618b815c4a' },
 	listings,
 	index = 0,
+	height = '100px',
+	imageSize = '120px',
 }) => {
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
 	return (
 		<>
-			<RedirectOnLick to={`/product/${product._id}`}>
+			<RedirectOnClick to={`/product/${product._id}`}>
 				{listings ? (
 					<SectionListingContainer row={row}>
 						<ImageListingsContainer>{img && <Image src={img} />}</ImageListingsContainer>
 						<Flex column>
 							<Text wrap='true'>{product.title}</Text>
-							<Text> od {product.seller}</Text>
+							<Text> od {product.seller.toupperCase()}</Text>
 							<PriceDiscount discount={discount} oldPrice={oldPrice} price={price} description={description} />
 						</Flex>
 					</SectionListingContainer>
 				) : (
-					<SectionContainer row={row} onClick={console.log(price)} isMobile>
+					<SectionContainer row={row} isMobile>
 						<Bar>
 							<BarTitle>{fourthSectionData[index]?.title}</BarTitle>
 						</Bar>
-						<ImageContainer>{img && <Image src={img} />}</ImageContainer>
+						<ImageContainer height={height} isMobile={isMobile}>
+							{img && <Image src={img} isMobile={isMobile} imageSize={imageSize} />}
+						</ImageContainer>
 						<Flex column>
-							<Text wrap='true'>{product.title}</Text>
+							<Text wrap='true'>{product.title && product.title.slice(0, 60)}</Text>
 							<Text> od {product.seller}</Text>
 							<PriceDiscount discount={discount} oldPrice={oldPrice} price={price} description={description} />
 						</Flex>
 					</SectionContainer>
 				)}
-			</RedirectOnLick>
+			</RedirectOnClick>
 		</>
 	);
 };

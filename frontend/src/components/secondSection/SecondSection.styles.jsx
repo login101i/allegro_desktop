@@ -6,7 +6,7 @@ export const MainContainer = styled.div`
 	width: 100%;
 	justify-content: space-between;
 	margin-top: 16px;
-	height: ${props => (props.isMobile ? 'auto' : '600px')};
+	height: ${props => (props.isMobile ? '1200px' : '600px')};
 	margin-bottom: 16px;
 `;
 
@@ -19,6 +19,6 @@ export const Even = styled.div`
 
 export const Space = styled.div`
 	width: 20px;
-	heigth: 200px;
+	height: 200px;
 	background-color: transparent;
 `;

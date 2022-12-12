@@ -3,7 +3,6 @@ import { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
-
 import { Navbar } from './components';
 import { HomePage } from './pages/HomePage/HomePage';
 import { Listing } from './pages/Listing/Listing';
@@ -11,7 +10,6 @@ import { ProductDetails } from './pages/ProductDetalis/ProductDetails';
 import { AllegroLocal } from './pages/AllegroLocal/AllegroLocal';
 import { Login, Register, MyAccount } from './pages/Authentication';
 import AllegroFooter from './components/allegroFooter/AllegroFooter';
-
 import { theme } from './infrastructure/theme';
 import './style.css';
 

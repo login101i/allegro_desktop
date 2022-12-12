@@ -21,7 +21,6 @@ export const DirectionButton = styled.button`
 	display: none;
 	background: white;
 	transition: 0.3s;
-
 	&:hover {
 		border: 2px solid darkGrey;
 	}
@@ -32,15 +31,14 @@ export const Container = styled.div`
 	flex-direction: column;
 	width: 100%;
 	background-color: white;
-	align-items: ${props => (props.align ? "center" : 'flex-start')};
+	align-items: ${props => (props.align ? 'center' : 'flex-start')};
 	justify-content: center;
 	overflow: hidden;
 	position: relative;
-	flex: 1;
-	padding: 10px;
+	padding: 12px 12px 0px 12px;
 	overflow-x: ${props => (props.isMobile ? ' scroll' : 'none')};
 	transition: 0.3s;
-	height: ${props => props.isMobile && '200px'};
+
 	&: hover ${DirectionButton} {
 		display: block;
 	}

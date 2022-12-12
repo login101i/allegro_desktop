@@ -16,6 +16,7 @@ const Text = ({
 	background,
 	fullWidth,
 	firstSmall,
+	capitalize,
 }) => {
 	return (
 		<TextContainer
@@ -32,6 +33,7 @@ const Text = ({
 			background={background}
 			fullWidth={fullWidth}
 			firstSmall={firstSmall}
+			capitalize={capitalize}
 		>
 			{title}
 			{children}

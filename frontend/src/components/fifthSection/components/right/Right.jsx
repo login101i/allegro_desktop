@@ -1,9 +1,12 @@
 import { useSelector } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import { Flex, Text, ProductContainer, BorderAndTitle } from '../../../../components';
+import { screens } from '../../../responsive';
 import { Container, ScrollContainer } from '../Container.styles';
 
-const Right = ({ isMobile }) => {
+const Right = () => {
 	const { products } = useSelector(state => state.products);
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
 	return (
 		<Container isMobile={isMobile}>
@@ -24,6 +27,8 @@ const Right = ({ isMobile }) => {
 									price={product.price}
 									product={product}
 									extended={true}
+									height='240px'
+									imageSize='180px'
 								/>
 							))}
 				</Flex>

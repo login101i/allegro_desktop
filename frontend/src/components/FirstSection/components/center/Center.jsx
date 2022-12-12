@@ -1,21 +1,18 @@
-import React, { useEffect, useState, useRef, useMemo } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
-
 import { sliderItems } from '../../../../utils/data';
 import { screens } from '../../../responsive';
-import Recommended from '../Recommended/Recommended';
+import { Recommended } from '../Recommended/Recommended';
 import { OptionComponent, Flex } from '../../..';
 import { firstSectionImages, firstSectionOptions } from '../../../../utils/data';
-
 import { MainContainer, WrapperOption, Carousel, Slide, ImgContainer, Image, Container, Dot, BorderLine } from './Center.styles';
 
 let myCounter = 0;
 let timeout = null;
 
-const Center = () => {
+export const Center = () => {
 	const [distance, setDistance] = useState();
 	const [slideIndex, setSlideIndex] = useState(0);
-
 	const sliderRef = useRef();
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
@@ -31,7 +28,7 @@ const Center = () => {
 			if (myCounter >= 6) {
 				setSlideIndex(0);
 			}
-		}, 10000);
+		}, 3000);
 	};
 
 	const handleIndex = index => {
@@ -57,11 +54,11 @@ const Center = () => {
 					</Carousel>
 					<Flex align style={{ margin: '0 auto' }}>
 						{sliderItems.slice(0, 5).map((item, i) => (
-							<Dot key={i} onClick={() => handleIndex(i)} i={i} slideIndex={slideIndex} />
+							<Dot key={item.id} onClick={() => handleIndex(i)} i={i} slideIndex={slideIndex} />
 						))}
 					</Flex>
 				</Container>
-				<Recommended images={firstSectionImages} />
+				<Recommended images={firstSectionImages} isMobile={isMobile} />
 			</MainContainer>
 		);
 	} else {
@@ -87,5 +84,3 @@ const Center = () => {
 		);
 	}
 };
-
-export default Center;

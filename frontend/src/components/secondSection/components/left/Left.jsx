@@ -1,10 +1,13 @@
+import { useMediaQuery } from 'react-responsive';
 import { Text, BorderAndTitle, ProductContainer, DirectionArrows, CountDownTimer } from '../../../../components';
+import { screens } from '../../../responsive';
 import { Container, Wrapper } from './Left.styles';
 
 export const Left = ({ products }) => {
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
 	return (
-		<Container>
+		<Container isMobile={isMobile}>
 			<Text title='Weekendowe okazje dnia kończą się za:' />
 			<Wrapper>
 				<CountDownTimer />
@@ -19,6 +22,8 @@ export const Left = ({ products }) => {
 								price={dogProduct.price}
 								product={dogProduct}
 								extended={true}
+								height='180px'
+								imageSize='160px'
 							/>
 						))}
 				</DirectionArrows>

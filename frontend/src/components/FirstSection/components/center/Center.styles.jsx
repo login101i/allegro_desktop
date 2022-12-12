@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const MainContainer = styled.div`
 	display: flex;
@@ -15,11 +15,12 @@ export const Container = styled.div`
 	overflow: hidden;
 	flex-direction: column;
 	height: 58.5%;
-	max-height: ${props => (props.isMobile ? '500px' : '60%')};
 	justify-content: space-between;
 	margin-bottom: ${props => (props.isMobile ? '0px' : '12px')};
 	overflow-x: hidden !important;
-	height: ${props => (props.isMobile ? '43%' : '100%')};
+	height: ${props => (props.isMobile ? '26%' : '100%')};
+	max-height: ${props => (props.isMobile ? '400px' : '60%')};
+	background-color: white;
 `;
 
 export const Carousel = styled.div`
@@ -53,11 +54,10 @@ export const ImgContainer = styled.div`
 
 export const Image = styled.img`
 	background-image: ${props => props.src};
-	background-position: center;
-	width: ${props => (props.isMobile ? '100vw' : '100%')};
-	height: ${props => (props.isMobile ? '220px' : '100%')};
-	object-fit: 'cover';
-
+	background-position: ${props => props.isMobile && 'center'};
+	width: ${props => (props.isMobile ? 'auto' : '100%')};
+	height: ${props => (props.isMobile ? '120px' : '100%')};
+	object-fit: ${props => (props.isMobile ? 'obtain' : 'cover')};
 	animation-name: example;
 	animation-duration: ${props => (props.slideIndex ? '10s' : '')};
 	animation-iteration-count: infinite;

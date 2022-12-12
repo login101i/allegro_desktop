@@ -2,7 +2,7 @@ import DirectionArrows from '../../../directArrows/DirectionArrows';
 import { Item } from '../Item';
 import { ItemsContainer } from './Recommended.styles';
 
-const Recommended = ({ images, containerIndex }) => {
+export const Recommended = ({ images, containerIndex, isMobile }) => {
 	return (
 		<DirectionArrows
 			style={{
@@ -11,7 +11,7 @@ const Recommended = ({ images, containerIndex }) => {
 			title='Warto zobaczyć'
 			containerIndex={containerIndex}
 		>
-			<ItemsContainer isMobile>
+			<ItemsContainer isMobile={isMobile}>
 				{images.map((image, i) => (
 					<Item key={i} image={image.image} title={image.title} />
 				))}
@@ -19,5 +19,3 @@ const Recommended = ({ images, containerIndex }) => {
 		</DirectionArrows>
 	);
 };
-
-export default Recommended;

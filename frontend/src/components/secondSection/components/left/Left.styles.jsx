@@ -14,6 +14,8 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
+	flex-direction: column;
 	position: relative;
 	height: 100%;
 	margin-top: 15px;

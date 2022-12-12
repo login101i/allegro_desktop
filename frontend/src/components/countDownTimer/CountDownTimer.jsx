@@ -7,10 +7,9 @@ const CountDownTimer = () => {
 	const [seconds, setSeconds] = useState('-');
 
 	const zero = '0';
-	const currentYear = new Date().getFullYear();
 	const currentMonth = new Date().getMonth() + 1;
 	const currentDay = new Date().getDate();
-	const dateToEnd = `${currentMonth} ${currentDay + 2}, 2022 8:00:00`;
+	const dateToEnd = `${currentMonth} ${currentDay + 1}, 2022 12:00:00`;
 
 	const [endDate, setEndDate] = useState(dateToEnd);
 	let countDownDate = new Date(endDate).getTime();
@@ -22,10 +21,10 @@ const CountDownTimer = () => {
 	const countDownFunction = () => {
 		setInterval(() => {
 			var now = new Date().getTime();
-			var timeleft = countDownDate - now;
-			const hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-			const minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
-			const seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+			var timeLeft = countDownDate - now;
+			const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+			const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
 			setHours(hours);
 			setMinutes(minutes);

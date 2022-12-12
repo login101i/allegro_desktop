@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const SectionInfo = styled.div`
 	display: flex;
@@ -27,7 +27,7 @@ export const FlexRow = styled.div`
 	flex-direction: row;
 `;
 export const Price = styled.div`
-	font-size: 28px;
+	font-size: ${props => (props.isMobile ? '25px ' : '25px')};
 	font-weight: 600;
 	color: rgb(76, 79, 70);
 	color: var(--textColor);
@@ -37,6 +37,11 @@ export const Price = styled.div`
 	line-height: 28px;
 	display: inline-block;
 	margin-top: 4px;
+	margin-bottom: 7px;
+`;
+
+export const PriceEnd = styled(Price)`
+	font-size: ${props => (props.isMobile ? '15px ' : '18px')};
 `;
 
 export const Text = styled.div`
@@ -52,7 +57,4 @@ export const Smart = styled.img`
 	align-items: left;
 	width: 100px;
 	margin-left: -15px;
-`;
-export const PriceEnd = styled(Price)`
-	font-size: 18px;
 `;

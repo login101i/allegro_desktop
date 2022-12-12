@@ -21,8 +21,8 @@ export const ImageContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	max-width: 85%;
-	padding-bottom: 10px;
-	height: 180px;
+	height: ${props => (props.height ? props.height : '10px')};
+	min-height: ${props => (props.isMobile ? '60px' : '100px')};
 `;
 
 export const ImageListingsContainer = styled(ImageContainer)`
@@ -38,5 +38,6 @@ export const Image = styled.img`
 	height: 100%;
 	object-fit: contain;
 	cursor: pointer;
-	max-height: 240px;
+	height: ${props => (props.isMobile ? '120px' : '180px')};
+	height: ${props => (props.imageSize ? props.imageSize : '180px')};
 `;

@@ -9,11 +9,15 @@ import { Container1, Icon } from '../sidebarRight/SideBarRight.styles';
 const ContainerInfo1 = () => {
 	const { isAuthenticated, user } = useSelector(state => state.auth);
 
+	function capitalize(word) {
+		return word.charAt(0).toUpperCase() + word.slice(1);
+	}
+
 	return (
 		<Container1>
 			<Flex style={{ width: '85%', height: '90%' }}>
 				<Flex column align space>
-					{isAuthenticated ? <Text title={'Cześć ' + user.name + '!'} bold /> : <Text title={'Witaj na allegro!'} bold />}
+					{isAuthenticated ? <Text title={'Cześć ' + capitalize(user.name) + '!'} bold /> : <Text title={'Witaj na allegro!'} bold />}
 					<Flex>
 						<Icon src={PayPalLogo} />
 						<Text wrap>Twoje środki Allegro Pay: 4 000 zł.</Text>

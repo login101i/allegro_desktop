@@ -7,10 +7,14 @@ export const Container = styled.div`
 	background: white;
 	flex: 1;
 	margin: ${props => (props.isMobile ? '5px' : '0px 10px 0px 20px')};
-	width: 100vw;
+	width: ${props => (props.isMobile ? '100vw' : '')};
+	margin-left: ${props => props.isMobile && '30px'};
 `;
 export const ScrollContainer = styled.div`
-	width: 100vw;
-	overflow-x: hidden;
+	width: ${props => (props.isMobile ? '' : '100%')};
+	overflow-x: scroll;
 	display: flex;
+	::-webkit-scrollbar {
+		display: none;
+	}
 `;

@@ -1,35 +1,24 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
-import {useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
+import { Badge } from '@material-ui/core';
+import SearchIcon from '@mui/icons-material/Search';
 
+import GppGoodOutlinedIcon from '@mui/icons-material/GppGoodOutlined';
+import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
+import ThumbUpOffAltOutlinedIcon from '@mui/icons-material/ThumbUpOffAltOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import MarkAsUnreadOutlinedIcon from '@mui/icons-material/MarkAsUnreadOutlined';
+import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 
-import { Badge } from "@material-ui/core";
-import SearchIcon from "@mui/icons-material/Search";
+import Image from '../../../assets/pictures/Kot1.png';
+import HomeAllegro from '../../../assets/pictures/HomeAllegro.svg';
+import SmartImage from '../../../assets/pictures/Smart.svg';
 
-import GppGoodOutlinedIcon from "@mui/icons-material/GppGoodOutlined";
-import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
-import ThumbUpOffAltOutlinedIcon from "@mui/icons-material/ThumbUpOffAltOutlined";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import MarkAsUnreadOutlinedIcon from "@mui/icons-material/MarkAsUnreadOutlined";
-import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
+import Avatar from '@mui/material/Avatar';
 
-import Image from "../../../assets/pictures/Kot1.png";
-import HomeAllegro from "../../../assets/pictures/HomeAllegro.svg";
-import SmartImage from "../../../assets/pictures/Smart.svg";
-
-import Avatar from "@mui/material/Avatar";
-
-import {
-	Text,
-	BorderAndTitle,
-	NavbarPage,
-	CustomInput,
-	PageWidth,
-	MenuContentBox,
-	CustomIcon,
-	Flex
-} from "../../../components";
+import { Text, BorderAndTitle, NavbarPage, CustomInput, PageWidth, MenuContentBox, CustomIcon, Flex } from '../../../components';
 
 const Container = styled.div`
 	display: grid;
@@ -38,10 +27,10 @@ const Container = styled.div`
 	gap: 16px 16px;
 
 	grid-template-areas:
-		"section4 section5"
-		"section6 section7"
-		"section8 section9"
-		"section10 section11";
+		'section4 section5'
+		'section6 section7'
+		'section8 section9'
+		'section10 section11';
 	margin-top: 16px;
 
 	> * {
@@ -53,19 +42,16 @@ const Container = styled.div`
 	}
 `;
 
-
 const StyledBadge = styled(Badge)(({ theme }) => ({
-	"& .MuiBadge-badge": {
+	'& .MuiBadge-badge': {
 		backgroundColor: theme.colors.allegroColor,
-		border: `2px solid ${(props) => props.theme.colors.allegroColor}`,
-		padding: "0 4px",
+		border: `2px solid ${props => props.theme.colors.allegroColor}`,
+		padding: '0 4px',
 		right: 5,
 		top: 10,
-		color: "white"
-	}
+		color: 'white',
+	},
 }));
-
-
 
 const TopContainer = styled.div`
 	display: grid;
@@ -148,31 +134,20 @@ const Smart = styled.img`
 `;
 
 const MyAccount = () => {
-
-
-	const { user } = useSelector((state) => state.auth);
+	const { user } = useSelector(state => state.auth);
 
 	console.log(user);
 	useEffect(() => {}, [user]);
 
-
 	return (
-		<PageWidth width="70%">
-			<NavbarPage
-				path
-				rightPart={
-					<CustomInput
-						rightPart={<SearchIcon />}
-						placeholder="Przeszukaj moje Allegro"
-					/>
-				}
-			/>
+		<PageWidth width='70%'>
+			<NavbarPage path rightPart={<CustomInput rightPart={<SearchIcon />} placeholder='Przeszukaj moje Allegro' />} />
 			<TopContainer>
 				<Section1>
 					<Left>
-						<Flex column style={{ width: "65%" }}>
-							<Text bold title="Cześć Maciej!"></Text>
-							<Text subTitle="maciejkruszyniaK@gmail.com" />
+						<Flex column style={{ width: '65%' }}>
+							<Text bold title='Cześć Maciej!' capitalize></Text>
+							<Text subTitle='maciejkruszyniaK@gmail.com' />
 							<Flex>
 								<Smart src={SmartImage} />
 								<Smart src={SmartImage} />
@@ -181,56 +156,40 @@ const MyAccount = () => {
 							</Flex>
 						</Flex>
 						<StyledBadge badgeContent={2}>
-							<Avatar
-								alt="User Avatar"
-								src={Image}
-								sx={{ width: 90, height: 80 }}
-							/>
+							<Avatar alt='User Avatar' src={Image} sx={{ width: 90, height: 80 }} />
 						</StyledBadge>
 					</Left>
 					<Right>
-						<Flex column style={{ borderBottom: "1px solid lightGrey" }}>
-							<Text title="Jesteś z nami:"></Text>
-							<Text
-								title="14 lat, 5 miesięcy, 2 dni"
-								color="var(--allegroColor)"
-							></Text>
+						<Flex column style={{ borderBottom: '1px solid lightGrey' }}>
+							<Text title='Jesteś z nami:'></Text>
+							<Text title='14 lat, 5 miesięcy, 2 dni' color='var(--allegroColor)'></Text>
 						</Flex>
-						<Flex
-							column
-							align="center"
-						>
-							<Text title="889,60zł"></Text>
-							<Text
-								subTitle="Smart! oszczędności"
-								color="var(--allegroColor)"
-							/>
-							<BorderAndTitle title="Twój smart" />
+						<Flex column align='center'>
+							<Text title='889,60zł'></Text>
+							<Text subTitle='Smart! oszczędności' color='var(--allegroColor)' />
+							<BorderAndTitle title='Twój smart' />
 						</Flex>
 					</Right>
 				</Section1>
 				<Section2>
 					<Flex space>
 						<Flex column>
-							<Text title="Połącz się z rodziną" />
+							<Text title='Połącz się z rodziną' />
 
-							<Text>
-								Allegro Family to oszczędności na dostawach, wzajemne wsparcie i
-								pełna prywatność.
-							</Text>
+							<Text>Allegro Family to oszczędności na dostawach, wzajemne wsparcie i pełna prywatność.</Text>
 						</Flex>
 						<ImageContainer src={HomeAllegro} />
 					</Flex>
-					<BorderAndTitle title="Więcej o allegro Family" border />
+					<BorderAndTitle title='Więcej o allegro Family' border />
 				</Section2>
 
 				<Section3>
-					{" "}
+					{' '}
 					<Flex space>
 						<Flex column>
-							<Text title="Allegro Family" />
+							<Text title='Allegro Family' />
 						</Flex>
-						<BorderAndTitle title="zaproś" />
+						<BorderAndTitle title='zaproś' />
 					</Flex>
 				</Section3>
 			</TopContainer>
@@ -238,54 +197,46 @@ const MyAccount = () => {
 			<Container>
 				<Section4>
 					<Flex column fullWidth>
-						<Text title="Ustawienia konta" />
+						<Text title='Ustawienia konta' />
 						<Flex column>
 							<Flex space>
-								<Text subTitle="Informacje o Tobie i Twoim koncie">
-									Twoje dane
-								</Text>
-								<BorderAndTitle title="zmień" />
+								<Text subTitle='Informacje o Tobie i Twoim koncie'>Twoje dane</Text>
+								<BorderAndTitle title='zmień' />
 							</Flex>
 							<Flex fullWidth space>
-								<Text subTitle="Zarządzaj swoimi adresami">
-									Adresy do wysyłki
-								</Text>
-								<BorderAndTitle title="Zmień" />
+								<Text subTitle='Zarządzaj swoimi adresami'>Adresy do wysyłki</Text>
+								<BorderAndTitle title='Zmień' />
 							</Flex>
 							<Flex space>
-								<Text subTitle="Postaw na szybkie zakupy">Karty Płatnicze</Text>
-								<BorderAndTitle title="zobacz" />
+								<Text subTitle='Postaw na szybkie zakupy'>Karty Płatnicze</Text>
+								<BorderAndTitle title='zobacz' />
 							</Flex>
 							<Flex space>
-								<Text subTitle="Bądź na bieżąco">Zgody na powiadomienia</Text>
-								<BorderAndTitle title="zmień" />
+								<Text subTitle='Bądź na bieżąco'>Zgody na powiadomienia</Text>
+								<BorderAndTitle title='zmień' />
 							</Flex>
 						</Flex>
 					</Flex>
 				</Section4>
 				<Section5>
 					<Flex column fullWidth>
-						<Text title="Usługi" />
+						<Text title='Usługi' />
 						<Flex column>
 							<Flex space>
-								<Text subTitle=" Aktywny do 17 marca 2022">Allegro Smart</Text>
-								<BorderAndTitle title="sprawdź" />
+								<Text subTitle=' Aktywny do 17 marca 2022'>Allegro Smart</Text>
+								<BorderAndTitle title='sprawdź' />
 							</Flex>
 							<Flex space>
-								<Text subTitle="Masz 4 monety">MOnety Allegro</Text>
-								<BorderAndTitle title="zobacz" />
+								<Text subTitle='Masz 4 monety'>MOnety Allegro</Text>
+								<BorderAndTitle title='zobacz' />
 							</Flex>
 							<Flex space>
-								<Text subTitle="KOrzystaj tam, gdzie chcesz">
-									Aplikacja Allegro
-								</Text>
-								<BorderAndTitle title="pobierz" />
+								<Text subTitle='KOrzystaj tam, gdzie chcesz'>Aplikacja Allegro</Text>
+								<BorderAndTitle title='pobierz' />
 							</Flex>
 							<Flex space>
-								<Text subTitle="Dostosuj Allegro do siebie">
-									Personalizacja
-								</Text>
-								<BorderAndTitle title="zmień" />
+								<Text subTitle='Dostosuj Allegro do siebie'>Personalizacja</Text>
+								<BorderAndTitle title='zmień' />
 							</Flex>
 						</Flex>
 					</Flex>
@@ -294,77 +245,60 @@ const MyAccount = () => {
 					<CustomIcon icon={GppGoodOutlinedIcon} size={60} />
 
 					<MenuContentBox
-						style={{ borderLeft: "1px solid lightGrey", paddingLeft: "10px" }}
-						color="var(--linkColor)"
-						title="Zakupy na allegro lokalnie"
-						subTitles={["Moje zakupy", "Licytuję", "Zarezewowane dla mnie"]}
+						style={{ borderLeft: '1px solid lightGrey', paddingLeft: '10px' }}
+						color='var(--linkColor)'
+						title='Zakupy na allegro lokalnie'
+						subTitles={['Moje zakupy', 'Licytuję', 'Zarezewowane dla mnie']}
 					></MenuContentBox>
 				</Section6>
 				<Section7>
 					<CustomIcon icon={AccountBalanceWalletOutlinedIcon} size={60} />
 
 					<MenuContentBox
-						style={{ borderLeft: "1px solid lightGrey", paddingLeft: "10px" }}
-						color="var(--linkColor)"
-						title="Rachunki"
-						subTitles={[
-							"Rozliczenia na allegro",
-							"Nadchodzące opłaty",
-							"Faktury"
-						]}
+						style={{ borderLeft: '1px solid lightGrey', paddingLeft: '10px' }}
+						color='var(--linkColor)'
+						title='Rachunki'
+						subTitles={['Rozliczenia na allegro', 'Nadchodzące opłaty', 'Faktury']}
 					></MenuContentBox>
 				</Section7>
 				<Section8>
 					<CustomIcon icon={PersonOutlineOutlinedIcon} size={60} />
 
 					<MenuContentBox
-						style={{ borderLeft: "1px solid lightGrey", paddingLeft: "10px" }}
-						color="var(--linkColor)"
-						title="Ustawienia Konta"
-						subTitles={[
-							"Dane konta",
-							"Zgody na powiadomienia",
-							"Personalizacja"
-						]}
+						style={{ borderLeft: '1px solid lightGrey', paddingLeft: '10px' }}
+						color='var(--linkColor)'
+						title='Ustawienia Konta'
+						subTitles={['Dane konta', 'Zgody na powiadomienia', 'Personalizacja']}
 					></MenuContentBox>
 				</Section8>
 				<Section9>
 					<CustomIcon icon={ThumbUpOffAltOutlinedIcon} size={60} />
 
 					<MenuContentBox
-						style={{ borderLeft: "1px solid lightGrey", paddingLeft: "10px" }}
-						color="var(--linkColor)"
-						title="Ocena sprzedaży"
-						subTitles={[
-							"Wystaw",
-							"Otrzymane",
-							"Prośby o usunięcie",
-							"Moja karta użytkowanika"
-						]}
+						style={{ borderLeft: '1px solid lightGrey', paddingLeft: '10px' }}
+						color='var(--linkColor)'
+						title='Ocena sprzedaży'
+						subTitles={['Wystaw', 'Otrzymane', 'Prośby o usunięcie', 'Moja karta użytkowanika']}
 					></MenuContentBox>
 				</Section9>
 				<Section10>
 					<CustomIcon icon={MarkAsUnreadOutlinedIcon} size={60} />
 
 					<MenuContentBox
-						style={{ borderLeft: "1px solid lightGrey", paddingLeft: "10px" }}
-						color="var(--linkColor)"
-						title="Wsparcie pozakupowe (dyskusje)"
-						subTitles={["Dyskuksje z kupującymi", "Dyskusje ze sprzedającymi"]}
+						style={{ borderLeft: '1px solid lightGrey', paddingLeft: '10px' }}
+						color='var(--linkColor)'
+						title='Wsparcie pozakupowe (dyskusje)'
+						subTitles={['Dyskuksje z kupującymi', 'Dyskusje ze sprzedającymi']}
 					></MenuContentBox>
 				</Section10>
 				<Section11>
 					<CustomIcon icon={ChatOutlinedIcon} size={60} />
 
 					<MenuContentBox
-						style={{ borderLeft: "1px solid lightGrey", paddingLeft: "10px" }}
-						color="var(--linkColor)"
-						title="Alegro lokalnie"
-						subTitles={[
-							"Dla sprzedających",
-							"dla kupujących",
-							"moje ustawienia"
-						]}
+						style={{ borderLeft: '1px solid lightGrey', paddingLeft: '10px' }}
+						color='var(--linkColor)'
+						title='Alegro lokalnie'
+						subTitles={['Dla sprzedających', 'dla kupujących', 'moje ustawienia']}
 					></MenuContentBox>
 				</Section11>
 			</Container>

@@ -18,7 +18,6 @@ export const TextContainer = styled.div`
 	background: ${props => (props.background ? props.background : '')};
 	border-radius: ${props => (props.background ? '4px' : '')};
 	width: ${props => (props.fullWidth ? '100%' : 'auto')};
-
 	&:hover {
 		color: ${props => props.hovered && 'var(--linkColor)'};
 		cursor: ${props => props.hovered && 'pointer'};
@@ -26,6 +25,7 @@ export const TextContainer = styled.div`
 	:first-letter {
 		text-transform: ${props => (props.firstSmall ? 'none' : 'capitalize')};
 	}
+	text-transform: ${props => props.capitalize && 'capitalize'};
 `;
 
 export const SubTitle = styled.div`
