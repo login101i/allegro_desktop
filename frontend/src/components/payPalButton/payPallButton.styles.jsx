@@ -14,7 +14,6 @@ export const Button = styled.div`
 	cursor: pointer;
 	color: white;
 	font-size: 14px;
-	z-index: 100;
 	transition: 0.6s ease-in-out;
 `;
 
@@ -26,7 +25,9 @@ export const Logo = styled.img`
 `;
 export const Container = styled.div`
 	position: fixed;
-	top: 33vh;
+	top: 32vh;
+	z-index: 999;
+
 	right: ${props => (props.payPalMove ? '0px' : '-115px')};
 	visibility: ${props => (props.isPaypalShow ? 'visible' : 'hidden')};
 	transition: 0.6s ease-in-out;

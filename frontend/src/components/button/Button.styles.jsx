@@ -18,8 +18,9 @@ export const ButtonContainer = styled.button`
 	line-height: 40px;
 	margin: 0;
 	overflow: hidden;
-	
+
 	width:${props => (props.width ? props.width : 'auto')};
+
 	border-radius:${props => (props.borderRadius ? '20px' : '')};
 	font-weight:${props => (props.bold ? '900' : '500')};
 	display: flex;

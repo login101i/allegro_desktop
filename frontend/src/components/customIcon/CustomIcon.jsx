@@ -10,7 +10,7 @@ const CustomIcon = ({ badgeContent, size = 26, icon, color, style, onClick, chil
 	return (
 		<Icon style={style} onClick={onClick}>
 			{badgeContent ? (
-				<StyledBadge badgeContent={badgeContent}>
+				<StyledBadge badgeContent={badgeContent} overlap='rectangular'>
 					<IconName style={{ fontSize: isMobile ? '19px' : `${size}px` }} />
 				</StyledBadge>
 			) : (

@@ -3,7 +3,7 @@ import { Input } from '@mui/material';
 
 export const Container = styled.div`
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: ${props => (props.isMobile ? ' repeat(1, 1fr)' : ' repeat(2, 1fr)')};
 	grid-template-rows: repeat(1, 1fr);
 	grid-column-gap: 16px;
 	grid-row-gap: 16px;
@@ -11,7 +11,7 @@ export const Container = styled.div`
 `;
 
 export const RegisterContainer = styled.div`
-	grid-area: 1 / 1 / 2 / 2;
+	grid-area: 1 / 2 / 2 / 3;
 	background-color: white;
 	padding: 20px;
 `;

@@ -125,32 +125,34 @@ export const RightPart = () => {
 			) : (
 				<>
 					<Text> Moje allegro</Text>
-					<CustomIcon icon={ArrowBackIosIcon} onClick={handleMenu} />
-					<MenuLogin openMenu={openMenu} ref={catMenu} isMobile={isMobile}>
-						<MenuLoginContainer>
-							<LogInImage src={LoginImage} />
+					<IconDown ref={catMenu}>
+						<ArrowBackIosIcon onClick={handleMenu} size={11} />
+						<Menu openMenu={openMenu} ref={catMenu} isMobile={isMobile}>
+							<MenuLoginContainer>
+								<LogInImage src={LoginImage} />
 
-							<Text bold size={25}>
-								Witaj w allegro
-							</Text>
-							<Text
-								wrap='true'
-								textAlign
-								subTitle='Zaloguj się i zobacz swoje zakupy, obserwowane oferty i
+								<Text bold size={25}>
+									Witaj w allegro
+								</Text>
+								<Text
+									wrap='true'
+									textAlign
+									subTitle='Zaloguj się i zobacz swoje zakupy, obserwowane oferty i
 											powiadomienia. W Allegro jesteś u siebie!'
-							></Text>
-							<Link to='/login'>
-								<Button>Zaloguj się</Button>
-							</Link>
-
-							<Flex>
-								<Text> Nie masz konta? </Text>
-								<Link to='/register'>
-									<Text color='green'> Zarejestruj się</Text>
+								></Text>
+								<Link to='/login'>
+									<Button onClick={handleMenu}>Zaloguj się</Button>
 								</Link>
-							</Flex>
-						</MenuLoginContainer>
-					</MenuLogin>
+
+								<Flex>
+									<Text> Nie masz konta? </Text>
+									<Link to='/register'>
+										<Text color='green'> Zarejestruj się</Text>
+									</Link>
+								</Flex>
+							</MenuLoginContainer>
+						</Menu>
+					</IconDown>
 				</>
 			)}
 		</Right>

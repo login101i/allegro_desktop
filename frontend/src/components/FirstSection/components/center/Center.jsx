@@ -28,7 +28,7 @@ export const Center = () => {
 			if (myCounter >= 6) {
 				setSlideIndex(0);
 			}
-		}, 3000);
+		}, 8000);
 	};
 
 	const handleIndex = index => {

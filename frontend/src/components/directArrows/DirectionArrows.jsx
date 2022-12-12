@@ -34,7 +34,7 @@ const DirectionArrows = ({ title, children, style, containerIndex = 2, align }) 
 				)}
 				{title && <Text bold>{title}</Text>}
 				<Wrapper slideIndex={slideIndex}>{children}</Wrapper>
-				<DirectionButton direction='right' onClick={() => handleClick('right')}>
+				<DirectionButton direction='right' onClick={() => null}>
 					<ArrowForwardIosIcon />
 				</DirectionButton>
 			</Container>

@@ -33,7 +33,7 @@ const Login = () => {
 	return (
 		<PageWidth width={isMobile && '100%'}>
 			<Container isMobile={isMobile}>
-				<LeftContainer>
+				<LeftContainer isMobile={isMobile}>
 					<Text size={30}> Zaloguj się </Text>
 					<Flex>
 						<FormControlLabel control={<Checkbox defaultChecked />} label='Login lub email' disableUnderline={true} />
@@ -44,16 +44,16 @@ const Login = () => {
 
 						<CustomInput rightPart={<BorderAndTitle title={'pokaż'} />} onChange={e => setPassword(e.target.value)}></CustomInput>
 					</Flex>
-					<Flex space>
+					<Flex space align>
 						<Text color='#00a790'>Nie pamiętam hasła</Text>
-						<Button onClick={handleLogin}>Zaloguj się</Button>
+						<Button onClick={handleLogin} width="150px">Zaloguj się</Button>
 					</Flex>
 					<Flex center>
 						<Text>lub</Text>
 					</Flex>
 					<Flex space>
-						<Button background='lightBlue'>Faebook</Button>
-						<Button outlined background='white' color='darkGrey'>
+						<Button background='lightBlue' width="150px">Faebook</Button>
+						<Button outlined background='white' color='darkGrey'  width="150px">
 							Google
 						</Button>
 					</Flex>
@@ -72,7 +72,7 @@ const Login = () => {
 						</Text>
 					</Flex>
 				</LeftContainer>
-				{isMobile && <RightContainer />}
+				{isMobile && <RightContainer isMobile={isMobile} />}
 			</Container>
 		</PageWidth>
 	);
