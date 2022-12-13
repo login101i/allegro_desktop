@@ -3,7 +3,7 @@ import SmartImage from '../../assets/pictures/Smart.svg';
 import { screens } from '../responsive';
 import { SectionInfo, Discount, OldPrice, FlexRow, Price, Text, Smart, PriceEnd } from './PriceDiscount.styles';
 
-const PriceDiscount = ({ discount, oldPrice, price, description, extended = true }) => {
+const PriceDiscount = ({ discount = 0, oldPrice = 0, price = 0, description = '', extended = false }) => {
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
 	return (

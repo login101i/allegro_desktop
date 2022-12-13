@@ -1,7 +1,7 @@
 import { SubTitle, TextContainer } from './Test.styles';
 const Text = ({
 	title,
-	size =16,
+	size = 16,
 	marginTop,
 	bold,
 	children,

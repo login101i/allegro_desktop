@@ -8,7 +8,9 @@ export const Left = ({ products }) => {
 
 	return (
 		<Container isMobile={isMobile}>
-			<Text title='Weekendowe okazje dnia kończą się za:' />
+			<Text wrap='true' size={18} textAlign>
+				Weekendowe okazje dnia kończą się za:
+			</Text>
 			<Wrapper>
 				<CountDownTimer />
 				<DirectionArrows>

@@ -16,11 +16,14 @@ const ContainerInfo1 = () => {
 	return (
 		<Container1>
 			<Flex style={{ width: '85%', height: '90%' }}>
-				<Flex column align space>
+				<Flex column space>
 					{isAuthenticated ? <Text title={'Cześć ' + capitalize(user.name) + '!'} bold /> : <Text title={'Witaj na allegro!'} bold />}
 					<Flex>
 						<Icon src={PayPalLogo} />
-						<Text wrap>Twoje środki Allegro Pay: 4 000 zł.</Text>
+						<Text wrap>
+							Twoje środki Allegro Pay:
+							<br /> 4 000 zł.
+						</Text>
 					</Flex>
 					<Flex>
 						<Icon src={Logo2} />

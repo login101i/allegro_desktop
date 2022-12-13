@@ -9,4 +9,5 @@ export const Container = styled.div`
 	margin: 4px 0px;
 	width: ${props => (props.fullWidth ? '100%' : 'auto')};
 	border-top: ${props => (props.borderTop ? '1px solid lightGrey ' : '')};
+	max-width: ${props => (props.maxWidth ? props.maxWidth : '')};
 `;

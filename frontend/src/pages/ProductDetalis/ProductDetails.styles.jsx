@@ -5,12 +5,13 @@ export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-	width: 100%;
 	background-color: white;
 	padding: 40px;
 	margin-bottom: 60px;
 	background-color: white;
 	min-height: 760px;
+	height: 760px;
+	width: 1100px;
 	max-width: 1200px;
 `;
 

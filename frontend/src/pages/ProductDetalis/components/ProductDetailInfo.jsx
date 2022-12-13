@@ -1,12 +1,12 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { useMediaQuery } from 'react-responsive';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import PriceDiscount from '../../../components/priceDiscount/PriceDiscount';
 import { screens } from '../../../../src/components/responsive';
-import { Flex, CustomIcon, Shipping, CartPlusMinus, Text, DirectionArrows } from '../../../components';
+import { Flex, CustomIcon, Shipping, CartPlusMinus, Text, DirectionArrows, RedirectOnClick, Button } from '../../../components';
 import { useResize } from '../../../utils/useResize';
-
+import { CartContext } from '../../../context/cart.context';
 import {
 	Container,
 	Left,
@@ -26,13 +26,20 @@ import {
 
 export const ProductDetailsInfo = ({ product }) => {
 	const [gallery, setGallery] = useState(false);
+	console.log(
+		'%cMyProject%cline:28%cgallery',
+		'color:#fff;background:#ee6f57;padding:3px;border-radius:2px',
+		'color:#fff;background:#1f3c88;padding:3px;border-radius:2px',
+		'color:#fff;background:rgb(39, 72, 98);padding:3px;border-radius:2px',
+		gallery,
+	);
 	const [imageIndex, setImageIndex] = useState(0);
 
 	const imageRef = useRef();
 	const { width: imageWidth } = useResize(imageRef);
 
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
-
+	const { dispatch } = useContext(CartContext);
 	const {
 		img = [
 			{
@@ -52,6 +59,10 @@ export const ProductDetailsInfo = ({ product }) => {
 		setGallery(!gallery);
 	};
 
+	const handleAddToCart = product => {
+		console.log('dodaję');
+		dispatch({ type: 'ADD_PRODUCT_TO_CART', payload: product });
+	};
 	useEffect(() => {
 		const galleryWidth = img.length * imageWidth;
 	}, []);
@@ -98,6 +109,9 @@ export const ProductDetailsInfo = ({ product }) => {
 				<Text marginTop={50}>2 osoby kupiły 2 sztuki</Text>
 				<Shipping />
 				<CartPlusMinus />
+				<RedirectOnClick to={`/cart`}>
+					<Button onClick={() => handleAddToCart(product)}>Dodaj do koszyka</Button>
+				</RedirectOnClick>
 			</Right>
 		);
 	};
@@ -111,7 +125,7 @@ export const ProductDetailsInfo = ({ product }) => {
 						{rightPart(isMobile)}
 					</Flex>
 				</Container>
-				{!gallery && (
+				{gallery && (
 					<GalleryWrapper>
 						<CloseButtonContainer>
 							<CustomIcon icon={CloseIcon} color='white' onClick={handleGallery} />
@@ -138,6 +152,22 @@ export const ProductDetailsInfo = ({ product }) => {
 							{leftPart(isMobile)}
 							{rightPart(isMobile)}
 						</Container>
+						{gallery && (
+							<GalleryWrapper>
+								<CloseButtonContainer>
+									<CustomIcon icon={CloseIcon} color='white' onClick={handleGallery} />
+								</CloseButtonContainer>
+
+								<GalleryContainer>
+									{img.map((image, index) => (
+										<MainImage src={image.url} key={image.url + index} ref={imageRef} />
+									))}
+									<GalleryLengthIndicator>
+										{imageIndex + 1} / {img.length}
+									</GalleryLengthIndicator>
+								</GalleryContainer>
+							</GalleryWrapper>
+						)}
 					</>
 				)}
 			</>

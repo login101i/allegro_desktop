@@ -3,10 +3,11 @@ import { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
-import { Text, Button, Flex } from '..';
+import { Text, Flex } from '..';
 import { Container, MinusPlusContainer, Square, Input } from './CartMinusPlus.styles';
+import { productCategories } from '../../utils/data';
 
-const CartPlusMinus = () => {
+const CartPlusMinus = ({product}) => {
 	const [number, setNumber] = useState(1);
 
 	const onChangeText = (text, value) => {
@@ -25,23 +26,20 @@ const CartPlusMinus = () => {
 	};
 
 	return (
-		<Container>
+		<Flex column align>
 			<Text size={16}>Ilość sztuk</Text>
-			<Flex>
-				<MinusPlusContainer>
-					<Square onClick={() => minus()}>
-						<RemoveIcon style={{ fontSize: '30px', margin: '10px' }} />
-					</Square>
-					<Input onChange={e => onChangeText(e.target.value)} value={number} type='number'  />
-					<Square onClick={() => plus()}>
-						<AddIcon style={{ fontSize: '30px', margin: '10px' }} />
-					</Square>
-				</MinusPlusContainer>
-				<Flex align>z 198 sztuk</Flex>
-			</Flex>
 
-			<Button>Dodaj do koszyka</Button>
-		</Container>
+			<MinusPlusContainer>
+				<Square onClick={() => minus()}>
+					<RemoveIcon style={{ fontSize: '30px', margin: '10px' }} />
+				</Square>
+				<Input onChange={e => onChangeText(e.target.value)} value={number} type='number' />
+				<Square onClick={() => plus()}>
+					<AddIcon style={{ fontSize: '30px', margin: '10px' }} />
+				</Square>
+			</MinusPlusContainer>
+			<Flex align>z {product.stock} sztuk</Flex>
+		</Flex>
 	);
 };
 

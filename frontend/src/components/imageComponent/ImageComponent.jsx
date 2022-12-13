@@ -1,4 +1,4 @@
-import {ImageContainer, Image} from './ImageComponent.styles'
+import { ImageContainer, Image } from './ImageComponent.styles';
 
 const ImageComponent = ({ img, size, style }) => {
 	return (

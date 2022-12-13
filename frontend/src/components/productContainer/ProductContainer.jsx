@@ -11,7 +11,7 @@ const ProductContainer = ({
 	img,
 	discount = 0,
 	oldPrice = 0,
-	price,
+	price=1.11,
 	description,
 	row = false,
 	product = { id: '61c10bc4649cdf618b815c4a' },

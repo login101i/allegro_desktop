@@ -1,6 +1,6 @@
 import {Container } from './Flex.styles'
 
-const FlexRow = ({ space, style, align, column, fullWidth, borderTop, center, children }) => {
+const FlexRow = ({ space, style, align, column, fullWidth, borderTop, center, children, maxWidth }) => {
 	return (
 		<Container
 			style={style}
@@ -10,6 +10,7 @@ const FlexRow = ({ space, style, align, column, fullWidth, borderTop, center, ch
 			fullWidth={fullWidth}
 			borderTop={borderTop}
 			center={center}
+			maxWidth={maxWidth}
 		>
 			{children}
 		</Container>

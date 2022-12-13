@@ -11,8 +11,6 @@ import { AllegroLocal } from './pages/AllegroLocal/AllegroLocal';
 import { Login, Register, MyAccount } from './pages/Authentication';
 import AllegroFooter from './components/allegroFooter/AllegroFooter';
 import { theme } from './infrastructure/theme';
-import './style.css';
-
 import { ProtectedRoute } from './utils/routes/ProtectedRoute';
 import { screens } from './components/responsive';
 import { NavbarAd } from './components/navbarAdd/NavbarAdd';
@@ -21,6 +19,9 @@ import { allegroVersion } from './redux/actions/versionAction';
 import { getProducts } from './redux/actions/productActions';
 import { store } from './store';
 import { GreyBackground, Container } from './App.styles';
+import { CartPage } from './pages/CartPage/CartPage';
+import { CartContextProvider } from './context/cart.context';
+import './style.css';
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -35,32 +36,35 @@ const App = () => {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<GreyBackground isMobile={isMobile}>
-				<BrowserRouter>
-					<Navbar />
-					{!isMobile && <NavbarAd />}
-					<Container isMobile={isMobile}>
-						<Routes>
-							<Route path='/' element={<HomePage isMobile={isMobile} />} exact></Route>
-							<Route path='/product/:id' element={<ProductDetails />} />
-							<Route path='/listing/:keyword' element={<Listing />} />
-							<Route path='/login' exact element={<Login />} />
-							<Route path='/register' element={<Register />} exact />
-							<Route
-								path='/moje-allegro/moje-konto'
-								element={
-									<ProtectedRoute>
-										<MyAccount />
-									</ProtectedRoute>
-								}
-								exact
-							/>
-							<Route path='/oferty/wystaw/kup-teraz' element={<AllegroLocal />} exact />
-						</Routes>
-					</Container>
-					<AllegroFooter isMobile={isMobile} />
-				</BrowserRouter>
-			</GreyBackground>
+			<CartContextProvider>
+				<GreyBackground isMobile={isMobile}>
+					<BrowserRouter>
+						<Navbar />
+						{!isMobile && <NavbarAd />}
+						<Container isMobile={isMobile}>
+							<Routes>
+								<Route path='/' element={<HomePage isMobile={isMobile} />} exact></Route>
+								<Route path='/product/:id' element={<ProductDetails />} />
+								<Route path='/listing/:keyword' element={<Listing />} />
+								<Route path='/login' exact element={<Login />} />
+								<Route path='/register' element={<Register />} exact />
+								<Route path='/cart' element={<CartPage />} exact />
+								<Route
+									path='/moje-allegro/moje-konto'
+									element={
+										<ProtectedRoute>
+											<MyAccount />
+										</ProtectedRoute>
+									}
+									exact
+								/>
+								<Route path='/oferty/wystaw/kup-teraz' element={<AllegroLocal />} exact />
+							</Routes>
+						</Container>
+						<AllegroFooter isMobile={isMobile} />
+					</BrowserRouter>
+				</GreyBackground>
+			</CartContextProvider>
 		</ThemeProvider>
 	);
 };

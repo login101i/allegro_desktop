@@ -16,7 +16,7 @@ const CustomIcon = ({ badgeContent, size = 26, icon, color, style, onClick, chil
 			) : (
 				<IconName
 					style={{
-						fontSize: isMobile ? '19px' : `${size}px`,
+						fontSize: isMobile ? '22px' : `${size}px`,
 						color: `${color}`,
 						textAlign: 'center',
 						marginRight: '10px',
