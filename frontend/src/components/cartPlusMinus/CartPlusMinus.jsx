@@ -7,9 +7,10 @@ import { Text, Flex } from '..';
 import { Container, MinusPlusContainer, Square, Input } from './CartMinusPlus.styles';
 import { productCategories } from '../../utils/data';
 
-const CartPlusMinus = ({product}) => {
+const CartPlusMinus = ({ product = [] }) => {
 	const [number, setNumber] = useState(1);
 
+	const { stock = 0 } = product;
 	const onChangeText = (text, value) => {
 		if (value <= 0) return;
 		const newValue = value;
@@ -38,7 +39,7 @@ const CartPlusMinus = ({product}) => {
 					<AddIcon style={{ fontSize: '30px', margin: '10px' }} />
 				</Square>
 			</MinusPlusContainer>
-			<Flex align>z {product.stock} sztuk</Flex>
+			<Flex align>z {stock} sztuk</Flex>
 		</Flex>
 	);
 };

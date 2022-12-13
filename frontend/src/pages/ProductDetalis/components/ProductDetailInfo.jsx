@@ -60,7 +60,6 @@ export const ProductDetailsInfo = ({ product }) => {
 	};
 
 	const handleAddToCart = product => {
-		console.log('dodaję');
 		dispatch({ type: 'ADD_PRODUCT_TO_CART', payload: product });
 	};
 	useEffect(() => {

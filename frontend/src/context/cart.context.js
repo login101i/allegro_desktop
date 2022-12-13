@@ -14,21 +14,21 @@ const CartReducer = (state, action) => {
 				loading: true,
 				error: null,
 			};
-		case 'LOGIN_SUCCESS':
+		case 'REMOVE_FROM_CART':
 			return {
-				user: action.payload,
+				cart: [...state.cart.filter(product => product._id !== action.payload._id)],
 				loading: false,
 				error: null,
 			};
 		case 'LOGIN_FAILURE':
 			return {
-				user: null,
+				cart: null,
 				loading: false,
 				error: action.payload,
 			};
 		case 'LOGOUT':
 			return {
-				user: null,
+				cart: null,
 				loading: false,
 				error: null,
 			};
@@ -36,6 +36,8 @@ const CartReducer = (state, action) => {
 			return state;
 	}
 };
+
+
 
 export const CartContext = createContext(INITIAL_STATE);
 

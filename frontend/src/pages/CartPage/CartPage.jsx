@@ -39,9 +39,8 @@ import { screens } from '../../components/responsive';
 export const CartPage = () => {
 	const [isPaypalShow, setIsPaypalShow] = useState(false);
 	const [payPalMove, setPaypalMove] = useState(false);
-	const dispatch = useDispatch();
 
-	const { cart } = useContext(CartContext);
+	const { cart, dispatch } = useContext(CartContext);
 	console.log(
 		'%cMyProject%cline:17%ccart',
 		'color:#fff;background:#ee6f57;padding:3px;border-radius:2px',
@@ -53,6 +52,10 @@ export const CartPage = () => {
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
 	useEffect(() => {}, []);
+
+	const handleDeleteFromCart = product => {
+		dispatch({ type: 'REMOVE_FROM_CART', payload: product });
+	};
 
 	return (
 		<Wrapper>
@@ -105,7 +108,12 @@ export const CartPage = () => {
 													price={product.price}
 													description={product.description}
 												/>
-												<CustomIcon icon={DeleteIcon} size={44} />
+												<CustomIcon
+													icon={DeleteIcon}
+													size={35}
+													onClick={() => handleDeleteFromCart(product)}
+													color={theme.colors.blackSpace}
+												/>
 											</Flex>
 										</Flex>
 									</CartProductContainer>
