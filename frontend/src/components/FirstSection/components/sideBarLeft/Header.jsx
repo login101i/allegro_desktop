@@ -17,7 +17,7 @@ export const HeaderComponent = ({showCategories}) => {
 		showCategories('korzysci')
 	};
 	const togglehead = () => {
-		setbenefits(false);
+		setbenefits(false);``
 		setSections(true);
 		showCategories('dzialy')
 

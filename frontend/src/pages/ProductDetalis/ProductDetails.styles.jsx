@@ -1,16 +1,17 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-	margin: 20px 0px 100px 40px;
+	margin: ${props => (props.isMobile ? '10px' : ' 20px 0px 100px 40px')};
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-	width: 80%;
+	width: 100%;
 	background-color: white;
-	padding: 40px 30px;
+	padding: 40px;
+	margin-bottom: 60px;
 	background-color: white;
 	min-height: 760px;
-	width: 1200px;
+	max-width: 1200px;
 `;
 
 export const Space = styled.div`

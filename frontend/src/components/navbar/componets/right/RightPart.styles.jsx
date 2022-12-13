@@ -45,16 +45,17 @@ export const IconDown = styled(Icon)`
 	transform: translateX(10px);
 	font-size: ${props => (props.isMobile ? '18px' : '28px')};
 	margin-left: 25px;
+	position: relative;
 `;
 
 export const MenuLogin = styled.div`
 	border: 1px solid lightGrey;
 	display: ${props => (props.openMenu ? 'block' : 'none')};
-	position: absolute;
+	position: fixed;
 	top: 45px;
 	right: 0;
 	width: 285px;
-	height: auto;
+	height: 100vh;
 	min-height: 200px;
 	padding: 16px;
 	background-color: white;
@@ -63,7 +64,7 @@ export const MenuLogin = styled.div`
 `;
 export const MenuLoginMobile = styled.div`
 	display: ${props => (props.openMenu ? 'block' : '')};
-	position: absolute;
+	position: fixed;
 	top: -65px;
 	right: -325px;
 	width: 80vw;
@@ -72,6 +73,7 @@ export const MenuLoginMobile = styled.div`
 	background-color: white;
 	z-index: 112;
 	transition: all 0.4s ease-out;
+	z-index: 1000;
 	${props =>
 		props.openMenu &&
 		css`

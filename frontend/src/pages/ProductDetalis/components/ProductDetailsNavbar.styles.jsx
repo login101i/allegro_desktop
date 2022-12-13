@@ -4,7 +4,7 @@ export const Container = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
-	padding: 20px;
+	padding: ${props => (props.isMobile ? '1px' : '20px')}
 	width: 94%;
 	flex-direction: ${props => (props.isMobile ? 'column' : 'row')};
 	border-bottom: 1px solid lightGrey;
@@ -18,9 +18,8 @@ export const Left = styled.div`
 	flex-direction: column;
 `;
 export const TitleL = styled.div`
-	fontsize: 30px;
-	font-weight: 600;
 	font-size: 24px;
+	font-weight: 600;
 `;
 export const Ratings = styled.div`
 	display: flex;
@@ -40,3 +39,4 @@ export const RightBottom = styled.div`
 	color: ${props => props.theme.colors.linkColor};
 	margin-top: 10px;
 `;
+

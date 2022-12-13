@@ -19,7 +19,7 @@ export const ProductDetailsNavbar = ({ product }) => {
 			{product && (
 				<Container isMobile={isMobile}>
 					<Left>
-						<TitleL>{title}</TitleL>
+						<TitleL isMobile={isMobile}>{title}</TitleL>
 						<Flex>
 							<Ratings>
 								{ratingArray.map((rating, index) => (

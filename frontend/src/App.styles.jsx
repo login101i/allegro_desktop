@@ -16,6 +16,6 @@ export const Container = styled.div`
 	flex-direction: column;
 	align-items: ${props => (props.isMobile ? 'auto' : 'center')};
 	justify-content: center;
+
 	max-width: ${props => (props.isMobile ? 'auto' : '1600px')};
-	// overflow: hidden;
 `;

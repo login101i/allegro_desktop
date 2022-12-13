@@ -9,6 +9,8 @@ import { ProductDetailsInfo } from './components/ProductDetailInfo';
 import { Loader } from '../../components';
 import { getProductDetails } from '../../redux/actions/productActions';
 import { Container, Space } from './ProductDetails.styles';
+import { useMediaQuery } from 'react-responsive';
+import { screens } from '../../components/responsive';
 
 export const ProductDetails = () => {
 	const dispatch = useDispatch();
@@ -19,12 +21,13 @@ export const ProductDetails = () => {
 	}, [dispatch, id]);
 
 	const { loading, product } = useSelector(state => state.productDetails);
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
 	const title = 'Product Details';
 	return (
 		<>
-			<Container>
-				<CartTitle title={title} />
+			<Container isMobile={isMobile}>
+				<CartTitle title={title} isMobile={isMobile} />
 				{loading ? '' : <ProductDetailsNavbar product={product} />}
 				{loading ? <Loader /> : <ProductDetailsInfo product={product} />}
 			</Container>
