@@ -26,13 +26,7 @@ import {
 
 export const ProductDetailsInfo = ({ product }) => {
 	const [gallery, setGallery] = useState(false);
-	console.log(
-		'%cMyProject%cline:28%cgallery',
-		'color:#fff;background:#ee6f57;padding:3px;border-radius:2px',
-		'color:#fff;background:#1f3c88;padding:3px;border-radius:2px',
-		'color:#fff;background:rgb(39, 72, 98);padding:3px;border-radius:2px',
-		gallery,
-	);
+
 	const [imageIndex, setImageIndex] = useState(0);
 
 	const imageRef = useRef();
@@ -96,7 +90,9 @@ export const ProductDetailsInfo = ({ product }) => {
 						Obserwuj
 					</CustomIcon>
 				</IconContainer>
-				<Title>{title}</Title>
+				<Text size={28} bold wrap='true'>
+					{title}
+				</Text>
 				<FromSeller>Od Super Sprzedawcy {seller}</FromSeller>
 				<PriceDiscount discount={discount} oldPrice={oldPrice} price={price} description={description} />
 				{price > 500 && (
@@ -115,6 +111,27 @@ export const ProductDetailsInfo = ({ product }) => {
 		);
 	};
 
+	const galleryComponent = () => {
+		return (
+			gallery && (
+				<GalleryWrapper>
+					<CloseButtonContainer>
+						<CustomIcon icon={CloseIcon} color='white' onClick={handleGallery} />
+					</CloseButtonContainer>
+
+					<GalleryContainer ref={imageRef}>
+						{img.map((image, index) => (
+							<MainImage src={image.url} key={image.url + index} />
+						))}
+						<GalleryLengthIndicator>
+							{imageIndex + 1} / {img.length}
+						</GalleryLengthIndicator>
+					</GalleryContainer>
+				</GalleryWrapper>
+			)
+		);
+	};
+
 	if (isMobile)
 		return (
 			<>
@@ -124,22 +141,7 @@ export const ProductDetailsInfo = ({ product }) => {
 						{rightPart(isMobile)}
 					</Flex>
 				</Container>
-				{gallery && (
-					<GalleryWrapper>
-						<CloseButtonContainer>
-							<CustomIcon icon={CloseIcon} color='white' onClick={handleGallery} />
-						</CloseButtonContainer>
-
-						<GalleryContainer>
-							{img.map((image, index) => (
-								<MainImage src={image.url} key={image.url + index} ref={imageRef} />
-							))}
-							<GalleryLengthIndicator>
-								{imageIndex + 1} / {img.length}
-							</GalleryLengthIndicator>
-						</GalleryContainer>
-					</GalleryWrapper>
-				)}
+				{gallery && galleryComponent()}
 			</>
 		);
 	else
@@ -151,22 +153,7 @@ export const ProductDetailsInfo = ({ product }) => {
 							{leftPart(isMobile)}
 							{rightPart(isMobile)}
 						</Container>
-						{gallery && (
-							<GalleryWrapper>
-								<CloseButtonContainer>
-									<CustomIcon icon={CloseIcon} color='white' onClick={handleGallery} />
-								</CloseButtonContainer>
-
-								<GalleryContainer>
-									{img.map((image, index) => (
-										<MainImage src={image.url} key={image.url + index} ref={imageRef} />
-									))}
-									<GalleryLengthIndicator>
-										{imageIndex + 1} / {img.length}
-									</GalleryLengthIndicator>
-								</GalleryContainer>
-							</GalleryWrapper>
-						)}
+						{gallery && galleryComponent()}
 					</>
 				)}
 			</>

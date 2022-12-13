@@ -1,5 +1,4 @@
 import { useEffect, useState, useContext } from 'react';
-import { useDispatch } from 'react-redux';
 import Checkbox from '@mui/material/Checkbox';
 import {
 	Wrapper,
@@ -24,7 +23,6 @@ import {
 	Text,
 	CartPlusMinus,
 	BorderAndTitle,
-	ProductContainer,
 	PriceDiscount,
 	RedirectOnClick,
 	ImageComponent,
@@ -32,22 +30,15 @@ import {
 } from '../../components';
 import { colors, theme } from '../../infrastructure/theme';
 import { CartContext } from '../../context/cart.context';
-import { Image, ImageContainer } from '../../components/imageComponent/ImageComponent.styles';
+import {  ImageContainer } from '../../components/imageComponent/ImageComponent.styles';
 import { useMediaQuery } from 'react-responsive';
 import { screens } from '../../components/responsive';
 
 export const CartPage = () => {
 	const [isPaypalShow, setIsPaypalShow] = useState(false);
-	const [payPalMove, setPaypalMove] = useState(false);
 
 	const { cart, dispatch } = useContext(CartContext);
-	console.log(
-		'%cMyProject%cline:17%ccart',
-		'color:#fff;background:#ee6f57;padding:3px;border-radius:2px',
-		'color:#fff;background:#1f3c88;padding:3px;border-radius:2px',
-		'color:#fff;background:rgb(248, 214, 110);padding:3px;border-radius:2px',
-		cart,
-	);
+
 
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
 

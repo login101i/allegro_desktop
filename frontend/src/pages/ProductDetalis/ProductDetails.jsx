@@ -23,7 +23,7 @@ export const ProductDetails = () => {
 	const { loading, product } = useSelector(state => state.productDetails);
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
-	const title = 'Product Details';
+	const title = 'Szczegóły produktu';
 	return (
 		<>
 			<Container isMobile={isMobile}>

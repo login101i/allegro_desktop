@@ -1,15 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
-
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { screens } from '../../../../src/components/responsive';
 import { Text, Flex } from '../../../components';
-
+import { theme } from '../../../infrastructure/theme';
 import { Container, Left, TitleL, Ratings, Right, TitleR, RightBottom } from './ProductDetailsNavbar.styles';
 
 export const ProductDetailsNavbar = ({ product }) => {
-	const { title, ratings = 5, numOfReviews, price, stock } = product;
+	const { title = '', ratings = 5, numOfReviews, price = 0, stock } = product;
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
 	const ratingArray = Array.from(new Array(Math.floor(ratings)));
 	const remainStars = Array.from(new Array(5 - Math.floor(ratings)));
@@ -19,7 +16,7 @@ export const ProductDetailsNavbar = ({ product }) => {
 			{product && (
 				<Container isMobile={isMobile}>
 					<Left>
-						<TitleL isMobile={isMobile}>{title}</TitleL>
+						<TitleR>{title}</TitleR>
 						<Flex>
 							<Ratings>
 								{ratingArray.map((rating, index) => (
@@ -35,9 +32,10 @@ export const ProductDetailsNavbar = ({ product }) => {
 					</Left>
 					<Right>
 						<TitleR>Inne oferty tego produktu.</TitleR>
-
 						<RightBottom>
-							Najtańsze od {price - 10} zł, najszyciej od {price + 4} zł. Wszystkie ({stock})
+							<Text color={theme.colors.linkColor} wrap='true'>
+								Najtańsze od {price} zł, najszyciej od {price.toFixed(1) + 4} zł. Wszystkie ({stock}) sztuk.
+							</Text>
 						</RightBottom>
 					</Right>
 				</Container>

@@ -1,8 +1,10 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
 	width: 100%;
 	border-top: 1px solid lightGrey;
 	border-bottom: 1px solid lightGrey;
@@ -15,4 +17,5 @@ export const TextInfo = styled.div`
 	color: lightGrey;
 	flex: 1;
 	text-align: left;
+	align-items:flex-start;
 `;

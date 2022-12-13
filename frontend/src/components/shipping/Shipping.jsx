@@ -5,6 +5,8 @@ import { Container, TextInfo } from './Shipping.styles';
 import BorderAndTitle from '../borderAndTitle/BorderAndTitle';
 
 import { Text, Flex } from '..';
+import { useMediaQuery } from 'react-responsive';
+import { screens } from '../responsive';
 
 const dataArray = [
 	{
@@ -27,25 +29,29 @@ const dataArray = [
 ];
 
 const Shipping = () => {
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
+
 	return (
 		<>
 			<Container>
 				{dataArray.map((data, index) => (
-					<Flex space wrap key={index + data.text}>
-						<TextInfo>
-							<data.icon
-								style={{
-									fontSize: '30px',
-									color: 'lightGrey',
-									marginRight: '10px',
-								}}
-							/>
-							<Text subTitle={data.subTitle} size={16} wrap='true'>
-								{data.text}
-							</Text>
-						</TextInfo>
+					<div key={index + data.text}>
+						<Flex space wrap column={isMobile}>
+							<TextInfo>
+								<data.icon
+									style={{
+										fontSize: '30px',
+										color: 'lightGrey',
+										marginRight: '10px',
+									}}
+								/>
+								<Text subTitle={data.subTitle} size={16} wrap='true'>
+									{data.text}
+								</Text>
+							</TextInfo>
+						</Flex>
 						<BorderAndTitle title={data.title} />
-					</Flex>
+					</div>
 				))}
 			</Container>
 		</>

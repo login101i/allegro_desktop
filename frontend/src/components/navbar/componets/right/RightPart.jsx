@@ -66,7 +66,7 @@ export const RightPart = () => {
 			<CustomIcon icon={ShoppingCartOutlinedIcon} />
 			{isAuthenticated ? (
 				<>
-					<StyledBadge badgeContent={2}>
+					<StyledBadge badgeContent={2} overlap='rectangular'>
 						<Text>{user?.name}</Text>
 					</StyledBadge>
 					<IconDown ref={catMenu}>

@@ -11,13 +11,13 @@ export const Container = styled.div`
 
 export const Left = styled.div`
 	flex: 3;
-	width: 100%;
+	width: 90vw;
 	margin: ${props => (props.isMobile ? '30px' : '0px')};
 `;
 
 export const MainImage = styled.img`
-	width: ${props => (props.isMobile ? '100vw' : '100%')};
-	height: 400px;
+	width: ${props => (props.isMobile ? '100px' : '100%')};
+	height: ${props => (props.isMobile ? '100px' : '400px')};
 	object-fit: contain;
 	margin-top: 10px;
 	background-color: white;
@@ -34,20 +34,22 @@ export const ImageThumb = styled.img`
 
 export const Right = styled.div`
 	flex: 2;
+	margin-bottom: 16px;
 `;
 export const IconContainer = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
+	justify-content: flex-start;
 	color: ${props => props.theme.colors.linkColor};
 	text-transform: uppercase;
 	font-size: 20px;
+	margin-top: 14px;
 `;
 
 export const Title = styled.div`
-	fontsize: 30px;
 	font-weight: 600;
 	font-size: 26px;
+	white-space: wrap;
 `;
 export const FromSeller = styled.div`
 	margin-bottom: 20px;
