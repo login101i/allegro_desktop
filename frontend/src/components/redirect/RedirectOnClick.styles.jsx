@@ -5,7 +5,7 @@ export const Container = styled(Link)`
 	text-decoration: 'none';
 	width: '100%';
 	background-color: 'transparent';
-	display:flex;
-	justify-content:center;
+	display: flex;
+	justify-content: center;
 	align-items: center;
 `;

@@ -58,6 +58,7 @@ export const LeftRow1 = styled.div`
 	background-color: ${props => props.theme.colors.white};
 	display: flex;
 	justify-content: space-between;
+	padding:0px 12px;
 `;
 export const LeftRow2 = styled.div`
 	margin-bottom: ${props => props.isMobile && '22px'};

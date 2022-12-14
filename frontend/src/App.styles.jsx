@@ -9,6 +9,7 @@ export const GreyBackground = styled.div`
 	justify-content: flex-start;
 	position: relative;
 	overflow: hidden !important;
+	z-index: 999999;
 `;
 
 export const Container = styled.div`
@@ -18,4 +19,15 @@ export const Container = styled.div`
 	justify-content: center;
 
 	max-width: ${props => (props.isMobile ? 'auto' : '1600px')};
+`;
+
+export const GreyFilter = styled.div`
+	width: 100vw;
+	height: 100vh;
+	z-index: 9999999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(220, 220, 220, 0.5);
+	overflow: hidden;
 `;

@@ -11,7 +11,7 @@ const ProductContainer = ({
 	img,
 	discount = 0,
 	oldPrice = 0,
-	price=1.11,
+	price = 1.11,
 	description,
 	row = false,
 	product = { id: '61c10bc4649cdf618b815c4a' },
@@ -19,6 +19,7 @@ const ProductContainer = ({
 	index = 0,
 	height = '100px',
 	imageSize = '120px',
+	seller = 'xxx',
 }) => {
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
 	return (
@@ -43,7 +44,7 @@ const ProductContainer = ({
 						</ImageContainer>
 						<Flex column>
 							<Text wrap='true'>{product.title && product.title.slice(0, 60)}</Text>
-							<Text> od {product.seller}</Text>
+							<Text> od {seller}</Text>
 							<PriceDiscount discount={discount} oldPrice={oldPrice} price={price} description={description} />
 						</Flex>
 					</SectionContainer>

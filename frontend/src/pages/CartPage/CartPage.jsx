@@ -72,7 +72,7 @@ export const CartPage = () => {
 							cart.map((product, index) => (
 								<LeftRow2 isMobile={isMobile}>
 									<CartProductContainer key={product.name + index}>
-										<Flex>
+										<Flex align>
 											<Checkbox />
 											<Text>Przesyłka od {product.seller}</Text>
 										</Flex>

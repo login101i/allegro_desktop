@@ -13,12 +13,12 @@ export const Container = styled.div`
 	overflow: hidden;
 	margin-bottom: ${props => (props.isMobile ? '75px' : '90px')};
 	min-height: 500px;
-	width:1000px;
+	width: 1000px;
 	background-color: white;
+	position: relative;
 `;
 
 export const Space = styled.div`
 	height: 20px;
 	background-color: ${props => props.theme.colors.allegroBackground};
-	border: 2px solid green;
 `;

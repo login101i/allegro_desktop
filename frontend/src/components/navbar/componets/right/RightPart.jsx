@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -8,7 +8,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import LoginImage from '../../../../assets/pictures/LoginImage.png';
 import { logoutUser } from '../../../../redux/actions/userActions';
-import { Flex, Text, Button, MenuContentBox, CustomIcon, OptionComponent } from '../../../../components';
+import { Flex, Text, Button, MenuContentBox, CustomIcon, OptionComponent, RedirectOnClick } from '../../../../components';
 import { StyledBadge } from '../../../customIcon/CustomIcon.styles';
 import {
 	IconDown,
@@ -23,6 +23,7 @@ import {
 } from './RightPart.styles';
 import { useMediaQuery } from 'react-responsive';
 import { screens } from '../../../responsive';
+import { CartContext } from '../../../../context/cart.context';
 
 export const RightPart = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -43,6 +44,7 @@ export const RightPart = () => {
 	const [optionMenu, setOptionMenu] = useState('zakupy');
 	const catMenu = useRef(null);
 
+	const { cart } = useContext(CartContext);
 	const handleChangeMenu = value => {
 		if (value === 'sprzedaz') setOptionMenu('sprzedaz');
 		else if (value === 'konto') setOptionMenu('konto');
@@ -63,7 +65,9 @@ export const RightPart = () => {
 			<CustomIcon icon={StarBorderIcon} />
 			<CustomIcon icon={ForumOutlinedIcon} badgeContent={3} />
 			<CustomIcon icon={NotificationsNoneOutlinedIcon} badgeContent={1} />
-			<CustomIcon icon={ShoppingCartOutlinedIcon} />
+			<RedirectOnClick to='/cart'>
+				<CustomIcon icon={ShoppingCartOutlinedIcon} badgeContent={cart.length} />
+			</RedirectOnClick>
 			{isAuthenticated ? (
 				<>
 					<StyledBadge badgeContent={2} overlap='rectangular'>

@@ -23,6 +23,7 @@ import {
 	GalleryLengthIndicator,
 	GalleryWrapper,
 } from './ProductDetailInfo.styles';
+import { AddToCartModal } from '../../../components';
 
 export const ProductDetailsInfo = ({ product }) => {
 	const [gallery, setGallery] = useState(false);
@@ -33,7 +34,8 @@ export const ProductDetailsInfo = ({ product }) => {
 	const { width: imageWidth } = useResize(imageRef);
 
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
-	const { dispatch } = useContext(CartContext);
+	const { dispatch, cartModal } = useContext(CartContext);
+
 	const {
 		img = [
 			{
@@ -54,7 +56,9 @@ export const ProductDetailsInfo = ({ product }) => {
 	};
 
 	const handleAddToCart = product => {
+		console.log('dodano do koszyka');
 		dispatch({ type: 'ADD_PRODUCT_TO_CART', payload: product });
+		dispatch({ type: 'CART_MODAL_OPEN' });
 	};
 	useEffect(() => {
 		const galleryWidth = img.length * imageWidth;
@@ -104,8 +108,11 @@ export const ProductDetailsInfo = ({ product }) => {
 				<Text marginTop={50}>2 osoby kupiły 2 sztuki</Text>
 				<Shipping />
 				<CartPlusMinus />
-				<RedirectOnClick to={`/cart`}>
+				<Flex >
 					<Button onClick={() => handleAddToCart(product)}>Dodaj do koszyka</Button>
+				</Flex>
+				<RedirectOnClick to={`/cart`}>
+					<Button onClick={() => handleAddToCart(product)}>Kupuję i płacę ({product.price} zł)</Button>
 				</RedirectOnClick>
 			</Right>
 		);
@@ -149,9 +156,10 @@ export const ProductDetailsInfo = ({ product }) => {
 			<>
 				{product && (
 					<>
-						<Container>
+						<Container cartModal>
 							{leftPart(isMobile)}
 							{rightPart(isMobile)}
+							{/* {cartModal && <AddToCartModal product={product} dispatch={dispatch} />} */}
 						</Container>
 						{gallery && galleryComponent()}
 					</>

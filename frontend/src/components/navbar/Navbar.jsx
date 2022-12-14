@@ -8,7 +8,7 @@ import { RightPart } from './componets/right/RightPart';
 import { Flex } from '../../components';
 import { Container, Wrapper } from './Navbar.styles';
 
-const Navbar = () => {
+const Navbar = ({ cartModal }) => {
 	const [openMenu, setOpenMenu] = useState(false);
 
 	const isMobile = useMediaQuery({ maxWidth: screens.md });

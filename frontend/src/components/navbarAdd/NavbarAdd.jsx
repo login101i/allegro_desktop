@@ -3,7 +3,7 @@ import { Container, Image } from './NavbarAdd.styles';
 
 export const NavbarAd = () => {
 	return (
-		<Container>
+		<Container >
 			<Image src={BikeMain} alt='Navbar Picture Lenor' />
 		</Container>
 	);

@@ -20,18 +20,18 @@ const ContainerInfo1 = () => {
 					{isAuthenticated ? <Text title={'Cześć ' + capitalize(user.name) + '!'} bold /> : <Text title={'Witaj na allegro!'} bold />}
 					<Flex>
 						<Icon src={PayPalLogo} />
-						<Text wrap>
+						<Text wrap='true'>
 							Twoje środki Allegro Pay:
 							<br /> 4 000 zł.
 						</Text>
 					</Flex>
 					<Flex>
 						<Icon src={Logo2} />
-						<Text wrap>W Allegro Family darmowe dostawy dla 10 członków rodziny!</Text>
+						<Text wrap='true'>W Allegro Family darmowe dostawy dla 10 członków rodziny!</Text>
 					</Flex>
 					<Flex>
 						<Icon src={Logo3} />
-						<Text wrap>W Allegro Family darmowe dostawy dla 10 członków rodziny</Text>
+						<Text wrap='true'>W Allegro Family darmowe dostawy dla 10 członków rodziny</Text>
 					</Flex>
 					<Button title={'Poznaj swoje korzyści'} />
 				</Flex>

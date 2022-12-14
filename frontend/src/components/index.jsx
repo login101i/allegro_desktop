@@ -25,6 +25,7 @@ import PayPalButton from './payPalButton/PayPalButton';
 import Slide from './slide/Slide';
 import Spacer from './spacer/Spacer.styles';
 import RedirectOnClick from './redirect/RedirectOnClick';
+import AddToCartModal from './AddToCartModal/AddToCartModal';
 
 export {
 	AllegroFooter,
@@ -54,4 +55,5 @@ export {
 	Slide,
 	Spacer,
 	RedirectOnClick,
+	AddToCartModal,
 };
