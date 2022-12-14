@@ -27,6 +27,14 @@ import { AddToCartModal } from '../../../components';
 
 export const ProductDetailsInfo = ({ product }) => {
 	const [gallery, setGallery] = useState(false);
+	const [qty, setQty] = useState(1);
+	console.log(
+		'%cMyProject%cline:30%cproductCount',
+		'color:#fff;background:#ee6f57;padding:3px;border-radius:2px',
+		'color:#fff;background:#1f3c88;padding:3px;border-radius:2px',
+		'color:#fff;background:rgb(248, 147, 29);padding:3px;border-radius:2px',
+		qty,
+	);
 
 	const [imageIndex, setImageIndex] = useState(0);
 
@@ -55,9 +63,8 @@ export const ProductDetailsInfo = ({ product }) => {
 		setGallery(!gallery);
 	};
 
-	const handleAddToCart = product => {
-		console.log('dodano do koszyka');
-		dispatch({ type: 'ADD_PRODUCT_TO_CART', payload: product });
+	const handleAddToCart = (product, qty) => {
+		dispatch({ type: 'ADD_PRODUCT_TO_CART', payload: { product, qty } });
 		dispatch({ type: 'CART_MODAL_OPEN' });
 	};
 	useEffect(() => {
@@ -107,12 +114,12 @@ export const ProductDetailsInfo = ({ product }) => {
 				)}
 				<Text marginTop={50}>2 osoby kupiły 2 sztuki</Text>
 				<Shipping />
-				<CartPlusMinus />
-				<Flex >
-					<Button onClick={() => handleAddToCart(product)}>Dodaj do koszyka</Button>
+				<CartPlusMinus product={product} setQty={setQty} />
+				<Flex>
+					<Button onClick={() => handleAddToCart(product, qty)}>Dodaj do koszyka</Button>
 				</Flex>
 				<RedirectOnClick to={`/cart`}>
-					<Button onClick={() => handleAddToCart(product)}>Kupuję i płacę ({product.price} zł)</Button>
+					<Button onClick={() => handleAddToCart(product, qty)}>Kupuję i płacę ({product.price} zł)</Button>
 				</RedirectOnClick>
 			</Right>
 		);

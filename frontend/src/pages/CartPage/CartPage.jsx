@@ -30,18 +30,13 @@ import {
 } from '../../components';
 import { colors, theme } from '../../infrastructure/theme';
 import { CartContext } from '../../context/cart.context';
-import {  ImageContainer } from '../../components/imageComponent/ImageComponent.styles';
+import { ImageContainer } from '../../components/imageComponent/ImageComponent.styles';
 import { useMediaQuery } from 'react-responsive';
 import { screens } from '../../components/responsive';
 
 export const CartPage = () => {
-	const [isPaypalShow, setIsPaypalShow] = useState(false);
-
 	const { cart, dispatch } = useContext(CartContext);
-
-
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
-
 	useEffect(() => {}, []);
 
 	const handleDeleteFromCart = product => {
@@ -69,8 +64,8 @@ export const CartPage = () => {
 						</LeftRow1>
 
 						{cart &&
-							cart.map((product, index) => (
-								<LeftRow2 isMobile={isMobile}>
+							cart.map(({product, qty}, index) => (
+								<LeftRow2 isMobile={isMobile} key={product._id + index}>
 									<CartProductContainer key={product.name + index}>
 										<Flex align>
 											<Checkbox />
@@ -90,7 +85,7 @@ export const CartPage = () => {
 											</Flex>
 											<Flex align>
 												<Checkbox />
-												<CartPlusMinus product={product} />
+												<CartPlusMinus product={product} qty={qty}/>
 											</Flex>
 											<Flex align column={isMobile}>
 												<PriceDiscount

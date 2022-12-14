@@ -1,14 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ImageComponent, Text, Flex, RedirectOnClick, ProductContainer, Button, PriceDiscount, BorderAndTitle } from '../../components';
+import {
+	ImageComponent,
+	Text,
+	Flex,
+	RedirectOnClick,
+	ProductContainer,
+	Button,
+	CustomIcon,
+	PriceDiscount,
+	BorderAndTitle,
+} from '../../components';
 import { ButtonContainer } from '../button/Button.styles';
 import { Smart } from '../priceDiscount/PriceDiscount.styles';
 import { AnotherOfferContainer, MainContainer, ModalContainer } from './AddToCartModal.styles';
 import SmartImage from '../../assets/pictures/Smart.svg';
 import CloseIcon from '@mui/icons-material/Close';
 import { useSelector } from 'react-redux';
-const AddToCartModal = ({ product = [], dispatch }) => {
-	console.group(product);
+const AddToCartModal = ({ justAddedProduct = [], dispatch }) => {
+	console.log(justAddedProduct);
+	const { product, qty } = justAddedProduct;
 	const HandleCloseCartModal = () => {
 		dispatch({ type: 'CART_MODAL_CLOSE' });
 	};
@@ -18,8 +29,7 @@ const AddToCartModal = ({ product = [], dispatch }) => {
 		<ModalContainer>
 			<Flex space fullWidth>
 				<Text title='Dodałeś przedmiot do koszyka' />
-				<CustomIcon size={22} onClick={HandleCloseCartModal} icon={CloseIcon}/>
-				
+				<CustomIcon size={22} onClick={HandleCloseCartModal} icon={CloseIcon} />
 			</Flex>
 			<Flex fullWidth>
 				<ImageComponent img={product.img[0].url} size={100} />

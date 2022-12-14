@@ -1,23 +1,22 @@
-import { useState } from 'react';
-
+import { useEffect, useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-
 import { Text, Flex } from '..';
-import { Container, MinusPlusContainer, Square, Input } from './CartMinusPlus.styles';
-import { productCategories } from '../../utils/data';
+import { MinusPlusContainer, Square, Input } from './CartMinusPlus.styles';
+import { theme } from '../../infrastructure/theme';
 
-const CartPlusMinus = ({ product = [] }) => {
-	const [number, setNumber] = useState(1);
+const CartPlusMinus = ({ product = [], qty = 1, setQty = () => null }) => {
+	const [number, setNumber] = useState(qty);
 
-	const { stock = 0 } = product;
+	const { stock } = product;
+
 	const onChangeText = (text, value) => {
 		if (value <= 0) return;
-		const newValue = value;
 		setNumber(value);
 	};
 
 	const plus = () => {
+		if (number >= product.stock) return;
 		setNumber(prev => prev + 1);
 	};
 
@@ -26,20 +25,23 @@ const CartPlusMinus = ({ product = [] }) => {
 		setNumber(prev => prev - 1);
 	};
 
+	useEffect(() => {
+		setQty(number);
+	}, [number]);
+
 	return (
 		<Flex column align>
 			<Text size={16}>Ilość sztuk</Text>
-
 			<MinusPlusContainer>
-				<Square onClick={() => minus()}>
+				<Square onClick={minus}>
 					<RemoveIcon style={{ fontSize: '30px', margin: '10px' }} />
 				</Square>
 				<Input onChange={e => onChangeText(e.target.value)} value={number} type='number' />
-				<Square onClick={() => plus()}>
+				<Square onClick={plus}>
 					<AddIcon style={{ fontSize: '30px', margin: '10px' }} />
 				</Square>
 			</MinusPlusContainer>
-			<Flex align>z {stock} sztuk</Flex>
+			{stock === 0 ? <Text color={theme.colors.ui.error}>Brak na magazynie</Text> : <Flex align>z {stock} sztuk</Flex>}
 		</Flex>
 	);
 };

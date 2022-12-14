@@ -10,15 +10,25 @@ const INITIAL_STATE = {
 const CartReducer = (state, action) => {
 	switch (action.type) {
 		case 'ADD_PRODUCT_TO_CART':
-			return {
-				cart: [...state.cart, action.payload],
-				loading: true,
-				error: null,
-				cartModal: false,
-			};
+			const product = action.payload.product;
+			const qty = action.payload.qty;
+			const itemExistInCart = state.cart.find(i => i.product._id === product._id);
+
+			if (itemExistInCart) {
+				return {
+					...state,
+					cart: state.cart.map(i => (i.product._id === product._id ? { product, qty: i.qty + qty } : i)),
+				};
+			} else {
+				return {
+					...state,
+					cart: [...state.cart, { product, qty }],
+				};
+			}
+
 		case 'REMOVE_FROM_CART':
 			return {
-				cart: [...state.cart.filter(product => product._id !== action.payload._id)],
+				cart: [...state.cart.filter(i => i.product._id !== action.payload._id)],
 				cartModal: false,
 				loading: false,
 				error: null,
@@ -48,29 +58,13 @@ const CartReducer = (state, action) => {
 export const CartContext = createContext(INITIAL_STATE);
 
 export const CartContextProvider = ({ children }) => {
-	const [quantity, setQuantity] = useState(1);
-
-	// const increaseQty = (id, quantity, stock) => {
-	// 	const newQty = quantity + 1;
-	// 	if (newQty > stock) return;
-	// };
-
-	// const decreaseQty = (id, quantity) => {
-	// 	const newQty = quantity - 1;
-	// 	if (newQty <= 0) return;
-	// };
-
-	// const removeCartItemHandler = id => {};
-
-	// const addProductToCart = product => {};
 	const [state, dispatch] = useReducer(CartReducer, INITIAL_STATE);
-	console.log(state.cartModal);
 
 	useEffect(() => {
 		if (state.cart.length) {
 			localStorage.setItem('cart-id', JSON.stringify(state.cart));
 		}
-	}, [state.cart, state.cartModal]);
+	}, [state.cart]);
 
 	return (
 		<CartContext.Provider
@@ -79,7 +73,7 @@ export const CartContextProvider = ({ children }) => {
 				cartModal: state.cartModal,
 				loading: state.loading,
 				error: state.error,
-        lastAddedProduct:state.cart[state.cart.length-1],
+				justAddedProduct: state.cart[state.cart.length - 1],
 				dispatch,
 			}}
 		>

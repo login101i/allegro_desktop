@@ -34,20 +34,13 @@ const App = () => {
 	}, [dispatch]);
 
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
-	const { cartModal, dispatch: dispatchCartContext, lastAddedProduct } = useContext(CartContext);
-	console.log(
-		'%cMyProject%cline:37%clastAddedProduct',
-		'color:#fff;background:#ee6f57;padding:3px;border-radius:2px',
-		'color:#fff;background:#1f3c88;padding:3px;border-radius:2px',
-		'color:#fff;background:rgb(229, 187, 129);padding:3px;border-radius:2px',
-		lastAddedProduct,
-	);
+	const { cartModal, dispatch: dispatchCartContext, justAddedProduct } = useContext(CartContext);
 
 	return (
 		<ThemeProvider theme={theme}>
 			<BrowserRouter>
 				{cartModal && <GreyFilter />}
-				{cartModal && <AddToCartModal dispatch={dispatchCartContext} product={lastAddedProduct} />}
+				{cartModal && justAddedProduct && <AddToCartModal dispatch={dispatchCartContext} justAddedProduct={justAddedProduct} />}
 
 				<GreyBackground isMobile={isMobile}>
 					<Navbar cartModal={cartModal} />
