@@ -46,11 +46,7 @@ export const IconContainer = styled.div`
 	margin-top: 14px;
 `;
 
-export const Title = styled.div`
-	font-weight: 600;
-	font-size: 26px;
-	white-space: wrap;
-`;
+
 export const FromSeller = styled.div`
 	margin-bottom: 20px;
 `;

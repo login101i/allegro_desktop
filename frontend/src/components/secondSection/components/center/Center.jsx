@@ -23,7 +23,7 @@ export const Center = ({ products = [], isMobile }) => {
 								/>
 								<Description>
 									{product.description.toString().split('.')[0].length > 80
-										? product.description.slice(0, 100) + '...'
+										? product.description.slice(0, 75) + '...'
 										: product.description.toString().split('.')[0]}
 									.
 								</Description>

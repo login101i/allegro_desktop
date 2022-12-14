@@ -18,7 +18,6 @@ import SmartImage from '../../assets/pictures/Smart.svg';
 import CloseIcon from '@mui/icons-material/Close';
 import { useSelector } from 'react-redux';
 const AddToCartModal = ({ justAddedProduct = [], dispatch }) => {
-	console.log(justAddedProduct);
 	const { product, qty } = justAddedProduct;
 	const HandleCloseCartModal = () => {
 		dispatch({ type: 'CART_MODAL_CLOSE' });

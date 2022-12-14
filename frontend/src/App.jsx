@@ -39,8 +39,10 @@ const App = () => {
 	return (
 		<ThemeProvider theme={theme}>
 			<BrowserRouter>
-				{cartModal && <GreyFilter />}
-				{cartModal && justAddedProduct && <AddToCartModal dispatch={dispatchCartContext} justAddedProduct={justAddedProduct} />}
+				{cartModal && !isMobile && <GreyFilter />}
+				{cartModal && justAddedProduct && !isMobile && (
+					<AddToCartModal dispatch={dispatchCartContext} justAddedProduct={justAddedProduct} />
+				)}
 
 				<GreyBackground isMobile={isMobile}>
 					<Navbar cartModal={cartModal} />

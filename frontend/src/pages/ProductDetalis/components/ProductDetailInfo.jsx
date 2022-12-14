@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useRef, useContext } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { useMediaQuery } from 'react-responsive';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -15,7 +15,6 @@ import {
 	ImageThumb,
 	Right,
 	IconContainer,
-	Title,
 	FromSeller,
 	Raty,
 	GalleryContainer,
@@ -23,18 +22,10 @@ import {
 	GalleryLengthIndicator,
 	GalleryWrapper,
 } from './ProductDetailInfo.styles';
-import { AddToCartModal } from '../../../components';
 
 export const ProductDetailsInfo = ({ product }) => {
 	const [gallery, setGallery] = useState(false);
 	const [qty, setQty] = useState(1);
-	console.log(
-		'%cMyProject%cline:30%cproductCount',
-		'color:#fff;background:#ee6f57;padding:3px;border-radius:2px',
-		'color:#fff;background:#1f3c88;padding:3px;border-radius:2px',
-		'color:#fff;background:rgb(248, 147, 29);padding:3px;border-radius:2px',
-		qty,
-	);
 
 	const [imageIndex, setImageIndex] = useState(0);
 
@@ -67,9 +58,7 @@ export const ProductDetailsInfo = ({ product }) => {
 		dispatch({ type: 'ADD_PRODUCT_TO_CART', payload: { product, qty } });
 		dispatch({ type: 'CART_MODAL_OPEN' });
 	};
-	useEffect(() => {
-		const galleryWidth = img.length * imageWidth;
-	}, []);
+
 
 	const leftPart = ({ isMobile }) => {
 		return (
@@ -166,7 +155,6 @@ export const ProductDetailsInfo = ({ product }) => {
 						<Container cartModal>
 							{leftPart(isMobile)}
 							{rightPart(isMobile)}
-							{/* {cartModal && <AddToCartModal product={product} dispatch={dispatch} />} */}
 						</Container>
 						{gallery && galleryComponent()}
 					</>

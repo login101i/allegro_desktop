@@ -62,10 +62,9 @@ export const CartPage = () => {
 								<CustomIcon icon={ExpandLessIcon} />
 							</Flex>
 						</LeftRow1>
-
 						{cart &&
-							cart.map(({product, qty}, index) => (
-								<LeftRow2 isMobile={isMobile} key={product._id + index}>
+							cart.map(({ product, qty, totalProductPrice }, index) => (
+								<LeftRow2 isMobile={isMobile} key={product._id + index} qty={qty}>
 									<CartProductContainer key={product.name + index}>
 										<Flex align>
 											<Checkbox />
@@ -85,14 +84,16 @@ export const CartPage = () => {
 											</Flex>
 											<Flex align>
 												<Checkbox />
-												<CartPlusMinus product={product} qty={qty}/>
+												<CartPlusMinus product={product} qty={qty} calculateTotal />
 											</Flex>
 											<Flex align column={isMobile}>
 												<PriceDiscount
 													discount={product.discount}
 													oldPrice={product.oldPrice}
-													price={product.price}
+													price={totalProductPrice}
+													qty={qty}
 													description={product.description}
+													product={product}
 												/>
 												<CustomIcon
 													icon={DeleteIcon}
@@ -139,7 +140,7 @@ export const CartPage = () => {
 							</Flex>
 						</RightRow1>
 						<RightRow2>
-							<Flex column>
+							<Flex column space>
 								<Flex space align>
 									<ImageComponent size={80} img='https://a.allegroimg.com/s160/12b155/8ed149a848d382507379b1e4d20a' />
 									<Flex column>

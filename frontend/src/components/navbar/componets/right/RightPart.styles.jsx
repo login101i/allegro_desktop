@@ -66,7 +66,7 @@ export const MenuLoginMobile = styled.div`
 	display: ${props => (props.openMenu ? 'block' : '')};
 	position: fixed;
 	top: -65px;
-	right: -325px;
+	right: -360px;
 	width: 80vw;
 	height: 100vh;
 	padding: 16px;

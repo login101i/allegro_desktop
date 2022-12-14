@@ -22,7 +22,7 @@ export const MainContainer = styled.div`
 	grid-template-columns: repeat(6, 1fr);
 	grid-template-rows: repeat(7, 1fr);
 	grid-column-gap: 16px;
-	grid-row-gap: 16px;
+	grid-row-gap: 0px;
 	width: ${props => (props.isMobile ? '400px' : '')};
 	margin-bottom: 160px;
 	margin-top: 16px;
@@ -44,7 +44,6 @@ export const LeftColumn = styled.div`
 	grid-template-columns: 1fr;
 	grid-template-rows: repeat(7, 1fr);
 	grid-column-gap: 16px;
-	grid-row-gap: 16px;
 	max-height: 800px;
 	overflow: scroll;
 	max-width: 850px;
@@ -58,11 +57,12 @@ export const LeftRow1 = styled.div`
 	background-color: ${props => props.theme.colors.white};
 	display: flex;
 	justify-content: space-between;
-	padding:0px 12px;
 `;
 export const LeftRow2 = styled.div`
-	margin-bottom: ${props => props.isMobile && '22px'};
+	margin-bottom: ${props => props.isMobile && '12px'};
 	background-color: ${props => props.theme.colors.white};
+	margin-top: 16px;
+	filter: ${props => props.qty === 0 && 'brightness(80%)'};
 `;
 
 export const RightColumn = styled.div`
@@ -77,13 +77,15 @@ export const RightColumn = styled.div`
 export const RightRow1 = styled.div`
 	background-color: ${props => props.theme.colors.white};
 	padding: 12px;
+	height: 324px;
 `;
 
 export const RightRow2 = styled.div`
 	background-color: ${props => props.theme.colors.white};
 	padding: 12px;
-	max-height: 230px;
 	margin-top: 16px;
+
+	height: 260px;
 `;
 export const RightRow3 = styled.div`
 	background-color: ${props => props.theme.colors.white};

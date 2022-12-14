@@ -13,16 +13,19 @@ const CartReducer = (state, action) => {
 			const product = action.payload.product;
 			const qty = action.payload.qty;
 			const itemExistInCart = state.cart.find(i => i.product._id === product._id);
+			const totalProductPrice = product.price * qty;
 
 			if (itemExistInCart) {
 				return {
 					...state,
-					cart: state.cart.map(i => (i.product._id === product._id ? { product, qty: i.qty + qty } : i)),
+					cart: state.cart.map(i =>
+						i.product._id === product._id ? { product, qty: i.qty + qty, totalProductPrice: i.totalProductPrice + totalProductPrice } : i,
+					),
 				};
 			} else {
 				return {
 					...state,
-					cart: [...state.cart, { product, qty }],
+					cart: [{ product, qty, totalProductPrice }, ...state.cart],
 				};
 			}
 
@@ -59,7 +62,6 @@ export const CartContext = createContext(INITIAL_STATE);
 
 export const CartContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(CartReducer, INITIAL_STATE);
-
 	useEffect(() => {
 		if (state.cart.length) {
 			localStorage.setItem('cart-id', JSON.stringify(state.cart));

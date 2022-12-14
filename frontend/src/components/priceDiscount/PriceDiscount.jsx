@@ -1,11 +1,7 @@
-import { useMediaQuery } from 'react-responsive';
 import SmartImage from '../../assets/pictures/Smart.svg';
-import { screens } from '../responsive';
 import { SectionInfo, Discount, OldPrice, FlexRow, Price, Text, Smart, PriceEnd } from './PriceDiscount.styles';
 
-const PriceDiscount = ({ discount = 0, oldPrice = 0, price = 0, description = '', extended = false }) => {
-	const isMobile = useMediaQuery({ maxWidth: screens.md });
-
+const PriceDiscount = ({ discount, oldPrice, price, description, extended = true }) => {
 	return (
 		<>
 			<SectionInfo>
@@ -17,9 +13,9 @@ const PriceDiscount = ({ discount = 0, oldPrice = 0, price = 0, description = ''
 						</FlexRow>
 					)}
 				</FlexRow>
-				<Price isMobile={isMobile}>
+				<Price>
 					{price.toString().split('.')[0]}
-					<PriceEnd isMobile={isMobile}>{price.toString().split('.')[1]} zł</PriceEnd>
+					<PriceEnd>{price.toString().split('.')[1]} zł</PriceEnd>
 				</Price>
 
 				{extended && (
