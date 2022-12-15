@@ -1,7 +1,22 @@
 import { useEffect, useState, useContext } from 'react';
+import {
+	Text,
+	Flex,
+	Button,
+	CustomIcon,
+	CartPlusMinus,
+	BorderAndTitle,
+	PriceDiscount,
+	RedirectOnClick,
+	ImageComponent,
+} from '../../components';
+import { getUserCart } from '../../redux/actions/cartActions';
 import { useNavigate } from 'react-router-dom';
-
 import Checkbox from '@mui/material/Checkbox';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SecurityIcon from '@mui/icons-material/Security';
 import {
 	Wrapper,
 	MainContainer,
@@ -14,37 +29,30 @@ import {
 	RightRow2,
 	RightRow3,
 	CartProductContainer,
-} from './CartPage.styles';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import DeleteIcon from '@mui/icons-material/Delete';
-import SecurityIcon from '@mui/icons-material/Security';
-import {
-	CustomIcon,
-	Flex,
-	Text,
-	CartPlusMinus,
-	BorderAndTitle,
-	PriceDiscount,
-	RedirectOnClick,
-	ImageComponent,
-	Button,
-} from '../../components';
+} from './CheckoutPage.styles';
 import { colors, theme } from '../../infrastructure/theme';
 import { CartContext } from '../../context/cart.context';
 import { ImageContainer } from '../../components/imageComponent/ImageComponent.styles';
 import { useMediaQuery } from 'react-responsive';
 import { screens } from '../../components/responsive';
 import { useSelector } from 'react-redux';
-import { userCart, getUserCart } from '../../redux/actions/cartActions';
 
-export const CartPage = ({ history }) => {
-	const { cart, dispatch } = useContext(CartContext);
-	const { auth } = useSelector(state => ({ ...state }));
-
+export const CheckoutPage = () => {
+	const [products, setProducts] = useState([]);
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
 	useEffect(() => {}, []);
 	const navigate = useNavigate();
+
+	const [total, setTotal] = useState(0);
+	const { cart, dispatch } = useContext(CartContext);
+
+	useEffect(() => {
+		getUserCart().then(res => {
+			setProducts(res.data.products);
+			setTotal(res.data.cartTotal);
+		});
+	}, []);
+
 	const handleDeleteFromCart = product => {
 		dispatch({ type: 'REMOVE_FROM_CART', payload: product });
 	};
@@ -71,9 +79,13 @@ export const CartPage = ({ history }) => {
 				<MainContainer isMobile={isMobile}>
 					<LeftColumn>
 						<LeftRow1>
-							<Flex align>
-								<Checkbox />
-								<Text>Cały koszyk</Text>
+							<Text title='Dane odbiorcy przesyłki'></Text>
+							<BorderAndTitle />
+							<Flex column>
+								<Text>Maciej Kruszyniak</Text>
+								<Text>Szostka 26 </Text>
+								<Text>88-200 Radziejów </Text>
+								<Text>+48 698673254</Text>
 							</Flex>
 							<Flex align>
 								<Text uppecase color={colors.linkColor}>
@@ -187,6 +199,27 @@ export const CartPage = ({ history }) => {
 					</RightColumn>
 				</MainContainer>
 			</Flex>
+
+			<Text>Hello from checkoutPage</Text>
+			<Flex>
+				<Flex column>
+					{products.map((p, i) => (
+						<Flex key={i}>
+							<Text wrap='true'>
+								{p.product.title} = {p.price + ' zł *' + p.qty} // {p.totalProduct} zł
+							</Text>
+						</Flex>
+					))}
+				</Flex>
+			</Flex>
+			<Flex>
+				<Text bold>Cart Total: {total} zł</Text>
+			</Flex>
+			<RedirectOnClick to='/payment '>
+				<Button color='white' background='green'>
+					Zapłać teraz
+				</Button>
+			</RedirectOnClick>
 		</Wrapper>
 	);
 };

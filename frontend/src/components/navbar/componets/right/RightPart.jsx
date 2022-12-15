@@ -32,6 +32,7 @@ export const RightPart = () => {
 	};
 
 	const { isAuthenticated, user } = useSelector(state => state.auth);
+	
 	const closeOpenMenus = e => {
 		if (catMenu.current && openMenu && !catMenu.current.contains(e.target)) {
 			setOpenMenu(false);

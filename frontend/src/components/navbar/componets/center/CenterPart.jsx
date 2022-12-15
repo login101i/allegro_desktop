@@ -15,9 +15,10 @@ export const CenterPart = ({ isMobile }) => {
 		e.preventDefault();
 
 		if (keyword.trim()) {
-			navigate(`/listing/${keyword}`);
+			navigate(`/payment`);s
+			// navigate(`/listing/${keyword}`);
 		} else {
-			navigate('/');
+			navigate('/payment');
 		}
 	};
 	return (

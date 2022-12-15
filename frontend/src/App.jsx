@@ -20,6 +20,8 @@ import { getProducts } from './redux/actions/productActions';
 import { store } from './store';
 import { GreyBackground, Container, GreyFilter } from './App.styles';
 import { CartPage } from './pages/CartPage/CartPage';
+import { PaymentPage } from './pages/PaymentPage/PaymentPage';
+import { CheckoutPage } from './pages/Checkout/CheckoutPage';
 import { CartContext } from './context/cart.context';
 
 import './style.css';
@@ -55,6 +57,8 @@ const App = () => {
 							<Route path='/login' exact element={<Login />} />
 							<Route path='/register' element={<Register />} exact />
 							<Route path='/cart' element={<CartPage />} exact />
+							<Route path='/checkout' element={<CheckoutPage />} exact />
+							<Route path='/payment' element={<PaymentPage />} exact />
 							<Route
 								path='/moje-allegro/moje-konto'
 								element={

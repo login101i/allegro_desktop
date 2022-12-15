@@ -10,7 +10,7 @@ const ContainerInfo1 = () => {
 	const { isAuthenticated, user } = useSelector(state => state.auth);
 
 	function capitalize(word) {
-		return word.charAt(0).toUpperCase() + word.slice(1);
+		return word?.charAt(0).toUpperCase() + word?.slice(1) || 'Brak słowa';
 	}
 
 	return (
