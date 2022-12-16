@@ -26,6 +26,7 @@ const Login = () => {
 	};
 
 	const handleLogin = () => {
+		if (!email || !password) return;
 		dispatch(loginUser(body));
 		navigate('/');
 	};
@@ -46,14 +47,18 @@ const Login = () => {
 					</Flex>
 					<Flex space align>
 						<Text color='#00a790'>Nie pamiętam hasła</Text>
-						<Button onClick={handleLogin} width="150px">Zaloguj się</Button>
+						<Button onClick={handleLogin} width='150px' disabled={!password || !email}>
+							Zaloguj się
+						</Button>
 					</Flex>
 					<Flex center>
 						<Text>lub</Text>
 					</Flex>
 					<Flex space>
-						<Button background='lightBlue' width="150px">Faebook</Button>
-						<Button outlined background='white' color='darkGrey'  width="150px">
+						<Button background='lightBlue' width='150px'>
+							Faebook
+						</Button>
+						<Button outlined background='white' color='darkGrey' width='150px'>
 							Google
 						</Button>
 					</Flex>

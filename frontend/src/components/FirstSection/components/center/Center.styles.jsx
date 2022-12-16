@@ -28,7 +28,7 @@ export const Carousel = styled.div`
 	transform: translateX(${props => -(props.slideIndex * props.distance)}px);
 	height: 100%;
 	width: 100%;
-	transition: all 1.5s ease-in-out;
+	transition: all 1s ease-in-out;
 	height: ${props => (props.isMobile ? '60%' : '100%')};
 `;
 

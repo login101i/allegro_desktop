@@ -39,10 +39,14 @@ const errorMiddleware = require('./middlewares/errors');
 const products = require('./routes/products');
 const auth = require('./routes/auth');
 const lists = require('./routes/lists');
+const cart = require('./routes/cart')
+const stripe = require('./routes/stripe');
 
 app.use('/api/v1', products);
 app.use('/api/v1', auth);
 app.use('/api/v1', lists);
+app.use('/api/v1', cart);
+app.use('/api/v1', stripe);
 
 if (process.env.NODE_ENV === 'PRODUCTION') dotenv.config({ path: 'backend/config/config.env' });
 

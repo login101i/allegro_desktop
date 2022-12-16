@@ -22,6 +22,7 @@ import { GreyBackground, Container, GreyFilter } from './App.styles';
 import { CartPage } from './pages/CartPage/CartPage';
 import { PaymentPage } from './pages/PaymentPage/PaymentPage';
 import { CheckoutPage } from './pages/Checkout/CheckoutPage';
+import { InvoicePage } from './pages/InvoicePage/InvoicePage';
 import { CartContext } from './context/cart.context';
 
 import './style.css';
@@ -47,8 +48,8 @@ const App = () => {
 				)}
 
 				<GreyBackground isMobile={isMobile}>
-					<Navbar cartModal={cartModal} />
-					{isMobile && <NavbarAd cartModal={cartModal} />}
+					<Navbar />
+					{!isMobile && <NavbarAd cartModal={cartModal} />}
 					<Container isMobile={isMobile}>
 						<Routes>
 							<Route path='/' element={<HomePage isMobile={isMobile} />} exact></Route>
@@ -59,6 +60,7 @@ const App = () => {
 							<Route path='/cart' element={<CartPage />} exact />
 							<Route path='/checkout' element={<CheckoutPage />} exact />
 							<Route path='/payment' element={<PaymentPage />} exact />
+							<Route path='/invoice' element={<InvoicePage />} exact />
 							<Route
 								path='/moje-allegro/moje-konto'
 								element={

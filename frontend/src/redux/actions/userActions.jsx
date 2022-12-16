@@ -34,9 +34,7 @@ export const registerUser = body => async dispatch => {
 export const loginUser = body => async dispatch => {
 	try {
 		dispatch({ type: LOGIN_REQUEST });
-		console.log('loguję');
 		const { data } = await axios.post('/api/v1/login', body);
-		console.log(data);
 		dispatch({
 			type: LOGIN_SUCCESS,
 			payload: data,
@@ -71,7 +69,6 @@ export const loadUser = () => async dispatch => {
 		});
 
 		const { data } = await axios.post('/api/v1/me');
-		console.log(data);
 		dispatch({
 			type: LOAD_USER_SUCCESS,
 			payload: data.user,

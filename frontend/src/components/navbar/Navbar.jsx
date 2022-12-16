@@ -8,20 +8,19 @@ import { RightPart } from './componets/right/RightPart';
 import { Flex } from '../../components';
 import { Container, Wrapper } from './Navbar.styles';
 
-const Navbar = ({ cartModal }) => {
+const Navbar = () => {
 	const [openMenu, setOpenMenu] = useState(false);
-
-	const isMobile = useMediaQuery({ maxWidth: screens.md });
 	const { version } = useSelector(state => state.version);
-
-	useEffect(() => {}, [version]);
-
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
 	const catMenu = useRef(null);
+
 	const closeOpenMenus = e => {
 		if (catMenu.current && openMenu && !catMenu.current.contains(e.target)) {
 			setOpenMenu(false);
 		}
 	};
+
+	useEffect(() => {}, [version]);
 
 	document.addEventListener('mousedown', closeOpenMenus);
 

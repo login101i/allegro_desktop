@@ -2,12 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useSelector, useDispatch } from 'react-redux';
 import { createPaymentIntent } from '../../utils/stripe';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import { getUserCart } from '../../redux/actions/cartActions';
 const StripeCheckout = ({ history }) => {
-	const dispatch = useDispatch();
 	const { isAuthenticated, user } = useSelector(state => state.auth);
-
 
 	const [succeeded, setSucceeded] = useState(false);
 	const [error, setError] = useState(null);
@@ -17,13 +15,21 @@ const StripeCheckout = ({ history }) => {
 
 	const stripe = useStripe();
 	const elements = useElements();
-
+	const navigate = useNavigate();
 	useEffect(() => {
-		createPaymentIntent(user.accessToken).then(res => {
+		createPaymentIntent().then(res => {
 			console.log('create payment intent', res.data);
 			setClientSecret(res.data.clientSecret);
 		});
 	}, [user]);
+
+	const [total, setTotal] = useState(0);
+
+	useEffect(() => {
+		getUserCart().then(res => {
+			setTotal(res.data.cartTotal);
+		});
+	}, []);
 
 	const handleSubmit = async e => {
 		e.preventDefault();
@@ -41,6 +47,9 @@ const StripeCheckout = ({ history }) => {
 		if (payload.error) {
 			setError(`Payment failed ${payload.error.message}`);
 			setProcessing(false);
+			setTimeout(() => {
+				navigate('/invoice');
+			}, 2500);
 		} else {
 			// here you get result after successful payment
 			// create order and save in database for admin to process
@@ -95,6 +104,8 @@ const StripeCheckout = ({ history }) => {
 					</div>
 				)}
 			</form>
+
+			<div>{total} zł</div>
 		</>
 	);
 };

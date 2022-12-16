@@ -58,14 +58,14 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 		return next(new ErrorHandler('Invalid Password', 401));
 	}
 
-	const accessToken = jwt.sign(
-		{
-			id: user._id,
-			isAdmin: user.isAdmin,
-		},
-		process.env.JWT_SECRET,
-		{ expiresIn: process.env.JWT_EXPIRES_TIME },
-	);
+	// const accessToken = jwt.sign(
+	// 	{
+	// 		id: user._id,
+	// 		isAdmin: user.isAdmin,
+	// 	},
+	// 	process.env.JWT_SECRET,
+	// 	{ expiresIn: process.env.JWT_EXPIRES_TIME },
+	// );
 
 	sendToken(user, 200, res);
 });

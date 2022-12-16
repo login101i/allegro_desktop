@@ -20,6 +20,7 @@ export const Right = styled.div`
 	align-items: center;
 	justify-content: flex-end;
 	margin-bottom: ${props => props.isMobile && '16px'};
+	z-index: 1000;
 `;
 
 export const Icon = styled.div`
@@ -39,13 +40,19 @@ export const Icon = styled.div`
 export const LogInImage = styled.img`
 	width: 100%;
 	object-fit: contain;
+	min-width: 500px;
+	margin-left: 100px;
+`;
+
+export const MenuLoginLogoutContainer = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
 `;
 
 export const IconDown = styled(Icon)`
-	transform: translateX(10px);
 	font-size: ${props => (props.isMobile ? '18px' : '28px')};
 	margin-left: 25px;
-	position: relative;
 `;
 
 export const MenuLogin = styled.div`
@@ -55,25 +62,25 @@ export const MenuLogin = styled.div`
 	top: 45px;
 	right: 0;
 	width: 285px;
-	height: 100vh;
+	height: ${props => (props.isMobile ? '100vh' : ' 700px')};
 	min-height: 200px;
 	padding: 16px;
 	background-color: white;
 	border: 1px solid lightGrey;
-	z-index: 112;
 `;
 export const MenuLoginMobile = styled.div`
 	display: ${props => (props.openMenu ? 'block' : '')};
 	position: fixed;
 	top: -65px;
 	right: -360px;
-	width: 80vw;
+	width: 90vw;
 	height: 100vh;
 	padding: 16px;
 	background-color: white;
-	z-index: 112;
 	transition: all 0.4s ease-out;
-	z-index: 1000;
+	margin-top: 65px;
+	z-index: 81;
+
 	${props =>
 		props.openMenu &&
 		css`
@@ -92,19 +99,21 @@ export const MenuLoginContainer = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	width: 100%;
+	width: 80%;
 	height: 100%;
-	background-color: white;
+	padding: 10px;
+	overflow: hidden;
 `;
 
 export const AccountNavbar = styled.div`
 	display: flex;
 	flex-direction: row;
-	width: 100%;
-	justify-content: center;
+	width: ${props => (props.isMobile ? '80%' : '100%')};
+	justify-content: flex-start;
 	background-color: white;
 `;
 
 export const AccountMainCont = styled.div`
 	width: 100%;
+	margin-bottom: 20px;
 `;

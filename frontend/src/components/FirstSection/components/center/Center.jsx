@@ -19,7 +19,7 @@ export const Center = () => {
 	useEffect(() => {
 		startInterval();
 		return () => clearInterval(timeout);
-	}, []);
+	}, [slideIndex]);
 
 	myCounter = slideIndex;
 	const startInterval = () => {
@@ -35,7 +35,6 @@ export const Center = () => {
 		setSlideIndex(index);
 		if (isMobile) {
 			const distance = sliderRef.current.getBoundingClientRect().width;
-			console.log(distance);
 			setDistance(distance);
 		}
 	};

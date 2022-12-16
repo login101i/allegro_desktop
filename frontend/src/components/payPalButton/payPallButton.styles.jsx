@@ -26,7 +26,7 @@ export const Logo = styled.img`
 export const Container = styled.div`
 	position: fixed;
 	top: 32vh;
-	z-index: 999;
+	z-index: 99;
 
 	right: ${props => (props.payPalMove ? '0px' : '-115px')};
 	visibility: ${props => (props.isPaypalShow ? 'visible' : 'hidden')};

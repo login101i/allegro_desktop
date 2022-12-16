@@ -14,7 +14,7 @@ export const PaymentPage = () => {
 	const { cart, dispatch } = useContext(CartContext);
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
-	const promise = loadStripe('stripe_public_key');
+	const promise = loadStripe('pk_live_51GmO1MCfVm83guzrdjtzivAUBpU3NzpwNNXSY4fe85Mk69hj35rO1YM5NVaBwo5kHj76erk5EZIFwuIGoOW4CQpY00giMF5vhp');
 
 	return (
 		<Wrapper>

@@ -26,6 +26,8 @@ import Slide from './slide/Slide';
 import Spacer from './spacer/Spacer.styles';
 import RedirectOnClick from './redirect/RedirectOnClick';
 import AddToCartModal from './AddToCartModal/AddToCartModal';
+import InvoiceComponent from './Invoice/InvoiceComponent';
+import MenuLoginLogout from './menuLoginLogout/MenuLoginLogout';
 
 export {
 	AllegroFooter,
@@ -56,4 +58,6 @@ export {
 	Spacer,
 	RedirectOnClick,
 	AddToCartModal,
+	InvoiceComponent,
+	MenuLoginLogout,
 };

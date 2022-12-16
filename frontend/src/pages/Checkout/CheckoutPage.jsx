@@ -26,8 +26,6 @@ import {
 	LeftRow2,
 	RightColumn,
 	RightRow1,
-	RightRow2,
-	RightRow3,
 	CartProductContainer,
 } from './CheckoutPage.styles';
 import { colors, theme } from '../../infrastructure/theme';
@@ -57,19 +55,9 @@ export const CheckoutPage = () => {
 		dispatch({ type: 'REMOVE_FROM_CART', payload: product });
 	};
 
-	const getTotal = () => {
-		return cart.reduce((currentValue, nextValue) => {
-			return currentValue + nextValue.totalProductPrice;
-		}, 0);
-	};
-	const saveOrderToDb = () => {
-		// console.log('cart', JSON.stringify(cart, null, 4));
-		userCart(cart)
-			.then(res => {
-				console.log('Cart post response is : ', res);
-				if (res.data.ok) navigate('/checkout');
-			})
-			.catch(err => console.log('cart save err', err));
+
+	const handlePayment = () => {
+		navigate('/payment');
 	};
 
 	return (
@@ -153,73 +141,22 @@ export const CheckoutPage = () => {
 								</Flex>
 								<Flex space>
 									<Text>Razem z dostaną </Text>
-									<Text>{getTotal()} zł</Text>
+									<Text>{total} zł</Text>
 								</Flex>
 								<Flex align column>
 									<Flex>
-										<Button background={theme.colors.lightBlue} width='220px' capitalize onClick={saveOrderToDb}>
-											Zapłać później
-										</Button>
-									</Flex>
-									<Flex>
-										<Button background='var(--allegroColor)' width='220px' capitalize onClick={saveOrderToDb}>
-											Dostawa i płatność
+										<Button background={theme.colors.lightBlue} width='220px' capitalize onClick={handlePayment}>
+											Zapłać teraz
 										</Button>
 									</Flex>
 								</Flex>
-
 								<BorderAndTitle />
 								<BorderAndTitle title='kontynuuj zakupy' />
 							</Flex>
 						</RightRow1>
-						<RightRow2>
-							<Flex column space>
-								<Flex space align>
-									<ImageComponent size={80} img='https://a.allegroimg.com/s160/12b155/8ed149a848d382507379b1e4d20a' />
-									<Flex column>
-										<Text wrap='true' title='Dorzuć wpłatę do Wirtualnej Puszki WOŚP' />
-										<Text wrap='true'>Wesprzyj 31. Finał WOŚP. Żyj zdrowo w zdrowym świecie!</Text>
-									</Flex>
-								</Flex>
-								<BorderAndTitle border title='Dorzuć cegiełkę' />
-							</Flex>
-						</RightRow2>
-						<RightRow3>
-							<Flex column>
-								<Flex space>
-									<CustomIcon icon={SecurityIcon} size={54} color='lightBlue' />
-									<Flex column>
-										<Text title='Kupujesz z Allegro Protect' />
-										<Text wrap='true'>100% zakupów ze zwrotem pieniędzy do 48 h. Sprawdź szczegół</Text>
-									</Flex>
-								</Flex>
-								<BorderAndTitle border title='Dorzuć cegiełkę' />
-							</Flex>
-						</RightRow3>
 					</RightColumn>
 				</MainContainer>
 			</Flex>
-
-			<Text>Hello from checkoutPage</Text>
-			<Flex>
-				<Flex column>
-					{products.map((p, i) => (
-						<Flex key={i}>
-							<Text wrap='true'>
-								{p.product.title} = {p.price + ' zł *' + p.qty} // {p.totalProduct} zł
-							</Text>
-						</Flex>
-					))}
-				</Flex>
-			</Flex>
-			<Flex>
-				<Text bold>Cart Total: {total} zł</Text>
-			</Flex>
-			<RedirectOnClick to='/payment '>
-				<Button color='white' background='green'>
-					Zapłać teraz
-				</Button>
-			</RedirectOnClick>
 		</Wrapper>
 	);
 };

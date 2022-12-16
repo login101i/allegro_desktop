@@ -23,8 +23,9 @@ export const StyledBadge = styled(Badge)(({ theme }) => ({
 		border: `2px solid ${props => props.theme.colors.allegroColor}`,
 		padding: '0 4px',
 		right: -2,
-		top: 30,
+		top: 25,
 		color: 'white',
-		zIndex: -11,
+		zIndex: 80,
+	
 	},
 }));

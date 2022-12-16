@@ -45,7 +45,7 @@ export const HomePage = ({ isMobile }) => {
 			<ThirdSection />
 			<FourthSection />
 			<FifthSection />
-			<PayPalButton isPaypalShow={isPaypalShow} handlePayPalMove={handlePayPalMove} payPalMove={payPalMove} />
+			{!isMobile && <PayPalButton isPaypalShow={isPaypalShow} handlePayPalMove={handlePayPalMove} payPalMove={payPalMove} />}
 			{isMobile ? (
 				<BannerContainer>
 					<SmartBanner src={SmartBannerImg2} />

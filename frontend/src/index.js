@@ -1,3 +1,5 @@
+window.process = {};
+
 import ReactDOM from 'react-dom';
 import App from './App';
 import { CartContextProvider } from './context/cart.context';
