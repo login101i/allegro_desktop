@@ -26,7 +26,7 @@ export const Item = props => {
 	return (
 		<Container isMobile={isMobile}>
 			<Image src={image} isMobile={isMobile} />
-			<Text size={isMobile && 15}>{title}</Text>
+			<Text size={isMobile ? 13 : 16}>{title}</Text>
 		</Container>
 	);
 };

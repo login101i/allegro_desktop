@@ -1,3 +1,5 @@
+import { ErrorMessage } from '../components';
+
 export const chainValidators =
 	(...validators) =>
 	value => {
@@ -11,16 +13,7 @@ export const chainValidators =
 export const nipValidator = val => {
 	if (val && /^[0-9]{10}$/.test(val)) {
 		const checksum =
-			(6 * val[0] +
-				5 * val[1] +
-				7 * val[2] +
-				2 * val[3] +
-				3 * val[4] +
-				4 * val[5] +
-				5 * val[6] +
-				6 * val[7] +
-				7 * val[8]) %
-			11;
+			(6 * val[0] + 5 * val[1] + 7 * val[2] + 2 * val[3] + 3 * val[4] + 4 * val[5] + 5 * val[6] + 6 * val[7] + 7 * val[8]) % 11;
 		return Number(val[9]) === checksum ? false : 'Błędny numer NIP';
 	}
 	return 'Błędny numer NIP';
@@ -40,12 +33,12 @@ export const required = value => {
 };
 
 export const requiredEmail = value => {
-	if (!value) return 'wymagane';
+	if (!value) return false;
 	var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 	if (value.match(validRegex)) {
-		return false;
+		return true;
 	} else {
-		return 'Wymagane';
+		return false;
 	}
 };
 
@@ -62,11 +55,9 @@ export const requiredAllNumber = value => {
 	return false;
 };
 
-export const numberOrDecimal = value =>
-	!value || /^[0-9]*[.]{0,1}[0-9]{0,2}$/.test(value) ? false : 'Wymagana liczba';
+export const numberOrDecimal = value => (!value || /^[0-9]*[.]{0,1}[0-9]{0,2}$/.test(value) ? false : 'Wymagana liczba');
 
-export const requiredNumberWithDecimals = value =>
-	(value || value === 0) && /^\d*\.?\d*$/.test(value) ? false : 'Wymagana liczba';
+export const requiredNumberWithDecimals = value => ((value || value === 0) && /^\d*\.?\d*$/.test(value) ? false : 'Wymagana liczba');
 
 export const postalCode = value => (/^\d{2}-\d{3}$/.test(value) ? false : 'Niewłaściwy format');
 

@@ -28,6 +28,7 @@ import RedirectOnClick from './redirect/RedirectOnClick';
 import AddToCartModal from './AddToCartModal/AddToCartModal';
 import InvoiceComponent from './Invoice/InvoiceComponent';
 import MenuLoginLogout from './menuLoginLogout/MenuLoginLogout';
+import ErrorMessage from './ErrorMessage/ErrorMessage';
 
 export {
 	AllegroFooter,
@@ -60,4 +61,5 @@ export {
 	AddToCartModal,
 	InvoiceComponent,
 	MenuLoginLogout,
+	ErrorMessage
 };

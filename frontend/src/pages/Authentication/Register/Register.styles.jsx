@@ -4,16 +4,17 @@ import { Input } from '@mui/material';
 export const Container = styled.div`
 	display: grid;
 	grid-template-columns: ${props => (props.isMobile ? ' repeat(1, 1fr)' : ' repeat(2, 1fr)')};
-	grid-template-rows: repeat(1, 1fr);
 	grid-column-gap: 16px;
 	grid-row-gap: 16px;
 	height: auto;
+	width: 100%;
 `;
 
 export const RegisterContainer = styled.div`
-	grid-area: 1 / 2 / 2 / 3;
+	grid-area: ${props => (props.isMobile ? '1 / 1 / 1 / 3' : '1 / 2 / 2 / 3')};
 	background-color: white;
 	padding: 20px;
+	max-width: 800px;
 `;
 export const LoginContainer = styled.div`
 	background-color: white;
@@ -21,6 +22,7 @@ export const LoginContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	width: 100%;
 `;
 
 export const CustomInput = styled(Input)`

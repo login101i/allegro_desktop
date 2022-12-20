@@ -68,7 +68,7 @@ export const Input = styled.input`
 	outline: none;
 	font-size: 15px;
 	margin-left: 10px;
-	paddgin-right: 8px;
+	padding-right: 8px;
 `;
 
 export const SelectContainer = styled.select`
@@ -82,6 +82,7 @@ export const Right = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+
 `;
 
 export const Icon = styled.div`
@@ -101,7 +102,6 @@ export const Icon = styled.div`
 export const IconDown = styled(Icon)`
 	transform: translateX(10px);
 	font-size: 30px;
-	// border: 2px solid black;
 `;
 
 export const MenuLogin = styled.div`
@@ -109,7 +109,6 @@ export const MenuLogin = styled.div`
 	display: ${props => (props.openMenu ? 'block' : 'none')};
 	position: absolute;
 	top: 45px;
-
 	right: 0;
 	width: 285px;
 	height: auto;
@@ -117,7 +116,7 @@ export const MenuLogin = styled.div`
 	padding: 16px;
 	background-color: white;
 	border: 1px solid lightGrey;
-	zindex: 112;
+	z-index: 112;
 `;
 export const MenuLogged = styled(MenuLogin)`
 	padding: 0px;

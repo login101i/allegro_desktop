@@ -19,7 +19,6 @@ const CustomIcon = ({ badgeContent, size = 26, icon, color, style, onClick, chil
 						fontSize: isMobile ? '22px' : `${size}px`,
 						color: `${color}`,
 						textAlign: 'center',
-						marginRight: '10px',
 						style,
 					}}
 				/>

@@ -18,9 +18,10 @@ export const Right = styled.div`
 	flex: 2;
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
+	justify-content: center;
 	margin-bottom: ${props => props.isMobile && '16px'};
 	z-index: 1000;
+	width: 100%;
 `;
 
 export const Icon = styled.div`
@@ -59,7 +60,7 @@ export const MenuLogin = styled.div`
 	border: 1px solid lightGrey;
 	display: ${props => (props.openMenu ? 'block' : 'none')};
 	position: fixed;
-	top: 45px;
+	top: 65px;
 	right: 0;
 	width: 285px;
 	height: ${props => (props.isMobile ? '100vh' : ' 700px')};

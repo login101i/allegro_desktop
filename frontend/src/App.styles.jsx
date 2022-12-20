@@ -17,7 +17,7 @@ export const Container = styled.div`
 	flex-direction: column;
 	align-items: ${props => (props.isMobile ? 'auto' : 'center')};
 	justify-content: center;
-
+	min-height: calc(100vh - 152px);
 	max-width: ${props => (props.isMobile ? 'auto' : '1600px')};
 `;
 

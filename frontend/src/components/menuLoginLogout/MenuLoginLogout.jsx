@@ -1,11 +1,11 @@
 import { useState, useRef, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LoginImage from '../../assets/pictures/LoginImage.png';
 import { logoutUser } from '../../redux/actions/userActions';
-import { Flex, Text, Button, MenuContentBox, CustomIcon, OptionComponent, RedirectOnClick } from '../../components';
+import { Flex, Text, Button, MenuContentBox, OptionComponent } from '../../components';
 import { StyledBadge } from '../customIcon/CustomIcon.styles';
 import { useMediaQuery } from 'react-responsive';
 import { screens } from '../responsive';
@@ -15,10 +15,8 @@ import {
 	MenuLogged,
 	AccountNavbar,
 	AccountMainCont,
-	MenuLogin,
 	MenuLoginContainer,
 	LogInImage,
-	Right,
 	MenuLoginMobile,
 	MenuLoginLogoutContainer,
 } from '../../components/navbar/componets/right/RightPart.styles';
@@ -65,8 +63,7 @@ const MenuLoginLogout = () => {
 				<Text>{user?.name}</Text>
 			</StyledBadge>
 			<IconDown ref={catMenu}>
-				<ArrowBackIosIcon onClick={handleMenu} size={11} />
-
+				{openMenu ? <ExpandMoreIcon onClick={handleMenu} size={22} /> : <KeyboardArrowLeftIcon onClick={handleMenu} size={11} />}
 				<Menu openMenu={openMenu} ref={catMenu} isMobile={isMobile}>
 					<AccountNavbar isMobile={isMobile}>
 						<OptionComponent size='17px' option='zakupy' borderBottom={true} upperCase onClick={() => handleChangeMenu('zakupy')} />
@@ -124,7 +121,7 @@ const MenuLoginLogout = () => {
 		<MenuLoginLogoutContainer>
 			<Text> Moje allegro</Text>
 			<IconDown ref={catMenu}>
-				<ArrowBackIosIcon onClick={handleMenu} size={11} />
+				{openMenu ? <ExpandMoreIcon onClick={handleMenu} size={22} /> : <KeyboardArrowLeftIcon onClick={handleMenu} size={11} />}
 				<Menu openMenu={openMenu} ref={catMenu} isMobile={isMobile}>
 					<MenuLoginContainer>
 						<LogInImage src={LoginImage} />
@@ -143,7 +140,9 @@ const MenuLoginLogout = () => {
 						<Flex>
 							<Text> Nie masz konta? </Text>
 							<Link to='/register'>
-								<Text color='green'> Zarejestruj się</Text>
+								<Text color='green' onClick={handleMenu}>
+									Zarejestruj się
+								</Text>
 							</Link>
 						</Flex>
 					</MenuLoginContainer>

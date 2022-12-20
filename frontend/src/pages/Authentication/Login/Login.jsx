@@ -1,24 +1,28 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { useMediaQuery } from 'react-responsive';
-
 import { screens } from '../../../components/responsive';
 import { loginUser } from '../../../redux/actions/userActions';
-
-import { Text, Button, BorderAndTitle, CustomInput, Flex, PageWidth } from '../../../components';
-
+import { Text, Button, BorderAndTitle, CustomInput, Flex, PageWidth, ErrorMessage } from '../../../components';
 import { Container, LeftContainer, RightContainer } from './Login.styles';
 
 const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
+	const { isAuthenticated, error } = useSelector(state => state.auth);
+	const disabled = !email || password.length < 6;
+
+	useEffect(() => {
+		if (isAuthenticated) {
+			navigate('/');
+		}
+	}, [isAuthenticated, navigate]);
 
 	const body = {
 		email,
@@ -26,9 +30,7 @@ const Login = () => {
 	};
 
 	const handleLogin = () => {
-		if (!email || !password) return;
 		dispatch(loginUser(body));
-		navigate('/');
 	};
 
 	return (
@@ -41,13 +43,17 @@ const Login = () => {
 						<FormControlLabel disabled control={<Checkbox />} label='Numer telefonu' />
 					</Flex>
 					<Flex column>
-						<CustomInput fullWidth placeholder='Login lub e-mail' disableUnderline={true} onChange={e => setEmail(e.target.value)} />
-
+						<CustomInput
+							fullWidth
+							placeholder='Login lub e-mail'
+							disableUnderline={true}
+							onChange={e => setEmail(e.target.value)}
+						/>
 						<CustomInput rightPart={<BorderAndTitle title={'pokaż'} />} onChange={e => setPassword(e.target.value)}></CustomInput>
 					</Flex>
 					<Flex space align>
 						<Text color='#00a790'>Nie pamiętam hasła</Text>
-						<Button onClick={handleLogin} width='150px' disabled={!password || !email}>
+						<Button onClick={() => handleLogin(email, password)} width='150px' disabled={disabled}>
 							Zaloguj się
 						</Button>
 					</Flex>
@@ -76,6 +82,7 @@ const Login = () => {
 							oraz archiwalnych zmianach Regulaminu są dostępne na stronie.
 						</Text>
 					</Flex>
+					{error && <ErrorMessage error={error} />}
 				</LeftContainer>
 				{isMobile && <RightContainer isMobile={isMobile} />}
 			</Container>

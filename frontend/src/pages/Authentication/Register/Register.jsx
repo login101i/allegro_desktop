@@ -1,25 +1,23 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { useNavigate, Link } from 'react-router-dom';
-import { requiredEmail } from '../../../utils/validators';
-import { Text, Button, BorderAndTitle, PageWidth, Flex } from '../../../components';
+import { Text, Button, BorderAndTitle, PageWidth, Flex, ErrorMessage } from '../../../components';
 import { registerUser } from '../../../redux/actions/userActions';
 import { Container, RegisterContainer, LoginContainer, CustomInput, Break } from './Register.styles';
+import { useMediaQuery } from 'react-responsive';
+import { screens } from '../../../components/responsive';
 
-const Register = ({ history }) => {
+const Register = () => {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-
-	const navigate = useNavigate();
-
-	const disabled = !name || !email || password.length < 6;
-
 	const dispatch = useDispatch();
-	const { isAuthenticated } = useSelector(state => state.auth);
+	const navigate = useNavigate();
+	const disabled = !name || !email || password.length < 6;
+	const { isAuthenticated, error } = useSelector(state => state.auth);
+	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
 	useEffect(() => {
 		if (isAuthenticated) {
@@ -36,16 +34,15 @@ const Register = ({ history }) => {
 	const handleRegister = async () => {
 		try {
 			dispatch(registerUser(body));
-			navigate('/');
 		} catch (error) {
 			console.log('Error ---- ' + error);
 		}
 	};
 
 	return (
-		<PageWidth>
-			<Container>
-				<RegisterContainer>
+		<PageWidth width={isMobile && '100%'}>
+			<Container isMobile={isMobile}>
+				<RegisterContainer isMobile={isMobile}>
 					<Text size={30}> Zarejestruj się </Text>
 					<Flex fullWidth>
 						<FormControlLabel control={<Checkbox defaultChecked />} label='Login lub email' />
@@ -83,17 +80,24 @@ const Register = ({ history }) => {
 							Zarejestruj się
 						</Button>
 					</Flex>
-					<Flex>
+					<Flex align>
 						<Break />
 						<Text> lub </Text>
 						<Break />
 					</Flex>
-					<Flex>
-						<Button background='lightBlue'>Facebook</Button>
-						<Button outlined background='white' color='darkGrey'>
-							Google
-						</Button>
+					<Flex align space={isMobile}>
+						<Flex>
+							<Button width={isMobile && '180px'} background='lightBlue'>
+								Facebook
+							</Button>
+						</Flex>
+						<Flex>
+							<Button width={isMobile && '180px'} outlined background='white' color='darkGrey'>
+								Google
+							</Button>
+						</Flex>
 					</Flex>
+					{error && <ErrorMessage />}
 				</RegisterContainer>
 
 				<LoginContainer>

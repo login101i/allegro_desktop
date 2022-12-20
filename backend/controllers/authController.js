@@ -8,27 +8,29 @@ const bcrypt = require('bcryptjs');
 const sendToken = require('../utils/jwtToken');
 const sendEmail = require('../utils/sendEmail');
 const crypto = require('crypto');
+const emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 	const { name, email, password } = req.body;
 	const salt = await bcrypt.genSalt(10);
 	const hashedPassword = await bcrypt.hash(password, salt);
 
+	if (!email.match(emailFormat)) {
+		return next(new ErrorHandler('Nieprawidłowy format email', 400));
+	}
+
+	const userExist = await User.findOne({ email });
+	if (userExist) {
+		return next(new ErrorHandler('Taki użytkownik już istnieje', 400));
+	}
+
 	const user = await User.create({
 		name,
 		email,
-		password,
+		password: hashedPassword,
 		avatar:
 			'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxZtlkHFL5gQf7hDz5ZnkBlWT9H0ETbkWCGKb2ijSZHrvq5CBGoVrajFDfc3dPHv8EQfA&usqp=CAU',
 	});
-	const accessToken = jwt.sign(
-		{
-			id: user._id,
-			isAdmin: user.isAdmin,
-		},
-		process.env.JWT_SECRET,
-		{ expiresIn: process.env.JWT_EXPIRES_TIME },
-	);
 
 	sendToken(user, 201, res);
 });
@@ -36,8 +38,6 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 // api/v1/login
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 	const { email, password } = req.body;
-	const salt = await bcrypt.genSalt(10);
-	const hashedPassword = await bcrypt.hash(password, salt);
 
 	// Checks if email and password is entered by user
 	if (!email || !password) {
@@ -48,25 +48,14 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 	const user = await User.findOne({ email }).select('+password');
 
 	if (!user) {
-		return next(new ErrorHandler('Invalid Email', 401));
+		return next(new ErrorHandler('Nieprawidłowy email', 401));
 	}
 
 	// Checks if password is correct or not
-	const validPassword = await bcrypt.compare(hashedPassword, user.password);
-
-	if (!password) {
-		return next(new ErrorHandler('Invalid Password', 401));
+	const validPassword = await bcrypt.compare(password, user.password);
+	if (!validPassword) {
+		return next(new ErrorHandler('Nieprawidłowe hasło', 401));
 	}
-
-	// const accessToken = jwt.sign(
-	// 	{
-	// 		id: user._id,
-	// 		isAdmin: user.isAdmin,
-	// 	},
-	// 	process.env.JWT_SECRET,
-	// 	{ expiresIn: process.env.JWT_EXPIRES_TIME },
-	// );
-
 	sendToken(user, 200, res);
 });
 
@@ -77,7 +66,7 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
 		httpOnly: true,
 	};
 
-	res.status(200).cookie('tokenes', null, options).json({
+	res.status(200).cookie('token', null, options).json({
 		success: true,
 		message: 'Logged out',
 		user: null,
