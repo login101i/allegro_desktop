@@ -1,81 +1,54 @@
-import { useReducer } from "react";
-import { useDispatch } from "react-redux";
-import CheckIcon from "@mui/icons-material/Check";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { useDispatch, useSelector } from 'react-redux';
+import CheckIcon from '@mui/icons-material/Check';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { newProduct } from '../../../redux/actions/productActions';
+import { rightPartContent } from '../utils/AllegroLocal.utils';
+import { RightPart, RightCont, RightContInfo } from '../AllegroLocal.styles';
+import { Flex, Text, CustomIcon, Button, Loader } from '../../../components';
 
-import { newProduct } from "../../../redux/actions/productActions";
-import {
-	rightPartContent
-	
-} from "../utils/AllegroLocal.utils";
-import { RightPart, RightCont, RightContInfo } from "../AllegroLocal.styles";
-import { Flex, Text, CustomIcon, Button, Loader } from "../../../components";
+const RightPartComponent = ({ sellingType, data, images, isMobile }) => {
+	const { loading, error, success } = useSelector(state => state.newProduct);
 
-const RightPartComponent = ({
-	stateSellingType,
-	title,
-	price,
-	description,
-	category,
-	seller,
-	stock = 1,
-	loading,
-	error,
-	success,
-	images
-}) => {
 	const dispatch = useDispatch();
-	
 
-	const submitHandler = (e) => {
+	const submitHandler = e => {
 		e.preventDefault();
-		const productData = {
-			title,
-			price,
-			description,
-			category,
-			seller,
-			stock
-		};
+		const { range, shipping, stateOfProduct, sellingType, ...rest } = data;
+		const productData = rest;
 		const imagesArray = [];
-		images.forEach((url) => {
+		images.forEach(url => {
 			const imageUrl = { url };
 			imagesArray.push(imageUrl);
 		});
 		productData.img = imagesArray;
+		console.log(productData);
 		dispatch(newProduct(productData));
 	};
 
 	return (
 		<RightPart>
-			<RightCont>
+			<RightCont isMobile={isMobile}>
 				<Flex space fullWidth align>
-					<Text
-						color={[stateSellingType.infoPosition].color}
-						size={33}
-						bold
-					>
-						{rightPartContent[stateSellingType.infoPosition].title}
+					<Text color={[sellingType.infoPosition || 0].color} size={33} bold>
+						{rightPartContent[sellingType.infoPosition || 0].title}
 					</Text>
 					<CustomIcon
-						icon={rightPartContent[stateSellingType.infoPosition].icon}
+						icon={rightPartContent[sellingType.infoPosition || 0].icon}
 						size={60}
-						color={rightPartContent[stateSellingType.infoPosition].color}
+						color={rightPartContent[sellingType.infoPosition || 0].color}
 					/>
 				</Flex>
 				<Flex column>
-					{rightPartContent[stateSellingType.infoPosition].info.map((item) => (
-						<>
-							<Flex align>
-								<CustomIcon icon={CheckIcon} size={22} />
-								<Text wrap>{item.info}</Text>
-							</Flex>
-						</>
+					{rightPartContent[sellingType.infoPosition || 0].info.map((item, index) => (
+						<Flex align key={item.info + index}>
+							<CustomIcon icon={CheckIcon} size={22} />
+							<Text wrap>{item.info}</Text>
+						</Flex>
 					))}
 
-					<Flex align style={{ marginBottom: "16px" }}>
-						<CustomIcon icon={InfoOutlinedIcon} color="var(--allegroColor)" />
-						<Text size={22} color="var(--allegroColor)">
+					<Flex align style={{ marginBottom: '16px' }}>
+						<CustomIcon icon={InfoOutlinedIcon} color='var(--allegroColor)' />
+						<Text size={22} color='var(--allegroColor)'>
 							Dodaj zdjęcie
 						</Text>
 					</Flex>
@@ -84,37 +57,34 @@ const RightPartComponent = ({
 					<Loader />
 				) : (
 					<Button
-						background="#C3C3C3"
-						width="90%"
+						background='#C3C3C3'
+						width='100%'
 						borderRadius
 						style={{
-							padding: "16px 32px",
-							height: "48px",
-							marginTop: "16px"
+							padding: '12px 12px',
+							height: '48px',
+							marginTop: '16px',
 						}}
-						onClick={(e) => {
+						onClick={e => {
 							submitHandler(e);
 						}}
 					>
-						{rightPartContent[stateSellingType.infoPosition].buttonText}
+						<Text wrap='true' size={14}>
+							{' '}
+							{rightPartContent[sellingType.infoPosition || 0].buttonText}
+						</Text>
 					</Button>
 				)}
-				{error && (
-					<Text color="red">
-						Wystąpił błąd. Proszę uzupełnić wszystkie wymagane pola.
-					</Text>
-				)}
-				{success && <Text color="green"> Pomyślnie dodano produkt</Text>}
+				{error && <Text color='red'>Wystąpił błąd. Proszę uzupełnić wszystkie wymagane pola.</Text>}
+				{success && <Text color='green'> Pomyślnie dodano produkt</Text>}
 
 				<RightContInfo>
 					<Flex column align>
 						<Flex>
-							<Text>Wystawiając przedmiot akceptujesz </Text>
-							<Text color="var(--linkColor)">regulamin</Text>
+							<Text wrap='true'>Wystawiając przedmiot akceptujesz regulamin </Text>
 						</Flex>
 						<Flex>
-							<Text>Możesz też wystawić przez</Text>
-							<Text color="var(--linkColor)"> dotychczasowy formularz</Text>
+							<Text wrap='true'>Możesz też wystawić przez dotychczasowy formularz</Text>
 						</Flex>
 					</Flex>
 				</RightContInfo>

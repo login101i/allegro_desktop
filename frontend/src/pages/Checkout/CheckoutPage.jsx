@@ -35,7 +35,7 @@ import { useMediaQuery } from 'react-responsive';
 import { screens } from '../../components/responsive';
 import { useSelector } from 'react-redux';
 
-export const CheckoutPage = () => {
+const CheckoutPage = () => {
 	const [products, setProducts] = useState([]);
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
 	useEffect(() => {}, []);
@@ -54,7 +54,6 @@ export const CheckoutPage = () => {
 	const handleDeleteFromCart = product => {
 		dispatch({ type: 'REMOVE_FROM_CART', payload: product });
 	};
-
 
 	const handlePayment = () => {
 		navigate('/payment');
@@ -160,3 +159,5 @@ export const CheckoutPage = () => {
 		</Wrapper>
 	);
 };
+
+export default CheckoutPage;

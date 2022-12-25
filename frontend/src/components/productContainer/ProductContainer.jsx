@@ -30,7 +30,7 @@ const ProductContainer = ({
 						<ImageListingsContainer>{img && <Image src={img} />}</ImageListingsContainer>
 						<Flex column>
 							<Text wrap='true'>{product.title}</Text>
-							<Text> od {product.seller.toupperCase()}</Text>
+							<Text> od {product.seller}</Text>
 							<PriceDiscount discount={discount} oldPrice={oldPrice} price={price} description={description} />
 						</Flex>
 					</SectionListingContainer>

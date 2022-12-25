@@ -1,24 +1,21 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const MainContainer = styled.div`
-	width: ${(props) => (props.isMobile ? "100%" : "80%")};
-	margin: 0 auto;
-	margin-left: ${(props) => (props.isMobile ? "0px" : "250px")};
+	width: ${props => (props.isMobile ? '100%' : '80%')};
+	max-width: 1240px;
 `;
 export const Container = styled.div`
 	min-height: 100vh;
 	background-color: var(--allegroLocalnieColor);
 	display: flex;
-	flex-direction: ${(props) => (props.isMobile ? "column" : "row")};
-
+	flex-direction: ${props => (props.isMobile ? 'column' : 'row')};
 	margin-top: 30px;
-	width: 100%;
 `;
 
 export const LeftPart = styled.div`
-	margin-right: ${(props) => (props.isMobile ? "0px" : "30px")};
+	margin-right: ${props => (props.isMobile ? '0px' : '30px')};
 	flex-direction: column;
-	width: ${(props) => (props.isMobile ? "100%" : "40%")};
+	width: ${props => (props.isMobile ? '100%' : '60%')};
 	position: relative;
 `;
 
@@ -30,7 +27,7 @@ export const TopLeftCont = styled.div`
 	display: flex;
 	background-color: #edecf7;
 	cursor: pointer;
-	width: ${(props) => (props.isMobile ? "100%" : "700px")};
+	width: ${props => (props.isMobile ? '100%' : '100%')};
 
 	-webkit-box-shadow: 6px 3px 54px -39px rgba(66, 68, 90, 1);
 	-moz-box-shadow: 6px 3px 54px -39px rgba(66, 68, 90, 1);
@@ -46,7 +43,7 @@ export const BottomLeftCont = styled.div`
 	padding: 16px 32px;
 	overflow: hidden;
 
-	width: ${(props) => (props.isMobile ? "100%" : "700px")};
+	width: ${props => (props.isMobile ? '100%' : '100%')};
 
 	background-color: white;
 	position: relative;
@@ -55,7 +52,7 @@ export const BottomLeftCont = styled.div`
 	-moz-box-shadow: 6px 3px 54px -39px rgba(66, 68, 90, 1);
 	box-shadow: 6px 3px 54px -39px rgba(66, 68, 90, 1);
 
-	margin-bottom: ${(props) => (props.isMobile ? "70px" : "200px")};
+	margin-bottom: ${props => (props.isMobile ? '70px' : '200px')};
 `;
 
 export const BorderContainer = styled.div`
@@ -82,26 +79,22 @@ export const RequiredFields = styled.div`
 	color: grey;
 `;
 export const RightPart = styled.div`
-	position: absolute;
-	top: 0px;
-	left: 720px;
+	width: 100%;
+	height: 500px;
 `;
 
 export const RightCont = styled.div`
-position:fixed;
-width:450px;
+	position: ${props => (props.isMobile ? 'block' : 'fixed')};
+	margin-top: ${props => props.isMobile && '-40px'};
+	max-width: 430px;
 	height: auto;
-		border-radius: 12px;
-	padding:10px 20px
 	border-radius: 12px;
 	display: flex;
 	background-color: white;
-padding:30px 32px;
-	display:flex;
-	flex-direction:column;
-	align-items:center;
-
-	
+	padding: 30px 32px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
 	-webkit-box-shadow: 6px 3px 54px -39px rgba(66, 68, 90, 1);
 	-moz-box-shadow: 6px 3px 54px -39px rgba(66, 68, 90, 1);
@@ -109,9 +102,10 @@ padding:30px 32px;
 `;
 export const RightContInfo = styled.div`
 	position: absolute;
-	bottom: -100px;
+	bottom: -130px;
 	left: 50%;
 	transform: translate(-50%, 0%);
+	width: 100%;
 `;
 
 export const ProductState = styled.div`
@@ -134,7 +128,7 @@ export const ProductState = styled.div`
 export const BorderWithArrow = styled(ProductState)`
 	margin-top: 20px;
 	&::after {
-		content: " ";
+		content: ' ';
 		position: absolute;
 		left: 25px;
 		top: -9px;
@@ -177,6 +171,7 @@ export const LoadImagesComponent = styled.input`
 	vertical-align: middle;
 	white-space: nowrap;
 	z-index: 7999;
+	border: 3px solid green;
 
 	width: auto;
 	border-radius: 20px;
@@ -184,7 +179,49 @@ export const LoadImagesComponent = styled.input`
 
 	&:hover {
 		color: var(--linkColor);
-		background-color: "green";
+		background-color: 'green';
 		transition: 0.3s;
 	}
+`;
+export const LabelUploadFile = styled.label`
+	background-color: #edecf7;
+	color: #7770bd;
+	cursor: pointer;
+	outline: none;
+	text-align: center;
+	font-weight: 600;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	outline: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: Open Sans, sans-serif;
+	font-size: 14px;
+	height: 40px;
+	line-height: 21px;
+	line-height: 40px;
+	margin: 0;
+	overflow: hidden;
+	padding: 0px 24px;
+	position: relative;
+	text-decoration: none;
+	text-size-adjust: 100%;
+	vertical-align: middle;
+	white-space: nowrap;
+	z-index: 7999;
+	width: auto;
+	border-radius: 20px;
+	font-weight: 500;
+
+	&:hover {
+		color: var(--linkColor);
+		background-color: 'green';
+		transition: 0.3s;
+	}
+`;
+export const InputUploadFile = styled.input`
+	height: 100%px;
+	width: auto;
+	display: none;
 `;

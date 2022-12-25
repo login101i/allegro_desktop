@@ -1,28 +1,24 @@
-import React from "react";
-import Checkbox from "@mui/material/Checkbox";
+import React from 'react';
+import Checkbox from '@mui/material/Checkbox';
 
-import { BorderContainer, BorderWithArrow } from "../AllegroLocal.styles";
+import { BorderContainer, BorderWithArrow } from '../AllegroLocal.styles';
 
-import {
-	Flex,
-	Text,
-	Button,
-	CustomInput
-} from "../../../components";
+import { Flex, Text, Button, CustomInput } from '../../../components';
 
-const ItemPrice = ({ setPrice, isMobile }) => {
+const ItemPrice = ({ setPrice, isMobile, value }) => {
 	return (
 		<>
 			<Flex space>
-				<Text title="cena przedmiotu*" />
-				<Text title="Jak ustalić cenę?" color="var(--greenLocalnie)" />
+				<Text title='cena przedmiotu*' />
+				<Text title='Jak ustalić cenę?' color='var(--greenLocalnie)' />
 			</Flex>
 			<CustomInput
-				borderRadius={10}
-				placeholder="0,00"
-				rightPart="zł"
-				onChange={(e) => setPrice(e.target.value)}
-				inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+				borderradius={10}
+				placeholder='0,00'
+				rightPart='zł'
+				onChange={e => setPrice(e.target.value)}
+				inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+				value={value}
 			></CustomInput>
 			<Flex align>
 				<Checkbox />
@@ -30,15 +26,14 @@ const ItemPrice = ({ setPrice, isMobile }) => {
 			</Flex>
 
 			<BorderWithArrow>
-				<Text color="var(--greenLocalnie)">NOWOŚĆ! </Text>
-				<Text wrap>
-					Twoje ogłoszenie zostanie oznaczone jako “do negocjacji”, a kupujący
-					będą mogli w prosty sposób składać swoje oferty cenowe.
+				<Text color='var(--greenLocalnie)'>NOWOŚĆ! </Text>
+				<Text wrap='true'>
+					Twoje ogłoszenie zostanie oznaczone jako “do negocjacji”, a kupujący będą mogli w prosty sposób składać swoje oferty cenowe.
 				</Text>
 			</BorderWithArrow>
 			<Flex align column={isMobile}>
 				<Text>Chcesz sprzedać więcej niż jeden taki przedmiot?</Text>
-				<Button background="#edecf7" borderRadius color="blue">
+				<Button background='#edecf7' borderRadius color='blue'>
 					dodaj przedmioty
 				</Button>
 			</Flex>

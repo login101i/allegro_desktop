@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 
 import PayPalLogo from '../../../../assets/pictures/PayPalLogo.png';
-import Logo2 from '../../../../assets/pictures/goodToSee3.png';
-import Logo3 from '../../../../assets/pictures/goodToSee2.png';
+import Logo2 from '../../../../assets/pictures/goodToSee3.webp';
+import Logo3 from '../../../../assets/pictures/goodToSee2.webp';
 import { Button, Text, Flex } from '../../../../components';
 import { Container1, Icon } from '../sidebarRight/SideBarRight.styles';
 

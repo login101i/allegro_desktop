@@ -14,7 +14,7 @@ import ThirdSection from '../../components/thirdSection/ThirdSection';
 import { getProducts } from '../../redux/actions/productActions';
 import { MainContainer, BannerContainer, SmartBanner, BannerButton } from './HomePage.styles';
 
-export const HomePage = ({ isMobile }) => {
+const HomePage = ({ isMobile }) => {
 	const [isPaypalShow, setIsPaypalShow] = useState(false);
 	const [payPalMove, setPaypalMove] = useState(false);
 	const dispatch = useDispatch();
@@ -57,3 +57,5 @@ export const HomePage = ({ isMobile }) => {
 		</MainContainer>
 	);
 };
+
+export default HomePage;

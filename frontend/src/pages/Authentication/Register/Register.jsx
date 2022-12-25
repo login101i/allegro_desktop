@@ -69,7 +69,7 @@ const Register = () => {
 							fullWidth
 							type='password'
 							placeholder='Hasło'
-							disableUnderline={true}
+							disableunderline="true"
 							value={password}
 							onChange={e => setPassword(e.target.value)}
 							endAdornment={<BorderAndTitle title={'pokaż'} />}

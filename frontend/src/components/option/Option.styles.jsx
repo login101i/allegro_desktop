@@ -21,7 +21,7 @@ export const Option = styled.div`
 	padding: 10px;
 	font-size: ${props => (props.size ? props.size : 'inherit')};
 	text-transform: ${props => props.upperCase && 'uppercase'};
-
+	height: 40px;
 	&:hover {
 		color: var(--linkColor);
 	}

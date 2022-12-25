@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const GreyBackground = styled.div`
-	min-width: ${props => (props.isMobile ? '100vw' : '1360px')};
+	min-width: ${props => (props.isMobile ? '100vw' : '100vw')};
+	max-width:1300px;
 	background-color: ${props => props.theme.colors.allegroBackground};
 	display: flex;
 	flex-direction: column;
@@ -18,7 +19,7 @@ export const Container = styled.div`
 	align-items: ${props => (props.isMobile ? 'auto' : 'center')};
 	justify-content: center;
 	min-height: calc(100vh - 152px);
-	max-width: ${props => (props.isMobile ? 'auto' : '1600px')};
+	max-width: ${props => (props.isMobile ? 'auto' : 'auto')};
 `;
 
 export const GreyFilter = styled.div`

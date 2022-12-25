@@ -1,4 +1,5 @@
 const Product = require('../models/Product');
+const shuffleArray = require('../utils/shuffleArray');
 
 const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
@@ -7,12 +8,13 @@ const cloudinary = require('cloudinary');
 
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 	const productsCount = await Product.countDocuments();
-	const resPerPage = 8;
+	const resPerPage = 16;
 
 	const apiFeatures = new APIFeatures(Product.find(), req.query).search().filter().pagination(resPerPage);
 
-	let products = await apiFeatures.query;
-	let filteredProductsCount = products.length;
+	let productsInDbOrder = await apiFeatures.query;
+	let filteredProductsCount = productsInDbOrder.length;
+	const products = shuffleArray(productsInDbOrder);
 
 	res.status(200).json({
 		success: true,
@@ -26,20 +28,17 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 	let images = [];
-
 	if (typeof req.body.img === 'string') {
 		images.push(req.body.img);
 	} else {
 		images = req.body.img;
 	}
-
 	let imagesLinks = [];
 
 	for (let i = 0; i < images.length; i++) {
 		const result = await cloudinary.v2.uploader.upload(images[i].url, {
 			folder: 'allegroWebProducts',
 		});
-
 		imagesLinks.push({
 			public_id: result.public_id,
 			url: result.secure_url,
@@ -50,7 +49,9 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 	// req.body.user = req.user.id;
 
 	const newProduct = await Product.create(req.body);
-
+	if (!newProduct) {
+		return next(new ErrorHandler('Nie stworzono produktu', 404));
+	}
 	res.status(201).json({
 		success: true,
 		message: 'product created',

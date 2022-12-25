@@ -12,18 +12,19 @@ import { Container, Space } from './ProductDetails.styles';
 import { useMediaQuery } from 'react-responsive';
 import { screens } from '../../components/responsive';
 
-export const ProductDetails = () => {
+const ProductDetails = () => {
 	const dispatch = useDispatch();
 	let id = useParams().id;
 
 	useEffect(() => {
 		dispatch(getProductDetails(id));
+		window.scrollTo(0, 0);
 	}, [dispatch, id]);
 
 	const { loading, product } = useSelector(state => state.productDetails);
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
 	const title = 'Szczegóły produktu';
-	
+
 	return (
 		<>
 			<Container isMobile={isMobile}>
@@ -36,3 +37,5 @@ export const ProductDetails = () => {
 		</>
 	);
 };
+
+export default ProductDetails;

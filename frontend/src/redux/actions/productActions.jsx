@@ -62,15 +62,12 @@ export const getProductDetails = id => async dispatch => {
 export const newProduct = productData => async dispatch => {
 	try {
 		dispatch({ type: NEW_PRODUCT_REQUEST });
-
 		const config = {
 			headers: {
 				'Content-Type': 'application/json',
 			},
 		};
-
 		const { data } = await axios.post('/api/v1/product/new', productData, config);
-
 		dispatch({ type: NEW_PRODUCT_SUCCESS, payload: data });
 	} catch (error) {
 		dispatch({

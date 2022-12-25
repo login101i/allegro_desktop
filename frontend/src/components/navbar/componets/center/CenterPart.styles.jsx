@@ -39,6 +39,7 @@ export const SelectContainer = styled.select`
 	border: 0.5px solid #d2d2d2;
 	font-size: 16px;
 	color: var(--textColor);
+	height:40px;
 `;
 
 export const Option = styled.option`

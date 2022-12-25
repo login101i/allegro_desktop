@@ -43,12 +43,7 @@ const Login = () => {
 						<FormControlLabel disabled control={<Checkbox />} label='Numer telefonu' />
 					</Flex>
 					<Flex column>
-						<CustomInput
-							fullWidth
-							placeholder='Login lub e-mail'
-							disableUnderline={true}
-							onChange={e => setEmail(e.target.value)}
-						/>
+						<CustomInput fullWidth placeholder='Login lub e-mail' disableunderline={true} onChange={e => setEmail(e.target.value)} />
 						<CustomInput rightPart={<BorderAndTitle title={'pokaż'} />} onChange={e => setPassword(e.target.value)}></CustomInput>
 					</Flex>
 					<Flex space align>

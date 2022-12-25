@@ -10,7 +10,7 @@ import { CartContext } from '../../context/cart.context';
 import { useMediaQuery } from 'react-responsive';
 import { screens } from '../../components/responsive';
 
-export const PaymentPage = () => {
+const PaymentPage = () => {
 	const { cart, dispatch } = useContext(CartContext);
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
 
@@ -29,3 +29,5 @@ export const PaymentPage = () => {
 		</Wrapper>
 	);
 };
+
+export default PaymentPage;

@@ -68,7 +68,7 @@ const HighlightItemAs = ({ isMobile }) => {
 					</Flex>
 					<Text
 						textAlign={isMobile && "center"}
-						wrap
+						wrap="true"
 						color="grey"
 						subTitle="Nawet do 10x więcej wyświetleń i do 5x większa szansa na
 									sprzedaż!"
@@ -101,7 +101,7 @@ const HighlightItemAs = ({ isMobile }) => {
 					</Flex>
 					<Text
 						textAlign={isMobile && "center"}
-						wrap
+						wrap="true"
 						subTitle="Nawet do 7x więcej wyświetleń i do 3x większa szansa na
 									sprzedaż!"
 					></Text>
@@ -121,7 +121,7 @@ const HighlightItemAs = ({ isMobile }) => {
 								color="#f7ae10"
 							/>
 							<Flex column>
-								<Text wrap>Wyróżnij na Allegro Lokalnie i Allegro</Text>
+								<Text wrap="true">Wyróżnij na Allegro Lokalnie i Allegro</Text>
 								<Text size={16}>przez 3 dni</Text>
 							</Flex>
 						</Flex>
@@ -136,7 +136,7 @@ const HighlightItemAs = ({ isMobile }) => {
 					</Flex>
 					<Text
 						textAlign={isMobile && "center"}
-						wrap
+						wrap="true"
 						color="grey"
 						subTitle="Nawet do 3x więcej wyświetleń!"
 					></Text>

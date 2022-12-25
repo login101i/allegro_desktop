@@ -54,6 +54,10 @@ const MenuLoginLogout = () => {
 		setOpenMenu(false);
 		navigate('/');
 	};
+	const handleAllegroLocal = () => {
+		setOpenMenu(false);
+		navigate('/allegroLocal');
+	};
 
 	const Menu = isMobile ? MenuLoginMobile : MenuLogged;
 
@@ -86,15 +90,15 @@ const MenuLoginLogout = () => {
 						{optionMenu === 'sprzedaz' && (
 							<>
 								<MenuContentBox
+									onClick={handleAllegroLocal}
 									title='Sprzedaż na Allegro Lokalnie'
 									subTitles={[
 										{
 											subTitle: 'Wystaw przedmiot',
-											link: '/oferty/wystaw/kup-teraz',
 										},
 									]}
 								/>
-								<MenuContentBox title='Zakupy na allegro lokakbue' subTitles={['Moje zakupy', 'Licytuję', 'Zarezewowane dla mnie']} />
+								<MenuContentBox title='Zakupy na allegro lokalnie' subTitles={['Moje zakupy', 'Licytuję', 'Zarezewowane dla mnie']} />
 								<MenuContentBox title='Programy zniżkowe' subTitles={['Allegro Smart!', 'Centrum kuponów', 'Twoje monety i kupony']} />
 								<MenuContentBox title='Allegro finanse' subTitles={['Allegro Pay']} />
 							</>

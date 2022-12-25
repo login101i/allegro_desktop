@@ -18,7 +18,7 @@ const order = {
 	],
 };
 
-export const InvoicePage = () => {
+const InvoicePage = () => {
 	const { auth } = useSelector(state => ({ ...state }));
 
 	return (
@@ -32,3 +32,5 @@ export const InvoicePage = () => {
 		</Flex>
 	);
 };
+
+export default InvoicePage;

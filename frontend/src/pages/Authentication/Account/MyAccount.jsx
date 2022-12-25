@@ -136,7 +136,6 @@ const Smart = styled.img`
 const MyAccount = () => {
 	const { user } = useSelector(state => state.auth);
 
-	console.log(user);
 	useEffect(() => {}, [user]);
 
 	return (

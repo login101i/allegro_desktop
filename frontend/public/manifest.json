@@ -1,0 +1,19 @@
+{
+	"name": "Allegro Web",
+	"short_name": "allegro",
+	"description": "Allegro, wszystkie produkty w zasięgu Twojej ręki.",
+	"start_url": ".",
+	"id": "/",
+	"orientation": "portrait-primary",
+	"background_color": "#F4F8FC",
+	"theme_color": "#ff5a00",
+	"display": "standalone",
+	"icons": [
+		{
+			"src": "favicon.ico",
+			"sizes": "32x32",
+			"type": "image/png",
+			"purpose": "maskable"
+		}
+	]
+}

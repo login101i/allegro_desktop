@@ -38,7 +38,7 @@ import { screens } from '../../components/responsive';
 import { useSelector } from 'react-redux';
 import { userCart, getUserCart } from '../../redux/actions/cartActions';
 
-export const CartPage = ({ history }) => {
+const CartPage = ({ history }) => {
 	const { cart, dispatch } = useContext(CartContext);
 	const { auth } = useSelector(state => ({ ...state }));
 
@@ -190,3 +190,5 @@ export const CartPage = ({ history }) => {
 		</Wrapper>
 	);
 };
+
+export default CartPage;

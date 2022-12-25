@@ -1,14 +1,9 @@
-import { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, lazy, Suspense } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { AddToCartModal, Navbar } from './components';
-import { HomePage } from './pages/HomePage/HomePage';
-import { Listing } from './pages/Listing/Listing';
-import { ProductDetails } from './pages/ProductDetalis/ProductDetails';
-import { AllegroLocal } from './pages/AllegroLocal/AllegroLocal';
-import { Login, Register, MyAccount } from './pages/Authentication';
 import AllegroFooter from './components/allegroFooter/AllegroFooter';
 import { theme } from './infrastructure/theme';
 import { ProtectedRoute } from './utils/routes/ProtectedRoute';
@@ -19,13 +14,21 @@ import { allegroVersion } from './redux/actions/versionAction';
 import { getProducts } from './redux/actions/productActions';
 import { store } from './store';
 import { GreyBackground, Container, GreyFilter } from './App.styles';
-import { CartPage } from './pages/CartPage/CartPage';
-import { PaymentPage } from './pages/PaymentPage/PaymentPage';
-import { CheckoutPage } from './pages/Checkout/CheckoutPage';
-import { InvoicePage } from './pages/InvoicePage/InvoicePage';
 import { CartContext } from './context/cart.context';
-
+import Loader from './components/loader/Loader';
 import './style.css';
+
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const Listing = lazy(() => import('./pages/Listing/Listing'));
+const ProductDetails = lazy(() => import('./pages/ProductDetalis/ProductDetails'));
+const AllegroLocal = lazy(() => import('./pages/AllegroLocal/AllegroLocal'));
+const CartPage = lazy(() => import('./pages/CartPage/CartPage'));
+const PaymentPage = lazy(() => import('./pages/PaymentPage/PaymentPage'));
+const CheckoutPage = lazy(() => import('./pages/Checkout/CheckoutPage'));
+const InvoicePage = lazy(() => import('./pages/InvoicePage/InvoicePage'));
+const Login = lazy(() => import('./pages/Authentication/Login/Login'));
+const Register = lazy(() => import('./pages/Authentication/Register/Register'));
+const MyAccount = lazy(() => import('./pages/Authentication/Account/MyAccount'));
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -51,29 +54,30 @@ const App = () => {
 					<Navbar />
 					{!isMobile && <NavbarAd cartModal={cartModal} />}
 					<Container isMobile={isMobile}>
-						<Routes>
-							<Route path='/' element={<HomePage isMobile={isMobile} />} exact></Route>
-							<Route path='/product/:id' element={<ProductDetails />} />
-							<Route path='/listing/:keyword' element={<Listing />} />
-							<Route path='/login' exact element={<Login />} />
-							<Route path='/register' element={<Register />} exact />
-							<Route path='/cart' element={<CartPage />} exact />
-							<Route path='/checkout' element={<CheckoutPage />} exact />
-							<Route path='/payment' element={<PaymentPage />} exact />
-							<Route path='/invoice' element={<InvoicePage />} exact />
-							<Route
-								path='/moje-allegro/moje-konto'
-								element={
-									<ProtectedRoute>
-										<MyAccount />
-									</ProtectedRoute>
-								}
-								exact
-							/>
-							<Route path='/oferty/wystaw/kup-teraz' element={<AllegroLocal />} exact />
-						</Routes>
+						<Suspense fallback={<Loader />}>
+							<Routes>
+								<Route path='/' element={<HomePage isMobile={isMobile} />} exact />
+								<Route path='/product/:id' element={<ProductDetails />} exact />
+								<Route path='/listing/:keyword' element={<Listing />} />
+								<Route path='/login' exact element={<Login />} />
+								<Route path='/register' element={<Register />} exact />
+								<Route path='/cart' element={<CartPage />} exact />
+								<Route path='/checkout' element={<CheckoutPage />} exact />
+								<Route path='/payment' element={<PaymentPage />} exact />
+								<Route path='/invoice' element={<InvoicePage />} exact />
+								<Route
+									path='/moje-allegro/moje-konto'
+									element={
+										<ProtectedRoute>
+											<MyAccount />
+										</ProtectedRoute>
+									}
+									exact
+								/>
+								<Route path='/allegroLocal' element={<AllegroLocal />} exact />
+							</Routes>
+						</Suspense>
 					</Container>
-
 					<AllegroFooter isMobile={isMobile} />
 				</GreyBackground>
 			</BrowserRouter>

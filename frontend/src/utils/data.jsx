@@ -1,14 +1,21 @@
-import Image1 from '../assets/pictures/goodToSee1.png';
-import Image2 from '../assets/pictures/goodToSee2.png';
-import Image3 from '../assets/pictures/goodToSee3.png';
-import Image4 from '../assets/pictures/goodToSee4.png';
-import Image31 from '../assets/pictures/Image31.png';
-import Image32 from '../assets/pictures/Image32.png';
-import Image33 from '../assets/pictures/Image33.png';
-import Image34 from '../assets/pictures/Image34.png';
-import Image35 from '../assets/pictures/Image35.png';
-import Image36 from '../assets/pictures/Image36.png';
-import Image37 from '../assets/pictures/Image37.png';
+import Image1 from '../assets/pictures/goodToSee1.webp';
+import Image2 from '../assets/pictures/goodToSee2.webp';
+import Image3 from '../assets/pictures/goodToSee3.webp';
+import Image4 from '../assets/pictures/goodToSee4.webp';
+import Image31 from '../assets/pictures/Image31.webp';
+import Image32 from '../assets/pictures/Image32.webp';
+import Image33 from '../assets/pictures/Image33.webp';
+import Image34 from '../assets/pictures/Image34.webp';
+import Image35 from '../assets/pictures/Image35.webp';
+import Image36 from '../assets/pictures/Image36.webp';
+import Image37 from '../assets/pictures/Image37.webp';
+
+// homePage slider
+import ImageSlide1 from '../assets/pictures/firstSectionSlide1.webp';
+import ImageSlide2 from '../assets/pictures/firstSectionSlide2.webp';
+import ImageSlide3 from '../assets/pictures/firstSectionSlide3.webp';
+import ImageSlide4 from '../assets/pictures/firstSectionSlide4.webp';
+import ImageSlide5 from '../assets/pictures/firstSectionSlide5.webp';
 
 // for sidebarIcons in secondsection
 import LaptopChromebookOutlinedIcon from '@mui/icons-material/LaptopChromebookOutlined';
@@ -330,23 +337,23 @@ export const sideBarCategoriesBenefitsSecII = [
 export const sliderItems = [
 	{
 		id: 1,
-		img: 'https://a.allegroimg.com/original/127cc8/f7bc8c1348f6b1c431c0548311f0',
+		img: ImageSlide1,
 	},
 	{
 		id: 2,
-		img: 'https://a.allegroimg.com/original/125ddf/b82aa9464d3cbb8abcb96274cbc4',
+		img: ImageSlide2,
 	},
 	{
 		id: 3,
-		img: 'https://a.allegroimg.com/original/12dcf8/404c61a34a29a9ff5e8d0c3f36cd',
+		img: ImageSlide3,
 	},
 	{
 		id: 4,
-		img: 'https://a.allegroimg.com/original/127b05/e99a5fff4544b66f1f0628220e72',
+		img: ImageSlide4,
 	},
 	{
 		id: 5,
-		img: 'https://a.allegroimg.com/original/12473a/a1cb531a44b1b6cb5caa99b9f35c',
+		img: ImageSlide5,
 	},
 	{
 		id: 6,

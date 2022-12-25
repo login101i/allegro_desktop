@@ -4,7 +4,7 @@ const CustomInput = ({
 	rightPart,
 	onChange,
 	placeholder,
-	borderRadius,
+	borderradius,
 	rows,
 	sx = { padding: '10px', fontSize: '20px', color: 'LightGrey' },
 	size = 30,
@@ -15,6 +15,7 @@ const CustomInput = ({
 	startAdornment,
 	multiline = true,
 	type,
+	hovered,
 	inputProps,
 	...props
 }) => {
@@ -23,17 +24,17 @@ const CustomInput = ({
 			<Container
 				{...props}
 				placeholder={placeholder}
-				disableUnderline={true}
+				disableunderline='true'
 				onChange={onChange}
-				endAdornment={rightPart}
-				borderRadius={borderRadius}
+				endadornment={rightPart}
+				borderradius={borderradius}
 				minRows={rows}
 				multiline={multiline}
 				sx={sx}
 				width={width}
-				hovered
+				hovered={hovered}
 				type={type}
-				InputProps={{ disableUnderline: true }}
+				InputProps={{ disableunderline: 'true' }}
 				variant='outlined'
 				fullWidth
 			>
