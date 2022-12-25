@@ -8,12 +8,15 @@ const cloudinary = require('cloudinary');
 
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 	const productsCount = await Product.countDocuments();
+	console.log(productsCount);
 	const resPerPage = 16;
 
 	const apiFeatures = new APIFeatures(Product.find(), req.query).search().filter().pagination(resPerPage);
 
 	let productsInDbOrder = await apiFeatures.query;
 	let filteredProductsCount = productsInDbOrder.length;
+	console.log(filteredProductsCount);
+
 	const products = shuffleArray(productsInDbOrder);
 
 	res.status(200).json({

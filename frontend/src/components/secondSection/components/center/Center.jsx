@@ -3,6 +3,7 @@ import { BorderAndTitle, PriceDiscount, Text, RedirectOnClick } from '../../../.
 import { Container, SectionContainer, ImageContainer, Image, SectionInfo, Description } from './Center.styles';
 
 export const Center = ({ products = [], isMobile }) => {
+	console.log(products);
 	return (
 		<Container isMobile={isMobile}>
 			<Text title='Z super ceną zaoszczędzisz' />

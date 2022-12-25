@@ -21,7 +21,6 @@ const RightPartComponent = ({ sellingType, data, images, isMobile }) => {
 			imagesArray.push(imageUrl);
 		});
 		productData.img = imagesArray;
-		console.log(productData);
 		dispatch(newProduct(productData));
 	};
 
@@ -42,7 +41,7 @@ const RightPartComponent = ({ sellingType, data, images, isMobile }) => {
 					{rightPartContent[sellingType.infoPosition || 0].info.map((item, index) => (
 						<Flex align key={item.info + index}>
 							<CustomIcon icon={CheckIcon} size={22} />
-							<Text wrap>{item.info}</Text>
+							<Text wrap ="true">{item.info}</Text>
 						</Flex>
 					))}
 

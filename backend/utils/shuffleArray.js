@@ -1,6 +1,6 @@
+// cr
 const shuffleArray = array => {
 	let currentIndex = array.length;
-	console.log(currentIndex);
 	let randomIndex;
 
 	// While there remain elements to shuffle.
@@ -12,7 +12,7 @@ const shuffleArray = array => {
 		// And swap it with the current element.
 		[array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
 	}
-	console.log(array);
+	return array;
 };
 
 module.exports = shuffleArray;

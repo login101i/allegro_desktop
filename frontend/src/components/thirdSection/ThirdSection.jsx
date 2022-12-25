@@ -14,7 +14,7 @@ const ThirdSection = () => {
 				{thirdSectionImages.map(item => (
 					<ItemContainer key={item.id}>
 						<Image src={item.img} />
-						<Text wrap="true" textAlign hovered size={isMobile && 15}>
+						<Text wrap="true" textAlign hovered size={isMobile ? 15 : 18}>
 							{item.title}
 						</Text>
 					</ItemContainer>
