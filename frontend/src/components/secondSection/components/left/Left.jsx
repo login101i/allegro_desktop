@@ -2,6 +2,7 @@ import { useMediaQuery } from 'react-responsive';
 import { Text, BorderAndTitle, ProductContainer, DirectionArrows, CountDownTimer } from '../../../../components';
 import { screens } from '../../../responsive';
 import { Container, Wrapper } from './Left.styles';
+import { ImageSkeleton } from '../../../productContainer/productContainer.styles';
 
 export const Left = ({ products }) => {
 	const isMobile = useMediaQuery({ maxWidth: screens.md });
@@ -14,7 +15,7 @@ export const Left = ({ products }) => {
 			<Wrapper>
 				<CountDownTimer />
 				<DirectionArrows>
-					{products &&
+					{products ? (
 						products.map(dogProduct => (
 							<ProductContainer
 								key={dogProduct._id}
@@ -27,7 +28,10 @@ export const Left = ({ products }) => {
 								height='180px'
 								imageSize='160px'
 							/>
-						))}
+						))
+					) : (
+						<ImageSkeleton />
+					)}
 				</DirectionArrows>
 			</Wrapper>
 

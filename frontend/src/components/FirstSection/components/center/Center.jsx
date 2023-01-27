@@ -9,6 +9,7 @@ import { MainContainer, WrapperOption, Carousel, Slide, ImgContainer, Image, Con
 
 let myCounter = 0;
 let timeout = null;
+let sliderImageTime = 8000;
 
 export const Center = () => {
 	const [distance, setDistance] = useState();
@@ -28,7 +29,7 @@ export const Center = () => {
 			if (myCounter >= 6) {
 				setSlideIndex(0);
 			}
-		}, 8000);
+		}, sliderImageTime);
 	};
 
 	const handleIndex = index => {

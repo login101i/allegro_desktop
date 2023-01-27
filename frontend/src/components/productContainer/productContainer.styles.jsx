@@ -23,6 +23,7 @@ export const ImageContainer = styled.div`
 	max-width: 85%;
 	height: ${props => (props.height ? props.height : '10px')};
 	min-height: ${props => (props.isMobile ? '60px' : '100px')};
+
 `;
 
 export const ImageListingsContainer = styled(ImageContainer)`
@@ -40,4 +41,25 @@ export const Image = styled.img`
 	cursor: pointer;
 	height: ${props => (props.isMobile ? '120px' : '180px')};
 	height: ${props => (props.imageSize ? props.imageSize : '180px')};
+`;
+
+export const ImageSkeleton = styled.div`
+	width: 150px;
+	height: 200px;
+	object-fit: contain;
+	cursor: pointer;
+	background-color: green;
+	height: ${props => (props.isMobile ? '120px' : '180px')};
+	height: ${props => (props.imageSize ? props.imageSize : '180px')};
+	animation: skeleton-animation 1s linear infinite alternate;
+
+	@keyframes skeleton-animation {
+		0% {
+			background-color: orange;
+		}
+
+		100% {
+			background-color: purple;
+		}
+	}
 `;

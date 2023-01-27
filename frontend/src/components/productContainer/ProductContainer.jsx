@@ -1,7 +1,14 @@
 import { Link } from 'react-router-dom';
 import PriceDiscount from '../priceDiscount/PriceDiscount';
 import { Text, Flex, RedirectOnClick } from '..';
-import { SectionContainer, SectionListingContainer, ImageContainer, ImageListingsContainer, Image } from './productContainer.styles';
+import {
+	SectionContainer,
+	SectionListingContainer,
+	ImageContainer,
+	ImageListingsContainer,
+	Image,
+	ImageSkeleton,
+} from './productContainer.styles';
 import { Bar, BarTitle } from '../fourthSection/FourthSection.styles';
 import { fourthSectionData } from '../../utils/data';
 import { useMediaQuery } from 'react-responsive';
@@ -40,6 +47,7 @@ const ProductContainer = ({
 							<BarTitle>{fourthSectionData[index]?.title}</BarTitle>
 						</Bar>
 						<ImageContainer height={height} isMobile={isMobile}>
+							{!img && <ImageSkeleton isMobile={isMobile} imageSize={imageSize} />}
 							{img && <Image src={img} isMobile={isMobile} imageSize={imageSize} />}
 						</ImageContainer>
 						<Flex column>

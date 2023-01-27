@@ -9,7 +9,8 @@ const CountDownTimer = () => {
 	const zero = '0';
 	const currentMonth = new Date().getMonth() + 1;
 	const currentDay = new Date().getDate();
-	const dateToEnd = `${currentMonth} ${currentDay + 1}, 2022 12:00:00`;
+	const currentYear = new Date().getFullYear();
+	const dateToEnd = `${currentMonth} ${currentDay + 1}, ${currentYear} 12:00:00`;
 
 	const [endDate, setEndDate] = useState(dateToEnd);
 	let countDownDate = new Date(endDate).getTime();

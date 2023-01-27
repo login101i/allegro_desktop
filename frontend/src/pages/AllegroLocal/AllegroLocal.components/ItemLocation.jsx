@@ -54,7 +54,7 @@ const ItemLocation = ({ setRange, range, isMobile }) => {
 
 				<CustomInput placeholder='8,99' rightPart='zł' width='150px' borderradius={10} />
 			</Flex>
-			<Text wrap="true" style={{ padding: '20px' }}>
+			<Text wrap='true' style={{ padding: '20px' }}>
 				Nadaj przesyłkę w dowolnym paczkomacie InPost! Za wysyłkę zapłacisz zawsze 8,99 zł, niezależnie od rozmiaru paczki. Możesz zwiększyć
 				atrakcyjność oferty obniżając w polu powyżej kwotę, którą zapłaci Ci za tę wysyłkę kupujący.
 			</Text>

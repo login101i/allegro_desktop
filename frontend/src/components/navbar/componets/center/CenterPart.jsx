@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
-
 import { Text, Button, CustomIcon, Flex } from '../../../../components';
-
 import { Center, CenterContainer, SearchContainer, SelectContainer, Input, Option } from './CenterPart.styles';
 
 export const CenterPart = ({ isMobile }) => {

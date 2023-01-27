@@ -15,9 +15,6 @@ module.exports = (err, req, res, next) => {
   }
 
   if (process.env.NODE_ENV === "PRODUCTION") {
-    let error = { ...err };
-
-    error.message = err.message;
 
     // Wrong Mongoose Object ID Error
     if (err.name === "CastError") {
@@ -49,9 +46,9 @@ module.exports = (err, req, res, next) => {
       error = new ErrorHandler(message, 400);
     }
 
-    res.status(error.statusCode || 500).json({
+    res.status(err.statusCode || 500).json({
       success: false,
-      message: error.message || "Wewnętrzny błąd serwera :)",
+      message: err.message || "Wewnętrzny błąd serwera :)",
     });
   }
 };
